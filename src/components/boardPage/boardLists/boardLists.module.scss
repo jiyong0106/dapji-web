@@ -56,6 +56,8 @@
     .boardImageWrapper {
       margin-left: auto;
       position: relative;
+      display: flex;
+      flex-direction: column;
       .boardImage {
         width: 100px;
         height: 100px;
@@ -79,7 +81,8 @@
 
       .iconWrapper {
         @include flex-arrange(space-around, center);
-        margin-top: 5px;
+        // margin-top: 5px;
+        margin-top: auto;
         .like,
         .comment {
           @include flex-arrange(center);

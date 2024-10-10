@@ -10,7 +10,6 @@ const AnonymousToggle = () => {
 
   const anonymousClick = () => {
     setIsAnonymous((prev) => !prev);
-    console.log(isAnonymous);
   };
 
   return (
@@ -27,6 +26,3 @@ const AnonymousToggle = () => {
 };
 
 export default AnonymousToggle;
-
-//button 으로 하니 폼 제출됨
-//div 변경

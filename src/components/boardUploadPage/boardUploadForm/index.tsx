@@ -42,7 +42,6 @@ const BoardUploadForm = ({ params, initialData }: BoardUploadFormProps) => {
   const {
     register,
     handleSubmit,
-    watch,
     setValue,
     control,
     formState: { errors },
@@ -194,7 +193,7 @@ const BoardUploadForm = ({ params, initialData }: BoardUploadFormProps) => {
         setDeleteUrl={setDeleteUrl}
       />
       <AnonymousToggle />
-      <CommonButton name="업로드 " type="submit" />
+      <CommonButton name={initialData ? '수정하기' : '업로드'} type="submit" />
       <ModalChoice />
     </form>
   );

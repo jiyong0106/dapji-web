@@ -111,7 +111,7 @@ const CommentInput = ({
             </div>
             {tagNickname && (
               <div className={cn('tagNickname')}>
-                <span>{tagNickname}님에게 답글 작성 하기</span>
+                <span>{tagNickname}님에게 답글 작성하기</span>
                 <CloseIcon
                   width="10"
                   height="10"
