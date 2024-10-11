@@ -49,7 +49,9 @@
         margin-bottom: 10px;
       }
       .content {
-        @include font-style(1.4rem, gray, 400);
+        @include font-style(1.3rem, gray, 400);
+        white-space: pre-wrap;
+        word-break: break-word;
       }
     }
 
@@ -62,6 +64,8 @@
         width: 100px;
         height: 100px;
         border-radius: 5px;
+        aspect-ratio: 1/1;
+        object-fit: cover;
       }
 
       .imageLength {
@@ -81,7 +85,6 @@
 
       .iconWrapper {
         @include flex-arrange(space-around, center);
-        // margin-top: 5px;
         margin-top: auto;
         .like,
         .comment {

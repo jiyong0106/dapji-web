@@ -8,7 +8,8 @@ const LinkifyText = ({ text }: LinkifyTextProps) => {
 
   // 텍스트를 링크로 변환하는 함수
   const linkify = (text: string) => {
-    return text.split(urlRegex).map((part, index) => {
+    // text가 undefined일 경우 빈 문자열로 처리
+    return (text || '').split(urlRegex).map((part, index) => {
       // 정규식에 맞는 부분을 링크로 변환
       if (part.match(urlRegex)) {
         return (

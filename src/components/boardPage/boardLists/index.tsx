@@ -1,14 +1,11 @@
 import styles from './boardLists.module.scss';
 import classNames from 'classnames/bind';
 import { BoardListDataType } from '@/src/utils/type';
-import { CommentIcon, LikeIcon } from '@/public/icon';
 import Image from 'next/image';
 import useTruncateString from '@/src/hooks/useTruncateString';
 import LinkPreview from '@/src/components/common/linkPreview';
 import useTimeAgo from '@/src/hooks/useTimeAgo';
 import LikeAction from '../../common/likeAction';
-import { useState } from 'react';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useLikeAction } from '@/src/hooks/useLikeAction';
 import CommentCount from '../../common/commentCount';
@@ -27,14 +24,13 @@ const BoardList = ({ list }: BoardListProps) => {
     comment_count,
     title,
     content,
-    // linkPreview,
+    preview,
     img,
     createdAt,
     is_like,
     user_idx,
     board_idx,
   } = list;
-
   const { likeCount, likeToggle, handleLikeClick } = useLikeAction({
     category: 'boards',
     content_id: board_idx,
@@ -119,9 +115,7 @@ const BoardList = ({ list }: BoardListProps) => {
           </div>
         </section>
       </div>
-      {/* {linkPreview && (linkPreview.img || linkPreview.title) && (
-        <LinkPreview linkPreview={linkPreview} />
-      )} */}
+      {preview && <LinkPreview previews={preview} singlePreview={true} />}
     </article>
   );
 };
