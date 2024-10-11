@@ -253,10 +253,12 @@ export type CategroyListType = {
 };
 
 //링크
-export type LinkPreviewType = {
-  title: string | null;
-  img: string | null;
-  link?: string | null;
+export type PreviewType = {
+  title: string;
+  description: string;
+  image: string;
+  url: string;
+  length?: number;
 };
 
 //게시판 페이지 전체 타입
@@ -275,7 +277,7 @@ export type BoardListDataType = {
   User: UserType;
   board_like: BoardlikeType[];
   is_like: boolean;
-  // linkPreview?: LinkPreviewType;
+  preview: PreviewType[];
 };
 
 export type BoardResponseType = {
@@ -310,7 +312,7 @@ export type BoardDetailDataType = {
   User: UserType;
   board_like: BoardlikeType[];
   is_like: boolean;
-  // linkPreview?: LinkPreviewType;
+  preview: PreviewType[];
 };
 
 //게시판 상세 댓글 조회 타입

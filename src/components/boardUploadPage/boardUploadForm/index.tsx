@@ -55,7 +55,7 @@ const BoardUploadForm = ({ params, initialData }: BoardUploadFormProps) => {
       router.replace('/board');
     },
     onError: (e) => {
-      showModalHandler('alert', '업로드를  다시 시도해 주세요');
+      showModalHandler('alert', '제목, 내용, 카테고리 선택은 필수입니다.');
       console.error(e, '게시물 업로드 에러');
     },
   });

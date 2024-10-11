@@ -3,7 +3,7 @@ import styles from './boardPage.module.scss';
 import classNames from 'classnames/bind';
 import CategoryLists from '@/src/components/boardPage/categroyLists';
 import { categoryListData } from '@/src/utils/categoryListDatas';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import BoardLists from '@/src/components/boardPage/boardLists';
 import SearchBar from '@/src/components/common/searchBar';
 import useScrollDirection from '@/src/hooks/useScrollDirection';
@@ -37,7 +37,7 @@ const BoardPage = () => {
   const handleSearchChange = (value: string) => {
     setSearchName(value);
   };
-  
+
   const handleSelectCategory = (category: string) => {
     setSelectCategory(category);
   };
