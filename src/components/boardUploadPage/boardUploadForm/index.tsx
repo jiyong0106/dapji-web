@@ -38,11 +38,11 @@ const BoardUploadForm = ({ params, initialData }: BoardUploadFormProps) => {
   const router = useRouter();
   const { mutate: imageDelete } = useBoardImageDelete();
   const { boardId } = params;
+  const [isAnonymous, setIsAnonymous] = useState(true);
 
   const {
     register,
     handleSubmit,
-    watch,
     setValue,
     control,
     formState: { errors },
@@ -101,6 +101,7 @@ const BoardUploadForm = ({ params, initialData }: BoardUploadFormProps) => {
     const formData = {
       ...data,
       category: selectCategory,
+      anonymous: isAnonymous,
       img: fileUrl,
     };
 
@@ -193,8 +194,11 @@ const BoardUploadForm = ({ params, initialData }: BoardUploadFormProps) => {
         setFileUrl={setFileUrl}
         setDeleteUrl={setDeleteUrl}
       />
-      <AnonymousToggle />
-      <CommonButton name="업로드 " type="submit" />
+      <AnonymousToggle
+        isAnonymous={isAnonymous}
+        setIsAnonymous={setIsAnonymous}
+      />
+      <CommonButton name={initialData ? '수정하기' : '업로드'} type="submit" />
       <ModalChoice />
     </form>
   );
