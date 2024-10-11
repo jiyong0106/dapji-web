@@ -241,21 +241,25 @@ export type PostRecommentType = {
 
 //////////////////////////게시판 페이지 타입들//////////////////////////
 
+//게시물 좋아요
 type BoardlikeType = {
   board_like_idx: number;
 };
 
+//카테고리
 export type CategroyListType = {
   category_idx: number;
   category: string;
 };
 
+//링크
 export type LinkPreviewType = {
   title: string | null;
   img: string | null;
   link?: string | null;
 };
 
+//게시판 페이지 전체 타입
 export type BoardListDataType = {
   board_idx: string;
   user_idx: number;
@@ -265,6 +269,7 @@ export type BoardListDataType = {
   createdAt: any;
   updatedAt: any;
   img: string[];
+  anonymous: boolean; //추가
   like_count: number;
   comment_count: number;
   User: UserType;
@@ -283,6 +288,7 @@ export type useFormBoardUploadType = {
   title: string;
   content: string;
   category: string;
+  anonymous: boolean;
   img: string[];
 };
 
@@ -298,6 +304,7 @@ export type BoardDetailDataType = {
   createdAt: any;
   updatedAt: any;
   img: string[];
+  anonymous: boolean;
   like_count: number;
   comment_count: number;
   User: UserType;
@@ -319,6 +326,7 @@ export type BoardCommentDetailType = {
   User: UserType;
   is_like: boolean;
   recomment_count: number;
+  anonymous: boolean;
 };
 
 export type BoardCommentType = {
@@ -331,6 +339,7 @@ export type BoardCommentType = {
 export type BoardCommentUploadType = {
   board_idx: string;
   content: string;
+  anonymous: boolean;
 };
 
 //게시판 답글  조회 타입
@@ -345,6 +354,7 @@ export type RecommentType = {
   user_idx: number;
   like_count: number;
   is_like: boolean;
+  anonymous: boolean;
 };
 
 export type BoardRecommentType = {
@@ -356,6 +366,7 @@ export type BoardRecommentType = {
 export type BoardRecommentUploadType = {
   comment_idx: number;
   content: string;
+  anonymous: boolean;
 };
 
 //////////////////////////유저 검색 타입//////////////////////////

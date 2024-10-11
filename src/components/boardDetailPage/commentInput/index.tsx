@@ -12,6 +12,8 @@ import {
   BoardCommentUploadType,
   PostCommentUploadType,
 } from '@/src/utils/type';
+import AnonymousToggle from '../../boardUploadPage/anonymousToggle';
+import { useState } from 'react';
 
 const cn = classNames.bind(styles);
 
@@ -35,6 +37,7 @@ const CommentInput = ({
     BoardCommentUploadType | PostCommentUploadType
   >();
   const { boardId, postId } = params;
+  const [isAnonymous, setIsAnonymous] = useState(true);
 
   //게시판 댓글
   const { mutate: boardCommentUpload } = useCommentUploadData({
@@ -75,6 +78,7 @@ const CommentInput = ({
 
     const formData = {
       ...data, // content
+      anonymous: isAnonymous,
       [tagNickname ? reCommentIdxKey : idKey]: tagNickname ? selectId : id,
       //tagNickname이 선택되면 reCommentIdxKey이 키로 선택 아니면 idkey
       //tagNickname이true면 선택된 id가 false면 id 사용
@@ -102,6 +106,15 @@ const CommentInput = ({
         register={register('content', {
           required: '댓글을 입력해주세요',
         })}
+        left={
+          <div className={cn('toggleWrapper')}>
+            <AnonymousToggle
+              isAnonymous={isAnonymous}
+              setIsAnonymous={setIsAnonymous}
+              type="comment"
+            />
+          </div>
+        }
         suffix={
           <>
             <div className={cn('iconWrapper')}>
@@ -127,5 +140,3 @@ const CommentInput = ({
 };
 
 export default CommentInput;
-
-//id를 전역으로해야되겠따

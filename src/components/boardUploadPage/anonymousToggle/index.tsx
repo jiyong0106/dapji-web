@@ -1,19 +1,27 @@
 'use client';
 import classNames from 'classnames/bind';
 import styles from './anonymousToggle.module.scss';
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 
 const cn = classNames.bind(styles);
 
-const AnonymousToggle = () => {
-  const [isAnonymous, setIsAnonymous] = useState(true);
+type AnonymousToggleProps = {
+  isAnonymous: boolean;
+  setIsAnonymous: Dispatch<SetStateAction<boolean>>;
+  type?: string;
+};
 
+const AnonymousToggle = ({
+  isAnonymous,
+  setIsAnonymous,
+  type,
+}: AnonymousToggleProps) => {
   const anonymousClick = () => {
     setIsAnonymous((prev) => !prev);
   };
 
   return (
-    <div className={cn('container')}>
+    <div className={cn('container', { commentContainer: type === 'comment' })}>
       <div
         className={cn('isAnonymousBtnWrapper', { isAnonymous })}
         onClick={anonymousClick}

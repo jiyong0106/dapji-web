@@ -45,3 +45,12 @@
     }
   }
 }
+
+.commentContainer {
+  @include flex-arrange(center, center);
+  flex-direction: column;
+  gap: 2px;
+  .isAnonymousBtnWrapper {
+    order: 2;
+  }
+}
