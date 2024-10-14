@@ -83,7 +83,7 @@ const BoardList = ({ list }: BoardListProps) => {
             </div>
           </header>
           <h1>{truncateString(title, 15)}</h1>
-          <span className={cn('content')}>{truncateString(content, 50)}</span>
+          <span className={cn('content')}>{truncateString(content, 20)}</span>
         </section>
         <section className={cn('boardImageWrapper')}>
           {img.length > 0 ? (
@@ -105,6 +105,7 @@ const BoardList = ({ list }: BoardListProps) => {
           ) : (
             <div className={cn('noBoardImage')}></div>
           )}
+
           <div className={cn('iconWrapper')}>
             <LikeAction
               likeToggle={likeToggle}

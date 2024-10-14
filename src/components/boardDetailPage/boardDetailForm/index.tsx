@@ -1,6 +1,9 @@
 import classNames from 'classnames/bind';
 import styles from './boardDetailForm.module.scss';
-import { BoardDetailDataType } from '@/src/utils/type';
+import {
+  BoardDetailDataType,
+  BorardDetailResponseType,
+} from '@/src/utils/type';
 import Image from 'next/image';
 import { DeleteIcon, EditIcon } from '@/public/icon';
 import { useMyInfoStore } from '@/src/utils/store/useMyImfoStore';
@@ -13,11 +16,12 @@ import { useLikeAction } from '@/src/hooks/useLikeAction';
 import Link from 'next/link';
 import CommentCount from '../../common/commentCount';
 import LinkifyText from '@/src/hooks/useLinkifyText';
+import LinkPreview from '../../common/linkPreview';
 
 const cn = classNames.bind(styles);
 
 type BoardDetailFormProps = {
-  boardDetailData: BoardDetailDataType;
+  boardDetailData: BorardDetailResponseType;
 };
 
 const BoardDetailForm = ({ boardDetailData }: BoardDetailFormProps) => {
@@ -35,9 +39,8 @@ const BoardDetailForm = ({ boardDetailData }: BoardDetailFormProps) => {
     User,
     is_like,
     board_like,
-    preview,
-  } = boardDetailData;
-  console.log(preview);
+  } = boardDetailData?.result;
+  const previews = boardDetailData?.preview;
 
   const { likeToggle, likeCount, handleLikeClick } = useLikeAction({
     category: 'boards',
@@ -123,6 +126,7 @@ const BoardDetailForm = ({ boardDetailData }: BoardDetailFormProps) => {
         ) : (
           <div className={cn('noBoardImage')}></div>
         )}
+        {previews && <LinkPreview previews={previews} />}
       </main>
       <div className={cn('iconWrapper')}>
         <LikeAction

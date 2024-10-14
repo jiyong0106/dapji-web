@@ -10,6 +10,7 @@ import {
   BoardCommentType,
   BoardDetailDataType,
   BoardCommentDetailType,
+  BorardDetailResponseType,
 } from '@/src/utils/type';
 import LoadingSpinner from '@/src/components/common/loadingSpinner';
 import CommentInput from '@/src/components/boardDetailPage/commentInput';
@@ -32,10 +33,11 @@ const BoardDetailPage = ({ params }: BoardDetailPageProps) => {
   const [selectId, setSelectId] = useState('');
 
   //게시판 상세 내용데이터
-  const { data: boardDetailData, isLoading } = useQuery<BoardDetailDataType>({
-    queryKey: ['boardDetailData'],
-    queryFn: () => boardDetailGetDatas(boardId),
-  });
+  const { data: boardDetailData, isLoading } =
+    useQuery<BorardDetailResponseType>({
+      queryKey: ['boardDetailData'],
+      queryFn: () => boardDetailGetDatas(boardId),
+    });
 
   //게시판 댓글 데이터
 
@@ -54,7 +56,6 @@ const BoardDetailPage = ({ params }: BoardDetailPageProps) => {
     getNextPageParam: (lastPage) =>
       lastPage.meta.hasNextPage ? lastPage.meta.page + 1 : undefined,
   });
-
   const commentDatas: BoardCommentDetailType[] =
     boardDetailCommentData?.pages.flatMap((page) => page.comments) ?? [];
 
@@ -85,6 +86,7 @@ const BoardDetailPage = ({ params }: BoardDetailPageProps) => {
           tagNickname={tagNickname}
           setTagNickname={setTagNickname}
           selectId={selectId}
+          anonymous
         />
       </div>
       <ModalChoice />

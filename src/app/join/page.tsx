@@ -72,6 +72,7 @@ const JoinPage = () => {
       <CommonInput
         placeholder="한글, 영어 소문자, 숫자, _, - 만 가능합니다"
         type="text"
+        className={cn('joininput')}
         register={register('nickname', {
           required: '닉네임을 입력해주세요',
           maxLength: {
@@ -90,7 +91,6 @@ const JoinPage = () => {
         })}
       />
       {errors.nickname && <span>{errors.nickname.message}</span>}
-      {/* <br /> */}
       <CommonButton name="가입하기" type="submit" />
       <ModalChoice />
     </form>

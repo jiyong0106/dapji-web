@@ -14,6 +14,10 @@ type LinkPreviewProps = {
 const LinkPreview = ({ previews, singlePreview = false }: LinkPreviewProps) => {
   const truncateString = useTruncateString();
 
+  const urlClick = (url: string) => {
+    window.open(url, '_blank');
+  };
+
   if (!previews || previews.length === 0) return null;
 
   const previewsToRender = singlePreview ? [previews[0]] : previews;
@@ -21,7 +25,11 @@ const LinkPreview = ({ previews, singlePreview = false }: LinkPreviewProps) => {
   return (
     <div className={cn('linkPreviewWrapper')}>
       {previewsToRender.map((preview, idx) => (
-        <div key={idx} className={cn('linkPreview')}>
+        <div
+          key={idx}
+          className={cn('linkPreview')}
+          onClick={() => urlClick(preview.url)}
+        >
           <Image
             src={
               preview.image || process.env.NEXT_PUBLIC_URL + '/icon/icon.png'

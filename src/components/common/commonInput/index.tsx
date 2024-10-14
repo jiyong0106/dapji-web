@@ -16,7 +16,6 @@ interface inputProps extends HTMLAttributes<HTMLInputElement> {
   value?: string;
   register?: UseFormRegisterReturn;
   suffix?: React.ReactNode;
-  left?: React.ReactNode;
 }
 
 const CommonInput = ({
@@ -25,12 +24,10 @@ const CommonInput = ({
   suffix,
   register,
   className,
-  left,
   ...rest
 }: inputProps) => {
   return (
     <div className={cn('container', className)}>
-      {left}
       {label && <label htmlFor={id}>{label}</label>}
       <input className={cn('input')} id={id} {...register} {...rest} />
       {suffix}
