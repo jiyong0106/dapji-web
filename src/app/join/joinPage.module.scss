@@ -7,6 +7,7 @@
   height: 100vh;
   gap: 20px;
   padding-top: 150px;
+  // background-color: #f6f4f4;
 
   h1 {
     @include font-style(3rem, black, 400);

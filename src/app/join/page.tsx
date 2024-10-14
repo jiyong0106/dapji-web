@@ -53,10 +53,24 @@ const JoinPage = () => {
 
   return (
     <form className={cn('container')} onSubmit={handleSubmit(onSubmit)}>
-      <h1>답지 가입을 환영해요🙌</h1>
-      <p>사용하실 닉네임을 입력해주세요</p>
+      <div style={{ textAlign: 'center', fontSize: 35 }}>🎉</div>
+
+      <h1 style={{ fontWeight: 900, color: '#0070C0', marginBottom: '0px' }}>
+        답지 가입을 환영해요!
+      </h1>
+      <p
+        style={{
+          fontWeight: 700,
+          textAlign: 'center',
+          color: '#3B3838',
+          fontSize: 15,
+        }}
+      >
+        사용하실 닉네임을 입력해주세요
+      </p>
+      <br />
       <CommonInput
-        placeholder="닉네임을 입력해주세요"
+        placeholder="한글, 영어 소문자, 숫자, _, - 만 가능합니다"
         type="text"
         register={register('nickname', {
           required: '닉네임을 입력해주세요',
@@ -70,11 +84,13 @@ const JoinPage = () => {
           },
           pattern: {
             value: nickname_reg,
-            message: '한글, 소문자, 숫자, _, - 만 가능합니다',
+            message:
+              '한글, 영어 소문자, 숫자, 언더바(_), 하이픈(-)만 사용 가능합니다',
           },
         })}
       />
       {errors.nickname && <span>{errors.nickname.message}</span>}
+      {/* <br /> */}
       <CommonButton name="가입하기" type="submit" />
       <ModalChoice />
     </form>
