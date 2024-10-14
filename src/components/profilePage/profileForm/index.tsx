@@ -30,7 +30,7 @@ const ProfileForm = ({ params, profileInfo }: ProfileFormProps) => {
         return (
           <>
             <KakaoIcon width="17" height="17" />
-            <span>KAKAO</span>
+            <span>Kakao</span>
           </>
         );
       case 'naver':
@@ -49,7 +49,7 @@ const ProfileForm = ({ params, profileInfo }: ProfileFormProps) => {
               height="30"
               alt="provider 기본이미지"
             />
-            <span>Dap Ji</span>
+            <span></span>
           </>
         );
       default:
