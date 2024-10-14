@@ -178,7 +178,7 @@ type CommentInputProps = {
   tagNickname: string;
   setTagNickname: React.Dispatch<React.SetStateAction<string>>;
   selectId: string;
-  anonymous: boolean;
+  anonymous?: boolean;
 };
 
 const CommentInput = ({
