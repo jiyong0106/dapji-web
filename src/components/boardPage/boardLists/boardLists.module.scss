@@ -52,6 +52,7 @@
         @include font-style(1.3rem, gray, 400);
         white-space: pre-wrap;
         word-break: break-word;
+        width: 100%;
       }
     }
 
@@ -60,6 +61,7 @@
       position: relative;
       display: flex;
       flex-direction: column;
+      gap: 10px;
       .boardImage {
         width: 100px;
         height: 100px;
@@ -85,7 +87,6 @@
 
       .iconWrapper {
         @include flex-arrange(space-around, center);
-        margin-top: auto;
         .like,
         .comment {
           @include flex-arrange(center);

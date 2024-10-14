@@ -252,7 +252,7 @@ export type CategroyListType = {
   category: string;
 };
 
-//링크
+//preview 타입들
 export type PreviewType = {
   title: string;
   description: string;
@@ -312,6 +312,10 @@ export type BoardDetailDataType = {
   User: UserType;
   board_like: BoardlikeType[];
   is_like: boolean;
+};
+
+export type BorardDetailResponseType = {
+  result: BoardDetailDataType;
   preview: PreviewType[];
 };
 

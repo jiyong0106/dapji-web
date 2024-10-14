@@ -12,3 +12,13 @@
     @include font-style(3rem, black, 400);
   }
 }
+
+.joininput {
+  border-bottom: 2px solid #4d4d4d !important;
+  border-radius: 0 !important;
+  input {
+    border: none !important;
+    background: rgb(247, 244, 244);
+    width: 100%;
+  }
+}
