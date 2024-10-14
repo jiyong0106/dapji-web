@@ -5,6 +5,7 @@ import ProfileGymDatas from '../profileGymData/ProfileGymDatas';
 import ProfilePostDatas from '../profilePostData';
 import { PostIcon, BoardIcon } from '@/public/icon';
 import { ProfilePostDetailType } from '@/src/utils/type';
+import Image from 'next/image';
 
 const cn = classNames.bind(styles);
 
@@ -39,7 +40,12 @@ const ProfileAllData = ({ profileData, params }: ProfileAllDataProps) => {
           className={cn('icon')}
           onClick={() => handleIconClick('board', '50%')}
         >
-          <BoardIcon width="30" height="30" />
+          <Image
+            src="/icon/bouldering.svg"
+            width="35"
+            height="35"
+            alt="즐겨찾기 로고"
+          />
         </div>
         <div className={cn('underline')} style={underlineStyle} />
       </div>
