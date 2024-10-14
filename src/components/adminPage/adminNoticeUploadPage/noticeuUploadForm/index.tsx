@@ -92,7 +92,7 @@ const NoticeuUploadForm = ({ params, initialData }: NoticeuUploadFormProps) => {
         <CommonInput
           placeholder="제목을 입력해 주세요"
           id="title"
-          type="string"
+          type="text"
           register={register('title', {
             required: '제목을 입력해 주세요',
           })}

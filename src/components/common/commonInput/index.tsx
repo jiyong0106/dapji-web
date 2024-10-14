@@ -29,10 +29,10 @@ const CommonInput = ({
   ...rest
 }: inputProps) => {
   return (
-    <div className={cn('container', className)}>
+    <div className={cn('container')}>
       {left}
       {label && <label htmlFor={id}>{label}</label>}
-      <input className={cn('input')} id={id} {...register} {...rest} />
+      <input className={cn('input', className)} id={id} {...register} {...rest} />
       {suffix}
     </div>
   );
