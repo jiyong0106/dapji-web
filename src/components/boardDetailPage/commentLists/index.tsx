@@ -6,7 +6,6 @@ import LikeAction from '../../common/likeAction';
 import { useState, memo, useRef } from 'react';
 import useTimeAgo from '@/src/hooks/useTimeAgo';
 import { DeleteIcon } from '@/public/icon';
-import { useMyInfoStore } from '@/src/utils/store/useMyImfoStore';
 import { useModal } from '@/src/hooks/useModal';
 import RecommnetLists from '../recommnetLists';
 import { useLikeAction } from '@/src/hooks/useLikeAction';
@@ -28,7 +27,6 @@ const CommentList = memo(
   ({ list, setTagNickname, setSelectId }: CommentListProps) => {
     const {
       User,
-      board_idx,
       comment_idx,
       content,
       createdAt,
@@ -36,6 +34,7 @@ const CommentList = memo(
       like_count,
       user_idx,
       recomment_count,
+      is_owner,
     } = list;
 
     const commentRef = useRef<HTMLDivElement | null>(null); // 댓글에 대한 ref 설정
@@ -76,9 +75,7 @@ const CommentList = memo(
       firQueryKeyName: 'boardDetailComment',
     });
 
-    const { myId } = useMyInfoStore();
     const { showModalHandler } = useModal();
-    const isMyId = myId === user_idx;
 
     const timeAgo = useTimeAgo(createdAt);
 
@@ -130,9 +127,12 @@ const CommentList = memo(
           </Link>
           <div className={cn('contentWrapper')}>
             <div className={cn('userInfo')}>
-              <span>{User?.nickname || '❗탈퇴한 사용자'}</span>
-              <span>{timeAgo}</span>
-              {isMyId && (
+              <span className={cn('nickname')}>
+                {User?.nickname || '❗탈퇴한 사용자'}
+              </span>
+              {is_owner && <span className={cn('isMyId')}>*</span>}
+              <span className={cn('timeAgo')}>{timeAgo}</span>
+              {is_owner && (
                 <DeleteIcon
                   width="12"
                   height="12"

@@ -1,6 +1,5 @@
 .container {
   width: 100%;
-
   background: white;
   padding: 10px 10px;
   @include flex-arrange(space-between, flex-start);
@@ -25,12 +24,16 @@
         display: block;
         margin-bottom: 5px;
 
-        span:nth-child(1) {
+        .nickname {
           @include comment-nickname;
         }
 
-        span:nth-child(2) {
+        .timeAgo {
           @include font-style(1.1rem, gray, 400);
+          margin-left: 5px;
+        }
+        .isMyId {
+          @include font-style(1.5rem, red, 600);
           margin-left: 5px;
         }
         .deleteIcon {

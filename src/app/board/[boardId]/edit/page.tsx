@@ -4,7 +4,10 @@ import classNames from 'classnames/bind';
 import Header from '@/src/components/common/header';
 import BoardUploadForm from '@/src/components/boardUploadPage/boardUploadForm';
 import { boardDetailGetDatas } from '@/src/app/board/api';
-import { BoardDetailDataType } from '@/src/utils/type';
+import {
+  BoardDetailDataType,
+  BorardDetailResponseType,
+} from '@/src/utils/type';
 import { useQuery } from '@tanstack/react-query';
 import LoadingSpinner from '@/src/components/common/loadingSpinner';
 
@@ -19,10 +22,11 @@ type BoardEditPageProps = {
 const BoardEditPage = ({ params }: BoardEditPageProps) => {
   const { boardId } = params;
 
-  const { data: boardDetailData, isLoading } = useQuery<BoardDetailDataType>({
-    queryKey: ['boardDetailData'],
-    queryFn: () => boardDetailGetDatas(boardId),
-  });
+  const { data: boardDetailData, isLoading } =
+    useQuery<BorardDetailResponseType>({
+      queryKey: ['boardDetailData'],
+      queryFn: () => boardDetailGetDatas(boardId),
+    });
   if (isLoading) {
     return <LoadingSpinner />;
   }
@@ -30,7 +34,10 @@ const BoardEditPage = ({ params }: BoardEditPageProps) => {
     <div className={cn('container')}>
       <Header page={`/board/${boardId}`}></Header>
       <div className={cn('secondContainer')}>
-        <BoardUploadForm params={params} initialData={boardDetailData} />
+        <BoardUploadForm
+          params={params}
+          initialData={boardDetailData?.result}
+        />
       </div>
     </div>
   );
