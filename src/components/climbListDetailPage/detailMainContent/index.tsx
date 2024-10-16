@@ -156,7 +156,11 @@ const DetailMainContent = ({ list, gymName }: DetailMainContentProps) => {
           </div>
 
           <span>
-            등반일 : {deleteT(clearday)} ({cleartimeAgo})
+            등반일 : {deleteT(clearday)} (
+            {new Date(clearday).toDateString() === new Date().toDateString()
+              ? '오늘'
+              : cleartimeAgo}
+            )
           </span>
         </div>
       </div>

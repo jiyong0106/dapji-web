@@ -84,6 +84,8 @@ const PostDetailForm = ({ params, postDetailDatas }: PostDetailFormProps) => {
     secQueryKeyName: 'climbPost',
   });
 
+  const cleartimeAgo = useTimeAgo(clearday);
+
   const router = useRouter();
 
   const { mutate: postDetailDelete } = usePostDetailDelete(post_idx, gym_idx);
@@ -169,8 +171,13 @@ const PostDetailForm = ({ params, postDetailDatas }: PostDetailFormProps) => {
             <span>난이도</span>
             <div className={cn('color', `color-${color}`)} />
           </div>
-
-          <span>등반일 : {deleteT(clearday)}</span>
+          <span>
+            등반일 : {deleteT(clearday)} (
+            {new Date(clearday).toDateString() === new Date().toDateString()
+              ? '오늘'
+              : cleartimeAgo}
+            )
+          </span>{' '}
         </div>
       </div>
       {content && <pre>{content}</pre>}
