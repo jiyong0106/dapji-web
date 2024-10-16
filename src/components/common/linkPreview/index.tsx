@@ -40,7 +40,7 @@ const LinkPreview = ({ previews, singlePreview = false }: LinkPreviewProps) => {
             className={cn('linkPreviewImage')}
           />
           <div className={cn('linkContentWrapper')}>
-            <p>{truncateString(preview.title || '', 20)}</p>
+            <p>{truncateString(preview.title || '', 10)}</p>
             <span>{truncateString(preview.description || '', 20)}</span>
             <span>{truncateString(preview.url || '', 30)}</span>
           </div>

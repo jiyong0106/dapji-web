@@ -116,6 +116,7 @@ const BoardList = ({ list }: BoardListProps) => {
           </div>
         </section>
       </div>
+
       {preview && <LinkPreview previews={preview} singlePreview={true} />}
     </article>
   );

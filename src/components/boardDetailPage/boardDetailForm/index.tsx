@@ -1,22 +1,18 @@
 import classNames from 'classnames/bind';
 import styles from './boardDetailForm.module.scss';
-import {
-  BoardDetailDataType,
-  BorardDetailResponseType,
-} from '@/src/utils/type';
+import { BorardDetailResponseType } from '@/src/utils/type';
 import Image from 'next/image';
 import { DeleteIcon, EditIcon } from '@/public/icon';
-import { useMyInfoStore } from '@/src/utils/store/useMyImfoStore';
 import LikeAction from '../../common/likeAction';
 import { boardDeleteData } from '@/src/app/board/api';
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { useModal } from '@/src/hooks/useModal';
 import { useLikeAction } from '@/src/hooks/useLikeAction';
-import Link from 'next/link';
 import CommentCount from '../../common/commentCount';
 import LinkifyText from '@/src/hooks/useLinkifyText';
 import LinkPreview from '../../common/linkPreview';
+import useTimeAgo from '@/src/hooks/useTimeAgo';
 
 const cn = classNames.bind(styles);
 
@@ -38,7 +34,7 @@ const BoardDetailForm = ({ boardDetailData }: BoardDetailFormProps) => {
     comment_count,
     User,
     is_like,
-    board_like,
+    is_owner,
   } = boardDetailData?.result;
   const previews = boardDetailData?.preview;
 
@@ -53,6 +49,7 @@ const BoardDetailForm = ({ boardDetailData }: BoardDetailFormProps) => {
 
   const router = useRouter();
   const { showModalHandler } = useModal();
+  const timeAgo = useTimeAgo(createdAt);
 
   const { mutate: boardDelete } = useMutation({
     mutationKey: ['boardDelete'],
@@ -65,9 +62,6 @@ const BoardDetailForm = ({ boardDetailData }: BoardDetailFormProps) => {
     },
   });
 
-  const { myId } = useMyInfoStore();
-  const isMyId = myId === user_idx;
-
   const handleBoardDelete = () => {
     const confirmAction = () => {
       boardDelete();
@@ -79,25 +73,31 @@ const BoardDetailForm = ({ boardDetailData }: BoardDetailFormProps) => {
     router.replace(`/board/${board_idx}/edit`);
   };
 
+  const profileClick = () => {
+    router.push(`/profile/${user_idx}`);
+  };
+
   return (
     <div className={cn('container', { hasComment: comment_count > 0 })}>
       <header className={cn('boardDetailHeader')}>
         <div className={cn('userInfo')}>
-          <Link href={`/profile/${user_idx}`}>
-            <Image
-              src={User?.img || process.env.NEXT_PUBLIC_URL + '/icon/icon.png'}
-              width="30"
-              height="30"
-              alt="게시물 작성자 프로필 이미지"
-              className={cn('profileImage')}
-            />
-          </Link>
+          <Image
+            src={User?.img || process.env.NEXT_PUBLIC_URL + '/icon/icon.png'}
+            width="30"
+            height="30"
+            alt="게시물 작성자 프로필 이미지"
+            className={cn('profileImage')}
+            onClick={profileClick}
+          />
           <div className={cn('userText')}>
-            <span>{category}</span>
-            <span>{User?.nickname || '❗탈퇴한 사용자'}</span>
+            <span className={cn('category')}>{category}</span>
+            <div className={cn('nicknameWrapper')}>
+              <span>{User?.nickname || '❗탈퇴한 사용자'}</span>
+              <span>{timeAgo}</span>
+            </div>
           </div>
         </div>
-        {isMyId && (
+        {is_owner && (
           <div className={cn('iconWrapper')}>
             <EditIcon onClick={boardEditClick} />
             <DeleteIcon onClick={handleBoardDelete} />

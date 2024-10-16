@@ -61,6 +61,7 @@ export type UserType = {
   nickname: string;
   img: string;
 };
+
 export type NoticeDetailType = {
   gym_notice_idx: string;
   title: string;
@@ -310,8 +311,8 @@ export type BoardDetailDataType = {
   like_count: number;
   comment_count: number;
   User: UserType;
-  board_like: BoardlikeType[];
   is_like: boolean;
+  is_owner: boolean;
 };
 
 export type BorardDetailResponseType = {
@@ -326,13 +327,14 @@ export type BoardCommentDetailType = {
   board_idx: number;
   user_idx: number;
   content: string;
+  anonymous: boolean;
   createdAt: any;
   updatedAt: any;
   like_count: number;
   User: UserType;
   is_like: boolean;
   recomment_count: number;
-  anonymous: boolean;
+  is_owner: boolean;
 };
 
 export type BoardCommentType = {
@@ -351,16 +353,17 @@ export type BoardCommentUploadType = {
 //게시판 답글  조회 타입
 
 export type RecommentType = {
-  User: UserType;
+  recomment_idx: string;
+  user_idx: number;
   comment_idx: string;
   content: string;
+  anonymous: boolean;
   createdAt: any;
-  recomment_idx: string;
   updateAt: any;
-  user_idx: number;
+  User: UserType;
   like_count: number;
   is_like: boolean;
-  anonymous: boolean;
+  is_owner: boolean;
 };
 
 export type BoardRecommentType = {
