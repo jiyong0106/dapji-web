@@ -73,8 +73,14 @@ const ClimbListPage = () => {
         />
       </div>
       <div className={cn('secondContainer')}>
-        <CardListData lists={lists} />
-        <div ref={ref} />
+        {lists.length === 0 ? (
+          <p className={cn('noSearchData')}>검색 결과가 없습니다</p>
+        ) : (
+          <>
+            <CardListData lists={lists} />
+            <div ref={ref} />
+          </>
+        )}
       </div>
       {isFetchingNextPage && <LoadingSpinner />}
     </div>

@@ -2,7 +2,7 @@
 import classNames from 'classnames/bind';
 import styles from './searchBar.module.scss';
 import CommonInput from '@/src/components/common/commonInput';
-import { GlassIcon, AddIcon } from '@/public/icon';
+import { GlassIcon, AddIcon, CloseIcon } from '@/public/icon';
 import { useState, useEffect } from 'react';
 import useDebounce from '@/src/hooks/useDebounce';
 import Link from 'next/link';
@@ -44,17 +44,31 @@ const SearchBar = ({
     router.replace('/board/upload');
   };
 
+  const resetClick = () => {
+    setInputValue('');
+  };
+
   return (
     <div className={cn('container')}>
       <CommonInput
         placeholder={placeholder}
         suffix={
-          <GlassIcon
-            width="15"
-            height="15"
-            className={cn('glass')}
-            fill="black"
-          />
+          searchName.length === 0 ? (
+            <GlassIcon
+              width="15"
+              height="15"
+              className={cn('glass')}
+              fill="black"
+            />
+          ) : (
+            <CloseIcon
+              width="15"
+              height="15"
+              className={cn('glass')}
+              fill="black"
+              onClick={resetClick}
+            />
+          )
         }
         type="text"
         value={inputValue}

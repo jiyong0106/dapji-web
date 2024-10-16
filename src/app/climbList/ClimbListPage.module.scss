@@ -21,6 +21,10 @@
   }
   .secondContainer {
     padding: 0 10px 10px 10px;
+    .noSearchData {
+      @include font-style(1.5rem, black, 400);
+      text-align: center;
+    }
   }
 }
 
