@@ -45,7 +45,6 @@ const DeleteAccountForm = () => {
       deleteAccount(formData);
     };
     showModalHandler('choice', '정말 계정을 삭제하시나요?', confirmAction);
-    console.log(data);
   };
 
   return (

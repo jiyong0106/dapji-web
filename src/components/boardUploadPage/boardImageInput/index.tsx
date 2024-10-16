@@ -124,6 +124,7 @@ const BoardImageInput = ({
               height="50"
               alt="게시물 이미지"
               className={cn('boardImage')}
+              priority
             />
           </div>
         ))}
