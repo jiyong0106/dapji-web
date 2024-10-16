@@ -87,8 +87,8 @@ export type DetailType = {
 export type ClimbPostResponseType = {
   gym_name: string; // 체육관 이름
   posts: DetailType[]; // 게시물 목록
-  meta: metaType;
   notice: NoticeDetailType;
+  meta: metaType;
   length?: number;
 };
 
@@ -176,7 +176,13 @@ export type FollowRequestType = {
 //////////////////////////포스트 디테일 페이지 타입들//////////////////////////
 
 // 포스트 상세페이지  타입
+
+type PostLikeType = {
+  post_like_idx: number;
+};
+
 export type PostDetailDataType = {
+  gym_name: string;
   post_idx: string;
   user_idx: number;
   gym_idx: string;
@@ -189,8 +195,9 @@ export type PostDetailDataType = {
   like_count: number;
   post_comment_count: number;
   User: UserType;
+  PostLikes: PostLikeType[];
   is_liked: boolean;
-  gym_name: string;
+  is_post_owner: boolean;
 };
 
 //포스트 댓글 타입

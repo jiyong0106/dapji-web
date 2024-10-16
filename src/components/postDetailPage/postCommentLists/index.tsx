@@ -22,10 +22,11 @@ type CommentListProps = {
   list: PostCommentDetailType;
   setTagNickname: React.Dispatch<React.SetStateAction<string>>;
   setSelectId: React.Dispatch<React.SetStateAction<string>>;
+  isMyPost: boolean | undefined;
 };
 
 const PostCommentList = memo(
-  ({ list, setTagNickname, setSelectId }: CommentListProps) => {
+  ({ list, setTagNickname, setSelectId, isMyPost }: CommentListProps) => {
     const {
       User,
       post_comment_idx,
@@ -133,7 +134,7 @@ const PostCommentList = memo(
             <div className={cn('userInfo')}>
               <span>{User?.nickname || '❗탈퇴한 사용자'}</span>
               <span>{timeAgo}</span>
-              {isMyId && (
+              {(isMyPost || isMyId) && (
                 <DeleteIcon
                   width="12"
                   height="12"
@@ -149,7 +150,10 @@ const PostCommentList = memo(
             <div className={cn('replyButton')}>
               {showRecomments ? (
                 <>
-                  <PostRecommnetLists postRecommentData={postRecommentData} />
+                  <PostRecommnetLists
+                    postRecommentData={postRecommentData}
+                    isMyPost={isMyPost}
+                  />
                   {hasNextPage &&
                   totalCount !== undefined &&
                   nextCount !== undefined ? (
@@ -185,12 +189,14 @@ type PostCommentListsProps = {
   lists: PostCommentDetailType[];
   setTagNickname: React.Dispatch<React.SetStateAction<string>>;
   setSelectId: React.Dispatch<React.SetStateAction<string>>;
+  isMyPost: boolean | undefined;
 };
 
 const PostCommentLists = ({
   lists,
   setTagNickname,
   setSelectId,
+  isMyPost,
 }: PostCommentListsProps) => {
   return (
     <div className={cn('outerContainer')}>
@@ -200,6 +206,7 @@ const PostCommentLists = ({
           list={list}
           setTagNickname={setTagNickname}
           setSelectId={setSelectId}
+          isMyPost={isMyPost}
         />
       ))}
     </div>

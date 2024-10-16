@@ -43,6 +43,8 @@ const PostDetailPage = ({ params }: PostDetailPageProps) => {
   const commentDatas: PostCommentDetailType[] =
     postDetailCommentData?.pages.flatMap((page) => page.postComments) ?? [];
 
+  const isMyPost = postDetailDatas?.is_post_owner;
+
   if (isLoading || !postDetailDatas) {
     return <LoadingSpinner />;
   }
@@ -59,6 +61,7 @@ const PostDetailPage = ({ params }: PostDetailPageProps) => {
             lists={commentDatas}
             setTagNickname={setTagNickname}
             setSelectId={setSelectId}
+            isMyPost={isMyPost}
           />
           <div ref={ref} />
         </section>

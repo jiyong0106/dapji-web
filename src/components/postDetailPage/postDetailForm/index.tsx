@@ -5,7 +5,6 @@ import classNames from 'classnames/bind';
 import { DeleteIcon, EditIcon } from '@/public/icon';
 import { useRouter } from 'next/navigation';
 import { usePostDetailDelete } from '@/src/app/climbList/api';
-import { useMyInfoStore } from '@/src/utils/store/useMyImfoStore';
 import Image from 'next/image';
 import { useModal } from '@/src/hooks/useModal';
 import LinkShare from '@/src/components/common/linkShare';
@@ -73,6 +72,7 @@ const PostDetailForm = ({ params, postDetailDatas }: PostDetailFormProps) => {
     is_liked,
     post_comment_count,
     gym_name,
+    is_post_owner,
   } = postDetailDatas;
 
   const { likeCount, likeToggle, handleLikeClick } = useLikeAction({
@@ -88,14 +88,11 @@ const PostDetailForm = ({ params, postDetailDatas }: PostDetailFormProps) => {
 
   const { mutate: postDetailDelete } = usePostDetailDelete(post_idx, gym_idx);
 
-  const { myId } = useMyInfoStore();
-
   const { showModalHandler } = useModal();
 
   const timeAgo = useTimeAgo(createdAt);
   //시간 ~~전 표기하는 함수
-  const isNotMyId = myId !== user_idx;
-  //내 유저 id랑 게시물 유저 id비교
+
   const deleteT = (date: string | null) => date?.split('T')[0];
   //시간 가공하는 함수
   const editPage = () => {
@@ -130,7 +127,7 @@ const PostDetailForm = ({ params, postDetailDatas }: PostDetailFormProps) => {
           </div>
         </div>
         <div className={cn('btnStyle')}>
-          {!isNotMyId && (
+          {is_post_owner && (
             <>
               <EditIcon onClick={editPage} />
               <DeleteIcon onClick={deleteClick} />
