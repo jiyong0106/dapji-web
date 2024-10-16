@@ -14,9 +14,13 @@ const cn = classNames.bind(styles);
 
 type PostRecommnetListProps = {
   postRecomment: PostRecommentDetailType;
+  isMyPost: boolean | undefined;
 };
 
-const PostRecommnetList = ({ postRecomment }: PostRecommnetListProps) => {
+const PostRecommnetList = ({
+  postRecomment,
+  isMyPost,
+}: PostRecommnetListProps) => {
   const {
     post_recomment_idx,
     User,
@@ -73,7 +77,7 @@ const PostRecommnetList = ({ postRecomment }: PostRecommnetListProps) => {
           <div className={cn('userInfo')}>
             <span>{User?.nickname || '❗탈퇴한 사용자'}</span>
             <span>{timeAgo}</span>
-            {isMyId && (
+            {(isMyPost || isMyId) && (
               <DeleteIcon
                 width="12"
                 height="12"
@@ -98,15 +102,20 @@ const PostRecommnetList = ({ postRecomment }: PostRecommnetListProps) => {
 
 type PostRecommnetListsProps = {
   postRecommentData: PostRecommentDetailType[];
+  isMyPost: boolean | undefined;
 };
 
-const PostRecommnetLists = ({ postRecommentData }: PostRecommnetListsProps) => {
+const PostRecommnetLists = ({
+  postRecommentData,
+  isMyPost,
+}: PostRecommnetListsProps) => {
   return (
     <div className={cn('outercontainer')}>
       {postRecommentData.map((postRecomment) => (
         <PostRecommnetList
           key={postRecomment.post_recomment_idx}
           postRecomment={postRecomment}
+          isMyPost={isMyPost}
         />
       ))}
     </div>

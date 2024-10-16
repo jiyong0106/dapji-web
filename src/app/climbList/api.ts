@@ -2,6 +2,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import {
   useFormPostUploadProps,
   useFormListUploadProps,
+  PostDetailDataType,
 } from '@/src/utils/type';
 import { useRouter } from 'next/navigation';
 import instance from '@/src/utils/axios';
@@ -140,7 +141,7 @@ export const usePostDetailUpload = (gymId: string | number) => {
 // 클라이밍장 포스트의 디테일 함수(상세페이지)
 
 export const usePostDetailDatas = (postid: string) => {
-  return useQuery({
+  return useQuery<PostDetailDataType>({
     queryKey: ['postDetailDatas', postid],
     queryFn: () => instance.get(`/api/posts/${postid}`),
     select: (res: any) => res.data,
