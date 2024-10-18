@@ -9,10 +9,10 @@ import { useFormPostUploadProps, PostDetailDataType } from '@/src/utils/type';
 import {
   useDetailUploadDatas,
   usePostDetailUpdate,
+  useVideoUpload,
 } from '@/src/app/climbList/api';
 import CommonButton from '../../common/commonButton';
 import { useModal } from '@/src/hooks/useModal';
-import { useVideoDelete } from '@/src/app/climbList/api';
 import LoadingSpinner from '../../common/loadingSpinner';
 
 const cn = classNames.bind(styles);
@@ -22,34 +22,13 @@ type PostUploadFormProps = {
   initialData?: PostDetailDataType;
 };
 
-type MediaUrlType = {
-  videoUrl: string[];
-  thumbnailUrl: string[];
-};
-
 const PostUploadForm = ({ gymId, initialData }: PostUploadFormProps) => {
-  const [deletedVideos, setDeletedVideos] = useState<
-    { videoUrl: string; thumbnailUrl: string }[]
-  >([]);
-
-  const [mediaUrl, setMediaUrl] = useState<MediaUrlType>({
-    videoUrl: initialData?.media
-      ? Array.isArray(initialData.media)
-        ? initialData.media
-        : [initialData.media] // 단일 문자열인 경우 배열로 변환
-      : [],
-    thumbnailUrl: initialData?.thumbnailUrl
-      ? Array.isArray(initialData.thumbnailUrl)
-        ? initialData.thumbnailUrl
-        : [initialData.thumbnailUrl] // 단일 문자열인 경우 배열로 변환
-      : [], // 업로드 시 썸네일은 없으므로 null로 설정
-  });
+  const [mediaFiles, setMediaFiles] = useState<File[]>([]);
   const [activeColor, setActiveColor] = useState<string | null>(
     initialData?.color || null,
   );
   const { showModalHandler } = useModal();
 
-  //난이도 색
   const maxLength = 100;
 
   const {
@@ -61,11 +40,6 @@ const PostUploadForm = ({ gymId, initialData }: PostUploadFormProps) => {
   } = useForm<useFormPostUploadProps>({
     defaultValues: {
       ...initialData,
-      media: initialData?.media
-        ? Array.isArray(initialData.media)
-          ? initialData.media
-          : [initialData.media] // 단일 문자열인 경우 배열로 변환
-        : [], // media는 항상 string[] 타입이어야 하므로 기본값을 빈 배열로 설정
     },
   });
   const text = watch('content', '');
@@ -75,50 +49,61 @@ const PostUploadForm = ({ gymId, initialData }: PostUploadFormProps) => {
     String(initialData?.post_idx),
     String(gymId),
   );
-  const { mutate: videoDelete } = useVideoDelete();
-
-  const emptyVideoUrl = mediaUrl.videoUrl.length === 0;
+  const { mutate: videoUpload, isPending: isUploading } = useVideoUpload();
 
   const onSubmit = (data: useFormPostUploadProps) => {
-    //폼데이터에 들어갈 데이터들
-    if (emptyVideoUrl) {
+    if (mediaFiles.length === 0 && !initialData) {
       showModalHandler('alert', '동영상, 등반일, 난이도 선택은 필수에요.');
       return;
     }
 
-    const formData = {
-      ...data,
-      media: mediaUrl.videoUrl,
-      thumbnailUrl: mediaUrl.thumbnailUrl,
-      color: activeColor,
-      gym_idx: Number(gymId),
-    };
-
-    // 동영상 삭제 처리 함수
-    const handleVideoDelete = () => {
-      deletedVideos.forEach(({ videoUrl, thumbnailUrl }) => {
-        const videoToDelete = {
-          videoUrl: videoUrl,
-          thumbnailUrl: thumbnailUrl,
-        };
-        videoDelete(videoToDelete);
-      });
-    };
-
     const confirmAction = () => {
-      if (initialData) {
-        postDetailUpdate(formData);
-        handleVideoDelete(); // 수정 후 동영상 삭제 처리
-      } else {
-        detailUploadDatas(formData);
-        handleVideoDelete(); // 수정 후 동영상 삭제 처리
-      }
+      if (mediaFiles.length > 0) {
+        // 동영상 업로드를 위한 FormData 생성
+        const formData = new FormData();
+        mediaFiles.forEach((file) => {
+          formData.append('videos', file);
+        });
 
-      // 삭제된 동영상 리스트 초기화
-      setDeletedVideos([]);
+        // 동영상 업로드
+        videoUpload(formData, {
+          onSuccess: (uploadData) => {
+            // 업로드된 동영상 URL을 이용하여 게시글 생성
+            const postData = {
+              ...data,
+              media: uploadData.videoUrls,
+              thumbnailUrl: uploadData.thumbnailUrls,
+              color: activeColor,
+              gym_idx: Number(gymId),
+            };
+
+            if (initialData) {
+              postDetailUpdate(postData);
+            } else {
+              detailUploadDatas(postData);
+            }
+          },
+          onError: (error) => {
+            // 에러 처리
+            showModalHandler('alert', '동영상 업로드에 실패했어요');
+          },
+        });
+      } else {
+        // 동영상 파일이 없는 경우 (수정 시 기존 동영상 유지)
+        const postData = {
+          ...data,
+          color: activeColor,
+          gym_idx: Number(gymId),
+        };
+
+        if (initialData) {
+          postDetailUpdate(postData);
+        } else {
+          detailUploadDatas(postData);
+        }
+      }
     };
 
-    // 모달을 표시하고, 사용자가 확인 버튼을 눌렀을 때 `confirmAction` 실행
     const message = initialData
       ? '답지를 수정 하시나요?'
       : '답지를 업로드 하시나요?';
@@ -141,20 +126,18 @@ const PostUploadForm = ({ gymId, initialData }: PostUploadFormProps) => {
     if (initialData) {
       setValue('clearday', formatDate(new Date(initialData.clearday)));
       setValue('content', initialData.content);
+    } else {
+      setValue('clearday', getTodayDate());
     }
   }, [initialData, setValue]);
 
-  if (isPending) {
-    <LoadingSpinner />;
+  if (isPending || isUploading) {
+    return <LoadingSpinner />;
   }
 
   return (
     <form className={cn('container')} onSubmit={handleSubmit(onSubmit)}>
-      <VideoInput
-        mediaUrl={mediaUrl}
-        setMediaUrl={setMediaUrl}
-        setDeletedVideos={setDeletedVideos}
-      />
+      <VideoInput mediaFiles={mediaFiles} setMediaFiles={setMediaFiles} />
       <CommonInput
         id="clearday"
         type="date"

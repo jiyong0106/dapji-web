@@ -1,18 +1,14 @@
+// front/src/components/videoInput/index.tsx
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import classNames from 'classnames/bind';
 import styles from './VideoInput.module.scss';
-import { useMutation } from '@tanstack/react-query';
-import instance from '@/src/utils/axios';
-import { useModal } from '@/src/hooks/useModal';
+import { CircleXIcon, PlusIcon } from '@/public/icon';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import styled from 'styled-components';
-import { CircleXIcon, PlusIcon } from '@/public/icon';
-import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
-import 'react-circular-progressbar/dist/styles.css';
-import { isServerError } from '@/src/utils/axiosError';
+import { useModal } from '@/src/hooks/useModal';
 
 const cn = classNames.bind(styles);
 
@@ -35,27 +31,15 @@ export const StyledSlider = styled(Slider)`
     justify-content: center;
   }
 `;
+
 type VideoInputProps = {
-  mediaUrl: {
-    videoUrl: string[];
-    thumbnailUrl: string[];
-  };
-  setMediaUrl: React.Dispatch<
-    React.SetStateAction<{
-      videoUrl: string[];
-      thumbnailUrl: string[];
-    }>
-  >;
-  setDeletedVideos: any;
+  mediaFiles: File[];
+  setMediaFiles: React.Dispatch<React.SetStateAction<File[]>>;
 };
 
-const VideoInput = ({
-  mediaUrl,
-  setMediaUrl,
-  setDeletedVideos,
-}: VideoInputProps) => {
+const VideoInput = ({ mediaFiles, setMediaFiles }: VideoInputProps) => {
+  const [previewUrls, setPreviewUrls] = useState<string[]>([]);
   const { showModalHandler } = useModal();
-  const [progress, setProgress] = useState(0);
 
   const settings = {
     dots: true,
@@ -69,108 +53,53 @@ const VideoInput = ({
     draggable: true,
   };
 
-  const { mutate: videoUpload, isPending } = useMutation({
-    mutationKey: ['videoFile'],
-    mutationFn: async (videos: FormData) => {
-      const response = await instance.post('/api/videos', videos, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-        onUploadProgress: (progressEvent) => {
-          if (progressEvent.total) {
-            const percentCompleted = Math.round(
-              (progressEvent.loaded * 100) / progressEvent.total,
-            );
-            setProgress(percentCompleted);
-          }
-        },
-      });
-      return response.data; // API 응답 데이터 반환
-    },
-    onSuccess: (data) => {
-      // 성공적으로 업로드된 경우 mediaUrl을 상태에 저장
-      setMediaUrl((prev) => ({
-        videoUrl: [...prev.videoUrl, ...data.videoUrls],
-        thumbnailUrl: [...prev.thumbnailUrl, ...data.thumbnailUrls],
-      }));
-    },
-    onError: (e) => {
-      if (isServerError(e) && e.response && e.response.status === 401) {
-        showModalHandler('alert', '답지를 1분 이하로 업로드 해주세요');
-        return;
-      }
+  useEffect(() => {
+    // Blob URL 생성
+    const urls = mediaFiles.map((file) => URL.createObjectURL(file));
+    setPreviewUrls(urls);
 
-      if (isServerError(e) && e.response && e.response.status === 500) {
-        showModalHandler('alert', '최대 10개까지 업로드가 가능해요');
-        return;
-      }
-    },
-  });
+    // 컴포넌트 언마운트 시 Blob URL 해제
+    return () => {
+      urls.forEach((url) => URL.revokeObjectURL(url));
+    };
+  }, [mediaFiles]);
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     const maxSize = 500 * 1024 * 1024;
 
     if (files && files.length > 0) {
-      // 현재 업로드된 동영상 개수와 새로 추가하려는 동영상 개수 확인
-      if (mediaUrl.videoUrl.length + files.length > 10) {
+      const fileArray = Array.from(files);
+
+      // 최대 10개의 동영상만 허용
+      if (mediaFiles.length + fileArray.length > 10) {
         showModalHandler('alert', '최대 10개까지 업로드가 가능해요.');
         return;
       }
-      const formData = new FormData();
 
-      for (let i = 0; i < files.length; i++) {
-        const file = files[i];
+      for (let i = 0; i < fileArray.length; i++) {
+        const file = fileArray[i];
         if (file.size > maxSize) {
           showModalHandler('alert', '영상을 500MB 이하로 업로드 해주세요');
           return;
         }
-
-        formData.append('videos', file);
       }
 
-      videoUpload(formData);
+      // 선택한 파일들을 상태에 저장
+      setMediaFiles((prev) => [...prev, ...fileArray]);
     }
   };
+
   const handleRemoveVideo = (index: number) => {
-    const videoToRemove = mediaUrl.videoUrl[index];
-    const thumbnailToRemove = mediaUrl.thumbnailUrl[index];
-
-    // 삭제할 동영상과 썸네일 URL을 deletedVideos 배열에 추가
-    setDeletedVideos((prev: string[]) => [
-      ...prev,
-      { videoUrl: videoToRemove, thumbnailUrl: thumbnailToRemove },
-    ]);
-
-    // 브라우저에서 동영상 제거
-    const updatedVideos = mediaUrl.videoUrl.filter((_, i) => i !== index);
-    const updatedThumbnailUrl = mediaUrl.thumbnailUrl.filter(
-      (_, i) => i !== index,
-    );
-
-    setMediaUrl({
-      videoUrl: updatedVideos,
-      thumbnailUrl: updatedThumbnailUrl,
-    });
+    // 선택한 동영상 제거 및 Blob URL 해제
+    URL.revokeObjectURL(previewUrls[index]); // 미리보기 URL 해제
+    setMediaFiles((prev) => prev.filter((_, i) => i !== index));
+    setPreviewUrls((prev) => prev.filter((_, i) => i !== index));
   };
-
-  if (isPending) {
-    return (
-      <div style={{ width: '100px', marginTop: '10px' }}>
-        <CircularProgressbar
-          value={progress}
-          text={`${progress}%`}
-          styles={buildStyles({
-            trailColor: '#d6d6d6',
-          })}
-        />
-      </div>
-    );
-  }
 
   return (
     <div className={cn('container')}>
-      {mediaUrl.videoUrl.length === 10 ? (
+      {mediaFiles.length === 10 ? (
         <span className={cn('maxVideo')}>최대 10개까지 업로드가 가능해요</span>
       ) : (
         <>
@@ -190,7 +119,7 @@ const VideoInput = ({
       <div className={styles.uploadInput}>
         <div className={cn('videoWrapper')}>
           <StyledSlider {...settings}>
-            {mediaUrl.videoUrl?.map((url, index) => (
+            {previewUrls.map((url, index) => (
               <div key={index} className={cn('videoBox')}>
                 <CircleXIcon
                   className={cn('close')}

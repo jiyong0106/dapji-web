@@ -96,10 +96,7 @@ export const useClimbListDataUpdate = (gymId: string) => {
   });
 };
 
-//클라이밍장 리스트 선호도 추가 함수
-
-//클라이밍장 포스트 데이터 조회 함수
-
+// 클라이밍장 포스트 데이터 조회 함수
 type ClimbDetailDatasProps = {
   pageParam: number;
   gymId: string;
@@ -140,17 +137,28 @@ export const useDetailUploadDatas = (gymId: string | number) => {
   });
 };
 
-// 클라이밍장 포스트의 디테일 함수
+// 동영상 업로드 함수
+export const useVideoUpload = () => {
+  const { showModalHandler } = useModal();
 
-export const usePostDetailDatas = (postid: string) => {
-  return useQuery({
-    queryKey: ['postDetailDatas', postid],
-    queryFn: () => instance.get(`/api/posts/${postid}`),
-    select: (res: any) => res.data,
+  return useMutation({
+    mutationKey: ['videoUpload'],
+    mutationFn: async (formData: FormData) => {
+      const response = await instance.post('/api/videos', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      return response.data;
+    },
+    onError: (error) => {
+      console.error('동영상 업로드 실패:', error);
+      showModalHandler('alert', '동영상 업로드에 실패했어요');
+    },
   });
 };
 
-//클라이밍장 포스트 수정 함수
+// 클라이밍장 포스트 수정 함수
 export const usePostDetailUpdate = (postid: string, gymId: string) => {
   const router = useRouter();
   const { showModalHandler } = useModal();
@@ -168,7 +176,16 @@ export const usePostDetailUpdate = (postid: string, gymId: string) => {
   });
 };
 
-//클라이밍장 포스트 삭제 함수
+// 클라이밍장 포스트의 디테일 함수
+export const usePostDetailDatas = (postid: string) => {
+  return useQuery({
+    queryKey: ['postDetailDatas', postid],
+    queryFn: () => instance.get(`/api/posts/${postid}`),
+    select: (res: any) => res.data,
+  });
+};
+
+// 클라이밍장 포스트 삭제 함수
 export const usePostDetailDelete = (postid: string, gymId: string) => {
   const router = useRouter();
   const queryClient = useQueryClient();
@@ -188,8 +205,7 @@ export const usePostDetailDelete = (postid: string, gymId: string) => {
   });
 };
 
-//클라이밍장 동영상 개별 삭제 함수
-
+// 클라이밍장 동영상 개별 삭제 함수
 export const useVideoDelete = () => {
   const queryClient = useQueryClient();
   const videoDelete = useMutation({
@@ -198,7 +214,6 @@ export const useVideoDelete = () => {
       instance.post(`/api/videos/delete`, url),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['userProfileData'] });
-      // queryClient.invalidateQueries({ queryKey: ['climbDetail'] });
     },
     onError: (error) => {
       console.error('삭제 실패:', error);
@@ -207,7 +222,7 @@ export const useVideoDelete = () => {
   return videoDelete;
 };
 
-//클라이밍장별 공지 조회
+// 클라이밍장별 공지 조회
 export const fetchNoticeData = async (gymId: string, noticeId: string) => {
   const res = await instance.get(`/api/gyms/${gymId}/notice/${noticeId}`);
   return res.data;
