@@ -7,15 +7,13 @@ import HoldColorList from '@/src/components/climbListDetailPage/holdColorList';
 import DetailMainContentList from '@/src/components/climbListDetailPage/detailMainContent';
 import { AddIcon } from '@/public/icon';
 import { useRouter } from 'next/navigation';
-import { ClimbPostDatas } from '@/src/app/climbList/api';
+import { ClimbDetailDatas } from '@/src/app/climbList/api';
 import NodetailData from '@/src/components/common/noDetailData';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import LoadingSpinner from '@/src/components/common/loadingSpinner';
 import Header from '@/src/components/common/header';
 import useInfiniteScroll from '@/src/hooks/useInfiniteScroll';
-import { ClimbPostResponseType } from '@/src/utils/type';
-import useIsUploadingStore from '@/src/utils/store/useUploadingStore';
-import ProgressBar from '@/src/components/common/progressBar';
+import { ClimbDetailResponseType } from '@/src/utils/type';
 
 const cn = classNames.bind(styles);
 type DetailPageProps = {
@@ -24,29 +22,29 @@ type DetailPageProps = {
 
 const DetailPage = ({ params }: DetailPageProps) => {
   const [activeColor, setActiveColor] = useState<string | null>(null);
-  const { isUploading, setIsUploading } = useIsUploadingStore();
+  const [isUpLoading, setIsUpLoading] = useState(false);
 
   const router = useRouter();
   const { gymId } = params;
 
   const {
-    data: climbPostData,
+    data: climbDetailData,
     ref,
     isLoading,
     isFetchingNextPage,
-  } = useInfiniteScroll<ClimbPostResponseType>({
-    queryKey: ['climbPost', activeColor],
+  } = useInfiniteScroll<ClimbDetailResponseType>({
+    queryKey: ['climbDetail', activeColor],
     fetchFunction: (pageParam = 1) =>
-      ClimbPostDatas({ pageParam, gymId, color: activeColor }),
+      ClimbDetailDatas({ pageParam, gymId, color: activeColor }),
     getNextPageParam: (lastPage) =>
       lastPage.meta.hasNextPage ? lastPage.meta.page + 1 : undefined,
   });
-  const lists = climbPostData?.pages.flatMap((page) => page.posts) ?? [];
-  const gymName = climbPostData?.pages[0]?.gym_name ?? '';
-  const noticeData = climbPostData?.pages[0].notice;
+  const lists = climbDetailData?.pages.flatMap((page) => page.posts) ?? [];
+  const gymName = climbDetailData?.pages[0]?.gym_name ?? '';
+  const noticeData = climbDetailData?.pages[0].notice;
   // 뒤로가기
-
   const uploadPage = () => {
+    setIsUpLoading(true);
     router.replace(`/climbList/${gymId}/upload`);
   };
   //업로드 페이지
@@ -55,7 +53,7 @@ const DetailPage = ({ params }: DetailPageProps) => {
     router.push(`/climbList/${gymId}/notice/${noticeData?.gym_notice_idx}`);
   };
 
-  if (isLoading) {
+  if (isLoading || isUpLoading) {
     return <LoadingSpinner />;
   }
 
@@ -74,14 +72,6 @@ const DetailPage = ({ params }: DetailPageProps) => {
           activeColor={activeColor}
           setActiveColor={setActiveColor}
         />
-        {isUploading && (
-          <div className={cn('progressWrapper')}>
-            <ProgressBar />
-            <span className={cn('progressText')}>
-              업로드하는 동안 앱을 종료하지 말아주세요
-            </span>
-          </div>
-        )}
         {lists.length === 0 ? (
           <NodetailData />
         ) : (

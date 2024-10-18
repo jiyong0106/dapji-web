@@ -2,7 +2,6 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import {
   useFormPostUploadProps,
   useFormListUploadProps,
-  PostDetailDataType,
 } from '@/src/utils/type';
 import { useRouter } from 'next/navigation';
 import instance from '@/src/utils/axios';
@@ -11,7 +10,7 @@ import { useModal } from '@/src/hooks/useModal';
 type ClimbListProps = {
   page: number;
   search: string;
-  is_favorite?: boolean;
+  is_favorite: boolean;
 };
 
 //클라이밍장 리스트 조회 함수
@@ -97,19 +96,21 @@ export const useClimbListDataUpdate = (gymId: string) => {
   });
 };
 
-//클라이밍장 포스트 조회 함수
+//클라이밍장 리스트 선호도 추가 함수
 
-type ClimbPostDatasProps = {
+//클라이밍장 포스트 데이터 조회 함수
+
+type ClimbDetailDatasProps = {
   pageParam: number;
   gymId: string;
   color: string | null;
 };
 
-export const ClimbPostDatas = async ({
+export const ClimbDetailDatas = async ({
   pageParam = 1,
   gymId,
   color,
-}: ClimbPostDatasProps) => {
+}: ClimbDetailDatasProps) => {
   const res = await instance(`/api/posts/gym/${gymId}`, {
     params: {
       page: pageParam,
@@ -119,8 +120,8 @@ export const ClimbPostDatas = async ({
   return res.data;
 };
 
-//클라이밍장 포스트 업로드 함수
-export const usePostDetailUpload = (gymId: string | number) => {
+//클라이밍장 포스트 데이터 업로드 함수
+export const useDetailUploadDatas = (gymId: string | number) => {
   const router = useRouter();
   const { showModalHandler } = useModal();
   const queryClient = useQueryClient();
@@ -130,7 +131,8 @@ export const usePostDetailUpload = (gymId: string | number) => {
     mutationFn: (formData: useFormPostUploadProps) =>
       instance.post('/api/posts', formData),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['climbPost'] });
+      queryClient.invalidateQueries({ queryKey: ['userProfileData'] });
+      router.replace(`/climbList/${gymId}`);
     },
     onError: () => {
       showModalHandler('alert', '동영상,등반일, 난이도 선택은 필수에요.');
@@ -138,10 +140,10 @@ export const usePostDetailUpload = (gymId: string | number) => {
   });
 };
 
-// 클라이밍장 포스트의 디테일 함수(상세페이지)
+// 클라이밍장 포스트의 디테일 함수
 
 export const usePostDetailDatas = (postid: string) => {
-  return useQuery<PostDetailDataType>({
+  return useQuery({
     queryKey: ['postDetailDatas', postid],
     queryFn: () => instance.get(`/api/posts/${postid}`),
     select: (res: any) => res.data,
@@ -152,7 +154,6 @@ export const usePostDetailDatas = (postid: string) => {
 export const usePostDetailUpdate = (postid: string, gymId: string) => {
   const router = useRouter();
   const { showModalHandler } = useModal();
-  const queryClient = useQueryClient();
 
   return useMutation({
     mutationKey: ['postDetailUpdate'],
@@ -160,7 +161,6 @@ export const usePostDetailUpdate = (postid: string, gymId: string) => {
       instance.patch(`/api/posts/${postid}`, formData),
     onSuccess: () => {
       router.replace(`/climbList/${gymId}/${postid}`);
-      queryClient.invalidateQueries({ queryKey: ['climbPost'] });
     },
     onError: () => {
       showModalHandler('alert', '동영상,등반일, 난이도 선택은 필수에요.');
@@ -178,6 +178,7 @@ export const usePostDetailDelete = (postid: string, gymId: string) => {
     mutationKey: ['postDetailDelete'],
     mutationFn: () => instance.delete(`/api/posts/${postid}`),
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['climbList'] });
       router.replace(`/climbList/${gymId}`);
     },
     onError: (error) => {
@@ -187,7 +188,7 @@ export const usePostDetailDelete = (postid: string, gymId: string) => {
   });
 };
 
-//클라이밍장 동영상 개별 삭제 함수(비디오인풋)
+//클라이밍장 동영상 개별 삭제 함수
 
 export const useVideoDelete = () => {
   const queryClient = useQueryClient();
@@ -197,6 +198,7 @@ export const useVideoDelete = () => {
       instance.post(`/api/videos/delete`, url),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['userProfileData'] });
+      // queryClient.invalidateQueries({ queryKey: ['climbDetail'] });
     },
     onError: (error) => {
       console.error('삭제 실패:', error);
