@@ -1,3 +1,4 @@
+// src/components/postUploadPage/postUploadForm/index.tsx
 import classNames from 'classnames/bind';
 import styles from './uploadForm.module.scss';
 import VideoInput from '@/src/components/common/videoInput';
@@ -52,12 +53,20 @@ const PostUploadForm = ({ gymId, initialData }: PostUploadFormProps) => {
   const { mutate: videoUpload, isPending: isUploading } = useVideoUpload();
 
   const onSubmit = (data: useFormPostUploadProps) => {
+    if (!activeColor) {
+      showModalHandler('alert', '난이도를 선택해 주세요.');
+      return;
+    }
     if (mediaFiles.length === 0 && !initialData) {
-      showModalHandler('alert', '동영상, 등반일, 난이도 선택은 필수에요.');
+      showModalHandler('alert', '동영상을 업로드해 주세요.');
       return;
     }
 
-    const confirmAction = () => {
+    const message = initialData
+      ? '답지를 수정 하시나요?'
+      : '답지를 업로드 하시나요?';
+
+    showModalHandler('choice', message, () => {
       if (mediaFiles.length > 0) {
         // 동영상 업로드를 위한 FormData 생성
         const formData = new FormData();
@@ -102,13 +111,7 @@ const PostUploadForm = ({ gymId, initialData }: PostUploadFormProps) => {
           detailUploadDatas(postData);
         }
       }
-    };
-
-    const message = initialData
-      ? '답지를 수정 하시나요?'
-      : '답지를 업로드 하시나요?';
-
-    showModalHandler('choice', message, confirmAction);
+    });
   };
 
   const formatDate = (date: Date) => {
@@ -164,11 +167,18 @@ const PostUploadForm = ({ gymId, initialData }: PostUploadFormProps) => {
         <textarea
           className={cn('limitedTextarea')}
           maxLength={maxLength}
-          {...register('content')}
+          {...register('content', {
+            required: '내용을 입력해 주세요.',
+          })}
         />
         <div className={cn('charCount')}>
           {text?.length}/{maxLength}
         </div>
+      </div>
+      <div className={styles.error_text_wrapper}>
+        {errors.content && (
+          <small className={styles.error_text}>{errors.content.message}</small>
+        )}
       </div>
       <CommonButton
         name={initialData ? '수정하기' : '답지 올리기'}
