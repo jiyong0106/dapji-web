@@ -28,7 +28,7 @@ const PostUploadForm = ({ gymId, initialData }: PostUploadFormProps) => {
   const [activeColor, setActiveColor] = useState<string | null>(
     initialData?.color || null,
   );
-  const { showModalHandler } = useModal();
+  const { showModalHandler, closeModal } = useModal();
 
   const maxLength = 100;
 
@@ -134,9 +134,30 @@ const PostUploadForm = ({ gymId, initialData }: PostUploadFormProps) => {
     }
   }, [initialData, setValue]);
 
-  if (isPending || isUploading) {
-    return <LoadingSpinner />;
-  }
+  // if (isPending || isUploading) {
+  //   return <LoadingSpinner />;
+  // }
+
+  // 업로드 상태 변화에 따라 모달을 제어하는 useEffect 훅을 추가합니다.
+  useEffect(() => {
+    if (isPending || isUploading) {
+      // 업로드 중일 때 모달을 표시하고, 닫을 수 없도록 설정
+      showModalHandler('alert', '업로드가 진행 중입니다.', undefined);
+
+      // 의도적으로 closeModal을 제한하기 위해 기존 closeModal 함수의 호출을 막습니다.
+      const preventModalClose = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') {
+          e.preventDefault(); // ESC 키로 모달 닫기 막기
+        }
+      };
+      window.addEventListener('keydown', preventModalClose);
+
+      return () => {
+        window.removeEventListener('keydown', preventModalClose);
+        closeModal(); // 업로드 완료 후에는 모달 닫기
+      };
+    }
+  }, [isPending, isUploading]);
 
   return (
     <form className={cn('container')} onSubmit={handleSubmit(onSubmit)}>
