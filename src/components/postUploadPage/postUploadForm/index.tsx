@@ -154,7 +154,7 @@ const PostUploadForm = ({ gymId, initialData }: PostUploadFormProps) => {
 
       return () => {
         window.removeEventListener('keydown', preventModalClose);
-        closeModal(); // 업로드 완료 후에는 모달 닫기
+        closeModal();
       };
     }
   }, [isPending, isUploading]);
