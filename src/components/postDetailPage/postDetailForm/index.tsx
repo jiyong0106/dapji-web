@@ -81,7 +81,6 @@ const PostDetailForm = ({ params, postDetailDatas }: PostDetailFormProps) => {
     initalLikeCount: like_count,
     initalLikeToggle: is_liked,
     firQueryKeyName: 'postDetailDatas',
-    secQueryKeyName: 'climbPost',
   });
 
   const cleartimeAgo = useTimeAgo(clearday);
