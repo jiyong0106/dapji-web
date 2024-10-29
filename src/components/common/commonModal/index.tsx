@@ -6,6 +6,8 @@ type ModalProps = {
   isopen: boolean;
   onRequestClose: () => void;
   style: ReactModal.Styles;
+  shouldCloseOnOverlayClick?: boolean;
+  shouldCloseOnEsc?: boolean;
 };
 
 const CommnModal = ({
@@ -13,6 +15,8 @@ const CommnModal = ({
   isopen,
   onRequestClose,
   style,
+  shouldCloseOnOverlayClick = true,
+  shouldCloseOnEsc = true,
 }: ModalProps) => {
   return (
     <Modal
@@ -20,6 +24,8 @@ const CommnModal = ({
       style={style}
       onRequestClose={onRequestClose}
       ariaHideApp={false}
+      shouldCloseOnOverlayClick={shouldCloseOnOverlayClick}
+      shouldCloseOnEsc={shouldCloseOnEsc}
     >
       {children}
     </Modal>
