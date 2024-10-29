@@ -45,13 +45,18 @@ const ModalChoice = () => {
     closeModal();
   };
 
+  const isUploadModal =
+    type === 'alert' && content.includes('업로드가 진행 중입니다.');
+
   return (
     <CommnModal
       isopen={modalOpen}
       onRequestClose={closeModal}
       style={customModalStyles}
+      shouldCloseOnOverlayClick={!isUploadModal}
+      shouldCloseOnEsc={!isUploadModal}
     >
-      <div className={cn('container')}>
+      <div className={cn('container', { 'upload-modal': isUploadModal })}>
         <div className={cn('contentWrapper')}>
           <Image
             src={process.env.NEXT_PUBLIC_URL + '/icon/icon.png'}
@@ -62,28 +67,30 @@ const ModalChoice = () => {
           <p>{content}</p>
         </div>
 
-        <div className={cn('btnWrapper')}>
-          {type === 'choice' ? (
-            <>
-              <CommonButton
-                name="취소"
-                freeStyle="cancelBtn"
-                onClick={closeModal}
-              />
+        {!isUploadModal && (
+          <div className={cn('btnWrapper')}>
+            {type === 'choice' ? (
+              <>
+                <CommonButton
+                  name="취소"
+                  freeStyle="cancelBtn"
+                  onClick={closeModal}
+                />
+                <CommonButton
+                  name="확인"
+                  freeStyle="acceptBtn"
+                  onClick={handleConfirm}
+                />
+              </>
+            ) : (
               <CommonButton
                 name="확인"
-                freeStyle="acceptBtn"
+                freeStyle="alertBtn"
                 onClick={handleConfirm}
               />
-            </>
-          ) : (
-            <CommonButton
-              name="확인"
-              freeStyle="alertBtn"
-              onClick={handleConfirm}
-            />
-          )}
-        </div>
+            )}
+          </div>
+        )}
       </div>
     </CommnModal>
   );
