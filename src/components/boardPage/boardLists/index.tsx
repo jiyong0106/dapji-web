@@ -37,7 +37,6 @@ const BoardList = ({ list }: BoardListProps) => {
     initalLikeCount: like_count,
     initalLikeToggle: is_like,
     firQueryKeyName: 'boardListData',
-    secQueryKeyName: 'boardDetailData',
   });
 
   const router = useRouter();

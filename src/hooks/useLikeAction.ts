@@ -25,7 +25,6 @@ type useLikeActionProps = {
   initalLikeToggle: boolean;
   initalLikeCount: number;
   firQueryKeyName?: string;
-  secQueryKeyName?: string;
 };
 
 export const useLikeAction = ({
@@ -34,7 +33,6 @@ export const useLikeAction = ({
   initalLikeCount,
   initalLikeToggle,
   firQueryKeyName,
-  secQueryKeyName,
 }: useLikeActionProps): LikeActionState => {
   const [likeToggle, setLikeToggle] = useState(initalLikeToggle);
   const [likeCount, setLikeCount] = useState(initalLikeCount);
@@ -45,21 +43,34 @@ export const useLikeAction = ({
     mutationKey: ['LikeRequest'],
     mutationFn: () => LikeRequestData({ category, content_id }),
     onMutate: async () => {
-      await queryClient.invalidateQueries({ queryKey: [`${firQueryKeyName}`] });
-      const previousData = queryClient.getQueryData([`${firQueryKeyName}`]);
-      setLikeToggle((prev) => !prev);
-      setLikeCount((prev) => (initalLikeToggle ? prev - 1 : prev + 1));
+      const previousData = queryClient.getQueryData([firQueryKeyName]);
+
+      setLikeToggle((prev) => {
+        const newToggle = !prev;
+        setLikeCount((prevCount) =>
+          newToggle ? prevCount + 1 : prevCount - 1,
+        );
+        return newToggle;
+      });
+
       return { previousData };
     },
     onError: (error, variables, context) => {
       if (context?.previousData) {
-        queryClient.setQueryData([`${firQueryKeyName}`], context.previousData);
+        queryClient.setQueryData([firQueryKeyName], context.previousData);
       }
     },
     onSettled: () => {
-      //성공해도, 실패해도 해당 쿼리키를 최신화
-      queryClient.invalidateQueries({ queryKey: [`${firQueryKeyName}`] });
-      queryClient.invalidateQueries({ queryKey: [`${secQueryKeyName}`] });
+      // 전체 쿼리 무효화가 아닌 필요한 데이터만 업데이트
+      queryClient.setQueryData([firQueryKeyName], (oldData: any) => {
+        if (!oldData) return oldData;
+        // 좋아요 카운트와 토글 상태를 업데이트하여 캐시 데이터 변경
+        return {
+          ...oldData,
+          likeCount: likeToggle ? likeCount - 1 : likeCount + 1,
+          likeToggle: !likeToggle,
+        };
+      });
     },
   });
 
@@ -71,3 +82,9 @@ export const useLikeAction = ({
 
   return { likeToggle, likeCount, handleLikeClick };
 };
+
+//initalLikeToggle 값은 컴포넌트의 초기 상태일뿐 현재 상태와 항상 일치하지 않음
+//이로인해 likeToggle이 변화해도 initalLikeToggle을 기준으로 증가/감소가 이루어져 likeCount가 잘못된 값으로 설정될 가능성이 생김
+
+//likeToggle 상태가 변경되면, 그 새로운 상태(newToggle)를 setLikeCount의 기준으로 사용
+// 이렇게 하면, 실제 상태 변경에 맞추어 likeCount가 정확하게 1씩 증가 또는 감소.
