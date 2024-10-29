@@ -112,7 +112,7 @@ const ProfileForm = ({ params, profileInfo }: ProfileFormProps) => {
           <div className={cn('followWrapper')}>
             <div
               className={cn('follower')}
-              onClick={() => followPageClick(userId, 'follower')}
+              onClick={() => followPageClick (userId, 'follower')}
             >
               <span>클로워</span>
               <span>{profileInfo.followerCount}</span>
