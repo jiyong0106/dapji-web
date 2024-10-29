@@ -10,7 +10,7 @@ import { useModal } from '@/src/hooks/useModal';
 type ClimbListProps = {
   page: number;
   search: string;
-  is_favorite: boolean;
+  is_favorite?: boolean;
 };
 
 //클라이밍장 리스트 조회 함수
@@ -97,17 +97,17 @@ export const useClimbListDataUpdate = (gymId: string) => {
 };
 
 // 클라이밍장 포스트 데이터 조회 함수
-type ClimbDetailDatasProps = {
+type ClimbPostDatasProps = {
   pageParam: number;
   gymId: string;
   color: string | null;
 };
 
-export const ClimbDetailDatas = async ({
+export const climbPostDatas = async ({
   pageParam = 1,
   gymId,
   color,
-}: ClimbDetailDatasProps) => {
+}: ClimbPostDatasProps) => {
   const res = await instance(`/api/posts/gym/${gymId}`, {
     params: {
       page: pageParam,
@@ -118,7 +118,7 @@ export const ClimbDetailDatas = async ({
 };
 
 //클라이밍장 포스트 데이터 업로드 함수
-export const useDetailUploadDatas = (gymId: string | number) => {
+export const usePostDetailUpload = (gymId: string | number) => {
   const router = useRouter();
   const { showModalHandler } = useModal();
   const queryClient = useQueryClient();
@@ -128,7 +128,7 @@ export const useDetailUploadDatas = (gymId: string | number) => {
     mutationFn: (formData: useFormPostUploadProps) =>
       instance.post('/api/posts', formData),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['userProfileData'] });
+      // queryClient.invalidateQueries({ queryKey: ['userProfileData'] });
       router.replace(`/climbList/${gymId}`);
     },
     onError: () => {
@@ -195,7 +195,7 @@ export const usePostDetailDelete = (postid: string, gymId: string) => {
     mutationKey: ['postDetailDelete'],
     mutationFn: () => instance.delete(`/api/posts/${postid}`),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['climbList'] });
+      // queryClient.invalidateQueries({ queryKey: ['climbList'] });
       router.replace(`/climbList/${gymId}`);
     },
     onError: (error) => {

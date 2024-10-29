@@ -7,13 +7,13 @@ import HoldColorList from '@/src/components/climbListDetailPage/holdColorList';
 import DetailMainContentList from '@/src/components/climbListDetailPage/detailMainContent';
 import { AddIcon } from '@/public/icon';
 import { useRouter } from 'next/navigation';
-import { ClimbDetailDatas } from '@/src/app/climbList/api';
+import { climbPostDatas } from '@/src/app/climbList/api';
 import NodetailData from '@/src/components/common/noDetailData';
 import { useEffect, useState } from 'react';
 import LoadingSpinner from '@/src/components/common/loadingSpinner';
 import Header from '@/src/components/common/header';
 import useInfiniteScroll from '@/src/hooks/useInfiniteScroll';
-import { ClimbDetailResponseType } from '@/src/utils/type';
+import { ClimbPostResponseType } from '@/src/utils/type';
 
 const cn = classNames.bind(styles);
 type DetailPageProps = {
@@ -28,20 +28,20 @@ const DetailPage = ({ params }: DetailPageProps) => {
   const { gymId } = params;
 
   const {
-    data: climbDetailData,
+    data: climbPostData,
     ref,
     isLoading,
     isFetchingNextPage,
-  } = useInfiniteScroll<ClimbDetailResponseType>({
+  } = useInfiniteScroll<ClimbPostResponseType>({
     queryKey: ['climbDetail', activeColor],
     fetchFunction: (pageParam = 1) =>
-      ClimbDetailDatas({ pageParam, gymId, color: activeColor }),
+      climbPostDatas({ pageParam, gymId, color: activeColor }),
     getNextPageParam: (lastPage) =>
       lastPage.meta.hasNextPage ? lastPage.meta.page + 1 : undefined,
   });
-  const lists = climbDetailData?.pages.flatMap((page) => page.posts) ?? [];
-  const gymName = climbDetailData?.pages[0]?.gym_name ?? '';
-  const noticeData = climbDetailData?.pages[0].notice;
+  const lists = climbPostData?.pages.flatMap((page) => page.posts) ?? [];
+  const gymName = climbPostData?.pages[0]?.gym_name ?? '';
+  const noticeData = climbPostData?.pages[0].notice;
   // 뒤로가기
   const uploadPage = () => {
     setIsUpLoading(true);

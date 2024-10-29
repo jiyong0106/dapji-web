@@ -8,7 +8,7 @@ import CommonInput from '../../common/commonInput';
 import { useForm } from 'react-hook-form';
 import { useFormPostUploadProps, PostDetailDataType } from '@/src/utils/type';
 import {
-  useDetailUploadDatas,
+  usePostDetailUpload,
   usePostDetailUpdate,
   useVideoUpload,
 } from '@/src/app/climbList/api';
@@ -45,7 +45,7 @@ const PostUploadForm = ({ gymId, initialData }: PostUploadFormProps) => {
   });
   const text = watch('content', '');
 
-  const { mutate: detailUploadDatas, isPending } = useDetailUploadDatas(gymId);
+  const { mutate: detailUploadDatas, isPending } = usePostDetailUpload(gymId);
   const { mutate: postDetailUpdate } = usePostDetailUpdate(
     String(initialData?.post_idx),
     String(gymId),
@@ -188,18 +188,11 @@ const PostUploadForm = ({ gymId, initialData }: PostUploadFormProps) => {
         <textarea
           className={cn('limitedTextarea')}
           maxLength={maxLength}
-          {...register('content', {
-            required: '내용을 입력해 주세요.',
-          })}
+          {...register('content')}
         />
         <div className={cn('charCount')}>
           {text?.length}/{maxLength}
         </div>
-      </div>
-      <div className={styles.error_text_wrapper}>
-        {errors.content && (
-          <small className={styles.error_text}>{errors.content.message}</small>
-        )}
       </div>
       <CommonButton
         name={initialData ? '수정하기' : '답지 올리기'}
