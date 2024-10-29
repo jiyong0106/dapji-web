@@ -44,7 +44,6 @@ const BoardDetailForm = ({ boardDetailData }: BoardDetailFormProps) => {
     initalLikeCount: like_count,
     initalLikeToggle: is_like,
     firQueryKeyName: 'boardDetailData',
-    secQueryKeyName: 'boardListData',
   });
 
   const router = useRouter();
