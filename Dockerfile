@@ -19,5 +19,5 @@ RUN npm run build
 # Next.js 앱 실행
 CMD [ "npm", "start" ]
 
-# 포트 노출 (예: 3000번 포트)
+# 포트 노출
 EXPOSE 3000
