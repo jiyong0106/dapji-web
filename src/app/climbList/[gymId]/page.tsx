@@ -50,7 +50,7 @@ const DetailPage = ({ params }: DetailPageProps) => {
   //업로드 페이지
 
   const noticePageClick = () => {
-    router.push(`/climbList/${gymId}/notice/${noticeData?.gym_notice_idx}`);
+    router.push(`/climbList/${gymId}/notice`);
   };
 
   if (isLoading || isUpLoading) {

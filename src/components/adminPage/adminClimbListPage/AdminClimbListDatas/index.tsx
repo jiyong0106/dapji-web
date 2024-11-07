@@ -34,7 +34,7 @@ const AdminClimbList = ({ list }: CardListProps) => {
   };
 
   const noticeEditClick = () => {
-    router.push(`/admin/list/${gym_idx}/notice/${gym_notice_idx}/edit`);
+    router.push(`/admin/list/${gym_idx}/notice/edit`);
   };
 
   return (

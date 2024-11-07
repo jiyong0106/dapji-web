@@ -4,7 +4,7 @@ import styles from './noticPage.module.scss';
 import classNames from 'classnames/bind';
 import NoticeLists from '@/src/components/noticePage/noticeLists';
 import { useQuery } from '@tanstack/react-query';
-import { fetchNoticeData } from '../../../api';
+import { fetchNoticeData } from '../../api';
 import { noticeDataType } from '@/src/utils/type';
 import LoadingSpinner from '@/src/components/common/loadingSpinner';
 
@@ -18,16 +18,16 @@ type NoticepageProps = {
 };
 
 const Noticepage = ({ params }: NoticepageProps) => {
-  const { gymId, noticeId } = params;
+  const { gymId } = params;
   const { data: noticeDatas, isLoading } = useQuery<noticeDataType>({
     queryKey: ['noticeDatas'],
-    queryFn: () => fetchNoticeData(gymId, noticeId),
+    queryFn: () => fetchNoticeData(gymId),
   });
 
   if (!noticeDatas || isLoading) {
     return <LoadingSpinner />;
   }
-  
+
   return (
     <div className={cn('container')}>
       <Header back={true} title="공지" />
