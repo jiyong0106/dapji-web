@@ -35,6 +35,7 @@ const CommentList = memo(
       user_idx,
       recomment_count,
       is_owner,
+      is_board_owner,
     } = list;
 
     const commentRef = useRef<HTMLDivElement | null>(null); // 댓글에 대한 ref 설정
@@ -60,7 +61,7 @@ const CommentList = memo(
       category: 'recomment',
       mainKey: 'boardRecomment',
     });
-
+    console.log('boardRecommentData===>', boardRecommentData);
     const boardRecomments =
       boardRecommentData?.pages.flatMap((page) => page.recomments) ?? [];
 
@@ -130,7 +131,7 @@ const CommentList = memo(
               <span className={cn('nickname')}>
                 {User?.nickname || '❗탈퇴한 사용자'}
               </span>
-              {is_owner && <span className={cn('isMyId')}>*</span>}
+              {is_board_owner && <span className={cn('isMyId')}>*</span>}
               <span className={cn('timeAgo')}>{timeAgo}</span>
               {is_owner && (
                 <DeleteIcon

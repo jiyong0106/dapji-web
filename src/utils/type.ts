@@ -350,6 +350,7 @@ export type BoardCommentDetailType = {
   is_like: boolean;
   recomment_count: number;
   is_owner: boolean;
+  is_board_owner: boolean;
 };
 
 export type BoardCommentType = {
@@ -379,6 +380,7 @@ export type RecommentType = {
   like_count: number;
   is_like: boolean;
   is_owner: boolean;
+  is_board_owner: boolean;
 };
 
 export type BoardRecommentType = {
