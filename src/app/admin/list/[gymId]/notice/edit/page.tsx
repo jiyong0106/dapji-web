@@ -18,7 +18,7 @@ const NoticeEditPage = ({ params }: NoticeEditPageProps) => {
   const { gymId, noticeId } = params;
   const { data: noticeDatas } = useQuery({
     queryKey: ['noticeDatas'],
-    queryFn: () => fetchNoticeData(gymId, noticeId),
+    queryFn: () => fetchNoticeData(gymId),
   });
 
   if (!noticeDatas) {

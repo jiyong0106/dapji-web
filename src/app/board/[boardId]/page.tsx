@@ -58,7 +58,6 @@ const BoardDetailPage = ({ params }: BoardDetailPageProps) => {
   });
   const commentDatas: BoardCommentDetailType[] =
     boardDetailCommentData?.pages.flatMap((page) => page.comments) ?? [];
-
   if (isLoading || !boardDetailData) {
     return <LoadingSpinner />;
   }

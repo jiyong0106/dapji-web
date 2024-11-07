@@ -26,6 +26,7 @@ const RecommnetList = ({ recomment }: RecommnetListProps) => {
     like_count,
     is_like,
     is_owner,
+    is_board_owner,
   } = recomment;
 
   const { showModalHandler } = useModal();
@@ -72,7 +73,7 @@ const RecommnetList = ({ recomment }: RecommnetListProps) => {
             <span className={cn('nickname')}>
               {User?.nickname || '❗탈퇴한 사용자'}
             </span>
-            {is_owner && <span className={cn('isMyId')}>*</span>}
+            {is_board_owner && <span className={cn('isMyId')}>*</span>}
             <span className={cn('timeAgo')}>{timeAgo}</span>
             {is_owner && (
               <DeleteIcon
