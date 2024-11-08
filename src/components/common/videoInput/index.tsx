@@ -51,6 +51,7 @@ const VideoInput = ({ mediaFiles, setMediaFiles }: VideoInputProps) => {
     centerMode: true,
     centerPadding: '0px',
     draggable: true,
+    adaptiveHeight: true,
   };
 
   useEffect(() => {
