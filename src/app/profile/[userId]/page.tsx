@@ -81,7 +81,7 @@ const ProfilePage = ({ params }: ProfilePageProps) => {
       <Header title={name}>
         <div className={cn('BtnStyles')}>
           {role && (
-            <Link href={'/admin/list'}>
+            <Link href={'/admin'}>
               <AdminIcon />
             </Link>
           )}

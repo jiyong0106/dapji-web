@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './adminBoard.module.scss';
-import { fetchBoardReports, deleteBoardData } from './api';
+import { fetchBoardReports, deleteBoardData, keepBoardData, resetBoardStatus } from './api';
 import { useRouter } from 'next/navigation';
 import { useModal } from '@/src/hooks/useModal';
 import ModalChoice from '@/src/components/common/moadlChoice';
@@ -21,7 +21,7 @@ interface BoardReport {
  board_title: string;
  report_count: number;
  is_deleted: boolean;
- status?: 'pending' | 'deleted' | 'kept';
+ status: 'pending' | 'confirmed' | 'deleted';
 }
 
 const BoardPage = () => {
@@ -29,12 +29,17 @@ const BoardPage = () => {
  const [reports, setReports] = useState<BoardReport[]>([]);
  const [error, setError] = useState<string | null>(null);
  const [isDeleting, setIsDeleting] = useState(false);
+ const [statusFilter, setStatusFilter] = useState<string>('all');
  const { showModalHandler } = useModal();
 
  const fetchReports = async () => {
    try {
      const data = await fetchBoardReports();
-     setReports(data);
+     const reportsWithStatus = data.map((report: BoardReport) => ({
+       ...report,
+       status: report.is_deleted ? 'deleted' : report.status || 'pending'
+     }));
+     setReports(reportsWithStatus);
    } catch (err) {
      setError('신고 내역을 불러오는데 실패했습니다.');
      console.error('Error:', err);
@@ -53,10 +58,11 @@ const BoardPage = () => {
      '게시글을 유지하시겠습니까?',
      async () => {
        try {
+         await keepBoardData(board_idx);
          setReports(prevReports =>
            prevReports.map(report =>
              report.board_idx === board_idx
-               ? { ...report, status: 'kept' }
+               ? { ...report, status: 'confirmed' }
                : report
            )
          );
@@ -91,6 +97,40 @@ const BoardPage = () => {
    );
  };
 
+ const handleStatusChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+   setStatusFilter(event.target.value);
+ };
+
+ const filteredReports = reports.filter(report => {
+   if (statusFilter === 'all') return true;
+   if (statusFilter === 'pending') return !report.is_deleted && report.status !== 'confirmed';
+   if (statusFilter === 'deleted') return report.is_deleted;
+   if (statusFilter === 'confirmed') return report.status === 'confirmed';
+   return true;
+ });
+
+ const handleKeptStatusClick = (board_idx: number) => {
+   showModalHandler(
+     'choice',
+     '처리대기 상태로 변경하시겠습니까?',
+     async () => {
+       try {
+         await resetBoardStatus(board_idx);
+         setReports(prevReports =>
+           prevReports.map(report =>
+             report.board_idx === board_idx
+               ? { ...report, status: 'pending' }
+               : report
+           )
+         );
+         showModalHandler('alert', '처리대기 상태로 변경되었습니다.');
+       } catch (error) {
+         showModalHandler('alert', '상태 변경에 실패했습니다.');
+       }
+     }
+   );
+ };
+
  const formatCategory = (category: string) => {
    const categoryMap = {
      'violence_hate': '폭력/혐오',
@@ -113,6 +153,14 @@ const BoardPage = () => {
 
  return (
    <div className={cn('container')}>
+     <div className={cn('status-filter')}>
+       <select value={statusFilter} onChange={handleStatusChange}>
+         <option value="all">전체</option>
+         <option value="pending">처리대기</option>
+         <option value="deleted">삭제</option>
+         <option value="confirmed">유지</option>
+       </select>
+     </div>
      <table className={cn('table')}>
        <thead>
          <tr>
@@ -125,7 +173,7 @@ const BoardPage = () => {
          </tr>
        </thead>
        <tbody>
-         {reports.map((report, index) => (
+         {filteredReports.map((report, index) => (
            <tr key={index}>
              <td className={cn('report-count')}>{report.report_count}</td>
              <td className={cn('board-title')}>
@@ -152,8 +200,13 @@ const BoardPage = () => {
              <td className={cn('status')}>
                {report.is_deleted ? (
                  '삭제됨'
-               ) : report.status === 'kept' ? (
-                 '문제없음'
+               ) : report.status === 'confirmed' ? (
+                 <span 
+                   className={cn('status-text', 'kept')}
+                   onClick={() => handleKeptStatusClick(report.board_idx)}
+                 >
+                   문제없음
+                 </span>
                ) : (
                  <div className={cn('actionWrapper')}>
                    <span 

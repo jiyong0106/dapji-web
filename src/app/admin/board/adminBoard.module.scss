@@ -1,3 +1,61 @@
+.status-filter {
+    margin: 20px 0;
+
+    select {
+        padding: 8px 16px;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+        cursor: pointer;
+
+        &:hover {
+            border-color: #999;
+        }
+    }
+}
+
+// status 스타일 수정
+.status {
+    width: 15%;
+
+    .actionWrapper {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+    }
+
+    .actionText {
+        font-weight: bold;
+        cursor: pointer;
+
+        &.keep {
+            color: #0066cc;
+
+            &:hover {
+                color: #004499;
+            }
+        }
+
+        &.delete {
+            color: #cc0000;
+
+            &:hover {
+                color: #990000;
+            }
+        }
+    }
+
+    // 상태 텍스트에 대한 스타일 추가
+    .status-text {
+        &.kept {
+            color: #28a745;
+            cursor: pointer;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
 .container {
     padding: 20px;
 
