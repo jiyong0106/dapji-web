@@ -23,7 +23,7 @@ const ProfileGymData = ({ gym }: ProfileGymDataProps) => {
   });
 
   const gymClick = () => {
-    router.push(`/climbList/${gym_idx}`);
+    router.push(`/gym/${gym_idx}`);
   };
 
   return (

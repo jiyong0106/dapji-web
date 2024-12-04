@@ -20,7 +20,7 @@ const Home = () => {
         const data = await fetchMyInfo();
         if (data) {
           setmyId(data);
-          router.push('/climbList'); // 성공적으로 데이터를 가져오면 이동
+          router.push('/gym'); // 성공적으로 데이터를 가져오면 이동
         }
       } catch (error) {
         console.error('my info error', error);

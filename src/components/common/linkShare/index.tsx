@@ -16,7 +16,7 @@ const LinkShare = ({ params }: LinkShare) => {
 
   const url =
     typeof window !== 'undefined'
-      ? `${window.location.origin}/climbList/${gymId}/${postid}`
+      ? `${window.location.origin}/gym/${gymId}/${postid}`
       : '';
   //사이트 URL
 

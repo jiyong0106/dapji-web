@@ -3,7 +3,7 @@ import classNames from 'classnames/bind';
 import styles from './adminClimbListEditPage.module.scss';
 import Header from '@/src/components/common/header';
 import AdminClimbListEditForm from '@/src/components/adminPage/adminClimbListEditPage/adminClimbListUpdateForm';
-import { useClimbListDetails } from '@/src/app/climbList/api';
+import { useClimbListDetails } from '@/src/app/gym/api';
 const cn = classNames.bind(styles);
 
 type AdminClimbListEditPageprops = {
