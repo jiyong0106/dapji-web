@@ -21,7 +21,7 @@ const NaverCallback = () => {
             router.replace('/join');
             return;
           }
-          router.replace('/climbList');
+          router.replace('/gym');
         }
       }
     };

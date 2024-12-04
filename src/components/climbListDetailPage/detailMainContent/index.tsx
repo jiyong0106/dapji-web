@@ -91,7 +91,7 @@ const DetailMainContent = ({ list, gymName }: DetailMainContentProps) => {
 
   const postDetailPage = () => {
     setPostData(list);
-    router.push(`/climbList/${gym_idx}/${post_idx}`);
+    router.push(`/gym/${gym_idx}/${post_idx}`);
   };
   // 영상 상세 페이지 이동
 
@@ -168,7 +168,7 @@ const DetailMainContent = ({ list, gymName }: DetailMainContentProps) => {
         <div className={cn('commentWrapper')}>
           <span className={cn('allComment')}>
             <Link
-              href={`/climbList/${gym_idx}/${post_idx}`}
+              href={`/gym/${gym_idx}/${post_idx}`}
               style={{ textDecoration: 'none', color: 'gray' }}
             >
               댓글 모두 보기

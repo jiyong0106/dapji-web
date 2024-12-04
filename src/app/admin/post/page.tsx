@@ -148,7 +148,7 @@ const PostPage = () => {
 
 const handlePostClick = (post_idx: number, gym_idx: number, is_deleted: boolean) => {
   if (!is_deleted) {
-    router.push(`/climbList/${gym_idx}/${post_idx}`);
+    router.push(`/gym/${gym_idx}/${post_idx}`);
   }
 };
 

@@ -3,7 +3,7 @@ import classNames from 'classnames/bind';
 import { GymsType } from '@/src/utils/type';
 import Image from 'next/image';
 import { DeleteIcon, EditIcon } from '@/public/icon';
-import { useClimbListDatasDelete } from '@/src/app/climbList/api';
+import { useClimbListDatasDelete } from '@/src/app/gym/api';
 import Link from 'next/link';
 import { useModal } from '@/src/hooks/useModal';
 import ModalChoice from '@/src/components/common/moadlChoice';

@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "kr.climbdapji.dapji",
+      "sha256_cert_fingerprints": [
+        "85:6C:50:02:F7:F8:B8:F3:3F:A6:7F:76:D4:BB:25:04:C7:A3:DA:FE:B3:FD:F8:A0:71:28:1A:8F:94:95:DC:39"
+      ]
+    }
+  }
+]

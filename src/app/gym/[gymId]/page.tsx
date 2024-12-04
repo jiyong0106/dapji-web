@@ -7,7 +7,7 @@ import HoldColorList from '@/src/components/climbListDetailPage/holdColorList';
 import DetailMainContentList from '@/src/components/climbListDetailPage/detailMainContent';
 import { AddIcon } from '@/public/icon';
 import { useRouter } from 'next/navigation';
-import { climbPostDatas } from '@/src/app/climbList/api';
+import { climbPostDatas } from '@/src/app/gym/api';
 import NodetailData from '@/src/components/common/noDetailData';
 import { useEffect, useState } from 'react';
 import LoadingSpinner from '@/src/components/common/loadingSpinner';
@@ -45,12 +45,12 @@ const DetailPage = ({ params }: DetailPageProps) => {
   // 뒤로가기
   const uploadPage = () => {
     setIsUpLoading(true);
-    router.replace(`/climbList/${gymId}/upload`);
+    router.replace(`/gym/${gymId}/upload`);
   };
   //업로드 페이지
 
   const noticePageClick = () => {
-    router.push(`/climbList/${gymId}/notice`);
+    router.push(`/gym/${gymId}/notice`);
   };
 
   if (isLoading || isUpLoading) {
@@ -60,7 +60,7 @@ const DetailPage = ({ params }: DetailPageProps) => {
   //로딩중 들어가야할 것
   return (
     <div className={cn('container')}>
-      <Header title={gymName} page={'/climbList'}>
+      <Header title={gymName} page={'/gym'}>
         <AddIcon onClick={uploadPage} width="30" height="30" />
       </Header>
       <div className={cn('secondContainer')}>

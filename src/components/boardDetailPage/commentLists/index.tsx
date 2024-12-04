@@ -61,7 +61,6 @@ const CommentList = memo(
       category: 'recomment',
       mainKey: 'boardRecomment',
     });
-    console.log('boardRecommentData===>', boardRecommentData);
     const boardRecomments =
       boardRecommentData?.pages.flatMap((page) => page.recomments) ?? [];
 

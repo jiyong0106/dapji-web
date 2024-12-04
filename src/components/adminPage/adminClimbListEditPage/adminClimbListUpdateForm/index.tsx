@@ -6,7 +6,7 @@ import ImageInput from '@/src/components/common/imageInput';
 import CommonInput from '@/src/components/common/commonInput';
 import CommonButton from '@/src/components/common/commonButton';
 import { useForm } from 'react-hook-form';
-import { useClimbListDataUpdate } from '@/src/app/climbList/api';
+import { useClimbListDataUpdate } from '@/src/app/gym/api';
 import { useFormListUploadProps } from '@/src/utils/type';
 
 const cn = classNames.bind(styles);

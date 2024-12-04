@@ -55,7 +55,7 @@ const NoticeuUploadForm = ({ params, initialData }: NoticeuUploadFormProps) => {
     mutationFn: (formData: useFormNoticeUploadType) =>
       fetchNoticeUpdate(formData, gymId, noticeId),
     onSuccess: () => {
-      router.push(`/climbList/${gymId}/notice/${noticeId}`);
+      router.push(`/gym/${gymId}/notice/${noticeId}`);
     },
     onError: () => {
       showModalHandler('alert', '공지 수정 실패');

@@ -11,7 +11,7 @@ import {
   usePostDetailUpload,
   usePostDetailUpdate,
   useVideoUpload,
-} from '@/src/app/climbList/api';
+} from '@/src/app/gym/api';
 import CommonButton from '../../common/commonButton';
 import { useModal } from '@/src/hooks/useModal';
 import LoadingSpinner from '../../common/loadingSpinner';
