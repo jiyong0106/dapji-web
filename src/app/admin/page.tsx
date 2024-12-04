@@ -15,7 +15,7 @@ const AdminPage = () => {
     <div className={cn('container')}>
         <h3 style={{ cursor: 'pointer' }} onClick={()=>pageClick("/admin/list")}>클라이밍장 리스트 관리</h3>
         <h3 style={{ cursor: 'pointer' }} onClick={()=>pageClick("/admin/board")}>자유게시판 신고 관리</h3>
-        <h3>동영상 신고 관리</h3>
+        <h3 style={{ cursor: 'pointer' }} onClick={()=>pageClick("/admin/post")}>동영상 신고 관리</h3>
         <h3>유저 관리</h3>
       </div>
   );
