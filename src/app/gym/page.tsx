@@ -3,7 +3,7 @@ import SearchBar from '@/src/components/common/searchBar';
 import classNames from 'classnames/bind';
 import styles from './ClimbListPage.module.scss';
 import CardListData from '@/src/components/climbListPage/cardListData';
-import { ClimbListDatas } from '@/src/app/climbList/api';
+import { ClimbListDatas } from '@/src/app/gym/api';
 import { ClimbLIstResponseType } from '@/src/utils/type';
 import useInfiniteScroll from '@/src/hooks/useInfiniteScroll';
 import { useState } from 'react';

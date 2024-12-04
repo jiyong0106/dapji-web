@@ -129,7 +129,7 @@ export const usePostDetailUpload = (gymId: string | number) => {
       instance.post('/api/posts', formData),
     onSuccess: () => {
       // queryClient.invalidateQueries({ queryKey: ['userProfileData'] });
-      router.replace(`/climbList/${gymId}`);
+      router.replace(`/gym/${gymId}`);
     },
     onError: () => {
       showModalHandler('alert', '동영상,등반일, 난이도 선택은 필수에요.');
@@ -168,7 +168,7 @@ export const usePostDetailUpdate = (postid: string, gymId: string) => {
     mutationFn: (formData: useFormPostUploadProps) =>
       instance.patch(`/api/posts/${postid}`, formData),
     onSuccess: () => {
-      router.replace(`/climbList/${gymId}/${postid}`);
+      router.replace(`/gym/${gymId}/${postid}`);
     },
     onError: () => {
       showModalHandler('alert', '동영상,등반일, 난이도 선택은 필수에요.');
@@ -195,8 +195,7 @@ export const usePostDetailDelete = (postid: string, gymId: string) => {
     mutationKey: ['postDetailDelete'],
     mutationFn: () => instance.delete(`/api/posts/${postid}`),
     onSuccess: () => {
-      // queryClient.invalidateQueries({ queryKey: ['climbList'] });
-      router.replace(`/climbList/${gymId}`);
+      router.replace(`/gym/${gymId}`);
     },
     onError: (error) => {
       console.error('삭제 실패:', error);

@@ -31,7 +31,7 @@ export const useInitializeNickname = () => {
       instance.patch(`/api/profile/me`, formData),
     onSuccess: (updatedProfileData) => {
       showModalHandler('alert', '답지를 즐겨보세요🔥', () => {
-        router.replace('/climbList');
+        router.replace('/gym');
       });
       queryClient.setQueryData(['profileDatas'], updatedProfileData);
     },

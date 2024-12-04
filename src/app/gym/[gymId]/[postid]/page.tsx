@@ -4,7 +4,7 @@ import styles from './PostDetailPage.module.scss';
 import classNames from 'classnames/bind';
 import Header from '@/src/components/common/header';
 import PostDetailForm from '@/src/components/postDetailPage/postDetailForm';
-import { usePostDetailDatas } from '@/src/app/climbList/api';
+import { usePostDetailDatas } from '@/src/app/gym/api';
 import LoadingSpinner from '@/src/components/common/loadingSpinner';
 import ModalChoice from '@/src/components/common/moadlChoice';
 import CommentInput from '@/src/components/boardDetailPage/commentInput';
@@ -51,7 +51,7 @@ const PostDetailPage = ({ params }: PostDetailPageProps) => {
 
   return (
     <div className={cn('container')}>
-      <Header title={postDetailDatas.gym_name} page={`/climbList/${gymId}`} />
+      <Header title={postDetailDatas.gym_name} page={`/gym/${gymId}`} />
       <main className={cn('secondContainer', tagNickname && 'tagNickname')}>
         <section>
           <PostDetailForm params={params} postDetailDatas={postDetailDatas} />

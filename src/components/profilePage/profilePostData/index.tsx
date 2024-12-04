@@ -21,7 +21,7 @@ const ProfilePostData = ({ list }: ProfilePostDataProps) => {
 
   return (
     <div className={cn('container')}>
-      <Link href={`/climbList/${gym_idx}/${post_idx}`}>
+      <Link href={`/gym/${gym_idx}/${post_idx}`}>
         <Image
           src={imageUrl}
           alt="postImage"

@@ -4,7 +4,7 @@ import styles from './postDetailForm.module.scss';
 import classNames from 'classnames/bind';
 import { DeleteIcon, EditIcon } from '@/public/icon';
 import { useRouter } from 'next/navigation';
-import { usePostDetailDelete } from '@/src/app/climbList/api';
+import { usePostDetailDelete } from '@/src/app/gym/api';
 import Image from 'next/image';
 import { useModal } from '@/src/hooks/useModal';
 import LinkShare from '@/src/components/common/linkShare';
@@ -97,7 +97,7 @@ const PostDetailForm = ({ params, postDetailDatas }: PostDetailFormProps) => {
   const deleteT = (date: string | null) => date?.split('T')[0];
   //시간 가공하는 함수
   const editPage = () => {
-    router.replace(`/climbList/${gym_idx}/${post_idx}/edit`);
+    router.replace(`/gym/${gym_idx}/${post_idx}/edit`);
   };
   //수정페이지 이동
   const deleteClick = () => {

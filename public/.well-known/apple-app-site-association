@@ -1,0 +1,14 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "PUJ3RLBDAQ.kr.climbdapji.dapji",
+        "paths": [
+          "/board/*", // 게시판 상세 페이지 경로
+          "/gym/*/*"  // 체육관 상세 페이지 경로
+        ]
+      }
+    ]
+  }
+}

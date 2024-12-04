@@ -45,7 +45,7 @@ const FooterBar = () => {
   const routerClick = (page: string) => {
     router.replace(`/${page}`);
   };
-  const isClimbListSpecificPostPath = path.match(/^\/climbList\/\d+\/\d+$/);
+  const isgymSpecificPostPath = path.match(/^\/gym\/\d+\/\d+$/);
 
   const getIconFill = (iconPath: string) => {
     return path.startsWith(iconPath) ? '#38B6FF' : 'black';
@@ -56,7 +56,7 @@ const FooterBar = () => {
     path === '/join' ||
     path.startsWith('/auth') ||
     (path.startsWith('/board') && path !== '/board') ||
-    isClimbListSpecificPostPath ||
+    isgymSpecificPostPath ||
     path === '/signup' ||
     path === '/signin' ||
     path === '/deleteAccount'
@@ -75,7 +75,7 @@ const FooterBar = () => {
       <HomeIcon
         width="30"
         height="30"
-        onClick={() => routerClick('climbList')}
+        onClick={() => routerClick('gym')}
         fill={getIconFill('/climbList')}
       />
       <GlassIcon

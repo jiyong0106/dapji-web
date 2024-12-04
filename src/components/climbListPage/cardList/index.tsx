@@ -25,7 +25,7 @@ const CardList = ({ list }: CardListProps) => {
   });
 
   const detailClick = () => {
-    router.push(`/climbList/${gym_idx}`);
+    router.push(`/gym/${gym_idx}`);
   };
 
   return (

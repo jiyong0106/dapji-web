@@ -1,4 +1,3 @@
-import { climbLists } from '@/src/utils/dummy';
 import styles from './cardListData.module.scss';
 import classNames from 'classnames/bind';
 import CardList from '../cardList';
