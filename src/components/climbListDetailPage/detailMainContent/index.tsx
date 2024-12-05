@@ -4,7 +4,6 @@ import styles from './detailMainContent.module.scss';
 import { RightArrowIcon } from '@/public/icon';
 import { useRouter } from 'next/navigation';
 import { DetailType } from '@/src/utils/type';
-import usePostStore from '@/src/utils/store/usePostStore';
 import Image from 'next/image';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
@@ -86,11 +85,8 @@ const DetailMainContent = ({ list, gymName }: DetailMainContentProps) => {
   };
   //슬라이드 세팅
   const router = useRouter();
-  const setPostData = usePostStore((state) => state.setPostData);
-  //postData 전역상태
 
   const postDetailPage = () => {
-    setPostData(list);
     router.push(`/gym/${gym_idx}/${post_idx}`);
   };
   // 영상 상세 페이지 이동
