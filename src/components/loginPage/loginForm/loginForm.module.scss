@@ -1,15 +1,17 @@
 .container {
-  @include flex-arrange(flex-start, center);
+  @include flex-arrange(center, center);
   flex-direction: column;
-  gap: 10px;
-
-  height: 100vh;
   background: rgb(247, 244, 244);
-  padding: 150px 10px 10px 10px;
+  width: 100%;
+  padding-top: 40px;
   .signInForm {
-    width: 100%;
+    width: 80%;
     @include flex-arrange(center, center);
     flex-direction: column;
     gap: 10px;
+    margin-bottom: 10px;
+  }
+  span {
+    @include font-style(1.1rem, black, 400);
   }
 }
