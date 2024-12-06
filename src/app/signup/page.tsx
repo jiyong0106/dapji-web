@@ -28,7 +28,7 @@ const SignUpPage = () => {
     mutationFn: (formData: fetchSignUpType) => fetchSignUp(formData),
     onSuccess: () => {
       showModalHandler('alert', '회원가입이 되었습니다. ');
-      router.replace('/signin');
+      router.replace('/');
     },
     onError: (e) => {
       if (isServerError(e) && e.response && e.response.status === 400) {
@@ -54,7 +54,8 @@ const SignUpPage = () => {
       <h1>회원가입</h1>
       <form onSubmit={handleSubmit(onSubmit)} className={cn('signUpForm')}>
         <CommonInput
-          placeholder="email"
+          label="이메일"
+          placeholder="이메일을 입력해 주세요"
           type="email"
           register={register('email', {
             required: '이메일 꼭 필요함',
@@ -62,7 +63,8 @@ const SignUpPage = () => {
         />
         {errors.email && <span>{errors.email.message as string}</span>}
         <CommonInput
-          placeholder="password"
+          label="비밀번호"
+          placeholder="비밀번호를 입력해 주세요"
           register={register('password', {
             required: '비밀번호 꼭 필요함',
           })}
@@ -70,7 +72,7 @@ const SignUpPage = () => {
         {errors.password && <span>{errors.password.message as string}</span>}
         <CommonButton name="회원가입" type="submit" />
       </form>
-      <span onClick={() => router.replace(`/signin`)}>로그인 ㄱㄱ</span>
+      <span onClick={() => router.replace(`/`)}>로그인 </span>
       <ModalChoice />
     </div>
   );

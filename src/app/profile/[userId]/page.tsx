@@ -14,6 +14,7 @@ import ModalChoice from '@/src/components/common/moadlChoice';
 import { useModal } from '@/src/hooks/useModal';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { useRoleStore } from '@/src/utils/store/useRoleStore';
 
 const cn = classNames.bind(styles);
 
@@ -29,6 +30,8 @@ const ProfilePage = ({ params }: ProfilePageProps) => {
   const { data: logout, isSuccess } = useLogout(enabled);
   const { showModalHandler } = useModal();
   const router = useRouter();
+  const { setrole } = useRoleStore();
+
   const {
     data: profileData,
     ref,
@@ -65,6 +68,12 @@ const ProfilePage = ({ params }: ProfilePageProps) => {
     };
     showModalHandler('choice', '로그아웃 하시겠어요?', confirmAction);
   };
+
+  useEffect(() => {
+    if (profileData?.pages[0]?.userRole) {
+      setrole(profileData.pages[0].userRole);
+    }
+  }, [profileData, setrole]);
 
   useEffect(() => {
     if (isSuccess) {
