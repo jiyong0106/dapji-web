@@ -73,14 +73,11 @@ export const useProfileUpdate = (userId: string) => {
 
 //로그아웃
 
-export const useLogout = (enabled: boolean) => {
-  return useQuery<void>({
-    queryKey: ['userLogout'],
-    queryFn: () => instance.get(`/api/auth/logout`),
-    enabled,
-  });
+export const fetchUserLogout = async () => {
+  const res = await instance.get(`/api/auth/logout`);
+  console.log(res.data);
+  return res.data;
 };
-
 //팔로워 조회
 
 type fetchFollowDataProps = {
@@ -124,4 +121,3 @@ export const fetchFollowPost = async (followIds: FollowRequestType) => {
   const res = await instance.post(`/api/follow`, followIds);
   return res.data;
 };
-

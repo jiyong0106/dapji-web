@@ -12,7 +12,7 @@ import LoginForm from '@/src/components/loginPage/loginForm';
 const cn = classNames.bind(styles);
 
 const Home = () => {
-  const { myId, setmyId } = useMyInfoStore();
+  const { setmyId } = useMyInfoStore();
   const router = useRouter();
 
   useEffect(() => {
@@ -21,7 +21,7 @@ const Home = () => {
         const data = await fetchMyInfo();
         if (data) {
           setmyId(data);
-          router.push('/gym'); // 성공적으로 데이터를 가져오면 이동
+          router.replace('/gym'); // 성공적으로 데이터를 가져오면 이동
         }
       } catch (error) {
         console.error('my info error', error);
