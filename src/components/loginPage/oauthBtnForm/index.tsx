@@ -2,7 +2,7 @@
 
 import classNames from 'classnames/bind';
 import styles from './oauthBtnForm.module.scss';
-import { NaverIcon, KakaoIcon } from '@/public/icon';
+import { KakaoIcon } from '@/public/icon';
 import OauthPopup from '@/src/components/loginPage/oauthPopup';
 import OauthBtnStyle from '@/src/components/loginPage/oauthBtnStyle';
 import Image from 'next/image';
@@ -17,27 +17,12 @@ const OauthBtnForm = () => {
     OauthPopup('kakao');
   };
 
-  const NaverLogin = () => {
-    OauthPopup('naver');
-  };
-
   const AppleLogin = () => {
     OauthPopup('apple');
   };
 
-  const DapJiLogin = () => {
-    router.replace(`/signin`);
-  };
-
   return (
     <div className={cn('container')}>
-      <OauthBtnStyle
-        icon={<NaverIcon width="50" height="50" />}
-        text="Naver 아이디 로그인"
-        backColor="#03c75a"
-        textColor="white"
-        onClick={NaverLogin}
-      />
       <OauthBtnStyle
         icon={<KakaoIcon width="27" height="27" />}
         text="Kakao 아이디 로그인"
@@ -58,20 +43,6 @@ const OauthBtnForm = () => {
         backColor="black"
         textColor="white"
         onClick={AppleLogin}
-      />
-      <OauthBtnStyle
-        icon={
-          <Image
-            src={process.env.NEXT_PUBLIC_URL + `/icon/dapjilogo.svg`}
-            width="60"
-            height="30"
-            alt="애플 로고"
-          />
-        }
-        text="Dap Ji 아이디 로그인"
-        backColor="white"
-        textColor="#38B6FF"
-        onClick={DapJiLogin}
       />
     </div>
   );

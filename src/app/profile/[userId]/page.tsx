@@ -4,7 +4,7 @@ import styles from './userProfilePage.module.scss';
 import ProfileAllData from '@/src/components/profilePage/profileAllData';
 import ProfileForm from '@/src/components/profilePage/profileForm';
 import Header from '@/src/components/common/header';
-import { fethcProfilePostDatas, useLogout } from '@/src/app/profile/api';
+import { fetchUserLogout, fethcProfilePostDatas } from '@/src/app/profile/api';
 import useInfiniteScroll from '@/src/hooks/useInfiniteScroll';
 import { ProfilePostType } from '@/src/utils/type';
 import LoadingSpinner from '@/src/components/common/loadingSpinner';
@@ -14,6 +14,8 @@ import ModalChoice from '@/src/components/common/moadlChoice';
 import { useModal } from '@/src/hooks/useModal';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { useRoleStore } from '@/src/utils/store/useRoleStore';
+import { useMyInfoStore } from '@/src/utils/store/useMyImfoStore';
 
 const cn = classNames.bind(styles);
 
@@ -24,11 +26,12 @@ type ProfilePageProps = {
 };
 
 const ProfilePage = ({ params }: ProfilePageProps) => {
-  const [enabled, setEnabled] = useState(false);
   const { userId } = params;
-  const { data: logout, isSuccess } = useLogout(enabled);
   const { showModalHandler } = useModal();
   const router = useRouter();
+  const { setrole } = useRoleStore();
+  const { setmyId } = useMyInfoStore();
+
   const {
     data: profileData,
     ref,
@@ -59,18 +62,24 @@ const ProfilePage = ({ params }: ProfilePageProps) => {
   };
 
   const handleLogoutClick = () => {
-    const confirmAction = () => {
-      setEnabled(true);
-      logout;
+    const confirmAction = async () => {
+      try {
+        await fetchUserLogout();
+        setmyId(null);
+        router.replace('/');
+      } catch (error) {
+        console.error('로그아웃 실패', error);
+      }
     };
+
     showModalHandler('choice', '로그아웃 하시겠어요?', confirmAction);
   };
 
   useEffect(() => {
-    if (isSuccess) {
-      router.replace('/');
+    if (profileData?.pages[0]?.userRole) {
+      setrole(profileData.pages[0].userRole);
     }
-  }, [isSuccess, router]);
+  }, [profileData, setrole]);
 
   if (isLoading) {
     return <LoadingSpinner />;
