@@ -41,7 +41,7 @@ const ProfileGymDatas = ({ params, name }: ProfileGymDatasProps) => {
             {name}님의 최애 클라이밍장 🔥
           </span>
           {profileGyms.map((gym) => (
-            <ProfileGymData key={gym.gym_idx} gym={gym} />
+            <ProfileGymData key={gym.gym_idx} gym={gym} userId={userId} />
           ))}
         </>
       ) : (
