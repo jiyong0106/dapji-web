@@ -6,16 +6,20 @@ import Image from 'next/image';
 import FavoriteAction from '../../climbListPage/favoriteClimbList';
 import useFavoriteAction from '@/src/hooks/useFavoriteAction';
 import { RightArrowIcon } from '@/public/icon';
+import { useMyInfoStore } from '@/src/utils/store/useMyImfoStore';
 
 const cn = classNames.bind(styles);
 
 type ProfileGymDataProps = {
   gym: GymsType;
+  userId: string;
 };
 
-const ProfileGymData = ({ gym }: ProfileGymDataProps) => {
+const ProfileGymData = ({ gym, userId }: ProfileGymDataProps) => {
   const { name, address, logo, post_count, gym_idx, is_favorite } = gym;
   const router = useRouter();
+  const { myId } = useMyInfoStore();
+  const isMyId = myId === Number(userId);
 
   const { handleFavoriteClick, favoriteToggle } = useFavoriteAction({
     initalFavoriteToggle: is_favorite,
@@ -41,10 +45,12 @@ const ProfileGymData = ({ gym }: ProfileGymDataProps) => {
       <div className={cn('textWrapper')}>
         <div className={cn('nameWrapper')}>
           <span className={cn('name')}>{name}</span>
-          <FavoriteAction
-            favoriteToggle={favoriteToggle}
-            onClick={handleFavoriteClick}
-          />
+          {isMyId && (
+            <FavoriteAction
+              favoriteToggle={favoriteToggle}
+              onClick={handleFavoriteClick}
+            />
+          )}
         </div>
         <span className={cn('address')}>{address}</span>
         <span className={cn('post_count')}>
