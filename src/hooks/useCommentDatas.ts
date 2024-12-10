@@ -56,13 +56,13 @@ export const useCommentUploadData = ({
       queryClient.invalidateQueries({ queryKey: [`${secKey}`] }),
     ],
     onError: (e) => {
-      showModalHandler('alert', '댓글을 다시 업로드해 주세요');
       if (isServerError(e) && e.response && e.response.status === 401) {
         showModalHandler('alert', '댓글을 작성하려면 로그인이 필요해요', () =>
           router.replace('/'),
         );
         return;
       }
+      showModalHandler('alert', '댓글을 다시 업로드해 주세요');
     },
   });
 };
@@ -164,13 +164,13 @@ export const useRecommentUploadData = ({
       queryClient.invalidateQueries({ queryKey: [`${secKey}`] }),
     ],
     onError: (e) => {
-      showModalHandler('alert', '답글을 다시 업로드해 주세요');
       if (isServerError(e) && e.response && e.response.status === 401) {
         showModalHandler('alert', '답글을 작성하려면 로그인이 필요해요', () =>
           router.replace('/'),
         );
         return;
       }
+      showModalHandler('alert', '답글을 다시 업로드해 주세요');
     },
   });
 };
