@@ -2,6 +2,9 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 
 import instance from '@/src/utils/axios';
+import { isServerError } from '../utils/axiosError';
+import { useModal } from './useModal';
+import { useRouter } from 'next/navigation';
 
 type LikeRequestProps = {
   category: string;
@@ -36,7 +39,8 @@ export const useLikeAction = ({
 }: useLikeActionProps): LikeActionState => {
   const [likeToggle, setLikeToggle] = useState(initalLikeToggle);
   const [likeCount, setLikeCount] = useState(initalLikeCount);
-
+  const { showModalHandler } = useModal();
+  const router = useRouter();
   const queryClient = useQueryClient();
 
   const { mutate: likeRequest } = useMutation({
@@ -55,7 +59,17 @@ export const useLikeAction = ({
 
       return { previousData };
     },
-    onError: (error, variables, context) => {
+    onError: (e, variables, context) => {
+      if (isServerError(e) && e.response && e.response.status === 401) {
+        showModalHandler('alert', ' 해당 기능은 로그인이 필요해요', () =>
+          router.replace('/'),
+        );
+        return;
+      }
+      if (isServerError(e) && e.response && e.response.status === 500) {
+        showModalHandler('alert', '잠시후 다시 시도해 주세요');
+        return;
+      }
       if (context?.previousData) {
         queryClient.setQueryData([firQueryKeyName], context.previousData);
       }
