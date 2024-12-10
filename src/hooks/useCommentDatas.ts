@@ -5,6 +5,8 @@ import {
 } from '@tanstack/react-query';
 import instance from '../utils/axios';
 import { useModal } from './useModal';
+import { isServerError } from '@/src/utils/axiosError';
+import { useRouter } from 'next/navigation';
 
 // 댓글 조회
 
@@ -44,6 +46,7 @@ export const useCommentUploadData = ({
 }: useCommentUploadDataProps) => {
   const queryClient = useQueryClient();
   const { showModalHandler } = useModal();
+  const router = useRouter();
 
   return useMutation({
     mutationKey: [`${mainKey}`],
@@ -52,7 +55,13 @@ export const useCommentUploadData = ({
       queryClient.invalidateQueries({ queryKey: [`${firKey}`] }),
       queryClient.invalidateQueries({ queryKey: [`${secKey}`] }),
     ],
-    onError: () => {
+    onError: (e) => {
+      if (isServerError(e) && e.response && e.response.status === 401) {
+        showModalHandler('alert', '댓글을 작성하려면 로그인이 필요해요', () =>
+          router.replace('/'),
+        );
+        return;
+      }
       showModalHandler('alert', '댓글을 다시 업로드해 주세요');
     },
   });
@@ -145,6 +154,7 @@ export const useRecommentUploadData = ({
 }: useRecommentUploadDataProps) => {
   const queryClient = useQueryClient();
   const { showModalHandler } = useModal();
+  const router = useRouter();
 
   return useMutation({
     mutationKey: [`${mainKey}`],
@@ -153,7 +163,13 @@ export const useRecommentUploadData = ({
       queryClient.invalidateQueries({ queryKey: [`${firKey}`] }),
       queryClient.invalidateQueries({ queryKey: [`${secKey}`] }),
     ],
-    onError: () => {
+    onError: (e) => {
+      if (isServerError(e) && e.response && e.response.status === 401) {
+        showModalHandler('alert', '답글을 작성하려면 로그인이 필요해요', () =>
+          router.replace('/'),
+        );
+        return;
+      }
       showModalHandler('alert', '답글을 다시 업로드해 주세요');
     },
   });

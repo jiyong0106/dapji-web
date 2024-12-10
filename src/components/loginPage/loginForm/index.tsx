@@ -40,7 +40,7 @@ const LoginForm = () => {
       }
 
       if (isServerError(e) && e.response && e.response.status === 500) {
-        showModalHandler('alert', '서버에러');
+        showModalHandler('alert', '잠시후 다시 시도해 주세요');
         return;
       }
     },
