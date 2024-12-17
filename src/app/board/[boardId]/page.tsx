@@ -64,7 +64,6 @@ const BoardDetailPage = ({ params }: BoardDetailPageProps) => {
 
   return (
     <div className={cn('container')}>
-      <Header page={`/board`} />
       <main className={cn('secondContainer', tagNickname && 'tagNickname')}>
         <section>
           <BoardDetailForm boardDetailData={boardDetailData} />
