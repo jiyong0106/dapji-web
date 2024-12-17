@@ -51,7 +51,6 @@ const PostDetailPage = ({ params }: PostDetailPageProps) => {
 
   return (
     <div className={cn('container')}>
-      <Header title={postDetailDatas.gym_name} page={`/gym/${gymId}`} />
       <main className={cn('secondContainer', tagNickname && 'tagNickname')}>
         <section>
           <PostDetailForm params={params} postDetailDatas={postDetailDatas} />

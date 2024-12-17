@@ -11,6 +11,7 @@ import { boardListGetDatas } from './api';
 import useInfiniteScroll from '@/src/hooks/useInfiniteScroll';
 import { BoardResponseType } from '@/src/utils/type';
 import LoadingSpinner from '@/src/components/common/loadingSpinner';
+import { useMyInfoStore } from '@/src/utils/store/useMyImfoStore';
 
 const cn = classNames.bind(styles);
 
@@ -18,7 +19,7 @@ const BoardPage = () => {
   const [selectCategory, setSelectCategory] = useState<string | null>('전체');
   const [searchName, setSearchName] = useState('');
   const [scrollDirection] = useScrollDirection('up');
-
+  const { myId } = useMyInfoStore();
   const {
     data: boardListGetData,
     ref,
@@ -56,7 +57,7 @@ const BoardPage = () => {
       >
         <SearchBar
           placeholder="게시글을 검색해 보세요"
-          showAdd={true}
+          showAdd={myId ? true : false}
           searchName={searchName}
           onSearchChange={handleSearchChange}
         />
