@@ -39,7 +39,9 @@ const FooterBar = () => {
   const profileClick = () => {
     if (myId) {
       router.replace(`/profile/${myId}`);
+      return;
     }
+    router.replace(`/`);
   };
 
   const routerClick = (page: string) => {
