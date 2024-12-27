@@ -4,10 +4,7 @@ import classNames from 'classnames/bind';
 import Header from '@/src/components/common/header';
 import BoardUploadForm from '@/src/components/boardUploadPage/boardUploadForm';
 import { boardDetailGetDatas } from '@/src/app/board/api';
-import {
-  BoardDetailDataType,
-  BorardDetailResponseType,
-} from '@/src/utils/type';
+import { BorardDetailResponseType } from '@/src/utils/type';
 import { useQuery } from '@tanstack/react-query';
 import LoadingSpinner from '@/src/components/common/loadingSpinner';
 

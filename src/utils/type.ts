@@ -419,12 +419,14 @@ export type noticeDataType = {
   content: string;
   createdAt: string;
   updatedAt: string;
+  img: string[];
 };
 
 //공지 업로드 타입
 export type useFormNoticeUploadType = {
   title: string;
   content: string;
+  img: string[];
 };
 
 //비디오 인풋 미리보기 테스트 타입

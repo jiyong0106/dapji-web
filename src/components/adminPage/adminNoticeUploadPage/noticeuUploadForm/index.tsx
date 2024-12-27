@@ -5,13 +5,19 @@ import { useForm } from 'react-hook-form';
 import CommonInput from '@/src/components/common/commonInput';
 import CommonButton from '@/src/components/common/commonButton';
 import ModalChoice from '@/src/components/common/moadlChoice';
-import { fetchNoticeUpload, fetchNoticeUpdate } from '@/src/app/admin/api';
+import {
+  fetchNoticeUpload,
+  fetchNoticeUpdate,
+  useNoticeImageDelete,
+} from '@/src/app/admin/api';
 import { useMutation } from '@tanstack/react-query';
 import { useFormNoticeUploadType } from '@/src/utils/type';
 import { useModal } from '@/src/hooks/useModal';
 import { useRouter } from 'next/navigation';
 import { noticeDataType } from '@/src/utils/type';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import NoiceImageInput from '../noticeImageInput';
+import LoadingSpinner from '@/src/components/common/loadingSpinner';
 
 const cn = classNames.bind(styles);
 
@@ -35,9 +41,12 @@ const NoticeuUploadForm = ({ params, initialData }: NoticeuUploadFormProps) => {
   const { showModalHandler } = useModal();
 
   const router = useRouter();
+  const [fileUrl, setFileUrl] = useState<string[]>([]);
+  const [deleteUrl, setDeleteUrl] = useState<string[]>([]);
+  const { mutate: imageDelete } = useNoticeImageDelete();
 
   //공지 업로드
-  const { mutate: noticUpload } = useMutation({
+  const { mutate: noticUpload, isPending } = useMutation({
     mutationKey: ['noticUpload', gymId],
     mutationFn: (formData: useFormNoticeUploadType) =>
       fetchNoticeUpload(formData, gymId),
@@ -53,9 +62,9 @@ const NoticeuUploadForm = ({ params, initialData }: NoticeuUploadFormProps) => {
   const { mutate: noticUpdate } = useMutation({
     mutationKey: ['noticUpdate', gymId, noticeId],
     mutationFn: (formData: useFormNoticeUploadType) =>
-      fetchNoticeUpdate(formData, gymId, noticeId),
+      fetchNoticeUpdate(formData, gymId),
     onSuccess: () => {
-      router.push(`/gym/${gymId}/notice/${noticeId}`);
+      router.push(`/admin/list`);
     },
     onError: () => {
       showModalHandler('alert', '공지 수정 실패');
@@ -65,14 +74,25 @@ const NoticeuUploadForm = ({ params, initialData }: NoticeuUploadFormProps) => {
   const onSubmit = (data: useFormNoticeUploadType) => {
     const formData = {
       ...data,
+      img: fileUrl,
     };
+
+    const handleVideoDeletion = () => {
+      deleteUrl.forEach((url) => {
+        imageDelete(url);
+      });
+    };
+
     const confirmAction = () => {
       if (initialData) {
         noticUpdate(formData);
+        handleVideoDeletion();
         return;
       }
       noticUpload(formData);
+      handleVideoDeletion();
     };
+
     const message = initialData
       ? '공지를 수정 하시나요?'
       : '공지 업로드 하시나요?';
@@ -83,8 +103,13 @@ const NoticeuUploadForm = ({ params, initialData }: NoticeuUploadFormProps) => {
     if (initialData) {
       setValue('title', initialData.title);
       setValue('content', initialData.content);
+      setFileUrl(initialData.img);
     }
   }, [initialData, setValue]);
+
+  if (isPending) {
+    <LoadingSpinner />;
+  }
 
   return (
     <form className={cn('container')} onSubmit={handleSubmit(onSubmit)}>
@@ -117,7 +142,11 @@ const NoticeuUploadForm = ({ params, initialData }: NoticeuUploadFormProps) => {
           {errors.content.message as string}
         </small>
       )}
-
+      <NoiceImageInput
+        fileUrl={fileUrl}
+        setFileUrl={setFileUrl}
+        setDeleteUrl={setDeleteUrl}
+      />
       <CommonButton name="업로드 " type="submit" />
       <ModalChoice />
     </form>

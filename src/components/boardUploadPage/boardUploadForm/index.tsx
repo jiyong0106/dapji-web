@@ -68,7 +68,7 @@ const BoardUploadForm = ({ params, initialData }: BoardUploadFormProps) => {
     },
     onError: (e) => {
       showModalHandler('alert', '수정을 다시 시도해 주세요');
-      console.error(e, '게시물 수정 에러');
+      console.error('게시물 수정 에러');
     },
   });
 
