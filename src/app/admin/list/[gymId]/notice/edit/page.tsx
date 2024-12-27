@@ -20,7 +20,6 @@ const NoticeEditPage = ({ params }: NoticeEditPageProps) => {
     queryKey: ['noticeDatas'],
     queryFn: () => fetchNoticeData(gymId),
   });
-
   if (!noticeDatas) {
     return <LoadingSpinner />;
   }
