@@ -16,6 +16,12 @@ const AdminPage = () => {
     <div className={cn('container')}>
       <h3
         style={{ cursor: 'pointer' }}
+        onClick={() => pageClick('/admin/adnotice')}
+      >
+        답지 공지 관리
+      </h3>
+      <h3
+        style={{ cursor: 'pointer' }}
         onClick={() => pageClick('/admin/list')}
       >
         클라이밍장 리스트 관리
