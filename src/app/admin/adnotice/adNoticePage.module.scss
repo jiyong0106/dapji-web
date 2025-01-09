@@ -55,7 +55,12 @@
     }
 
     .noticeId {
-      width: 2%;
+      width: 4%;
+      .noticeIdText {
+        color: blue;
+        text-decoration: underline;
+        text-decoration-color: blue;
+      }
     }
 
     .noticeTitle {
