@@ -8,7 +8,7 @@ import CommonButton from '../../../common/commonButton';
 import {
   fetchadNoticeUpload,
   fetchadNoticeImage,
-} from '@/src/app/admin/adnotice/upload/api';
+} from '@/src/app/admin/adnotice/api';
 import { useMutation } from '@tanstack/react-query';
 
 import CommonInput from '@/src/components/common/commonInput';
@@ -76,9 +76,6 @@ const AdNoticeUploadForm = () => {
         title: '',
         content: [],
       });
-    },
-    onError: (e) => {
-      console.log(e);
     },
   });
 

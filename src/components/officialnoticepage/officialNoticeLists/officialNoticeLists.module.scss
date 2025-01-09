@@ -1,0 +1,28 @@
+.container {
+  width: 100%;
+  border-bottom: 0.2px solid gray;
+  padding: 10px;
+  .header {
+    display: flex;
+    flex-direction: 'row';
+    gap: 10;
+    align-items: center;
+  }
+
+  .title {
+    margin: 0 0 0 5px;
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .content {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .created {
+    color: gray;
+  }
+}

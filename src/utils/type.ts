@@ -453,3 +453,25 @@ export type DeleteAccountType = {
   detail_reason: string;
   agreeCheck?: boolean;
 };
+
+//////////////////////////// 공식 공지 ////////////////////////////
+export type OfficialContentType = {
+  type: string;
+  value: string;
+};
+export type OfficialResultType = {
+  notice_idx: number;
+  title: string;
+  content: OfficialContentType[];
+  createdAt: any;
+  updatedAt: any;
+};
+
+export type OfficialnoticeType = {
+  notices: OfficialResultType[];
+  meta: metaType;
+};
+
+export type OfficialnoticeDetailType = {
+  result: OfficialResultType;
+};
