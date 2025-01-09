@@ -72,7 +72,6 @@ const ClimbListPage = () => {
           selectCategory={selectCategory}
           onCategorySelect={handleSelectCategory}
         />
-        <div onClick={() => router.push('/officialnotice')}>공지</div>
       </div>
       <div className={cn('secondContainer')}>
         {lists.length === 0 ? (

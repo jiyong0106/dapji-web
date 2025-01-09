@@ -31,6 +31,11 @@ export const fetchadNoticeUpload = async (formData: any) => {
   const res = await instance.post(`/api/notices`, formData);
   return res.data;
 };
+//공지 수정
+export const fetchadNoticeEdit = async (formData: any, noticeId: string) => {
+  const res = await instance.patch(`/api/notices/${noticeId}`, formData);
+  return res.data;
+};
 
 //공지 이미지 업로드
 export const fetchadNoticeImage = async (file: File) => {
@@ -44,4 +49,10 @@ export const fetchadNoticeImage = async (file: File) => {
   });
 
   return response.data;
+};
+
+//공지삭제
+export const deleteOfficialNoticeData = async (noticeId: number) => {
+  const res = await instance.delete(`/api/notices/${noticeId}`);
+  return res.data;
 };
