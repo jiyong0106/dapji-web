@@ -11,6 +11,7 @@ import LoadingSpinner from '@/src/components/common/loadingSpinner';
 import useScrollDirection from '@/src/hooks/useScrollDirection';
 import CategoryLists from '@/src/components/boardPage/categroyLists';
 import { favoritecategoryListData } from '@/src/utils/categoryListDatas';
+import { useRouter } from 'next/navigation';
 
 const cn = classNames.bind(styles);
 
@@ -19,7 +20,7 @@ const ClimbListPage = () => {
   const [scrollDirection] = useScrollDirection('up');
   const [selectCategory, setSelectCategory] = useState<string | null>('인기순');
   const [isFavorite, setIsFavorite] = useState<any>(false);
-
+  const router = useRouter();
   const {
     data: climbListData,
     ref,
