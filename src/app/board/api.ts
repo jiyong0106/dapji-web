@@ -51,7 +51,7 @@ export const useBoardImageDelete = () => {
 
 //게시판 상세 조회
 export const boardDetailGetDatas = async (boardId: string) => {
-  const res = await instance.get(`api/board/${boardId}`);
+  const res = await instance.get(`/board/${boardId}`);
   return res.data;
 };
 

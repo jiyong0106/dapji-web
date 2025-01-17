@@ -21,7 +21,7 @@ export const CommentDatas = async ({
   page,
   category,
 }: CommentDatasProps) => {
-  const res = await instance.get(`api/${category}/${content_id}`, {
+  const res = await instance.get(`/${category}/${content_id}`, {
     params: {
       page,
     },
