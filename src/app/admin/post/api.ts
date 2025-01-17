@@ -2,7 +2,7 @@ import instance from "@/src/utils/axios";
 
 export const fetchPostReports = async () => {
   try {
-    const response = await instance.get(`/api/allPostReports`);
+    const response = await instance.get(`/allPostReports`);
     return response.data;
   } catch (error) {
     console.error('Error fetching post reports:', error);
@@ -12,8 +12,8 @@ export const fetchPostReports = async () => {
 
 export const deletePostData = async (post_idx: number) => {
   try {
-    // /api/posts/:post_idx로 수정
-    const response = await instance.delete(`/api/posts/${post_idx}`);
+    // /posts/:post_idx로 수정
+    const response = await instance.delete(`/posts/${post_idx}`);
     return response.data;
   } catch (error) {
     console.error('Error deleting post:', error);
@@ -23,8 +23,8 @@ export const deletePostData = async (post_idx: number) => {
 
 export const keepPostData = async (post_idx: number) => {
   try {
-    // /api/posts/:post_idx로 수정
-    const response = await instance.patch(`/api/posts/${post_idx}`, {
+    // /posts/:post_idx로 수정
+    const response = await instance.patch(`/posts/${post_idx}`, {
       status: 'confirmed'
     });
     return response.data;
@@ -36,8 +36,8 @@ export const keepPostData = async (post_idx: number) => {
 
 export const resetPostStatus = async (post_idx: number) => {
   try {
-    // /api/posts/:post_idx로 수정
-    const response = await instance.patch(`/api/posts/${post_idx}`, {
+    // /posts/:post_idx로 수정
+    const response = await instance.patch(`/posts/${post_idx}`, {
       status: 'pending'
     });
     return response.data;

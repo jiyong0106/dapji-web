@@ -8,7 +8,7 @@ export const fetchNoticeUpload = async (
   formData: useFormNoticeUploadType,
   gymId: string,
 ) => {
-  const res = await instance.post(`/api/gyms/${gymId}/notice`, formData);
+  const res = await instance.post(`/gyms/${gymId}/notice`, formData);
   return res.data;
 };
 
@@ -17,7 +17,7 @@ export const fetchNoticeUpdate = async (
   formData: useFormNoticeUploadType,
   gymId: string,
 ) => {
-  const res = await instance.patch(`/api/gyms/${gymId}/notice`, formData);
+  const res = await instance.patch(`/gyms/${gymId}/notice`, formData);
   return res.data;
 };
 
@@ -27,7 +27,7 @@ export const useNoticeImageDelete = () => {
   const imageDelete = useMutation({
     mutationKey: ['noticeImageDelete'],
     mutationFn: (imageUrl: string) =>
-      instance.post(`/api/images/notice-image/delete`, imageUrl),
+      instance.post(`/images/notice-image/delete`, imageUrl),
     onSuccess: () => {
       // queryClient.invalidateQueries({ queryKey: ['userProfileData'] });
     },

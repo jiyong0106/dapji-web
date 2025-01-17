@@ -2,7 +2,7 @@ import instance from '@/src/utils/axios';
 
 export const KakaoLogin = async (code: string | null) => {
   try {
-    const res = await instance.get(`/api/auth/web/kakao/callback`, {
+    const res = await instance.get(`/auth/web/kakao/callback`, {
       params: {
         code: code,
       },
@@ -15,7 +15,7 @@ export const KakaoLogin = async (code: string | null) => {
 
 export const NaverLogin = async (code: string) => {
   try {
-    const res = await instance.get(`/api/auth/naver/callback`, {
+    const res = await instance.get(`/auth/naver/callback`, {
       params: {
         code: code,
       },
@@ -28,7 +28,7 @@ export const NaverLogin = async (code: string) => {
 
 export const AppleLogin = async (code: string) => {
   try {
-    const res = await instance.get(`/api/auth/web/apple/callback`, {
+    const res = await instance.get(`/auth/web/apple/callback`, {
       params: {
         code: code,
       },
@@ -40,6 +40,6 @@ export const AppleLogin = async (code: string) => {
 };
 
 export const fetchMyInfo = async () => {
-  const res = await instance.get('/api/myinfo');
+  const res = await instance.get('/myinfo');
   return res.data;
 };

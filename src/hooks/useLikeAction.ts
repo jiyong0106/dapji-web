@@ -12,7 +12,7 @@ type LikeRequestProps = {
 };
 
 const LikeRequestData = async ({ category, content_id }: LikeRequestProps) => {
-  const res = await instance.post(`/api/${category}/${content_id}/like`);
+  const res = await instance.post(`/${category}/${content_id}/like`);
   return res.data;
 };
 
