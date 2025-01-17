@@ -9,7 +9,7 @@ export const fetchUserSearch = async ({
   page,
   search,
 }: fetchUserSearchProps) => {
-  const res = await instance.get(`/api/userSearch`, {
+  const res = await instance.get(`/userSearch`, {
     params: {
       page,
       search,

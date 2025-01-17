@@ -19,7 +19,7 @@ export const fethcProfilePostDatas = async ({
   userId,
   page = 1,
 }: ProfileDataProps) => {
-  const res = await instance.get(`/api/profile/${userId}`, {
+  const res = await instance.get(`/profile/${userId}`, {
     params: {
       page,
     },
@@ -33,7 +33,7 @@ export const fetchProfileFavoriteGyms = async ({
   userId,
   page = 1,
 }: ProfileDataProps) => {
-  const res = await instance.get(`/api/profile_favoriteGym/${userId}`, {
+  const res = await instance.get(`/profile_favoriteGym/${userId}`, {
     params: {
       page,
     },
@@ -45,7 +45,7 @@ export const fetchProfileFavoriteGyms = async ({
 export const useProfileDatas = (userId: string) => {
   return useQuery<ProfilePostType>({
     queryKey: ['userProfileData'],
-    queryFn: () => instance.get(`/api/profile/${userId}`),
+    queryFn: () => instance.get(`/profile/${userId}`),
     select: (res: ProfilePostType) => res?.data,
   });
 };
@@ -59,7 +59,7 @@ export const useProfileUpdate = (userId: string) => {
   return useMutation({
     mutationKey: ['profileUpdate'],
     mutationFn: (formData: useFormProfileEditProps) =>
-      instance.patch(`/api/profile/me`, formData),
+      instance.patch(`/profile/me`, formData),
     onSuccess: (updatedProfileData) => {
       queryClient.setQueryData(['profileDatas'], updatedProfileData);
       router.replace(`/profile/${userId}`);
@@ -74,7 +74,7 @@ export const useProfileUpdate = (userId: string) => {
 //로그아웃
 
 export const fetchUserLogout = async () => {
-  const res = await instance.get(`/api/auth/logout`);
+  const res = await instance.get(`/auth/logout`);
   console.log(res.data);
   return res.data;
 };
@@ -91,7 +91,7 @@ export const fetchFollowerData = async ({
   search,
   userId,
 }: fetchFollowDataProps) => {
-  const res = await instance.get(`/api/followers/${userId}`, {
+  const res = await instance.get(`/followers/${userId}`, {
     params: {
       page,
       search,
@@ -107,7 +107,7 @@ export const fetchFollowingData = async ({
   search,
   userId,
 }: fetchFollowDataProps) => {
-  const res = await instance.get(`/api/following/${userId}`, {
+  const res = await instance.get(`/following/${userId}`, {
     params: {
       page,
       search,
@@ -118,6 +118,6 @@ export const fetchFollowingData = async ({
 
 //팔로우 요청
 export const fetchFollowPost = async (followIds: FollowRequestType) => {
-  const res = await instance.post(`/api/follow`, followIds);
+  const res = await instance.post(`/follow`, followIds);
   return res.data;
 };

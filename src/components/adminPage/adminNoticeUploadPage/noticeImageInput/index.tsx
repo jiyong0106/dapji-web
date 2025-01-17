@@ -27,7 +27,7 @@ const NoiceImageInput = ({
   const { mutate: noticeImageUpload, isPending } = useMutation({
     mutationKey: ['noticeImageUpload'],
     mutationFn: async (image: FormData) => {
-      const res = await instance.post(`/api/images/notice-image`, image, {
+      const res = await instance.post(`/images/notice-image`, image, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

@@ -22,7 +22,7 @@ const ImageInput = ({ fileUrl, setFileUrl, foldername }: ImageInputProps) => {
   const { mutate: imageUpload, isPending } = useMutation({
     mutationKey: ['profileImageUpload'],
     mutationFn: async (image: FormData) => {
-      const res = await instance.post(`/api/images/${foldername}`, image);
+      const res = await instance.post(`/images/${foldername}`, image);
       return res.data;
     },
     onSuccess: (data) => {

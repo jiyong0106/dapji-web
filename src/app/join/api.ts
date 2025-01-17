@@ -14,7 +14,7 @@ type UseNicknameCheckResponse = {
 export const useNicknameCheck = (nickname: string, enabled: boolean) => {
   return useQuery<UseNicknameCheckResponse>({
     queryKey: ['nicknameCheck', nickname],
-    queryFn: () => instance.get(`/api/check-nickname/${nickname}`),
+    queryFn: () => instance.get(`/check-nickname/${nickname}`),
     enabled,
     retry: 0,
   });
@@ -28,7 +28,7 @@ export const useInitializeNickname = () => {
   return useMutation({
     mutationKey: ['saveNickname'],
     mutationFn: (formData: initializeNicknameType) =>
-      instance.patch(`/api/profile/me`, formData),
+      instance.patch(`/profile/me`, formData),
     onSuccess: (updatedProfileData) => {
       showModalHandler('alert', '답지를 즐겨보세요🔥', () => {
         router.replace('/gym');
