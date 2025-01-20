@@ -117,6 +117,16 @@ export const climbPostDatas = async ({
   return res.data;
 };
 
+// 클라이밍장 단일 비디오  데이터 조회 함수
+
+export const fetchRenderSingleVideo = async (
+  postId: string,
+  videoIndex: number | null,
+) => {
+  const res = await instance.get(`/posts/${postId}/video/${videoIndex}`);
+  return res.data.videoUrl;
+};
+
 //클라이밍장 포스트 데이터 업로드 함수
 export const usePostDetailUpload = (gymId: string | number) => {
   const router = useRouter();
