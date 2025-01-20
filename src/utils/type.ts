@@ -67,12 +67,28 @@ export type NoticeDetailType = {
   title: string;
 };
 
+// export type DetailType = {
+//   post_idx: string;
+//   user_idx: number;
+//   gym_idx: number;
+//   clearday: any;
+//   media: string[];
+//   thumbnailUrl: string[];
+//   content: string | null;
+//   color: string;
+//   createdAt: any;
+//   like_count: number;
+//   post_comment_count: number;
+//   User: UserType;
+//   post_comment: postCommentType[];
+//   is_like: boolean;
+// };
+
 export type DetailType = {
   post_idx: string;
   user_idx: number;
   gym_idx: number;
   clearday: any;
-  media: string[];
   thumbnailUrl: string[];
   content: string | null;
   color: string;
@@ -93,12 +109,17 @@ export type ClimbDetailResponseType = {
 };
 
 export type ClimbPostResponseType = {
+  ///////////////////
   gym_name: string; // 체육관 이름
   posts: DetailType[]; // 게시물 목록
   notice: NoticeDetailType;
   meta: metaType;
   length?: number;
 };
+
+/// 단일 비디오 렌더링 타입
+
+
 
 //클라이밍장별 영상 좋아요 타입
 export type VideoLikeType = {
