@@ -144,12 +144,12 @@ const PostDetailForm = ({ params, postDetailDatas }: PostDetailFormProps) => {
           </div>
         </div>
         <div className={cn('btnStyle')}>
-          {is_post_owner && (
+          {/* {is_post_owner && (
             <>
               <EditIcon onClick={editPage} />
               <DeleteIcon onClick={deleteClick} />
             </>
-          )}
+          )} */}
           <LinkShare params={params} />
         </div>
       </div>
