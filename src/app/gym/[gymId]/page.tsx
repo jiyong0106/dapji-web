@@ -62,9 +62,9 @@ const DetailPage = ({ params }: DetailPageProps) => {
   return (
     <div className={cn('container')}>
       <Header title={gymName} page={'/gym'}>
-        {myId !== null && (
+        {/* {myId !== null && (
           <AddIcon onClick={uploadPage} width="30" height="30" />
-        )}
+        )} */}
       </Header>
       <div className={cn('secondContainer')}>
         {noticeData?.title && (
