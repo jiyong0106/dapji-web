@@ -188,6 +188,7 @@ const PostDetailForm = ({ params, postDetailDatas }: PostDetailFormProps) => {
                 playsInline
                 onCanPlay={() => setIsVideoReady(true)} // 비디오 준비 상태 업데이트
                 controls
+                controlsList="nodownload"
               />
             </div>
           ))}
