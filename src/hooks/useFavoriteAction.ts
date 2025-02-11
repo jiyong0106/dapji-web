@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useToast } from './useToast';
 
 const favoriteRequestData = async (gymId: number) => {
-  const res = await instance.post(`/api/gyms/${gymId}/favorite`);
+  const res = await instance.post(`/gyms/${gymId}/favorite`);
   return res.data;
 };
 

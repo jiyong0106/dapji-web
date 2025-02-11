@@ -1,10 +1,10 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './postDetailForm.module.scss';
 import classNames from 'classnames/bind';
 import { DeleteIcon, EditIcon } from '@/public/icon';
 import { useRouter } from 'next/navigation';
-import { usePostDetailDelete } from '@/src/app/gym/api';
+import { fetchRenderSingleVideo, usePostDetailDelete } from '@/src/app/gym/api';
 import Image from 'next/image';
 import { useModal } from '@/src/hooks/useModal';
 import LinkShare from '@/src/components/common/linkShare';
@@ -17,6 +17,7 @@ import LikeAction from '../../common/likeAction';
 import { useLikeAction } from '@/src/hooks/useLikeAction';
 import { PostDetailDataType } from '@/src/utils/type';
 import CommentCount from '@/src/components/common/commentCount';
+import { useQuery } from '@tanstack/react-query';
 
 const cn = classNames.bind(styles);
 
@@ -40,18 +41,6 @@ export const StyledSlider = styled(Slider)`
   }
 `;
 
-const settings = {
-  dots: true,
-  infinite: false,
-  speed: 500,
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  arrows: false,
-  centerMode: true,
-  centerPadding: '0px',
-  draggable: true,
-};
-
 type PostDetailFormProps = {
   params: { postid: string; gymId: string };
   postDetailDatas: PostDetailDataType;
@@ -61,7 +50,6 @@ const PostDetailForm = ({ params, postDetailDatas }: PostDetailFormProps) => {
   const {
     gym_idx,
     post_idx,
-    media,
     color,
     clearday,
     User,
@@ -73,7 +61,19 @@ const PostDetailForm = ({ params, postDetailDatas }: PostDetailFormProps) => {
     post_comment_count,
     gym_name,
     is_post_owner,
+    thumbnailUrl,
   } = postDetailDatas;
+
+  const [currentIndex, setCurrentIndex] = useState<any>(0);
+  const [isVideoReady, setIsVideoReady] = useState(false);
+
+  const {
+    data: currentVideoUrl, // 서버에서 받아온 동영상 URL
+  } = useQuery({
+    queryKey: ['singleVideoDatasKey', post_idx, currentIndex],
+    queryFn: () => fetchRenderSingleVideo(post_idx, currentIndex),
+    staleTime: 5 * 60 * 1000, // 5분
+  });
 
   const { likeCount, likeToggle, handleLikeClick } = useLikeAction({
     category: 'posts',
@@ -82,6 +82,22 @@ const PostDetailForm = ({ params, postDetailDatas }: PostDetailFormProps) => {
     initalLikeToggle: is_liked,
     firQueryKeyName: 'postDetailDatas',
   });
+
+  const settings = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: false,
+    centerMode: true,
+    centerPadding: '0px',
+    draggable: true,
+    afterChange: (current: number) => {
+      setCurrentIndex(current); // 슬라이더 인덱스 업데이트
+      setIsVideoReady(false);
+    },
+  };
 
   const cleartimeAgo = useTimeAgo(clearday);
 
@@ -128,25 +144,49 @@ const PostDetailForm = ({ params, postDetailDatas }: PostDetailFormProps) => {
           </div>
         </div>
         <div className={cn('btnStyle')}>
-          {is_post_owner && (
+          {/* {is_post_owner && (
             <>
               <EditIcon onClick={editPage} />
               <DeleteIcon onClick={deleteClick} />
             </>
-          )}
+          )} */}
           <LinkShare params={params} />
         </div>
       </div>
 
       <div className={cn('videoWrapper')}>
         <StyledSlider {...settings}>
-          {media?.map((url: string, index: number) => (
-            <div key={index} className={cn('videoBox')}>
+          {thumbnailUrl?.map((url, index) => (
+            <div
+              key={index}
+              className={cn('videoBox')}
+              style={{ position: 'relative' }}
+            >
+              {/* 현재 인덱스에 맞는 썸네일만 표시 */}
+              {index === currentIndex && !isVideoReady && (
+                <Image
+                  src={url}
+                  alt={`Thumbnail ${index}`}
+                  width={900}
+                  height={600}
+                  style={{
+                    width: '100%',
+                    aspectRatio: '16/9',
+                    objectFit: 'cover',
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    zIndex: 2,
+                    opacity: 1,
+                  }}
+                />
+              )}
               <video
-                src={url}
-                muted={true}
+                src={currentVideoUrl}
                 autoPlay
+                muted
                 playsInline
+                onCanPlay={() => setIsVideoReady(true)} // 비디오 준비 상태 업데이트
                 controls
                 controlsList="nodownload"
               />

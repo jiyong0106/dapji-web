@@ -6,6 +6,6 @@ export type fetchSignInType = {
 };
 
 export const fetchSignIn = async (formData: fetchSignInType) => {
-  const res = await instance.post(`/api/login`, formData);
+  const res = await instance.post(`/login`, formData);
   return res.data;
 };

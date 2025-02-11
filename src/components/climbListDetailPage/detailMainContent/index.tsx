@@ -15,6 +15,9 @@ import useTimeAgo from '@/src/hooks/useTimeAgo';
 import { useLikeAction } from '@/src/hooks/useLikeAction';
 import CommentCount from '@/src/components/common/commentCount';
 import Link from 'next/link';
+import { useQuery } from '@tanstack/react-query';
+import { fetchRenderSingleVideo } from '@/src/app/gym/api';
+import { useState } from 'react';
 
 const cn = classNames.bind(styles);
 
@@ -50,7 +53,6 @@ const DetailMainContent = ({ list, gymName }: DetailMainContentProps) => {
     clearday,
     content,
     post_idx,
-    media,
     gym_idx,
     user_idx,
     createdAt,
@@ -58,8 +60,22 @@ const DetailMainContent = ({ list, gymName }: DetailMainContentProps) => {
     is_like,
     post_comment,
     post_comment_count,
+    thumbnailUrl,
   } = list;
+
   //리스트 데이터들
+
+  const [currentIndex, setCurrentIndex] = useState<any>(0);
+  const [isVideoReady, setIsVideoReady] = useState(false);
+
+  const {
+    data: currentVideoUrl, // 서버에서 받아온 동영상 URL
+  } = useQuery({
+    queryKey: ['singleVideoDatasKey', post_idx, currentIndex],
+    queryFn: () => fetchRenderSingleVideo(post_idx, currentIndex),
+    // enabled: !!isParentVisible, // isParentVisible이 true일 때만 fetch 실행
+    staleTime: 5 * 60 * 1000, // 5분
+  });
 
   const timeAgo = useTimeAgo(createdAt);
   const cleartimeAgo = useTimeAgo(clearday);
@@ -82,6 +98,10 @@ const DetailMainContent = ({ list, gymName }: DetailMainContentProps) => {
     centerMode: true,
     centerPadding: '0px',
     draggable: true,
+    afterChange: (current: number) => {
+      setCurrentIndex(current); // 슬라이더 인덱스 업데이트
+      setIsVideoReady(false);
+    },
   };
   //슬라이드 세팅
   const router = useRouter();
@@ -119,13 +139,37 @@ const DetailMainContent = ({ list, gymName }: DetailMainContentProps) => {
       </div>
       <div className={cn('videoWrapper')}>
         <StyledSlider {...settings}>
-          {media?.map((url: string, index: number) => (
-            <div key={index} className={cn('videoBox')}>
+          {thumbnailUrl?.map((url, index) => (
+            <div
+              key={index}
+              className={cn('videoBox')}
+              style={{ position: 'relative' }}
+            >
+              {/* 현재 인덱스에 맞는 썸네일만 표시 */}
+              {index === currentIndex && !isVideoReady && (
+                <Image
+                  src={url}
+                  alt={`Thumbnail ${index}`}
+                  width={900}
+                  height={600}
+                  style={{
+                    width: '100%',
+                    aspectRatio: '16/9',
+                    objectFit: 'cover',
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    zIndex: 2,
+                    opacity: 1,
+                  }}
+                />
+              )}
               <video
-                src={url}
-                muted={true}
+                src={currentVideoUrl}
                 autoPlay
+                muted
                 playsInline
+                onCanPlay={() => setIsVideoReady(true)} // 비디오 준비 상태 업데이트
                 controls
                 controlsList="nodownload"
               />

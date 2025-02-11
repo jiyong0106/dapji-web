@@ -14,7 +14,7 @@ export const boardListGetDatas = async ({
   search,
   category,
 }: boardListGetDatasProps) => {
-  const res = await instance.get(`/api/boards`, {
+  const res = await instance.get(`/boards`, {
     params: {
       page,
       search,
@@ -26,7 +26,7 @@ export const boardListGetDatas = async ({
 
 //게시판 업로드
 export const boardUploadData = async (formData: any) => {
-  const res = await instance.post(`/api/board`, formData);
+  const res = await instance.post(`/board`, formData);
   return res.data;
 };
 
@@ -37,7 +37,7 @@ export const useBoardImageDelete = () => {
   const imageDelete = useMutation({
     mutationKey: ['boardImageDelete'],
     mutationFn: (imageUrl: string) =>
-      instance.post(`/api/images/board-image/delete`, imageUrl),
+      instance.post(`/images/board-image/delete`, imageUrl),
     onSuccess: () => {
       // queryClient.invalidateQueries({ queryKey: ['userProfileData'] });
     },
@@ -51,18 +51,18 @@ export const useBoardImageDelete = () => {
 
 //게시판 상세 조회
 export const boardDetailGetDatas = async (boardId: string) => {
-  const res = await instance.get(`api/board/${boardId}`);
+  const res = await instance.get(`/board/${boardId}`);
   return res.data;
 };
 
 //게시판 상세 수정
 export const boardUpdateData = async (board_idx: string, formData: any) => {
-  const res = await instance.patch(`/api/board/${board_idx}`, formData);
+  const res = await instance.patch(`/board/${board_idx}`, formData);
   return res.data;
 };
 
 //게시판 상세 삭제
 export const boardDeleteData = async (board_idx: string) => {
-  const res = await instance.delete(`/api/board/${board_idx}`);
+  const res = await instance.delete(`/board/${board_idx}`);
   return res.data;
 };

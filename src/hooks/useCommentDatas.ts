@@ -21,7 +21,7 @@ export const CommentDatas = async ({
   page,
   category,
 }: CommentDatasProps) => {
-  const res = await instance.get(`api/${category}/${content_id}`, {
+  const res = await instance.get(`/${category}/${content_id}`, {
     params: {
       page,
     },
@@ -50,7 +50,7 @@ export const useCommentUploadData = ({
 
   return useMutation({
     mutationKey: [`${mainKey}`],
-    mutationFn: (formData: any) => instance.post(`/api/${category}`, formData),
+    mutationFn: (formData: any) => instance.post(`/${category}`, formData),
     onSuccess: () => [
       queryClient.invalidateQueries({ queryKey: [`${firKey}`] }),
       queryClient.invalidateQueries({ queryKey: [`${secKey}`] }),
@@ -89,7 +89,7 @@ export const useCommentDeleteData = ({
 
   return useMutation({
     mutationKey: [`${mainKey}`],
-    mutationFn: () => instance.delete(`/api/${category}/${content_id}`),
+    mutationFn: () => instance.delete(`/${category}/${content_id}`),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [`${firKey}`] });
       queryClient.invalidateQueries({ queryKey: [`${secKey}`] });
@@ -120,7 +120,7 @@ export const useRecommentData = ({
     queryKey: [`${mainKey}`, content_id],
     queryFn: ({ pageParam = 1 }) =>
       instance
-        .get(`/api/${category}/${content_id}`, {
+        .get(`/${category}/${content_id}`, {
           params: {
             page: pageParam,
           },
@@ -158,7 +158,7 @@ export const useRecommentUploadData = ({
 
   return useMutation({
     mutationKey: [`${mainKey}`],
-    mutationFn: (formData: any) => instance.post(`/api/${category}`, formData),
+    mutationFn: (formData: any) => instance.post(`/${category}`, formData),
     onSuccess: () => [
       queryClient.invalidateQueries({ queryKey: [`${firKey}`] }),
       queryClient.invalidateQueries({ queryKey: [`${secKey}`] }),
@@ -197,7 +197,7 @@ export const useRecommentDeleteData = ({
 
   return useMutation({
     mutationKey: [`${mainKey}`],
-    mutationFn: () => instance.delete(`/api/${category}/${content_id}`),
+    mutationFn: () => instance.delete(`/${category}/${content_id}`),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [`${firKey}`] });
       queryClient.invalidateQueries({ queryKey: [`${secKey}`] });

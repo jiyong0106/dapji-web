@@ -57,7 +57,7 @@ const BoardPage = () => {
       >
         <SearchBar
           placeholder="게시글을 검색해 보세요"
-          showAdd={myId ? true : false}
+          // showAdd={myId ? true : false}
           searchName={searchName}
           onSearchChange={handleSearchChange}
         />

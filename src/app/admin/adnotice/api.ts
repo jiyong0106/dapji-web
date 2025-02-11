@@ -1,10 +1,10 @@
 import instance from '@/src/utils/axios';
 
-//  공지 업로드  /api/notices
-//  공지 조회  /api/notices
-//  공지 수정  /api/notices/noticeId
-//  공지 삭제  /api/notices /noticeId
-//  공지 업로드  /api/notices
+//  공지 업로드  /notices
+//  공지 조회  /notices
+//  공지 수정  /notices/noticeId
+//  공지 삭제  /notices /noticeId
+//  공지 업로드  /notices
 
 type fetchadNoticeDataProps = {
   page: number;
@@ -12,7 +12,7 @@ type fetchadNoticeDataProps = {
 
 //공지 전체 조회
 export const fetchadNoticeData = async ({ page }: fetchadNoticeDataProps) => {
-  const res = await instance.get(`/api/notices`, {
+  const res = await instance.get(`/notices`, {
     params: {
       page,
     },
@@ -22,18 +22,18 @@ export const fetchadNoticeData = async ({ page }: fetchadNoticeDataProps) => {
 
 //공지 상세 조회
 export const fetchNoticeDetailData = async (noticeId: string) => {
-  const res = await instance.get(`/api/notices/${noticeId}`);
+  const res = await instance.get(`/notices/${noticeId}`);
   return res.data;
 };
 
 //공지 업로드
 export const fetchadNoticeUpload = async (formData: any) => {
-  const res = await instance.post(`/api/notices`, formData);
+  const res = await instance.post(`/notices`, formData);
   return res.data;
 };
 //공지 수정
 export const fetchadNoticeEdit = async (formData: any, noticeId: string) => {
-  const res = await instance.patch(`/api/notices/${noticeId}`, formData);
+  const res = await instance.patch(`/notices/${noticeId}`, formData);
   return res.data;
 };
 
@@ -42,7 +42,7 @@ export const fetchadNoticeImage = async (file: File) => {
   const formData = new FormData();
   formData.append('image', file); // API의 "image" 필드에 파일 추가
 
-  const response = await instance.post('/api/images/gym-logo', formData, {
+  const response = await instance.post('/images/gym-logo', formData, {
     headers: {
       'Content-Type': 'multipart/form-data', // multipart 형식으로 요청
     },
@@ -53,6 +53,6 @@ export const fetchadNoticeImage = async (file: File) => {
 
 //공지삭제
 export const deleteOfficialNoticeData = async (noticeId: number) => {
-  const res = await instance.delete(`/api/notices/${noticeId}`);
+  const res = await instance.delete(`/notices/${noticeId}`);
   return res.data;
 };

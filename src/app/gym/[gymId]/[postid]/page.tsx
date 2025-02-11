@@ -2,7 +2,6 @@
 import { useState } from 'react';
 import styles from './PostDetailPage.module.scss';
 import classNames from 'classnames/bind';
-import Header from '@/src/components/common/header';
 import PostDetailForm from '@/src/components/postDetailPage/postDetailForm';
 import { usePostDetailDatas } from '@/src/app/gym/api';
 import LoadingSpinner from '@/src/components/common/loadingSpinner';

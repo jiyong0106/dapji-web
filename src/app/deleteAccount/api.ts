@@ -2,7 +2,7 @@ import instance from '@/src/utils/axios';
 import { DeleteAccountType } from '@/src/utils/type';
 
 export const fetchDeleteAccount = async (formData: DeleteAccountType) => {
-  const res = await instance.delete(`/api/deleteAccount`, {
+  const res = await instance.delete(`/deleteAccount`, {
     data: formData,
   });
   return res.data;

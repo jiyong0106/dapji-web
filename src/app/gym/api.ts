@@ -19,7 +19,7 @@ export const ClimbListDatas = async ({
   search,
   is_favorite,
 }: ClimbListProps) => {
-  const res = await instance.get(`/api/gyms`, {
+  const res = await instance.get(`/gyms`, {
     params: {
       page,
       search,
@@ -33,7 +33,7 @@ export const ClimbListDatas = async ({
 export const useClimbListDetails = (gymId: string) => {
   return useQuery({
     queryKey: ['climbListDetails', gymId],
-    queryFn: () => instance.get(`/api/gyms/${gymId}`),
+    queryFn: () => instance.get(`/gyms/${gymId}`),
     select: (res: any) => res.data,
   });
 };
@@ -46,7 +46,7 @@ export const useClimbListDatasUpload = () => {
   return useMutation({
     mutationKey: ['climbListUpload'],
     mutationFn: (formData: useFormListUploadProps) =>
-      instance.post(`/api/gyms`, formData),
+      instance.post(`/gyms`, formData),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['climbList'] });
       router.push(`/admin/list`);
@@ -65,7 +65,7 @@ export const useClimbListDatasDelete = (gymId: number) => {
 
   return useMutation({
     mutationKey: ['climbListDelete'],
-    mutationFn: () => instance.delete(`/api/gyms/${gymId}`),
+    mutationFn: () => instance.delete(`/gyms/${gymId}`),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['climbList'] });
     },
@@ -84,7 +84,7 @@ export const useClimbListDataUpdate = (gymId: string) => {
   return useMutation({
     mutationKey: ['climbListUpdate'],
     mutationFn: (formData: useFormListUploadProps) =>
-      instance.patch(`/api/gyms/${gymId}`, formData),
+      instance.patch(`/gyms/${gymId}`, formData),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['climbList'] });
       router.push(`/admin/list`);
@@ -108,13 +108,23 @@ export const climbPostDatas = async ({
   gymId,
   color,
 }: ClimbPostDatasProps) => {
-  const res = await instance(`/api/posts/gym/${gymId}`, {
+  const res = await instance(`/posts/gym/${gymId}`, {
     params: {
       page: pageParam,
       color,
     },
   });
   return res.data;
+};
+
+// 클라이밍장 단일 비디오  데이터 조회 함수
+
+export const fetchRenderSingleVideo = async (
+  postId: string,
+  videoIndex: number | null,
+) => {
+  const res = await instance.get(`/posts/${postId}/video/${videoIndex}`);
+  return res.data.videoUrl;
 };
 
 //클라이밍장 포스트 데이터 업로드 함수
@@ -126,7 +136,7 @@ export const usePostDetailUpload = (gymId: string | number) => {
   return useMutation({
     mutationKey: ['detailUpload'],
     mutationFn: (formData: useFormPostUploadProps) =>
-      instance.post('/api/posts', formData),
+      instance.post('/posts', formData),
     onSuccess: () => {
       // queryClient.invalidateQueries({ queryKey: ['userProfileData'] });
       router.replace(`/gym/${gymId}`);
@@ -144,7 +154,7 @@ export const useVideoUpload = () => {
   return useMutation({
     mutationKey: ['videoUpload'],
     mutationFn: async (formData: FormData) => {
-      const response = await instance.post('/api/videos', formData, {
+      const response = await instance.post('/videos', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -166,7 +176,7 @@ export const usePostDetailUpdate = (postid: string, gymId: string) => {
   return useMutation({
     mutationKey: ['postDetailUpdate'],
     mutationFn: (formData: useFormPostUploadProps) =>
-      instance.patch(`/api/posts/${postid}`, formData),
+      instance.patch(`/posts/${postid}`, formData),
     onSuccess: () => {
       router.replace(`/gym/${gymId}/${postid}`);
     },
@@ -180,7 +190,7 @@ export const usePostDetailUpdate = (postid: string, gymId: string) => {
 export const usePostDetailDatas = (postid: string) => {
   return useQuery({
     queryKey: ['postDetailDatas', postid],
-    queryFn: () => instance.get(`/api/posts/${postid}`),
+    queryFn: () => instance.get(`/posts/${postid}`),
     select: (res: any) => res.data,
   });
 };
@@ -193,7 +203,7 @@ export const usePostDetailDelete = (postid: string, gymId: string) => {
 
   return useMutation({
     mutationKey: ['postDetailDelete'],
-    mutationFn: () => instance.delete(`/api/posts/${postid}`),
+    mutationFn: () => instance.delete(`/posts/${postid}`),
     onSuccess: () => {
       router.replace(`/gym/${gymId}`);
     },
@@ -210,7 +220,7 @@ export const useVideoDelete = () => {
   const videoDelete = useMutation({
     mutationKey: ['videoDelete'],
     mutationFn: (url: { videoUrl: string; thumbnailUrl: string }) =>
-      instance.post(`/api/videos/delete`, url),
+      instance.post(`/videos/delete`, url),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['userProfileData'] });
     },
@@ -223,6 +233,6 @@ export const useVideoDelete = () => {
 
 // 클라이밍장별 공지 조회
 export const fetchNoticeData = async (gymId: string) => {
-  const res = await instance.get(`/api/gyms/${gymId}/notice`);
+  const res = await instance.get(`/gyms/${gymId}/notice`);
   return res.data;
 };

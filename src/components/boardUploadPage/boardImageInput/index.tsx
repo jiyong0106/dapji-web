@@ -28,7 +28,7 @@ const BoardImageInput = ({
   const { mutate: boardImageUpload, isPending } = useMutation({
     mutationKey: ['boardImageUpload'],
     mutationFn: async (image: FormData) => {
-      const res = await instance.post(`/api/images/board-image`, image, {
+      const res = await instance.post(`/images/board-image`, image, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
