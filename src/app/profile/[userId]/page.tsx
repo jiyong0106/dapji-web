@@ -66,7 +66,7 @@ const ProfilePage = ({ params }: ProfilePageProps) => {
       try {
         await fetchUserLogout();
         setmyId(null);
-        router.replace('/');
+        router.replace('/main');
       } catch (error) {
         console.error('로그아웃 실패', error);
       }

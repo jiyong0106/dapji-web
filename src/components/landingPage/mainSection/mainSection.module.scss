@@ -1,0 +1,83 @@
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.container {
+  background: white;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  padding-top: 40px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.5s ease-out;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    align-items: center;
+    padding: 100px 80px;
+    gap: 60px 40px;
+  }
+}
+
+.left {
+  max-width: 600px;
+  text-align: center;
+  padding-left: 10px;
+  padding-right: 10px;
+
+  @media (min-width: 768px) {
+    text-align: center;
+  }
+
+  .slogan {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 16px;
+
+    @media (min-width: 768px) {
+      font-size: 28px;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 36px;
+    }
+  }
+
+  .desc {
+    font-size: 15px;
+    color: #444;
+    line-height: 1.6;
+
+    @media (min-width: 768px) {
+      font-size: 16px;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 18px;
+    }
+  }
+}
+
+.image {
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+.animate {
+  animation: slideUp 1s ease-out forwards;
+}

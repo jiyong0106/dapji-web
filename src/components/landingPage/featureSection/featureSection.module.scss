@@ -1,0 +1,126 @@
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.container {
+  padding: 80px 20px;
+  background-color: #f9fbfc;
+  width: 100%;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
+
+  .title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 32px;
+
+    @media (min-width: 768px) {
+      font-size: 32px;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 36px;
+    }
+  }
+
+  .carousel {
+    display: flex;
+    overflow-x: auto;
+    gap: 24px;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: 20px; // ✅ 시작 위치 보정
+    padding: 10px 20px; // ✅ 모바일에서도 좌우 padding
+    justify-content: flex-start;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    scroll-snap-align: start;
+    text-align: center;
+    padding: 0;
+    flex: 0 0 80%;
+    max-width: 90vw;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 420px;
+
+    .imageWrapper {
+      position: relative;
+      width: 100%;
+      height: 60%;
+      overflow: hidden;
+    }
+
+    .image {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+
+    h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin: 16px 0 8px;
+    }
+
+    p {
+      font-size: 15px;
+      color: #555;
+      padding: 0 16px;
+      line-height: 1.5;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .carousel {
+      gap: 32px;
+      scroll-padding-left: 40px; // 태블릿 이상에서도 보정
+    }
+
+    .card {
+      flex: 0 0 280px;
+      max-width: 300px;
+      height: 480px;
+
+      h3 {
+        font-size: 22px;
+      }
+
+      p {
+        font-size: 16px;
+      }
+    }
+  }
+
+  @media (min-width: 1024px) {
+    padding: 100px 80px;
+
+    .card {
+      flex: 0 0 340px;
+      max-width: 360px;
+      height: 540px;
+    }
+  }
+}
+
+.animate {
+  animation: slideUp 1s ease-out forwards;
+}
