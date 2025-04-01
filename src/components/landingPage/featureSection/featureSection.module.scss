@@ -11,113 +11,178 @@
 
 .container {
   padding: 80px 20px;
-  background-color: #f9fbfc;
+  background-color: black;
   width: 100%;
   opacity: 0;
   transform: translateY(30px);
   transition: all 0.6s ease-out;
+  height: auto;
 
-  .title {
-    font-size: 24px;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 32px;
+  &.animate {
+    animation: slideUp 1s ease-out forwards;
+  }
 
-    @media (min-width: 768px) {
-      font-size: 32px;
+  .contentWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    @media (min-width: 1024px) {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  .textBlock {
+    color: #fff;
+    max-width: 100%;
+
+    h3 {
+      font-size: 22px;
+      margin-bottom: 16px;
+
+      @media (min-width: 768px) {
+        font-size: 28px;
+      }
+
+      @media (min-width: 1024px) {
+        font-size: 32px;
+      }
+    }
+
+    p {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #ccc;
+
+      @media (min-width: 768px) {
+        font-size: 18px;
+      }
     }
 
     @media (min-width: 1024px) {
-      font-size: 36px;
+      flex: 0 0 35%;
     }
   }
 
   .carousel {
     display: flex;
-    overflow-x: auto;
+    flex-wrap: nowrap;
+    align-items: center;
     gap: 24px;
+    height: 600px;
+    overflow-x: auto;
+    overflow-y: hidden;
     scroll-snap-type: x mandatory;
-    scroll-padding-left: 20px; // ✅ 시작 위치 보정
-    padding: 10px 20px; // ✅ 모바일에서도 좌우 padding
-    justify-content: flex-start;
+    scroll-padding-left: 20px;
+    padding: 10px 20px;
 
     &::-webkit-scrollbar {
       display: none;
     }
+
+    @media (min-width: 768px) {
+      // height: auto;
+    }
+
+    @media (min-width: 1024px) {
+      flex-wrap: wrap;
+      // overflow-x: hidden;
+      min-height: 650px;
+      flex: 0 0 60%;
+    }
+  }
+
+  .cardWrapper {
+    perspective: 1000px;
+    flex: 0 0 80%;
+    max-width: 90vw;
+    scroll-snap-align: start;
+    height: 480px;
+
+    &:nth-child(even) {
+      transform: translateY(40px);
+    }
+
+    @media (min-width: 768px) {
+      flex: 0 0 250px;
+      height: 480px;
+
+      &:nth-child(even) {
+        transform: translateY(60px);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      height: 480px;
+
+      &:nth-child(even) {
+        transform: translateY(80px);
+      }
+    }
   }
 
   .card {
-    background: white;
-    border-radius: 20px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    scroll-snap-align: start;
-    text-align: center;
-    padding: 0;
-    flex: 0 0 80%;
-    max-width: 90vw;
-    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.8s;
+    cursor: pointer;
 
+    &:hover {
+      transform: rotateY(180deg);
+    }
+  }
+
+  .cardFace {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    height: 420px;
+    align-items: center;
 
     .imageWrapper {
       position: relative;
       width: 100%;
-      height: 60%;
-      overflow: hidden;
+      height: 100%;
     }
 
     .image {
-      object-fit: cover;
-      width: 100%;
-      height: 100%;
+      object-fit: contain;
+      object-position: center;
     }
 
     h3 {
       font-size: 20px;
       font-weight: 600;
       margin: 16px 0 8px;
+      color: #fff;
     }
 
     p {
       font-size: 15px;
-      color: #555;
+      color: #ccc;
       padding: 0 16px;
-      line-height: 1.5;
+      text-align: center;
     }
   }
 
-  @media (min-width: 768px) {
-    .carousel {
-      gap: 32px;
-      scroll-padding-left: 40px; 
-    }
-
-    .card {
-      flex: 0 0 280px;
-      max-width: 300px;
-      height: 480px;
-
-      h3 {
-        font-size: 22px;
-      }
-
-      p {
-        font-size: 16px;
-      }
-    }
+  .front {
+    background-color: #1e1e1e;
+    z-index: 2;
   }
 
-  @media (min-width: 1024px) {
-    padding: 100px 80px;
-
-    .card {
-      flex: 0 0 340px;
-      max-width: 360px;
-      height: 540px;
-    }
+  .back {
+    background-color: #000;
+    transform: rotateY(180deg);
   }
 }
 
