@@ -61,9 +61,9 @@ const HowWorkSection = () => {
             <Image
               src={step.icon}
               alt={step.title}
-              // fill
-              width={800}
-              height={450}
+              fill
+              // width={800}
+              // height={450}
               className={cn('image')}
               priority
             />

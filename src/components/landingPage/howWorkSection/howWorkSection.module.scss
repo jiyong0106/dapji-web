@@ -42,10 +42,9 @@
   max-width: 480px;
 
   @media (min-width: 768px) {
-    aspect-ratio: auto;
-    max-width: none;
     flex: 1;
-    height: auto;
+    max-width: none;
+    aspect-ratio: 16 / 9; // ✅ 고정 비율 유지!
   }
 }
 
