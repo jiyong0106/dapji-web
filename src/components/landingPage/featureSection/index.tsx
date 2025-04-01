@@ -8,27 +8,27 @@ const cn = classNames.bind(styles);
 
 const features = [
   {
-    icon: '/icon/chill.png',
+    icon: '/images/chill.png',
     title: '영상 업로드',
     desc: '등반 영상을 쉽게 업로드할 수 있어요.',
   },
   {
-    icon: '/icon/chill.png',
+    icon: '/images/chill.png',
     title: '암장별 필터',
     desc: '암장, 문제별로 영상을 탐색할 수 있어요.',
   },
   {
-    icon: '/icon/chill.png',
+    icon: '/images/chill.png',
     title: '기록 저장',
     desc: '완등 기록을 정리하고 저장할 수 있어요.',
   },
   {
-    icon: '/icon/chill.png',
+    icon: '/images/chill.png',
     title: '좋아요 & 댓글',
     desc: '클라이머들과 소통해요.',
   },
   {
-    icon: '/icon/chill.png',
+    icon: '/images/chill.png',
     title: '문제 검색',
     desc: '번호로 원하는 문제를 빠르게 찾아요.',
   },

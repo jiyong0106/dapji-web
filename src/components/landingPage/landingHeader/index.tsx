@@ -7,7 +7,12 @@ const cn = classNames.bind(styles);
 const LandingHeader = () => {
   return (
     <nav className={cn('container')}>
-      <div className={cn('left')}>
+      <a
+        className={cn('left')}
+        href={process.env.NEXT_PUBLIC_WEB_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <Image
           src={process.env.NEXT_PUBLIC_URL + '/icon/btransparent.png'}
           alt="로고이미지"
@@ -17,7 +22,7 @@ const LandingHeader = () => {
           priority
         />
         <p className={cn('leftText')}>DAPJI</p>
-      </div>
+      </a>
 
       <div className={cn('right')}>
         <ul className={cn('menu')}>
@@ -27,7 +32,7 @@ const LandingHeader = () => {
           <li>공지사항</li>
         </ul>
         <a
-          href={process.env.NEXT_PUBLIC_WEB_URL}
+          href={process.env.NEXT_PUBLIC_MAIN_URL}
           target="_blank"
           rel="noopener noreferrer"
           className={cn('downloadBtn')}

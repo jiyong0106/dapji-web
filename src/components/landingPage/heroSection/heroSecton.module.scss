@@ -10,12 +10,11 @@
 }
 
 .container {
-  background: linear-gradient(135deg, #38b6ff, #8ef6e4);
-  // background-image: url('/icon/backimg.png');
-  // background-size: cover; // 화면에 맞게 꽉 채움
-  // background-position: center; // 가운데 정렬
-  // background-repeat: no-repeat; // 반복 X
-  // background-color: #f0f0f0; // 이미지 로딩 전 대비 배경색
+  background-image: url('/images/whiteback.png');
+  background-size: cover; // 화면에 맞게 꽉 채움
+  background-position: center; // 가운데 정렬
+  background-repeat: no-repeat; // 반복 X
+  background-color: #f0f0f0; // 이미지 로딩 전 대비 배경색
 
   flex: 1;
   width: 100%;
