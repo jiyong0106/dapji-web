@@ -26,9 +26,6 @@ const LandingFooter = () => {
             삭제약관
           </Link>
           <Link href="https://forms.gle/w9QGRZcp1RhyJJrj6">문의하기</Link>
-          <Link href="https://apps.apple.com/us/app/dapji/id6738718316">
-            앱 다운로드
-          </Link>
         </div>
 
         <div className={cn('bottom')}>
