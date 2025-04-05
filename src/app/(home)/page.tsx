@@ -7,6 +7,7 @@ import HowWorkSection from '@/src/components/landingPage/howWorkSection';
 import { useEffect, useState } from 'react';
 import LandingHeader from '@/src/components/landingPage/landingHeader';
 import FeatureSection from '@/src/components/landingPage/featureSection';
+import LandingFooter from '@/src/components/landingPage/landingFooter';
 
 const cn = classNames.bind(styles);
 
@@ -47,6 +48,7 @@ const HomePage = () => {
       <MainSection />
       <FeatureSection />
       <HowWorkSection />
+      <LandingFooter />
     </div>
   );
 };
