@@ -1,0 +1,72 @@
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.container {
+  background-image: url('/images/whiteback.png');
+  background-size: cover; // 화면에 맞게 꽉 채움
+  background-position: center; // 가운데 정렬
+  background-repeat: no-repeat; // 반복 X
+  background-color: #f0f0f0; // 이미지 로딩 전 대비 배경색
+
+  flex: 1;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  .content {
+    opacity: 0;
+    animation: fadeInUp 1.5s ease-out 0.5s forwards;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .slogan {
+    font-size: 20px;
+    margin-bottom: 20px;
+
+    @media (min-width: 769px) {
+      font-size: 50px;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 70px;
+    }
+  }
+
+  .appStore {
+    margin-right: 4px;
+    background-color: rgba(0, 12, 30, 0.8);
+    color: rgb(255, 255, 255);
+    font-size: 17px;
+    padding: 11px 22px;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    gap: 10px;
+    text-decoration-line: none;
+  }
+}
+
+// animation: [name] [duration] [timing-function] [delay] [iteration-count] [direction] [fill-mode];
+
+// name ㅡㅡ 	사용할 @keyframes 이름
+// duration ㅡㅡ	1s, 500ms	애니메이션이 걸리는 시간
+// timing-function ㅡㅡ	ease, linear, ease-in-out	애니메이션의 속도 곡선
+// delay ㅡㅡ 0.2s, 1s	애니메이션 시작 전 대기 시간
+// iteration-count ㅡㅡ 1, infinite, 3	애니메이션 반복 횟수
+// direction ㅡㅡ normal, reverse, alternate	진행 방향 또는 반전 여부
+// fill-mode ㅡㅡ none, forwards, backwards, both	애니메이션 전후 상태 유지 여부

@@ -27,6 +27,7 @@ const FooterBar = () => {
 
     if (
       path !== '/' &&
+      path !== '/main' &&
       path !== '/join' &&
       path !== '/signin' &&
       path !== '/signup' &&
@@ -55,6 +56,7 @@ const FooterBar = () => {
 
   if (
     path === '/' ||
+    path === '/main' ||
     path === '/join' ||
     path.startsWith('/auth') ||
     (path.startsWith('/board') && path !== '/board') ||
