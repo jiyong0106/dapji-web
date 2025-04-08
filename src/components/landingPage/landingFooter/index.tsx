@@ -6,6 +6,36 @@ import Link from 'next/link';
 const cn = classNames.bind(styles);
 
 const LandingFooter = () => {
+  const footerLinks = [
+    {
+      title: '처리방침',
+      links: [
+        { label: '개인정보처리방침', url: 'https://dap-ji.github.io/privacy/' },
+        { label: '이용약관', url: 'https://dap-ji.github.io/privacy/terms' },
+        {
+          label: '삭제약관',
+          url: 'https://dap-ji.github.io/privacy/deletionpolicy',
+        },
+      ],
+    },
+    {
+      title: '고객 지원',
+      links: [
+        { label: '문의하기', url: 'https://forms.gle/w9QGRZcp1RhyJJrj6' },
+      ],
+    },
+    {
+      title: '소통',
+      links: [
+        { label: '카카오톡', url: 'http://pf.kakao.com/_Avsxdn' },
+        {
+          label: '인스타그램',
+          url: 'https://www.instagram.com/dapji_official/?igsh=MWozanozMnVpMTFqYQ%3D%3D',
+        },
+      ],
+    },
+  ];
+
   return (
     <footer id="contact" className={cn('container')}>
       <div className={cn('footerInner')}>
@@ -13,7 +43,7 @@ const LandingFooter = () => {
           {/* 브랜드 영역 */}
           <div className={cn('brand')}>
             <Image
-              src="/icon/btransparent.png"
+              src={process.env.NEXT_PUBLIC_URL + '/icon/btransparent.png'}
               alt="Dapji Logo"
               width={70}
               height={70}
@@ -26,73 +56,24 @@ const LandingFooter = () => {
 
           {/* 링크 그룹 영역 */}
           <nav className={cn('navSections')} aria-label="푸터 링크 그룹">
-            <section className={cn('navGroup')}>
-              <h4 className={cn('navGroupTitle')}>처리방침</h4>
-              <ul>
-                <li>
-                  <Link href="https://dap-ji.github.io/privacy/">
-                    개인정보처리방침
-                  </Link>
-                </li>
-                <li>
-                  <Link href="https://dap-ji.github.io/privacy/terms">
-                    이용약관
-                  </Link>
-                </li>
-                <li>
-                  <Link href="https://dap-ji.github.io/privacy/deletionpolicy">
-                    삭제약관
-                  </Link>
-                </li>
-              </ul>
-            </section>
-
-            <section className={cn('navGroup')}>
-              <h4>고객 지원</h4>
-              <ul>
-                <li>
-                  <Link href="https://forms.gle/w9QGRZcp1RhyJJrj6">
-                    문의하기
-                  </Link>
-                </li>
-              </ul>
-            </section>
-
-            <section className={cn('navGroup')}>
-              <h4>소통</h4>
-              <ul className={cn('socialIcons')}>
-                <li>
-                  <Link
-                    href="http://pf.kakao.com/_Avsxdn"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {/* <Image
-                      src="/icon/kakao.png"
-                      alt="카카오톡"
-                      width={24}
-                      height={24}
-                    /> */}
-                    카카오톡
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="https://www.instagram.com/dapji_official/?igsh=MWozanozMnVpMTFqYQ%3D%3D"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {/* <Image
-                      src="/icon/instagram.png"
-                      alt="인스타그램"
-                      width={24}
-                      height={24}
-                    /> */}
-                    인스타그램
-                  </Link>
-                </li>
-              </ul>
-            </section>
+            {footerLinks.map((group, index) => (
+              <section key={index} className={cn('navGroup')}>
+                <h4 className={cn('navGroupTitle')}>{group.title}</h4>
+                <ul className={cn(group.title === '소통' ? 'socialIcons' : '')}>
+                  {group.links.map((link, idx) => (
+                    <li key={idx}>
+                      <Link
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            ))}
           </nav>
         </div>
 

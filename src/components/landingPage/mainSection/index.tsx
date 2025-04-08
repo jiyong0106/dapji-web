@@ -38,7 +38,7 @@ const MainSection = () => {
         </div>
 
         <Image
-          src="/images/illustration5.png"
+          src={process.env.NEXT_PUBLIC_URL + '/images/illustration5.png'}
           alt="브랜드 철학 이미지"
           width={400}
           height={400}

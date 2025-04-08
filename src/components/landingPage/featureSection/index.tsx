@@ -62,7 +62,7 @@ const FeatureSection = () => {
             <div key={index} className={cn('cardWrapper', `item${index + 1}`)}>
               <div className={cn('card')}>
                 <Image
-                  src={item.cardImage}
+                  src={process.env.NEXT_PUBLIC_URL + item.cardImage}
                   alt={`${item.title} illustration`}
                   width={80}
                   height={80}

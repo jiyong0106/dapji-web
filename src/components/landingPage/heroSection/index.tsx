@@ -1,6 +1,5 @@
 import classNames from 'classnames/bind';
 import styles from './heroSecton.module.scss';
-import LandingHeader from '../landingHeader';
 import Image from 'next/image';
 
 const cn = classNames.bind(styles);

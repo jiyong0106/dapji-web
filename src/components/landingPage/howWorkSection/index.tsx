@@ -98,7 +98,7 @@ const HowWorkSection = () => {
             </ul>
           </div>
           <Image
-            src={step.icon}
+            src={process.env.NEXT_PUBLIC_URL + step.icon}
             alt={step.title}
             className={cn('image')}
             width={600}
