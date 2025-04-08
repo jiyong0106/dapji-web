@@ -4,7 +4,7 @@ import { BorardDetailResponseType } from '@/src/utils/type';
 import Image from 'next/image';
 import { DeleteIcon, EditIcon } from '@/public/icon';
 import LikeAction from '../../common/likeAction';
-import { boardDeleteData } from '@/src/app/board/api';
+import { boardDeleteData } from '@/src/app/(main)/board/api';
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { useModal } from '@/src/hooks/useModal';

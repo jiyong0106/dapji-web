@@ -2,7 +2,7 @@ import classNames from 'classnames/bind';
 import styles from './followingLists.module.scss';
 import Image from 'next/image';
 import { FollowingType, FollowDetailType } from '@/src/utils/type';
-import { fetchFollowingData } from '@/src/app/profile/api';
+import { fetchFollowingData } from '@/src/app/(main)/profile/api';
 import useInfiniteScroll from '@/src/hooks/useInfiniteScroll';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';

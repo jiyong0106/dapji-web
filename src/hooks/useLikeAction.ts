@@ -62,7 +62,7 @@ export const useLikeAction = ({
     onError: (e, variables, context) => {
       if (isServerError(e) && e.response && e.response.status === 401) {
         showModalHandler('alert', ' 해당 기능은 로그인이 필요해요', () =>
-          router.replace('/main'),
+          router.replace('/signin'),
         );
         return;
       }

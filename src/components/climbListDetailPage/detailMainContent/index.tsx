@@ -16,7 +16,7 @@ import { useLikeAction } from '@/src/hooks/useLikeAction';
 import CommentCount from '@/src/components/common/commentCount';
 import Link from 'next/link';
 import { useQuery } from '@tanstack/react-query';
-import { fetchRenderSingleVideo } from '@/src/app/gym/api';
+import { fetchRenderSingleVideo } from '@/src/app/(main)/gym/api';
 import { useState } from 'react';
 
 const cn = classNames.bind(styles);

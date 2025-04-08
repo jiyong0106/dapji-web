@@ -4,7 +4,10 @@ import styles from './postDetailForm.module.scss';
 import classNames from 'classnames/bind';
 import { DeleteIcon, EditIcon } from '@/public/icon';
 import { useRouter } from 'next/navigation';
-import { fetchRenderSingleVideo, usePostDetailDelete } from '@/src/app/gym/api';
+import {
+  fetchRenderSingleVideo,
+  usePostDetailDelete,
+} from '@/src/app/(main)/gym/api';
 import Image from 'next/image';
 import { useModal } from '@/src/hooks/useModal';
 import LinkShare from '@/src/components/common/linkShare';

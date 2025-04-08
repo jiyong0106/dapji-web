@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 import styles from './profileGymData.module.scss';
-import { fetchProfileFavoriteGyms } from '@/src/app/profile/api';
+import { fetchProfileFavoriteGyms } from '@/src/app/(main)/profile/api';
 import useInfiniteScroll from '@/src/hooks/useInfiniteScroll';
 import { ProfileFavoriteGymType } from '@/src/utils/type';
 import ProfileGymData from './profileGymData';

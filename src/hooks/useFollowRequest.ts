@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { fetchFollowPost } from '../app/profile/api';
+import { fetchFollowPost } from '../app/(main)/profile/api';
 import { useState } from 'react';
 import { useMyInfoStore } from '@/src/utils/store/useMyImfoStore';
 import { FollowRequestType } from '@/src/utils/type';

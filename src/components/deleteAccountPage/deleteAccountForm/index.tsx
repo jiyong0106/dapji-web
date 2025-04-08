@@ -2,7 +2,7 @@
 import React from 'react';
 import styles from './deleteAccountForm.module.scss';
 import classNames from 'classnames/bind';
-import { fetchDeleteAccount } from '@/src/app/deleteAccount/api';
+import { fetchDeleteAccount } from '@/src/app/(main)/deleteAccount/api';
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';

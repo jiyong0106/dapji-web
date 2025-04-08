@@ -9,7 +9,7 @@ import {
   fetchNoticeUpload,
   fetchNoticeUpdate,
   useNoticeImageDelete,
-} from '@/src/app/admin/api';
+} from '@/src/app/(main)/admin/api';
 import { useMutation } from '@tanstack/react-query';
 import { useFormNoticeUploadType } from '@/src/utils/type';
 import { useModal } from '@/src/hooks/useModal';

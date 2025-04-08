@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { DeleteIcon } from '@/public/icon';
 import { FollowerType, FollowDetailType } from '@/src/utils/type';
 import useInfiniteScroll from '@/src/hooks/useInfiniteScroll';
-import { fetchFollowerData } from '@/src/app/profile/api';
+import { fetchFollowerData } from '@/src/app/(main)/profile/api';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import SearchBar from '../../common/searchBar';
