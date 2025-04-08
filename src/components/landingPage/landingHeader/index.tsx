@@ -1,6 +1,7 @@
 import classNames from 'classnames/bind';
 import styles from './landingHeader.module.scss';
 import Image from 'next/image';
+import { landingHeaderOptions } from '@/src/utils/options/landingOptions';
 
 const cn = classNames.bind(styles);
 
@@ -26,10 +27,18 @@ const LandingHeader = () => {
 
       <div className={cn('right')}>
         <ul className={cn('menu')}>
-          <li>브랜드</li>
-          <li>서비스</li>
-          <li>문의</li>
-          <li>공지사항</li>
+          {landingHeaderOptions.map((item, index) => (
+            <li
+              key={index}
+              onClick={() =>
+                document
+                  .getElementById(`${item.sectionId}`)
+                  ?.scrollIntoView({ behavior: 'smooth' })
+              }
+            >
+              {item.title}
+            </li>
+          ))}
         </ul>
         <a
           href={process.env.NEXT_PUBLIC_MAIN_URL}

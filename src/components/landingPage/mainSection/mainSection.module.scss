@@ -10,24 +10,30 @@
 }
 
 .container {
-  background: white;
+  background: linear-gradient(135deg, #f8f9fb, #f0f4ff);
   width: 100%;
+  padding-top: 40px;
 
+  @media (min-width: 768px) {
+    // 필요 시 추가 padding 가능
+  }
+}
+
+.wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 32px;
-  padding-top: 40px;
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.5s ease-out;
 
   @media (min-width: 768px) {
     flex-direction: row;
-    align-items: center;
     padding: 100px 80px;
     gap: 60px 40px;
+  }
+
+  &.animate {
+    animation: slideUp 1s ease-out forwards;
   }
 }
 
@@ -76,8 +82,4 @@
   height: auto;
   object-fit: contain;
   border-radius: 10px;
-}
-
-.animate {
-  animation: slideUp 1s ease-out forwards;
 }
