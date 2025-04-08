@@ -3,31 +3,9 @@ import classNames from 'classnames/bind';
 import styles from './featureSection.module.scss';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
+import { landingFeaturesOptions } from '@/src/utils/options/landingOptions';
 
 const cn = classNames.bind(styles);
-
-const features = [
-  {
-    cardImage: '/images/illustration1.png',
-    title: '답지 검색',
-    desc: '쉽고 빠른 클라이밍 영상 찾기 ',
-  },
-  {
-    cardImage: '/images/illustration2.png',
-    title: '캘린더 기록',
-    desc: '내 클라이밍 기록 한눈에 확인!',
-  },
-  {
-    cardImage: '/images/illustration3.png',
-    title: '프로필',
-    desc: '조금씩 쌓아가는 클라이밍 프로필',
-  },
-  {
-    cardImage: '/images/illustration4.png',
-    title: '커뮤니티',
-    desc: '각종 정보와 꿀팁 공유, 여기서!',
-  },
-];
 
 const FeatureSection = () => {
   const ref = useRef<HTMLDivElement | null>(null);
@@ -58,7 +36,7 @@ const FeatureSection = () => {
         </p>
 
         <div className={cn('cardGrid', { animate: isVisible })}>
-          {features.map((item, index) => (
+          {landingFeaturesOptions.map((item, index) => (
             <div key={index} className={cn('cardWrapper', `item${index + 1}`)}>
               <div className={cn('card')}>
                 <Image

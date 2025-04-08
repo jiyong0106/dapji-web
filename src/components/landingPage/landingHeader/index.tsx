@@ -1,29 +1,11 @@
 import classNames from 'classnames/bind';
 import styles from './landingHeader.module.scss';
 import Image from 'next/image';
+import { landingHeaderOptions } from '@/src/utils/options/landingOptions';
 
 const cn = classNames.bind(styles);
 
 const LandingHeader = () => {
-  const itemHeader = [
-    {
-      title: '브랜드 소개',
-      sectionId: 'brand',
-    },
-    {
-      title: '기능',
-      sectionId: 'features',
-    },
-    {
-      title: '사용 방법',
-      sectionId: 'howto',
-    },
-    {
-      title: '문의하기',
-      sectionId: 'contact',
-    },
-  ];
-
   return (
     <nav className={cn('container')}>
       <a
@@ -45,7 +27,7 @@ const LandingHeader = () => {
 
       <div className={cn('right')}>
         <ul className={cn('menu')}>
-          {itemHeader.map((item, index) => (
+          {landingHeaderOptions.map((item, index) => (
             <li
               key={index}
               onClick={() =>
