@@ -7,7 +7,7 @@ const cn = classNames.bind(styles);
 
 const LandingFooter = () => {
   return (
-    <footer className={cn('container')}>
+    <footer id="contact" className={cn('container')}>
       <div className={cn('footerInner')}>
         <div className={cn('bottomTop')}>
           {/* 브랜드 영역 */}

@@ -26,10 +26,42 @@ const LandingHeader = () => {
 
       <div className={cn('right')}>
         <ul className={cn('menu')}>
-          <li>브랜드</li>
-          <li>서비스</li>
-          <li>문의</li>
-          <li>공지사항</li>
+          <li
+            onClick={() =>
+              document
+                .getElementById('brand')
+                ?.scrollIntoView({ behavior: 'smooth' })
+            }
+          >
+            브랜드 소개
+          </li>
+          <li
+            onClick={() =>
+              document
+                .getElementById('features')
+                ?.scrollIntoView({ behavior: 'smooth' })
+            }
+          >
+            기능
+          </li>
+          <li
+            onClick={() =>
+              document
+                .getElementById('howto')
+                ?.scrollIntoView({ behavior: 'smooth' })
+            }
+          >
+            사용 방법
+          </li>
+          <li
+            onClick={() =>
+              document
+                .getElementById('contact')
+                ?.scrollIntoView({ behavior: 'smooth' })
+            }
+          >
+            문의
+          </li>
         </ul>
         <a
           href={process.env.NEXT_PUBLIC_MAIN_URL}

@@ -26,21 +26,19 @@ const MainSection = () => {
   }, []);
 
   return (
-    <section ref={ref} className={cn('container')}>
+    <section id="brand" ref={ref} className={cn('container')}>
       <div className={cn('wrapper', { animate: isVisible })}>
         <div className={cn('left')}>
-          <h2 className={cn('slogan')}>
-            답지는 ‘왜 이 문제가 안 풀릴까?’
-            <br />
-            라는 고민에서 출발했어요.
-          </h2>
+          <h2 className={cn('slogan')}>클라이밍 루트, 너무 고민하지 마세요</h2>
           <p className={cn('desc')}>
-            겨우 찾은 문제 영상. 그 불편함에서 답지는 시작됐어요.
+            루트가 안 보일 때, 다른 클라이머의 완등 영상은 최고의 힌트!
+            <br />
+            답지는 그런 영상을 더 빠르게 찾을 수 있도록 만든 서비스예요.
           </p>
         </div>
 
         <Image
-          src="/images/backimg.png"
+          src="/images/illustration5.png"
           alt="브랜드 철학 이미지"
           width={400}
           height={400}

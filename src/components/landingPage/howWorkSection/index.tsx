@@ -82,7 +82,7 @@ const HowWorkSection = () => {
   }, []);
 
   return (
-    <section ref={ref} className={cn('container')}>
+    <section id="howto" ref={ref} className={cn('container')}>
       {steps.map((step, idx) => (
         <div
           key={idx}

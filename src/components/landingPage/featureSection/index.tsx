@@ -49,7 +49,7 @@ const FeatureSection = () => {
   }, []);
 
   return (
-    <section ref={ref} className={cn('container')}>
+    <section id="features" ref={ref} className={cn('container')}>
       <div className={cn('contentWrapper', { animate: isVisible })}>
         <h3 className={cn('title')}>클라이머를 위한 필수 기능 모음</h3>
         <p className={cn('subtitle')}>
