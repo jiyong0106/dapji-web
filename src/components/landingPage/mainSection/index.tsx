@@ -39,7 +39,7 @@ const MainSection = () => {
       </div>
 
       <Image
-        src="/icon/backimg.png"
+        src="/images/backimg.png"
         alt="브랜드 철학 이미지"
         width={400}
         height={400}

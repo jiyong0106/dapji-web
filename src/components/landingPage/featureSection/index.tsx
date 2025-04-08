@@ -8,32 +8,24 @@ const cn = classNames.bind(styles);
 
 const features = [
   {
-    icon: '/images/chill.png',
-    cardImage: '/images/cardli1.png',
-    title: '암장별 필터',
-    desc: '암장, 문제별로 영상을 탐색할 수 있어요.',
-    backImage: '/images/mocde.png',
+    cardImage: '/images/illustration1.png',
+    title: '답지 검색',
+    desc: '쉽고 빠른 클라이밍 영상 찾기 ',
   },
   {
-    icon: '/images/chill.png',
-    cardImage: '/images/cardli2.png',
-    title: '클라이밍 기록',
-    desc: '완등 기록을 정리하고 저장할 수 있어요.',
-    backImage: '/images/mocca.png',
+    cardImage: '/images/illustration2.png',
+    title: '캘린더 기록',
+    desc: '내 클라이밍 기록 한눈에 확인!',
   },
   {
-    icon: '/images/chill.png',
-    cardImage: '/images/cardli3.png',
-    title: '프로필 관리',
-    desc: '클라이머들과 소통해요.',
-    backImage: '/images/mocpro.png',
+    cardImage: '/images/illustration3.png',
+    title: '프로필',
+    desc: '조금씩 쌓아가는 클라이밍 프로필',
   },
   {
-    icon: '/images/moccom.png',
-    cardImage: '/images/cardli4.png',
+    cardImage: '/images/illustration4.png',
     title: '커뮤니티',
-    desc: '번호로 원하는 문제를 빠르게 찾아요.',
-    backImage: '/images/moccomu.png',
+    desc: '각종 정보와 꿀팁 공유, 여기서!',
   },
 ];
 
@@ -57,52 +49,30 @@ const FeatureSection = () => {
   }, []);
 
   return (
-    <section ref={ref} className={cn('container', { animate: isVisible })}>
+    <section ref={ref} className={cn('container')}>
       <div className={cn('contentWrapper')}>
-        {/* 왼쪽 카드 캐러셀 */}
-        <div className={cn('carousel')}>
+        <h3 className={cn('title')}>클라이머를 위한 필수 기능 모음</h3>
+        <p className={cn('subtitle')}>
+          다른 클라이머의 루트를 확인하고, 빠르게 감 잡아보세요. 기록과 공유까지
+          한 번에!
+        </p>
+
+        <div className={cn('cardGrid', { animate: isVisible })}>
           {features.map((item, index) => (
-            <div
-              key={index}
-              className={cn('cardWrapper', {
-                tall: index % 2 === 0,
-                short: index % 2 !== 0,
-              })}
-            >
+            <div key={index} className={cn('cardWrapper', `item${index + 1}`)}>
               <div className={cn('card')}>
-                <div className={cn('cardFace', 'front')}>
-                  <Image
-                    src={item.cardImage}
-                    alt={`${item.title} illustration`}
-                    width={80}
-                    height={80}
-                    className={cn('cardImage')}
-                  />
-                  <h3>{item.title}</h3>
-                  <p>{item.desc}</p>
-                  <div className={cn('carouselLabel')}>카드보기</div>
-                </div>
-                <div className={cn('cardFace', 'back')}>
-                  <Image
-                    src={item.backImage}
-                    alt={`${item.title} back`}
-                    fill
-                    className={cn('image')}
-                  />
-                </div>
+                <Image
+                  src={item.cardImage}
+                  alt={`${item.title} illustration`}
+                  width={80}
+                  height={80}
+                  className={cn('cardImage')}
+                />
+                <h3>{item.title}</h3>
+                <p>{item.desc}</p>
               </div>
             </div>
           ))}
-        </div>
-
-        {/* 오른쪽 텍스트 영역 */}
-        <div className={cn('textBlock')}>
-          <h3>등반 기록, 공유, 탐색까지</h3>
-          <p>
-            클라이머를 위한 기능을 한눈에 확인하고, 내가 찾던 문제를 빠르게
-            찾아보세요.
-          </p>
-          <p>커뮤니티와 기록 기능도 함께 제공합니다.</p>
         </div>
       </div>
     </section>

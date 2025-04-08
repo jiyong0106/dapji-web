@@ -55,8 +55,7 @@
         padding-left: 0;
 
         li {
-          color: #858585;
-          font-size: 1rem;
+          @include font-style(1.4rem, #858585, 400);
           margin-bottom: 8px;
 
           a {
@@ -75,8 +74,7 @@
 
   .bottom {
     text-align: center;
-    font-size: 0.9rem;
-    color: #888;
+    @include font-style(1.4rem, #858585, 400);
 
     a {
       color: #888;
@@ -107,10 +105,6 @@
 
     .navGroup {
       min-width: 150px;
-    }
-
-    .bottom {
-      margin-top: 32px;
     }
   }
 }

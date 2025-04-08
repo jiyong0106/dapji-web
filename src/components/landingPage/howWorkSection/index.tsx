@@ -8,36 +8,64 @@ const cn = classNames.bind(styles);
 
 const steps = [
   {
-    icon: '/images/cardli5.jpg',
+    icon: '/images/landingFilter.png',
     title: '암장별 필터',
-    desc: '원하는 암장을 선택하면 그 암장에서 올라온 모든 문제 영상을 한눈에 볼 수 있어요. 익숙한 암장에서 다양한 문제를 탐색해보세요.',
+    desc: '원하는 클라이밍장 선택, 쉽고 빠르게 답지를 볼 수 있어요. ',
+    features: [
+      '색상별 난이도로 답지 찾기',
+      '영상으로 보고 싶은 문제 확인',
+      '친구들과 찾고있던 답지 공유',
+    ],
   },
   {
-    icon: '/images/cardli9.png',
+    icon: '/images/landingUpload.png',
     title: '답지 업로드',
-    desc: '등반 영상을 쉽게 업로드할 수 있어요. 나만의 클라이밍 기록을 남기거나 다른 사람들과 함께 공유하며 소통해보세요.',
+    desc: '답지를 쉽게 업로드할 수 있어요. 나만의 클라이밍 기록을 남기거나 다른 사람들에게 자랑해보세요',
+    features: [
+      '대용량 영상도 문제없이!',
+      '직접 촬영한 영상 및 인스타그램 링크로 업로드',
+      '난이도 선택 및 꿀팁 텍스트 작성',
+      '등반 날짜와 함께 기록 저장',
+    ],
   },
   {
-    icon: '/images/cardli6.png',
+    icon: '/images/landingCalendar.png',
     title: '클라이밍 기록',
-    desc: '운동 기록을 정리하고, 앞으로의 일정을 계획해보세요.  내가 어디서, 얼마나 성장해왔는지 한눈에 확인할 수 있어요.',
+    desc: '운동 일정을 추가하고, 기록을 한눈에 관리하세요. 내가 언제, 어디서 얼마나 클라이밍을 했는지 한눈에 정리돼요.',
+    features: [
+      '캘린더 기반 클라이밍 기록 확인',
+      '클라이밍 일정 직접 등록 및 알림 설정',
+      '영상 없이도 운동 기록 추가 가능',
+      '과거 기록 열람 및 일별 히스토리 조회',
+    ],
   },
   {
-    icon: '/images/cardli7.jpg',
+    icon: '/images/landingProfile.png',
     title: '프로필 꾸미기',
-    desc: '내 키와 리치, 등반 스타일, 영상까지 한눈에!  클라이머로서의 나를 소개하고, 기록을 보여주세요.',
+    desc: '키와 리치부터 등반 스타일, 영상까지! 나만의 클라이머 프로필을 만들고, 성장 과정을 자연스럽게 보여줄 수 있어요.',
+    features: [
+      '자기소개 및 클라이밍 목표 설정',
+      '완등 영상과 암장별 활동 정리',
+      '내가 클리어한 난이도/문제 한눈에 보기',
+      '클라이머 간 팔로우 및 답지 교류',
+    ],
   },
   {
-    icon: '/images/cardli8.jpg',
+    icon: '/images/landingCommu.png',
     title: '답지 커뮤니티',
-    desc: '답지 커뮤니티는 클라이머들의 아지트예요.  운동 얘기도, 잡담도, 공감도 함께 나눌 수 있어요.',
+    desc: '운동 얘기부터 장비 추천, 오늘의 TMI까지! 클라이머들끼리 모여 자유롭게 소통해요. 답지는 아지트 그 자체.',
+    features: [
+      '질문, 정보, 잡담 등 자유게시판 운영',
+      '주제별 카테고리 필터링 (장비, 부상, 암장, 훈련 등)',
+      '좋아요, 댓글, 반응으로 소통 ',
+      '링크나 이미지 등 외부 콘텐츠도 공유',
+    ],
   },
 ];
 
 const HowWorkSection = () => {
   const ref = useRef<HTMLDivElement | null>(null);
   const [isVisible, setIsVisible] = useState(false);
-
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -52,22 +80,28 @@ const HowWorkSection = () => {
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
   }, []);
+
   return (
     <section ref={ref} className={cn('container', { animate: isVisible })}>
       {steps.map((step, idx) => (
         <div key={idx} className={cn('row', { reverse: idx % 2 === 1 })}>
+          <div className={cn('text')}>
+            <h3>{step.title}</h3>
+            <p>{step.desc}</p>
+            <ul>
+              {step.features.map((feature, i) => (
+                <li key={i}>{feature}</li>
+              ))}
+            </ul>
+          </div>
           <Image
             src={step.icon}
             alt={step.title}
             className={cn('image')}
-            width={100}
-            height={100}
+            width={600}
+            height={400}
             priority
           />
-          <div className={cn('text')}>
-            <h3>{step.title}</h3>
-            <p>{step.desc}</p>
-          </div>
         </div>
       ))}
     </section>

@@ -98,7 +98,7 @@ const LandingFooter = () => {
 
         {/* 하단 바텀 정보 */}
         <div className={cn('bottom')}>
-          <p>© 2025 Dapji. All rights reserved.</p>
+          <p>© 2024 Dapji. All rights reserved.</p>
           <p>
             문의:
             <a href="mailto:dapjiofficial@gmail.com">dapjiofficial@gmail.com</a>
