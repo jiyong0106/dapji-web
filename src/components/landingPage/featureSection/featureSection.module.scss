@@ -11,7 +11,7 @@
 
 .container {
   padding: 40px 20px;
-  background-color: #000;
+  background-color: white;
   width: 100%;
 }
 
@@ -22,11 +22,18 @@
   gap: 24px;
   max-width: 1200px;
   margin: 0 auto;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
+
+  &.animate {
+    animation: slideUp 1s ease-out forwards;
+  }
 }
 
 .title {
   text-align: center;
-  @include font-style(2.4rem, white, 600);
+  @include font-style(2.4rem, black, 600);
 }
 
 .subtitle {
@@ -44,10 +51,10 @@
   opacity: 0;
   transform: translateY(30px);
   transition: all 0.6s ease-out;
-}
 
-.cardGrid.animate {
-  animation: slideUp 1.5s ease-out forwards;
+  &.animate {
+    animation: slideUp 1.5s ease-out forwards;
+  }
 }
 
 .cardWrapper {
@@ -80,7 +87,7 @@
 
 @media (min-width: 768px) {
   .title {
-    @include font-style(4rem, white, 600);
+    @include font-style(4rem, black, 600);
   }
 
   .cardGrid {
@@ -90,11 +97,12 @@
 
 @media (min-width: 1024px) {
   .title {
-    @include font-style(6rem, white, 600);
+    @include font-style(6rem, black, 600);
     margin-bottom: 0;
   }
+
   .subtitle {
-    @include font-style(2rem, #d9d9d9, 400);
+    @include font-style(2rem, #858585, 400);
   }
 
   .cardGrid {
@@ -111,9 +119,11 @@
     max-width: 340px;
     width: 100%;
     margin: 0 auto;
+
     h3 {
       @include font-style(2.5rem, white, 400);
     }
+
     p {
       @include font-style(1.5rem, #d9d9d9, 400);
     }

@@ -74,7 +74,7 @@ const HowWorkSection = () => {
           observer.disconnect();
         }
       },
-      { threshold: 0.3 },
+      { threshold: 0.2 },
     );
 
     if (ref.current) observer.observe(ref.current);
@@ -82,9 +82,12 @@ const HowWorkSection = () => {
   }, []);
 
   return (
-    <section ref={ref} className={cn('container', { animate: isVisible })}>
+    <section ref={ref} className={cn('container')}>
       {steps.map((step, idx) => (
-        <div key={idx} className={cn('row', { reverse: idx % 2 === 1 })}>
+        <div
+          key={idx}
+          className={cn('row', { reverse: idx % 2 === 1, animate: isVisible })}
+        >
           <div className={cn('text')}>
             <h3>{step.title}</h3>
             <p>{step.desc}</p>

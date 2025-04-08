@@ -50,7 +50,7 @@ const FeatureSection = () => {
 
   return (
     <section ref={ref} className={cn('container')}>
-      <div className={cn('contentWrapper')}>
+      <div className={cn('contentWrapper', { animate: isVisible })}>
         <h3 className={cn('title')}>클라이머를 위한 필수 기능 모음</h3>
         <p className={cn('subtitle')}>
           다른 클라이머의 루트를 확인하고, 빠르게 감 잡아보세요. 기록과 공유까지
