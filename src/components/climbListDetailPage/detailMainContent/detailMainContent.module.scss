@@ -1,4 +1,3 @@
-// /DetailMainContent
 .container {
   @include flex-arrange(space-between, center);
   flex-direction: column;
@@ -10,12 +9,14 @@
   border-style: solid;
   border-color: rgb(215, 215, 215);
   border-width: 0.5px;
+  cursor: pointer;
 
   .userWrapper {
     width: 100%;
     padding: 10px 10px 0 10px;
     @include flex-arrange(space-between, center);
     .userInfo {
+      // cursor: pointer;
       @include flex-arrange(center, flex-start);
       gap: 5px;
       .dateWrapper {

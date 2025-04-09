@@ -73,7 +73,6 @@ const DetailMainContent = ({ list, gymName }: DetailMainContentProps) => {
   } = useQuery({
     queryKey: ['singleVideoDatasKey', post_idx, currentIndex],
     queryFn: () => fetchRenderSingleVideo(post_idx, currentIndex),
-    // enabled: !!isParentVisible, // isParentVisible이 true일 때만 fetch 실행
     staleTime: 5 * 60 * 1000, // 5분
   });
 
