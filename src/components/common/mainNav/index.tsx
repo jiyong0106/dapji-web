@@ -1,9 +1,8 @@
 'use client';
 import classNames from 'classnames/bind';
 import styles from './mainNav.module.scss';
-import { GlassIcon } from '@/public/icon';
 import Image from 'next/image';
-import { landingHeaderOptions } from '@/src/utils/options/landingOptions';
+import { mainHeaderOptions } from '@/src/utils/options/landingOptions';
 
 const cn = classNames.bind(styles);
 
@@ -29,13 +28,14 @@ const MainNav = () => {
 
       <div className={cn('right')}>
         <ul className={cn('menu')}>
-          {landingHeaderOptions.map((item, index) => (
+          {mainHeaderOptions.map((item, index) => (
             <li
               key={index}
               onClick={() =>
-                document
-                  .getElementById(`${item.sectionId}`)
-                  ?.scrollIntoView({ behavior: 'smooth' })
+                // document
+                //   .getElementById(`${item.sectionId}`)
+                //   ?.scrollIntoView({ behavior: 'smooth' })
+                console.log('페이지클릭')
               }
             >
               {item.title}
@@ -48,7 +48,7 @@ const MainNav = () => {
           rel="noopener noreferrer"
           className={cn('downloadBtn')}
         >
-          웹에서 보기
+          로그인
         </a>
       </div>
     </nav>

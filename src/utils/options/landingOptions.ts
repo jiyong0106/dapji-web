@@ -18,6 +18,26 @@ export const landingHeaderOptions = [
   },
 ];
 
+//메인헤더 옵션들
+
+export const mainHeaderOptions = [
+  {
+    title: '게시판',
+    sectionId: 'brand',
+  },
+  {
+    title: '클라이밍장 목록',
+    sectionId: 'features',
+  },
+  {
+    title: '클라이밍 기록',
+    sectionId: 'howto',
+  },
+  {
+    title: '마이페이지',
+    sectionId: 'contact',
+  },
+];
 //랜딩퓨처 옵션들
 export const landingFeaturesOptions = [
   {

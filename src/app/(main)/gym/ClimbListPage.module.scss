@@ -1,32 +1,12 @@
 .container {
   width: 100%;
-  max-width: 650px;
-  padding-top: 80px;
   display: flex;
   flex-direction: column;
   justify-self: center;
-  .header-container {
-    position: sticky;
-    top: 60px; /* 스크롤 시 항상 화면 상단에 고정 */
-    z-index: 1;
-    background: rgb(247, 244, 244);
-    transition: top 0.5s ease-in-out;
 
-    &.up {
-      top: 0px; /* 스크롤을 올릴 때도 상단에 고정 */
-    }
-
-    &.down {
-      top: -120px; /* 스크롤을 내릴 때도 상단에 고정 */
-    }
-  }
-  .secondContainer {
-    padding: 0 10px 10px 10px;
-
-    .noSearchData {
-      @include font-style(1.5rem, black, 400);
-      text-align: center;
-    }
+  .noSearchData {
+    @include font-style(1.5rem, black, 400);
+    text-align: center;
   }
 }
 
