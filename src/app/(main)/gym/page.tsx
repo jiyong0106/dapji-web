@@ -56,7 +56,6 @@ const ClimbListPage = () => {
         const data = await fetchMyInfo();
         if (data) {
           setmyId(data);
-          // router.replace('/gym'); // 성공적으로 데이터를 가져오면 이동
         }
       } catch (error) {
         console.error('my info error');
