@@ -26,18 +26,21 @@ const PostDetailPage = ({ params }: PostDetailPageProps) => {
   const { data: postDetailDatas, isLoading } = usePostDetailDatas(postid);
   //포스트 상세페이지 데이터
 
-  const { data: postDetailCommentData, ref } =
-    useInfiniteScroll<PostCommentType>({
-      queryKey: ['postDetailComment'],
-      fetchFunction: (page = 1) =>
-        CommentDatas({
-          page,
-          content_id: postid,
-          category: 'postComment',
-        }),
-      getNextPageParam: (lastPage) =>
-        lastPage.meta.hasNextPage ? lastPage.meta.page + 1 : undefined,
-    });
+  const {
+    data: postDetailCommentData,
+    isFetchingNextPage,
+    ref,
+  } = useInfiniteScroll<PostCommentType>({
+    queryKey: ['postDetailComment'],
+    fetchFunction: (page = 1) =>
+      CommentDatas({
+        page,
+        content_id: postid,
+        category: 'postComment',
+      }),
+    getNextPageParam: (lastPage) =>
+      lastPage.meta.hasNextPage ? lastPage.meta.page + 1 : undefined,
+  });
 
   const commentDatas: PostCommentDetailType[] =
     postDetailCommentData?.pages.flatMap((page) => page.postComments) ?? [];
@@ -50,29 +53,21 @@ const PostDetailPage = ({ params }: PostDetailPageProps) => {
 
   return (
     <div className={cn('container')}>
-      <main className={cn('secondContainer', tagNickname && 'tagNickname')}>
-        <section>
-          <PostDetailForm params={params} postDetailDatas={postDetailDatas} />
-        </section>
-        <section>
-          <PostCommentLists
-            lists={commentDatas}
-            setTagNickname={setTagNickname}
-            setSelectId={setSelectId}
-            isMyPost={isMyPost}
-          />
-          <div ref={ref} />
-        </section>
-      </main>
-      <div className={cn('commentInputWrapper')}>
-        <CommentInput
-          params={{ postId: postid }}
-          tagNickname={tagNickname}
-          setTagNickname={setTagNickname}
-          selectId={selectId}
-        />
-      </div>
-      <ModalChoice />
+      <PostDetailForm params={params} postDetailDatas={postDetailDatas} />
+      <PostCommentLists
+        lists={commentDatas}
+        setTagNickname={setTagNickname}
+        setSelectId={setSelectId}
+        isMyPost={isMyPost}
+      />
+      <CommentInput
+        params={{ postId: postid }}
+        tagNickname={tagNickname}
+        setTagNickname={setTagNickname}
+        selectId={selectId}
+      />
+      <div ref={ref} />
+      {isFetchingNextPage && <LoadingSpinner />}
     </div>
   );
 };

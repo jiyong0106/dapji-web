@@ -16,7 +16,6 @@
     padding: 10px 10px 0 10px;
     @include flex-arrange(space-between, center);
     .userInfo {
-      // cursor: pointer;
       @include flex-arrange(center, flex-start);
       gap: 5px;
       .dateWrapper {
