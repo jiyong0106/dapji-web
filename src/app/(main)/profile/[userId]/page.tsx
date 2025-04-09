@@ -90,27 +90,20 @@ const ProfilePage = ({ params }: ProfilePageProps) => {
 
   return (
     <div className={cn('container')}>
-      <Header title={name}>
-        <div className={cn('BtnStyles')}>
-          {role && (
-            <Link href={'/admin'}>
-              <AdminIcon />
-            </Link>
-          )}
-          {profileInfo?.isOwnProfile && (
-            <LogoutIcon className={cn('setIcon')} onClick={handleLogoutClick} />
-          )}
-        </div>
-      </Header>
-      <div className={cn('secondContainer')}>
-        {profileInfo ? (
-          <ProfileForm params={params} profileInfo={profileInfo} />
-        ) : (
-          <LoadingSpinner />
+      {/* <div className={cn('BtnStyles')}>
+        {role && (
+          <Link href={'/admin'}>
+            <AdminIcon />
+          </Link>
         )}
-        <ProfileAllData profileData={profileDataObject} params={params} />
-        <div ref={ref} />
-      </div>
+      </div> */}
+      {profileInfo ? (
+        <ProfileForm params={params} profileInfo={profileInfo} />
+      ) : (
+        <LoadingSpinner />
+      )}
+      <ProfileAllData profileData={profileDataObject} params={params} />
+      <div ref={ref} />
       {isFetchingNextPage && <LoadingSpinner />}
     </div>
   );

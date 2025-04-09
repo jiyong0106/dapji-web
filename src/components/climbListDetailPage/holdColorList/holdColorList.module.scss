@@ -9,13 +9,20 @@
   border: 0.5px solid rgb(215, 215, 215);
 
   .holdText {
-    @include font-style(1.5rem, balck, 500);
-    padding: 0 10px;
+    display: none;
   }
   .innerContainer {
     display: flex;
     white-space: nowrap;
     gap: 5px;
+  }
+
+  @media (min-width: 769px) {
+    .holdText {
+      @include font-style(1.5rem, black, 500);
+      padding: 0 10px;
+      display: block;
+    }
   }
 }
 .outerContainer::-webkit-scrollbar {

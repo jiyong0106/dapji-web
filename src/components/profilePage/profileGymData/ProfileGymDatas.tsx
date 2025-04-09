@@ -27,6 +27,7 @@ const ProfileGymDatas = ({ params, name }: ProfileGymDatasProps) => {
         }),
       getNextPageParam: (lastPage) =>
         lastPage.meta.hasNextPage ? lastPage.meta.page + 1 : undefined,
+      staleTime: 60 * 1000,
     });
 
   // 각 페이지의 favoriteGyms 배열을 하나로 병합
