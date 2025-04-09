@@ -6,6 +6,7 @@ type boardListGetDatasProps = {
   page: number;
   search: string;
   category: string | null;
+  sortOption: string | null;
 };
 
 //게시판 전체 조회
@@ -13,12 +14,14 @@ export const boardListGetDatas = async ({
   page,
   search,
   category,
+  sortOption,
 }: boardListGetDatasProps) => {
   const res = await instance.get(`/boards`, {
     params: {
       page,
       search,
       category,
+      sortOption,
     },
   });
   return res.data;

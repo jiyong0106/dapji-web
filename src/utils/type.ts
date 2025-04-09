@@ -285,7 +285,7 @@ type BoardlikeType = {
 export type CategroyListType = {
   category_idx: number;
   category: string;
-  option: string;
+  option?: string;
 };
 
 //preview 타입들

@@ -1,28 +1,12 @@
 .container {
   width: 100%;
-  min-height: 100vh;
-  background: rgb(247, 244, 244);
-  padding-bottom: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
 
-  .header-container {
-    position: sticky;
-    top: 60px;
-    z-index: 2;
-    background: linear-gradient(to right, #171a27, #282c3e);
-    transition: top 0.5s ease-in-out;
-
-    &.up {
-      top: 0px;
-    }
-
-    &.down {
-      top: -120px;
-    }
-  }
-
-  .secondContainer {
-    margin-top: 10px;
-    padding: 0 10px 10px 10px;
+  .noSearchData {
+    @include font-style(1.5rem, black, 400);
+    text-align: center;
   }
 }
 

@@ -3,12 +3,12 @@ import classNames from 'classnames/bind';
 import styles from './mainNav.module.scss';
 import Image from 'next/image';
 import { mainHeaderOptions } from '@/src/utils/options/landingOptions';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 const cn = classNames.bind(styles);
 
 const MainNav = () => {
-  // const router = useRouter();
+  const router = useRouter();
   return (
     <nav className={cn('container')}>
       <a
@@ -34,8 +34,7 @@ const MainNav = () => {
             <li
               key={index}
               onClick={() =>
-                // router.push(`${process.env.NEXT_PUBLIC_URL + item.page}`)
-                console.log('')
+                router.push(`${process.env.NEXT_PUBLIC_URL + item.page}`)
               }
             >
               {item.title}

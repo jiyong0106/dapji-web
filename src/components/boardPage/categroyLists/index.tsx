@@ -33,14 +33,17 @@ const CategoryLists = ({
 }: CategoryListsProps) => {
   return (
     <div className={cn('outerContainer')}>
-      {lists.map((list) => (
-        <CategoryList
-          key={list.category_idx}
-          list={list}
-          isSelected={list.option === selectCategory}
-          onClick={() => onCategorySelect(list.option)}
-        />
-      ))}
+      {lists.map((list) => {
+        const valueForCompare = list.option ?? list.category;
+        return (
+          <CategoryList
+            key={list.category_idx}
+            list={list}
+            isSelected={valueForCompare === selectCategory}
+            onClick={() => onCategorySelect(valueForCompare)}
+          />
+        );
+      })}
     </div>
   );
 };
