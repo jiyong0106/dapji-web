@@ -5,15 +5,34 @@ import Image from 'next/image';
 import { mainHeaderOptions } from '@/src/utils/options/landingOptions';
 import { useRouter } from 'next/navigation';
 import { useMyInfoStore } from '@/src/utils/store/useMyImfoStore';
+import { fetchUserLogout } from '@/src/app/(main)/profile/api';
+import { useModal } from '@/src/hooks/useModal';
 
 const cn = classNames.bind(styles);
 
 const MainNav = () => {
-  const { myId } = useMyInfoStore();
+  const { myId, setmyId } = useMyInfoStore();
+  const { showModalHandler } = useModal();
+  const router = useRouter();
 
   const menuItems = mainHeaderOptions(myId);
 
-  const router = useRouter();
+  const handleLogoutClick = () => {
+    const confirmAction = async () => {
+      try {
+        await fetchUserLogout();
+        setmyId(null);
+        router.replace('/signin');
+      } catch (error) {
+        console.error('로그아웃 실패', error);
+      }
+    };
+
+    showModalHandler('choice', '로그아웃 하시겠어요?', confirmAction);
+  };
+
+  console.log('myId==>', myId);
+
   return (
     <nav className={cn('container')}>
       <a
@@ -43,11 +62,11 @@ const MainNav = () => {
         </ul>
         <p
           className={cn('downloadBtn')}
-          onClick={() =>
-            router.push(`${process.env.NEXT_PUBLIC_URL + '/signin'}`)
-          }
+          onClick={() => {
+            myId ? handleLogoutClick() : router.push('/signin');
+          }}
         >
-          로그인
+          {myId ? '로그아웃' : '로그인'}
         </p>
       </div>
     </nav>

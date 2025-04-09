@@ -5,6 +5,7 @@ import QueryProvider from '@/src/utils/QueryProvider';
 import styles from './mainLayout.module.scss';
 import classNames from 'classnames/bind';
 import useScrollDirection from '@/src/hooks/useScrollDirection';
+import ModalChoice from '@/src/components/common/moadlChoice';
 
 const cn = classNames.bind(styles);
 
@@ -24,6 +25,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
         </div>
         <Toast />
         <div className={cn('secContainer')}>{children}</div>
+        <ModalChoice />
       </div>
     </QueryProvider>
   );

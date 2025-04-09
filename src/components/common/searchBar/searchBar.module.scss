@@ -1,7 +1,7 @@
 .container {
   width: 100%;
-  padding: 10px 10px;
   background: white;
+  margin: 5px 0;
   @include flex-arrange(center, center);
   gap: 10px;
   top: 0;

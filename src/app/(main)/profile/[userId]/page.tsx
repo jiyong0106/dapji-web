@@ -112,7 +112,6 @@ const ProfilePage = ({ params }: ProfilePageProps) => {
         <div ref={ref} />
       </div>
       {isFetchingNextPage && <LoadingSpinner />}
-      <ModalChoice />
     </div>
   );
 };
