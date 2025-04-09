@@ -73,6 +73,7 @@ const BoardDetailForm = ({ boardDetailData }: BoardDetailFormProps) => {
   };
 
   const profileClick = () => {
+    if (typeof user_idx === 'undefined') return;
     router.push(`/profile/${user_idx}`);
   };
 
@@ -86,7 +87,8 @@ const BoardDetailForm = ({ boardDetailData }: BoardDetailFormProps) => {
             height="30"
             alt="게시물 작성자 프로필 이미지"
             className={cn('profileImage')}
-            onClick={profileClick}
+            onClick={user_idx ? profileClick : undefined}
+            style={{ cursor: user_idx ? 'pointer' : 'default' }}
           />
           <div className={cn('userText')}>
             <span className={cn('category')}>{category}</span>

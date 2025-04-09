@@ -31,8 +31,6 @@ const MainNav = () => {
     showModalHandler('choice', '로그아웃 하시겠어요?', confirmAction);
   };
 
-  console.log('myId==>', myId);
-
   return (
     <nav className={cn('container')}>
       <a

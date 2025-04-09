@@ -8,16 +8,13 @@ import { CommentDatas } from '@/src/hooks/useCommentDatas';
 import { useQuery } from '@tanstack/react-query';
 import {
   BoardCommentType,
-  BoardDetailDataType,
   BoardCommentDetailType,
   BorardDetailResponseType,
 } from '@/src/utils/type';
 import LoadingSpinner from '@/src/components/common/loadingSpinner';
 import CommentInput from '@/src/components/boardDetailPage/commentInput';
 import { useState } from 'react';
-import ModalChoice from '@/src/components/common/moadlChoice';
 import useInfiniteScroll from '@/src/hooks/useInfiniteScroll';
-import Header from '@/src/components/common/header';
 
 const cn = classNames.bind(styles);
 

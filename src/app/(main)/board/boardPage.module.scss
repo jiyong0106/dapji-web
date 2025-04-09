@@ -3,7 +3,6 @@
   display: flex;
   flex-direction: column;
   justify-self: center;
-  cursor: pointer;
 
   .noSearchData {
     @include font-style(1.5rem, black, 400);
