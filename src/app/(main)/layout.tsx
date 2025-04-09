@@ -26,6 +26,23 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
         <Toast />
         <div className={cn('secContainer')}>{children}</div>
         <ModalChoice />
+        <div className={cn('scrollWrapper')}>
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          >
+            ↑
+          </button>
+          <button
+            onClick={() =>
+              window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: 'smooth',
+              })
+            }
+          >
+            ↓
+          </button>
+        </div>
       </div>
     </QueryProvider>
   );
