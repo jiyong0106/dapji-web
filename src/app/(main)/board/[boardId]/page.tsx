@@ -56,43 +56,33 @@ const BoardDetailPage = ({ params }: BoardDetailPageProps) => {
     getNextPageParam: (lastPage) =>
       lastPage.meta.hasNextPage ? lastPage.meta.page + 1 : undefined,
   });
+
   const commentDatas: BoardCommentDetailType[] =
     boardDetailCommentData?.pages.flatMap((page) => page.comments) ?? [];
+
   if (isLoading || !boardDetailData) {
     return <LoadingSpinner />;
   }
 
   return (
     <div className={cn('container')}>
-      <main className={cn('secondContainer', tagNickname && 'tagNickname')}>
-        <section>
-          <BoardDetailForm boardDetailData={boardDetailData} />
-        </section>
-        <section>
-          <CommentLists
-            lists={commentDatas}
-            setTagNickname={setTagNickname}
-            setSelectId={setSelectId}
-          />
-          <div ref={ref} />
-          {isFetchingNextPage && <LoadingSpinner />}
-        </section>
-      </main>
-      <div className={cn('commentInputWrapper')}>
-        <CommentInput
-          params={{ boardId: boardId }}
-          tagNickname={tagNickname}
-          setTagNickname={setTagNickname}
-          selectId={selectId}
-          anonymous
-        />
-      </div>
-      <ModalChoice />
+      <BoardDetailForm boardDetailData={boardDetailData} />
+      <CommentLists
+        lists={commentDatas}
+        setTagNickname={setTagNickname}
+        setSelectId={setSelectId}
+      />
+      <CommentInput
+        params={{ boardId: boardId }}
+        tagNickname={tagNickname}
+        setTagNickname={setTagNickname}
+        selectId={selectId}
+        anonymous
+      />
+      <div ref={ref} />
+      {isFetchingNextPage && <LoadingSpinner />}
     </div>
   );
 };
 
 export default BoardDetailPage;
-
-//댓글 업로드 후 스크롤 내리기
-//답글 업로드 후 해당 답글로 스크롤 가게하기
