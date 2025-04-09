@@ -37,8 +37,8 @@ const CategoryLists = ({
         <CategoryList
           key={list.category_idx}
           list={list}
-          isSelected={list.category === selectCategory}
-          onClick={() => onCategorySelect(list.category)}
+          isSelected={list.option === selectCategory}
+          onClick={() => onCategorySelect(list.option)}
         />
       ))}
     </div>

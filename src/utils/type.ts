@@ -119,8 +119,6 @@ export type ClimbPostResponseType = {
 
 /// 단일 비디오 렌더링 타입
 
-
-
 //클라이밍장별 영상 좋아요 타입
 export type VideoLikeType = {
   likeCount: number;
@@ -287,6 +285,7 @@ type BoardlikeType = {
 export type CategroyListType = {
   category_idx: number;
   category: string;
+  option: string;
 };
 
 //preview 타입들

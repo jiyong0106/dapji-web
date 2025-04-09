@@ -11,27 +11,30 @@ import LoadingSpinner from '@/src/components/common/loadingSpinner';
 import useScrollDirection from '@/src/hooks/useScrollDirection';
 import CategoryLists from '@/src/components/boardPage/categroyLists';
 import { favoritecategoryListData } from '@/src/utils/categoryListDatas';
-import { useRouter } from 'next/navigation';
 
 const cn = classNames.bind(styles);
 
 const ClimbListPage = () => {
   const [searchName, setSearchName] = useState('');
   const [scrollDirection] = useScrollDirection('up');
-  const [selectCategory, setSelectCategory] = useState<string | null>('인기순');
-  const [isFavorite, setIsFavorite] = useState<any>(false);
-  const router = useRouter();
+  const [selectSort, setSelectSort] = useState('latest');
   const {
     data: climbListData,
     ref,
     isFetchingNextPage,
     isLoading,
   } = useInfiniteScroll<ClimbLIstResponseType>({
-    queryKey: ['climbList', searchName, isFavorite],
+    queryKey: ['climbList', searchName, selectSort],
     fetchFunction: (page = 1) =>
-      ClimbListDatas({ page, search: searchName, is_favorite: isFavorite }),
+      ClimbListDatas({
+        page,
+        search: searchName,
+        sort: selectSort,
+      }),
+
     getNextPageParam: (lastPage) =>
       lastPage.meta.hasNextPage ? lastPage.meta.page + 1 : undefined,
+    staleTime: 60 * 1000,
   });
 
   const lists = climbListData?.pages.flatMap((page) => page.gyms) ?? [];
@@ -40,14 +43,8 @@ const ClimbListPage = () => {
     setSearchName(value);
   };
 
-  const handleSelectCategory = (category: string) => {
-    setSelectCategory(category);
-
-    if (category === '즐겨찾기') {
-      setIsFavorite(true);
-      return;
-    }
-    setIsFavorite(false);
+  const handleSelectCategory = (sort: string) => {
+    setSelectSort(sort);
   };
 
   if (isLoading) {
@@ -69,7 +66,7 @@ const ClimbListPage = () => {
         />
         <CategoryLists
           lists={favoritecategoryListData}
-          selectCategory={selectCategory}
+          selectCategory={selectSort}
           onCategorySelect={handleSelectCategory}
         />
       </div>

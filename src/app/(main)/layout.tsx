@@ -1,16 +1,16 @@
-import FooterBar from '@/src/components/common/footerBar';
+import MainNav from '@/src/components/common/mainNav';
 import Toast from '@/src/components/common/toast';
 import QueryProvider from '@/src/utils/QueryProvider';
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <>
-      <QueryProvider>
+    <QueryProvider>
+      <div style={{ background: 'rgb(247, 244, 244)', minHeight: '100vh' }}>
+        <MainNav />
         <Toast />
         {children}
-        <FooterBar />
-      </QueryProvider>
-    </>
+      </div>
+    </QueryProvider>
   );
 };
 

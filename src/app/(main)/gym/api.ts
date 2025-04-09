@@ -11,6 +11,7 @@ type ClimbListProps = {
   page: number;
   search: string;
   is_favorite?: boolean;
+  sort: string | null;
 };
 
 //클라이밍장 리스트 조회 함수
@@ -18,12 +19,14 @@ export const ClimbListDatas = async ({
   page,
   search,
   is_favorite,
+  sort,
 }: ClimbListProps) => {
   const res = await instance.get(`/gyms`, {
     params: {
       page,
       search,
       is_favorite,
+      sort,
     },
   });
   return res.data;
