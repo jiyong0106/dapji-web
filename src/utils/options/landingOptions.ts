@@ -1,3 +1,5 @@
+import { useMyInfoStore } from '../store/useMyImfoStore';
+
 //랜딩헤더 옵션들
 export const landingHeaderOptions = [
   {
@@ -19,29 +21,25 @@ export const landingHeaderOptions = [
 ];
 
 //메인헤더 옵션들
-
-export const mainHeaderOptions = [
+export const mainHeaderOptions = (myId?: string) => [
   {
     title: '게시판',
-    page: '/board',
-    //   '/board'
+    getPath: () => '/board',
   },
   {
     title: '클라이밍장 목록',
-    page: '/gym',
-    // '/gym'
+    getPath: () => '/gym',
   },
   {
     title: '클라이밍 기록',
-    page: '/calendar',
-    // '/calendar'
+    getPath: () => '/calendar',
   },
   {
     title: '마이페이지',
-    page: '/profile',
-    // '/profile'
+    getPath: () => (myId ? `/profile/${myId}` : '/signin'),
   },
 ];
+
 //랜딩퓨처 옵션들
 export const landingFeaturesOptions = [
   {

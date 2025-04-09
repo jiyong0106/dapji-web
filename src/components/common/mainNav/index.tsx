@@ -4,10 +4,15 @@ import styles from './mainNav.module.scss';
 import Image from 'next/image';
 import { mainHeaderOptions } from '@/src/utils/options/landingOptions';
 import { useRouter } from 'next/navigation';
+import { useMyInfoStore } from '@/src/utils/store/useMyImfoStore';
 
 const cn = classNames.bind(styles);
 
 const MainNav = () => {
+  const { myId } = useMyInfoStore();
+
+  const menuItems = mainHeaderOptions(myId);
+
   const router = useRouter();
   return (
     <nav className={cn('container')}>
@@ -30,25 +35,20 @@ const MainNav = () => {
 
       <div className={cn('right')}>
         <ul className={cn('menu')}>
-          {mainHeaderOptions.map((item, index) => (
-            <li
-              key={index}
-              onClick={() =>
-                router.push(`${process.env.NEXT_PUBLIC_URL + item.page}`)
-              }
-            >
+          {menuItems.map((item, index) => (
+            <li key={index} onClick={() => router.push(item.getPath())}>
               {item.title}
             </li>
           ))}
         </ul>
-        <a
-          href={process.env.NEXT_PUBLIC_URL + '/signin'}
-          target="_blank"
-          rel="noopener noreferrer"
+        <p
           className={cn('downloadBtn')}
+          onClick={() =>
+            router.push(`${process.env.NEXT_PUBLIC_URL + '/signin'}`)
+          }
         >
           로그인
-        </a>
+        </p>
       </div>
     </nav>
   );

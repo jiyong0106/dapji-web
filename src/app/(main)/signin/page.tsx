@@ -12,24 +12,24 @@ import LoginForm from '@/src/components/loginPage/loginForm';
 const cn = classNames.bind(styles);
 
 const SignInPage = () => {
-  const { setmyId } = useMyInfoStore();
-  const router = useRouter();
+  // const { setmyId } = useMyInfoStore();
+  // const router = useRouter();
 
-  useEffect(() => {
-    const getMyInfo = async () => {
-      try {
-        const data = await fetchMyInfo();
-        if (data) {
-          setmyId(data);
-          router.replace('/gym'); // 성공적으로 데이터를 가져오면 이동
-        }
-      } catch (error) {
-        console.error('my info error', error);
-      }
-    };
+  // useEffect(() => {
+  //   const getMyInfo = async () => {
+  //     try {
+  //       const data = await fetchMyInfo();
+  //       if (data) {
+  //         setmyId(data);
+  //         router.replace('/gym'); // 성공적으로 데이터를 가져오면 이동
+  //       }
+  //     } catch (error) {
+  //       console.error('my info error', error);
+  //     }
+  //   };
 
-    getMyInfo();
-  }, []);
+  //   getMyInfo();
+  // }, []);
 
   return (
     <div className={cn('container')}>
