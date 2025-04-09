@@ -40,8 +40,7 @@ const BoardPage = () => {
       lastPage.meta.hasNextPage ? lastPage.meta.page + 1 : undefined,
     staleTime: 60 * 1000,
   });
-  console.log(selectSortOption);
-  console.log(selectCategory);
+
   const boardData =
     boardListGetData?.pages.flatMap((page) => page.boards) ?? [];
 

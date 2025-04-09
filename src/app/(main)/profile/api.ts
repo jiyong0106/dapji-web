@@ -75,7 +75,6 @@ export const useProfileUpdate = (userId: string) => {
 
 export const fetchUserLogout = async () => {
   const res = await instance.get(`/auth/logout`);
-  console.log(res.data);
   return res.data;
 };
 //팔로워 조회

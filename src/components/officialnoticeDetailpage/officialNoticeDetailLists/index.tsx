@@ -15,7 +15,6 @@ const OfficialNoticeDetailLists = ({
   list,
 }: OfficialNoticeDetailListsProps) => {
   const { title, content, createdAt, notice_idx } = list;
-  console.log(list.content);
   const formatDate = (date: string | null) => date?.split('T')[0] || '';
 
   return (
