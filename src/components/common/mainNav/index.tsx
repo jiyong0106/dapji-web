@@ -3,15 +3,17 @@ import classNames from 'classnames/bind';
 import styles from './mainNav.module.scss';
 import Image from 'next/image';
 import { mainHeaderOptions } from '@/src/utils/options/landingOptions';
+import { useRouter } from 'next/router';
 
 const cn = classNames.bind(styles);
 
 const MainNav = () => {
+  // const router = useRouter();
   return (
     <nav className={cn('container')}>
       <a
         className={cn('left')}
-        href={process.env.NEXT_PUBLIC_WEB_URL}
+        href={process.env.NEXT_PUBLIC_URL}
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -32,10 +34,8 @@ const MainNav = () => {
             <li
               key={index}
               onClick={() =>
-                // document
-                //   .getElementById(`${item.sectionId}`)
-                //   ?.scrollIntoView({ behavior: 'smooth' })
-                console.log('페이지클릭')
+                // router.push(`${process.env.NEXT_PUBLIC_URL + item.page}`)
+                console.log('')
               }
             >
               {item.title}
@@ -43,7 +43,7 @@ const MainNav = () => {
           ))}
         </ul>
         <a
-          href={process.env.NEXT_PUBLIC_MAIN_URL}
+          href={process.env.NEXT_PUBLIC_URL + '/signin'}
           target="_blank"
           rel="noopener noreferrer"
           className={cn('downloadBtn')}

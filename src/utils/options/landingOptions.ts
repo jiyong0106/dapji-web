@@ -23,19 +23,23 @@ export const landingHeaderOptions = [
 export const mainHeaderOptions = [
   {
     title: '게시판',
-    sectionId: 'brand',
+    page: '/board',
+    //   '/board'
   },
   {
     title: '클라이밍장 목록',
-    sectionId: 'features',
+    page: '/gym',
+    // '/gym'
   },
   {
     title: '클라이밍 기록',
-    sectionId: 'howto',
+    page: '/calendar',
+    // '/calendar'
   },
   {
     title: '마이페이지',
-    sectionId: 'contact',
+    page: '/profile',
+    // '/profile'
   },
 ];
 //랜딩퓨처 옵션들

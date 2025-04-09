@@ -10,7 +10,7 @@ const LandingHeader = () => {
     <nav className={cn('container')}>
       <a
         className={cn('left')}
-        href={process.env.NEXT_PUBLIC_WEB_URL}
+        href={process.env.NEXT_PUBLIC_URL}
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -41,7 +41,7 @@ const LandingHeader = () => {
           ))}
         </ul>
         <a
-          href={process.env.NEXT_PUBLIC_MAIN_URL}
+          href={process.env.NEXT_PUBLIC_URL + '/gym'}
           target="_blank"
           rel="noopener noreferrer"
           className={cn('downloadBtn')}
