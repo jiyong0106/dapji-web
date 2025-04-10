@@ -31,6 +31,7 @@ const ProfileGymDetail = ({ item, gymId }: ProfileGymDetailDatapProps) => {
           fill
           className={cn('image')}
           priority
+          sizes="(min-width: 769px) 100px, 80px"
         />
       </div>
       <div className={cn('postInfoText')}>
