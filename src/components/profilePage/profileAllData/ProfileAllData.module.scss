@@ -27,5 +27,7 @@
   .emptyMessage {
     @include font-style(1.6rem, black, 400);
     margin-top: 50px;
+    text-align: center;
+    width: 100%;
   }
 }

@@ -41,6 +41,21 @@ export const fetchProfileFavoriteGyms = async ({
   return res.data;
 };
 
+//프로필에서 사용자가 답지 업로드한 클라이밍장 조회
+//프로필에서 사용자가 답지 업로드한 클라이밍장 조회
+//프로필에서 사용자가 답지 업로드한 클라이밍장 조회
+export const fetchProfileGyms = async ({
+  userId,
+  page = 1,
+}: ProfileDataProps) => {
+  const res = await instance.get(`/profile/${userId}/gyms`, {
+    params: {
+      page,
+    },
+  });
+  return res.data;
+};
+
 //프로필 유저 정보 및 동영상 썸네일
 export const useProfileDatas = (userId: string) => {
   return useQuery<ProfilePostType>({

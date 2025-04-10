@@ -1,8 +1,8 @@
 import classNames from 'classnames/bind';
 import styles from './profileGymData.module.scss';
-import { fetchProfileFavoriteGyms } from '@/src/app/(main)/profile/api';
+import { fetchProfileGyms } from '@/src/app/(main)/profile/api';
 import useInfiniteScroll from '@/src/hooks/useInfiniteScroll';
-import { ProfileFavoriteGymType } from '@/src/utils/type';
+import { ProfileGymsResponseType } from '@/src/utils/type';
 import ProfileGymData from './profileGymData';
 
 const cn = classNames.bind(styles);
@@ -11,17 +11,16 @@ type ProfileGymDatasProps = {
   params: {
     userId: string;
   };
-  name: string;
 };
 
-const ProfileGymDatas = ({ params, name }: ProfileGymDatasProps) => {
+const ProfileGymDatas = ({ params }: ProfileGymDatasProps) => {
   const { userId } = params;
 
   const { data: profileGymData, ref } =
-    useInfiniteScroll<ProfileFavoriteGymType>({
+    useInfiniteScroll<ProfileGymsResponseType>({
       queryKey: ['profileFavoriteGyms', userId],
       fetchFunction: (page = 1) =>
-        fetchProfileFavoriteGyms({
+        fetchProfileGyms({
           page,
           userId,
         }),
@@ -31,24 +30,18 @@ const ProfileGymDatas = ({ params, name }: ProfileGymDatasProps) => {
     });
 
   // 각 페이지의 favoriteGyms 배열을 하나로 병합
-  const profileGyms =
-    profileGymData?.pages.flatMap((page) => page.favoriteGyms) ?? [];
+  const profileGyms = profileGymData?.pages.flatMap((page) => page.gyms) ?? [];
 
   return (
     <div className={cn('outerContainer')}>
       {profileGyms.length > 0 ? (
         <>
-          <span className={cn('favoriteList')}>
-            {name}님의 최애 클라이밍장 🔥
-          </span>
           {profileGyms.map((gym) => (
-            <ProfileGymData key={gym.gym_idx} gym={gym} userId={userId} />
+            <ProfileGymData item={gym} userId={userId} />
           ))}
         </>
       ) : (
-        <span className={cn('emptyMessage')}>
-          최애 클라이밍장을 추가해 보세요 🔥
-        </span>
+        <p className={cn('emptyMessage')}>등반한 클라이밍장이 없어요! 🔥</p>
       )}
       <div ref={ref} />
     </div>

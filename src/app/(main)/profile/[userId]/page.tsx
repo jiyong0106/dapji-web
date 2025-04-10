@@ -3,7 +3,6 @@ import classNames from 'classnames/bind';
 import styles from './userProfilePage.module.scss';
 import ProfileAllData from '@/src/components/profilePage/profileAllData';
 import ProfileForm from '@/src/components/profilePage/profileForm';
-import Header from '@/src/components/common/header';
 import {
   fetchUserLogout,
   fethcProfilePostDatas,
@@ -11,11 +10,10 @@ import {
 import useInfiniteScroll from '@/src/hooks/useInfiniteScroll';
 import { ProfilePostType } from '@/src/utils/type';
 import LoadingSpinner from '@/src/components/common/loadingSpinner';
-import { AdminIcon, LogoutIcon } from '@/public/icon';
+import { AdminIcon } from '@/public/icon';
 import Link from 'next/link';
-import ModalChoice from '@/src/components/common/moadlChoice';
 import { useModal } from '@/src/hooks/useModal';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useRoleStore } from '@/src/utils/store/useRoleStore';
 import { useMyInfoStore } from '@/src/utils/store/useMyImfoStore';
