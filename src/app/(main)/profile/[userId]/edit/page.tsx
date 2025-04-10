@@ -23,9 +23,9 @@ const ProfileEditPage = ({ params }: ProfileEditPageProps) => {
 
   return (
     <div className={cn('container')}>
-      <Header page={`/profile/${userId}`}>
-        <span onClick={handleAccountDeletion}>계정 삭제</span>
-      </Header>
+      <p className={cn('deleteAccount')} onClick={handleAccountDeletion}>
+        계정 삭제
+      </p>
       <div className={cn('secondContainer')}>
         <ProfileEditForm params={params} />
       </div>
