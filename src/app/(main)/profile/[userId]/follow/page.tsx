@@ -18,9 +18,7 @@ const FollowPage = ({ params }: FollowerPageProps) => {
 
   return (
     <div className={cn('container')}>
-      <div className={cn('secondContainer')}>
         <FollowAllData params={params} initialPage={page} />
-      </div>
     </div>
   );
 };

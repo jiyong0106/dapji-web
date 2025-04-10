@@ -63,6 +63,7 @@ const FollowingLists = ({ params }: FollowingListsProps) => {
       fetchFollowingData({ page, search: searchName, userId }),
     getNextPageParam: (lastPage) =>
       lastPage.meta.hasNextPage ? lastPage.meta.page + 1 : undefined,
+    staleTime: 60 * 1000,
   });
 
   const followingData =
