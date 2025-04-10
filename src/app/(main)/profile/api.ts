@@ -56,6 +56,30 @@ export const fetchProfileGyms = async ({
   return res.data;
 };
 
+//프로필에서 사용자가 답지 업로드한 클라이밍장 상세 조회
+//프로필에서 사용자가 답지 업로드한 클라이밍장 상세 조회
+
+type ProfileGymDetailProps = {
+  gymId: string;
+  userId: string;
+  page: number;
+};
+
+export const fetchProfileGymDetail = async ({
+  gymId,
+  userId,
+  page = 1,
+}: ProfileGymDetailProps) => {
+  const res = await instance.get(`/profile/${userId}/gym/${gymId}`, {
+    params: {
+      page,
+      gymId,
+      userId,
+    },
+  });
+  return res.data;
+};
+
 //프로필 유저 정보 및 동영상 썸네일
 export const useProfileDatas = (userId: string) => {
   return useQuery<ProfilePostType>({

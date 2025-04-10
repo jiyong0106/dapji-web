@@ -24,7 +24,6 @@ const ProfileForm = ({ params, profileInfo }: ProfileFormProps) => {
     initalFollowToggle: profileInfo.isFollowing,
   });
 
-  console.log(profileInfo);
 
   const renderProviderIcon = () => {
     return (

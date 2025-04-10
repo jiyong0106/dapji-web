@@ -20,6 +20,8 @@ const ProfileGymData = ({ item, userId }: ProfileGymDataProps) => {
     router.push(`/profile/${userId}/${gym_idx}`);
   };
 
+  //클라이밍 상세 클릭
+
   return (
     <li className={cn('container')} onClick={gymClick}>
       <Image

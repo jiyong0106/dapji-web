@@ -37,7 +37,7 @@ const ProfileGymDatas = ({ params }: ProfileGymDatasProps) => {
       {profileGyms.length > 0 ? (
         <>
           {profileGyms.map((gym) => (
-            <ProfileGymData item={gym} userId={userId} />
+            <ProfileGymData key={gym.gym_idx} item={gym} userId={userId} />
           ))}
         </>
       ) : (
