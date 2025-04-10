@@ -14,6 +14,7 @@ const MainNav = () => {
   const { myId, setmyId } = useMyInfoStore();
   const { showModalHandler } = useModal();
   const router = useRouter();
+  console.log('myId==>', myId);
 
   const menuItems = mainHeaderOptions(myId);
 

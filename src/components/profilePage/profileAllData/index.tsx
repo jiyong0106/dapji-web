@@ -3,7 +3,7 @@ import styles from './ProfileAllData.module.scss';
 import { useState } from 'react';
 import ProfileGymDatas from '../profileGymData/ProfileGymDatas';
 import ProfilePostDatas from '../profilePostData';
-import { PostIcon, BoardIcon } from '@/public/icon';
+import { PostIcon } from '@/public/icon';
 import { ProfilePostDetailType } from '@/src/utils/type';
 import Image from 'next/image';
 

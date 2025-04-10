@@ -90,13 +90,13 @@ const ProfilePage = ({ params }: ProfilePageProps) => {
 
   return (
     <div className={cn('container')}>
-      {/* <div className={cn('BtnStyles')}>
+      <div className={cn('BtnStyles')}>
         {role && (
           <Link href={'/admin'}>
             <AdminIcon />
           </Link>
         )}
-      </div> */}
+      </div>
       {profileInfo ? (
         <ProfileForm params={params} profileInfo={profileInfo} />
       ) : (
