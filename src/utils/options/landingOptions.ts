@@ -30,10 +30,10 @@ export const mainHeaderOptions = (myId?: string) => [
     title: '클라이밍장 목록',
     getPath: () => '/gym',
   },
-  {
-    title: '기록',
-    getPath: () => '/calendar',
-  },
+  // {
+  //   title: '기록',
+  //   getPath: () => '/calendar',
+  // },
   {
     title: '프로필',
     getPath: () => (myId ? `/profile/${myId}` : '/signin'),
