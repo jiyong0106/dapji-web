@@ -37,7 +37,7 @@
 }
 
 .subtitle {
-  color: #aaa;
+  color: #858585;
   font-size: 14px;
   text-align: center;
   line-height: 1.4;
@@ -58,7 +58,6 @@
 }
 
 .cardWrapper {
-  background-color: #111;
   border-radius: 10px;
   padding: 24px;
   color: white;
@@ -76,13 +75,14 @@
 }
 
 .cardWrapper h3 {
-  font-size: 18px;
   margin: 8px 0;
+  @include font-style(1.8rem, black, 600);
 }
 
 .cardWrapper p {
   font-size: 14px;
   color: #ccc;
+  @include font-style(1.4rem, #333d4b, 600);
 }
 
 @media (min-width: 768px) {
@@ -121,11 +121,11 @@
     margin: 0 auto;
 
     h3 {
-      @include font-style(2.5rem, white, 400);
+      @include font-style(2.5rem, black, 600);
     }
 
     p {
-      @include font-style(1.5rem, #d9d9d9, 400);
+      @include font-style(1.8rem, #333d4b, 400);
     }
   }
 
