@@ -1,63 +1,39 @@
 import classNames from 'classnames/bind';
 import styles from './profileGymData.module.scss';
-import { GymsType } from '@/src/utils/type';
+import { ProfileGymsType } from '@/src/utils/type';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import FavoriteAction from '../../climbListPage/favoriteClimbList';
-import useFavoriteAction from '@/src/hooks/useFavoriteAction';
 import { RightArrowIcon } from '@/public/icon';
-import { useMyInfoStore } from '@/src/utils/store/useMyImfoStore';
 
 const cn = classNames.bind(styles);
 
 type ProfileGymDataProps = {
-  gym: GymsType;
+  item: ProfileGymsType;
   userId: string;
 };
 
-const ProfileGymData = ({ gym, userId }: ProfileGymDataProps) => {
-  const { name, address, logo, post_count, gym_idx, is_favorite } = gym;
+const ProfileGymData = ({ item, userId }: ProfileGymDataProps) => {
+  const { logo, post_count, gym_idx } = item;
   const router = useRouter();
-  const { myId } = useMyInfoStore();
-  const isMyId = myId === Number(userId);
-
-  const { handleFavoriteClick, favoriteToggle } = useFavoriteAction({
-    initalFavoriteToggle: is_favorite,
-    gymId: gym_idx,
-  });
 
   const gymClick = () => {
-    router.push(`/gym/${gym_idx}`);
+    router.push(`/profile/${userId}/${gym_idx}`);
   };
+
+  //클라이밍 상세 클릭
 
   return (
     <li className={cn('container')} onClick={gymClick}>
-      <div className={cn('image')}>
-        <Image
-          src={logo || process.env.NEXT_PUBLIC_URL + '/icon/icon.png'}
-          alt="로고이미지"
-          width={80}
-          height={80}
-          priority
-          className={cn('image')}
-        />
-      </div>
+      <Image
+        src={logo || process.env.NEXT_PUBLIC_URL + '/icon/icon.png'}
+        alt="로고이미지"
+        width={80}
+        height={80}
+        priority
+        className={cn('image')}
+      />
       <div className={cn('textWrapper')}>
-        <div className={cn('nameWrapper')}>
-          <span className={cn('name')}>{name}</span>
-          {isMyId && (
-            <FavoriteAction
-              favoriteToggle={favoriteToggle}
-              onClick={handleFavoriteClick}
-            />
-          )}
-        </div>
-        <span className={cn('address')}>{address}</span>
-        <span className={cn('post_count')}>
-          ❤️ {post_count}개의 답지를 올렸어요
-        </span>
-      </div>
-      <div className={cn('actionBtn')}>
+        <span className={cn('post_count')}>{post_count}개의 답지 공유</span>
         <RightArrowIcon width="15" height="15" />
       </div>
     </li>

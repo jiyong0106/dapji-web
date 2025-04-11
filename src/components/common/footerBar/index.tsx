@@ -3,7 +3,7 @@ import styles from './footerBar.module.scss';
 import classNames from 'classnames/bind';
 import { HomeIcon, BordIcon, UserIcon, MarkerIcon } from '@/public/icon';
 import { usePathname, useRouter } from 'next/navigation';
-import { fetchMyInfo } from '@/src/app/auth/api';
+import { fetchMyInfo } from '@/src/app/(main)/auth/api';
 import { useMyInfoStore } from '@/src/utils/store/useMyImfoStore';
 import { GlassIcon } from '@/public/icon';
 import { useEffect, useState } from 'react';
@@ -27,7 +27,6 @@ const FooterBar = () => {
 
     if (
       path !== '/' &&
-      path !== '/main' &&
       path !== '/join' &&
       path !== '/signin' &&
       path !== '/signup' &&
@@ -56,7 +55,6 @@ const FooterBar = () => {
 
   if (
     path === '/' ||
-    path === '/main' ||
     path === '/join' ||
     path.startsWith('/auth') ||
     (path.startsWith('/board') && path !== '/board') ||

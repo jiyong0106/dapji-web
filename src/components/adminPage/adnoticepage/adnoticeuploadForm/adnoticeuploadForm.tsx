@@ -8,7 +8,7 @@ import CommonButton from '../../../common/commonButton';
 import {
   fetchadNoticeUpload,
   fetchadNoticeImage,
-} from '@/src/app/admin/adnotice/api';
+} from '@/src/app/(main)/admin/adnotice/api';
 import { useMutation } from '@tanstack/react-query';
 
 import CommonInput from '@/src/components/common/commonInput';

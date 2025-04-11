@@ -1,0 +1,13 @@
+.container {
+  width: 100%;
+
+  .BtnStyles {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+  }
+}
+
+.container::-webkit-scrollbar {
+  display: none;
+}

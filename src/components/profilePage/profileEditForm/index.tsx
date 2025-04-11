@@ -5,13 +5,16 @@ import CommonInput from '@/src/components/common/commonInput';
 import CommonButton from '@/src/components/common/commonButton';
 import ImageInput from '@/src/components/common/imageInput';
 import { useState, useEffect } from 'react';
-import { useProfileDatas, useProfileUpdate } from '@/src/app/profile/api';
+import {
+  useProfileDatas,
+  useProfileUpdate,
+} from '@/src/app/(main)/profile/api';
 import { useForm } from 'react-hook-form';
 import { useFormProfileEditProps } from '@/src/utils/type';
 import { nickname_reg } from '@/src/utils/regex';
 import { useModal } from '@/src/hooks/useModal';
 import ModalChoice from '../../common/moadlChoice';
-import { useNicknameCheck } from '@/src/app/join/api';
+import { useNicknameCheck } from '@/src/app/(main)/join/api';
 import LoadingSpinner from '../../common/loadingSpinner';
 
 const cn = classNames.bind(styles);

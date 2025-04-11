@@ -58,7 +58,7 @@ export const useCommentUploadData = ({
     onError: (e) => {
       if (isServerError(e) && e.response && e.response.status === 401) {
         showModalHandler('alert', '댓글을 작성하려면 로그인이 필요해요', () =>
-          router.replace('/main'),
+          router.replace('/signin'),
         );
         return;
       }
@@ -166,7 +166,7 @@ export const useRecommentUploadData = ({
     onError: (e) => {
       if (isServerError(e) && e.response && e.response.status === 401) {
         showModalHandler('alert', '답글을 작성하려면 로그인이 필요해요', () =>
-          router.replace('/main'),
+          router.replace('/signin'),
         );
         return;
       }

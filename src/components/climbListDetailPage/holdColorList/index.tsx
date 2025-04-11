@@ -34,16 +34,11 @@ const HoldColorList = ({
   ];
 
   // 박스를 보여줄지 여부를 관리하는 상태
-  const [isBoxVisible, setIsBoxVisible] = useState(false);
 
   const activeClick = (color: string) => {
     setActiveColor((prev: string | null) => (prev === color ? null : color));
   };
 
-  // 박스 보이기 상태 토글
-  const toggleBoxVisibility = () => {
-    setIsBoxVisible(!isBoxVisible);
-  };
   const renderColors = () => (
     <div className={cn('innerContainer')}>
       {colors.map((color: string, index: number) => (
@@ -59,36 +54,8 @@ const HoldColorList = ({
 
   return (
     <div className={cn('outerContainer')}>
-      {type === 'submit' ? (
-        renderColors()
-      ) : (
-        <>
-          {!isBoxVisible && (
-            <button
-              onClick={toggleBoxVisibility}
-              className={cn('toggleButton')}
-            >
-              여기를 탭해서 난이도별 답지를 확인하세요!
-              <RightArrowIcon
-                width="15"
-                height="15"
-                className={cn('rightIcon')}
-              />
-            </button>
-          )}
-          {isBoxVisible && (
-            <div className={cn('innerContainer')}>
-              <button
-                onClick={toggleBoxVisibility}
-                className={cn('closeButton')}
-              >
-                닫기
-              </button>
-              {renderColors()}
-            </div>
-          )}
-        </>
-      )}
+      <p className={cn('holdText')}>난이도</p>
+      {renderColors()}
     </div>
   );
 };

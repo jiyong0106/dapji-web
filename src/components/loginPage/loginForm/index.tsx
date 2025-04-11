@@ -31,7 +31,7 @@ const LoginForm = () => {
         router.replace('/join');
         return;
       }
-      router.replace(`/auth/dapji`);
+      router.replace(`/gym`);
     },
     onError: (e) => {
       if (isServerError(e) && e.response && e.response.status === 401) {

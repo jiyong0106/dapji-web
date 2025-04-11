@@ -11,7 +11,7 @@ import {
   usePostDetailUpload,
   usePostDetailUpdate,
   useVideoUpload,
-} from '@/src/app/gym/api';
+} from '@/src/app/(main)/gym/api';
 import CommonButton from '../../common/commonButton';
 import { useModal } from '@/src/hooks/useModal';
 import LoadingSpinner from '../../common/loadingSpinner';

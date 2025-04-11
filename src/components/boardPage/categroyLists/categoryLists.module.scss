@@ -1,8 +1,8 @@
 .outerContainer {
   @include flex-arrange(space-around, center);
   width: 100%;
-  height: 50px;
-  padding: 0 10px 10px;
+  height: 30px;
+  margin: 5px 0;
   gap: 10px;
   background: rgb(247, 244, 244);
 }

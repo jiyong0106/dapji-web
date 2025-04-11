@@ -51,8 +51,9 @@ const BoardList = ({ list }: BoardListProps) => {
 
   //좋아요 클릭
 
-  const profilePage = (e: React.MouseEvent) => {
+  const profileClick = (e: React.MouseEvent) => {
     e.stopPropagation();
+    if (typeof user_idx === 'undefined') return;
     router.push(`/profile/${user_idx}`);
   };
 
@@ -71,7 +72,8 @@ const BoardList = ({ list }: BoardListProps) => {
               height={30}
               alt="유저 이미지"
               className={cn('profileImage')}
-              onClick={profilePage}
+              onClick={user_idx ? profileClick : undefined}
+              style={{ cursor: user_idx ? 'pointer' : 'default' }}
             />
             <div className={cn('dateWrapper')}>
               <span className={cn('category')}>{category}</span>

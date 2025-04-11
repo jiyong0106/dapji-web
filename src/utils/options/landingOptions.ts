@@ -1,3 +1,5 @@
+import { useMyInfoStore } from '../store/useMyImfoStore';
+
 //랜딩헤더 옵션들
 export const landingHeaderOptions = [
   {
@@ -15,6 +17,26 @@ export const landingHeaderOptions = [
   {
     title: '문의하기',
     sectionId: 'contact',
+  },
+];
+
+//메인헤더 옵션들
+export const mainHeaderOptions = (myId?: string) => [
+  {
+    title: '게시판',
+    getPath: () => '/board',
+  },
+  {
+    title: '클라이밍장 목록',
+    getPath: () => '/gym',
+  },
+  // {
+  //   title: '기록',
+  //   getPath: () => '/calendar',
+  // },
+  {
+    title: '프로필',
+    getPath: () => (myId ? `/profile/${myId}` : '/signin'),
   },
 ];
 
