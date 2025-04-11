@@ -11,10 +11,10 @@
 
 .container {
   background-image: url('/images/whiteback.png');
-  background-size: cover; // 화면에 맞게 꽉 채움
-  background-position: center; // 가운데 정렬
-  background-repeat: no-repeat; // 반복 X
-  background-color: #f0f0f0; // 이미지 로딩 전 대비 배경색
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #f0f0f0;
 
   flex: 1;
   width: 100%;
