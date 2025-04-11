@@ -11,7 +11,7 @@ type ClimbListProps = {
   page: number;
   search: string;
   is_favorite?: boolean;
-  sort: string | null;
+  sort?: string | null;
 };
 
 //클라이밍장 리스트 조회 함수
