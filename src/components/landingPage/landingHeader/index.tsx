@@ -47,14 +47,14 @@ const LandingHeader = () => {
             </li>
           ))}
         </ul>
-        <a
+        {/* <a
           href={process.env.NEXT_PUBLIC_URL + '/gym'}
           target="_blank"
           rel="noopener noreferrer"
           className={cn('downloadBtn')}
         >
           웹에서 보기
-        </a>
+        </a> */}
       </div>
     </nav>
   );
