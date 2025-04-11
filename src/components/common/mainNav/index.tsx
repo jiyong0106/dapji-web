@@ -64,7 +64,7 @@ const MainNav = () => {
             myId ? handleLogoutClick() : router.push('/signin');
           }}
         >
-          {myId ? '로그아웃' : '로그인'}
+          {myId === null ? '로그인' : '로그아웃'}
         </p>
       </div>
     </nav>
