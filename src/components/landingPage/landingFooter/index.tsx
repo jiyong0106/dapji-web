@@ -20,7 +20,16 @@ const LandingFooter = () => {
               height={70}
             />
             <div className={cn('brandText')}>
-              <p>DAPJI</p>
+              <Image
+                src={
+                  process.env.NEXT_PUBLIC_URL + '/images/textTransparent.png'
+                }
+                alt="로고이미지"
+                width={60}
+                height={20}
+                className={cn('logo2')}
+                priority
+              />
               <p>클라이밍이 쉬워지는 순간,</p>
             </div>
           </div>

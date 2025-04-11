@@ -22,7 +22,14 @@ const LandingHeader = () => {
           className={cn('logo')}
           priority
         />
-        <p className={cn('leftText')}>DAPJI</p>
+        <Image
+          src={process.env.NEXT_PUBLIC_URL + '/images/textTransparent.png'}
+          alt="로고이미지"
+          width={60}
+          height={20}
+          className={cn('logo2')}
+          priority
+        />
       </a>
 
       <div className={cn('right')}>
