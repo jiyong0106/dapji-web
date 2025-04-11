@@ -10,7 +10,7 @@ const APP_TITLE_TEMPLATE = '%s - Dap Ji';
 const APP_DESCRIPTION = 'Dap Ji';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('http://localhost:3000'),
+  metadataBase: new URL('https://climbdapji.kr'),
   //이거 url바꾸기
   applicationName: APP_NAME,
   title: {
@@ -66,7 +66,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
-  themeColor: 'rgb(247, 244, 244)',
+  themeColor: 'white',
 };
 
 export default function RootLayout({
