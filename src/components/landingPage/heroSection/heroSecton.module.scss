@@ -34,8 +34,8 @@
   }
 
   .slogan {
-    font-size: 20px;
     margin-bottom: 20px;
+    @include font-style(2.2rem, #2f5597, 600);
 
     @media (min-width: 769px) {
       font-size: 50px;

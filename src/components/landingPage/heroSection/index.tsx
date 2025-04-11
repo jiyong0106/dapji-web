@@ -14,7 +14,7 @@ const HeroSection = () => {
         </h1>
         <a
           className={cn('appStore')}
-          href={'https://apps.apple.com/us/app/dapji/id6738718316'}
+          href={`${process.env.NEXT_PUBLIC_IOS_URL}`}
           target="_blank"
           rel="noopener noreferrer"
         >
