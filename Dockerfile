@@ -16,10 +16,12 @@ COPY . .
 # 빌드 타임에 필요한 환경 변수 정의
 ARG NEXT_PUBLIC_API_URL
 ARG NEXT_PUBLIC_URL
+ARG NEXT_PUBLIC_IOS_URL  # (추가) iOS URL을 빌드 아규먼트로 선언
 
-# 환경 변수를 설정하여 빌드 시 적용
+# ENV 설정 (Docker 컨테이너 내에서 빌드 시 반영되도록)
 ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
 ENV NEXT_PUBLIC_URL=$NEXT_PUBLIC_URL
+ENV NEXT_PUBLIC_IOS_URL=$NEXT_PUBLIC_IOS_URL
 
 # 빌드
 RUN npm run build
