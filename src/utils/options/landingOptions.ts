@@ -43,7 +43,7 @@ export const mainHeaderOptions = (myId?: string) => [
 //랜딩퓨처 옵션들
 export const landingFeaturesOptions = [
   {
-    cardImage: '/images/illustration1.png',
+    cardImage: '/images/illustration9.png',
     title: '답지 검색',
     desc: '쉽고 빠른 클라이밍 영상 찾기 ',
   },
