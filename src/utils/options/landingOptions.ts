@@ -31,11 +31,11 @@ export const mainHeaderOptions = (myId?: string) => [
     getPath: () => '/gym',
   },
   {
-    title: '클라이밍 기록',
+    title: '기록',
     getPath: () => '/calendar',
   },
   {
-    title: '마이페이지',
+    title: '프로필',
     getPath: () => (myId ? `/profile/${myId}` : '/signin'),
   },
 ];
