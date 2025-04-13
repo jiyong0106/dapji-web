@@ -79,7 +79,7 @@ export const landingHowOptions = [
   {
     icon: '/images/landingUpload.png',
     title: '답지 업로드',
-    desc: '나만의 클라이밍 영상, 답지를 업로드하고\n다른 사람들에게 자랑해보세요',
+    desc: '나만의 클라이밍 영상, 답지를 업로드하고\n다른 사람들에게 자랑해 보세요',
     features: [
       '대용량 영상도 문제없이!',
       '직접 촬영한 영상 및 인스타그램 링크로 업로드',
