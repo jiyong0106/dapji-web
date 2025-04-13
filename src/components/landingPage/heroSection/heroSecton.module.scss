@@ -9,6 +9,17 @@
   }
 }
 
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
 .container {
   background-image: url('/images/whiteback.png');
   background-size: cover;
@@ -58,6 +69,7 @@
     display: flex;
     gap: 10px;
     text-decoration-line: none;
+    animation: bounce 1.6s ease-in-out infinite;
   }
 }
 
