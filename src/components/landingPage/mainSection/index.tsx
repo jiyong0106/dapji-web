@@ -31,9 +31,9 @@ const MainSection = () => {
         <div className={cn('left')}>
           <h2 className={cn('slogan')}>루트 파인딩, 너무 고민하지 마세요</h2>
           <p className={cn('desc')}>
-            루트가 안 보일 때, 다른 클라이머의 완등 영상은 최고의 힌트!
+            다른 클라이머의 완등 영상은 최고의 힌트!
             <br />
-            답지는 그런 영상을 더 빠르게 찾을 수 있도록 만든 서비스예요.
+            답지는 그런 영상을 더 빠르게 찾도록 만든 서비스예요.
           </p>
         </div>
 
