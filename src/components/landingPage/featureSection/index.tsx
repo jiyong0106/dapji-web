@@ -28,7 +28,7 @@ const FeatureSection = () => {
 
   return (
     <section id="features" ref={ref} className={cn('container')}>
-      <h3 className={cn('title')}>클라이머를 위한 필수 기능 모음</h3>
+      <h3 className={cn('title')}>클라이머에게 꼭 필요한 기능들만 모았어요</h3>
 
       <div className={cn('cardGrid', { animate: isVisible })}>
         {landingFeaturesOptions.map((item, index) => (

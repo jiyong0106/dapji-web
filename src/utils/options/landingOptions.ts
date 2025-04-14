@@ -43,25 +43,21 @@ export const mainHeaderOptions = (myId?: string) => [
 //랜딩퓨처 옵션들
 export const landingFeaturesOptions = [
   {
-    // cardImage: '/images/illustration9.png',
     cardImage: '/images/grayVideo.png',
     title: '답지 검색',
     desc: '쉽고 빠른 클라이밍 영상 찾기 ',
   },
   {
-    // cardImage: '/images/illustration2.png',
     cardImage: '/images/grayCalendar.png',
     title: '캘린더 기록',
     desc: '내 클라이밍 기록 한눈에 확인!',
   },
   {
-    // cardImage: '/images/illustration3.png',
     cardImage: '/images/grayProfile.png',
     title: '클라이밍 프로필',
     desc: '조금씩 쌓아가는 클라이밍 프로필',
   },
   {
-    // cardImage: '/images/illustration4.png',
     cardImage: '/images/grayCommu.png',
     title: '커뮤니티',
     desc: '각종 정보와 꿀팁 공유, 여기서!',
