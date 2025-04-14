@@ -94,7 +94,7 @@ export const landingHowOptions = [
   {
     icon: '/images/landingCalendar.png',
     title: '클라이밍 기록과 일정 관리',
-    desc: '운동 기록과 일정을 한 눈에 볼 수 있어요. 내가 언제,\n어디서 얼마나 클라이밍을 했는지 한 번에 정리돼요.',
+    desc: '운동 기록과 일정을 한 눈에 볼 수 있어요. 내가 언제,\n어디서 얼마나 클라이밍을 했는지 한 번에 정리돼요',
     features: [
       '답지를 업로드하면 자동으로 기록',
       '답지가 없어도 직접 기록 추가 가능',
@@ -105,7 +105,7 @@ export const landingHowOptions = [
   {
     icon: '/images/landingProfile.png',
     title: '프로필 꾸미기',
-    desc: '키와 리치부터 등반 스타일, 영상까지! 나만의 클라이밍\n프로필을 만들고, 성장 과정을 볼 수 있어요.',
+    desc: '키와 리치부터 등반 스타일, 영상까지! 나만의 클라이밍\n프로필을 만들고, 성장 과정을 볼 수 있어요',
     features: [
       '자기소개 및 클라이밍 목표 설정',
       '내가 클리어 한 문제 한눈에 보기',
@@ -116,7 +116,7 @@ export const landingHowOptions = [
   {
     icon: '/images/landingCommu.png',
     title: '답지 커뮤니티',
-    desc: '운동 얘기부터 장비 추천, TMI까지! 클라이머들끼리\n모여 자유롭게 소통해요. 답지는 아지트 그 자체.',
+    desc: '운동 얘기부터 장비 추천, TMI까지! 클라이머들끼리\n모여 자유롭게 소통해요. 답지는 아지트 그 자체',
     features: [
       '질문, 정보, 잡담 등 자유게시판 운영',
       '주제별 카테고리 필터링 (장비, 부상, 암장, 훈련 등)',

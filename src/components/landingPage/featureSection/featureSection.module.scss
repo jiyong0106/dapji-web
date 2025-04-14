@@ -82,7 +82,7 @@
 
         .cardText {
           h3 {
-            @include font-style(3rem, #333d4b, 700);
+            @include font-style(2.7rem, #333d4b, 700);
             margin-top: 12px;
           }
 
@@ -117,7 +117,7 @@
 
         .cardText {
           h3 {
-            @include font-style(3.5rem, #333d4b, 700);
+            @include font-style(3rem, #333d4b, 700);
             margin-top: 20px;
           }
 
