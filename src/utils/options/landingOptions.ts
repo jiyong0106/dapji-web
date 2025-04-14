@@ -127,11 +127,14 @@ export const landingFooterOptions = [
   {
     title: '처리방침',
     links: [
-      { label: '개인정보처리방침', url: 'https://dap-ji.github.io/privacy/' },
-      { label: '이용약관', url: 'https://dap-ji.github.io/privacy/terms' },
+      {
+        label: '개인정보처리방침',
+        url: `${process.env.NEXT_PUBLIC_URL}/privacy/`,
+      },
+      { label: '이용약관', url: `${process.env.NEXT_PUBLIC_URL}/terms` },
       {
         label: '삭제약관',
-        url: 'https://dap-ji.github.io/privacy/deletionpolicy',
+        url: `${process.env.NEXT_PUBLIC_URL}/deletionpolicy`,
       },
     ],
   },
