@@ -13,139 +13,124 @@
   padding: 40px 20px;
   background-color: white;
   width: 100%;
-}
 
-.contentWrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 24px;
-  max-width: 1200px;
-  margin: 0 auto;
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.6s ease-out;
-
-  &.animate {
-    animation: slideUp 1s ease-out forwards;
-  }
-}
-
-.title {
-  text-align: center;
-  @include font-style(2.4rem, black, 600);
-}
-
-.subtitle {
-  color: #858585;
-  font-size: 14px;
-  text-align: center;
-  line-height: 1.4;
-}
-
-.cardGrid {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  width: 100%;
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.6s ease-out;
-
-  &.animate {
-    animation: slideUp 1.5s ease-out forwards;
-  }
-}
-
-.cardWrapper {
-  border-radius: 10px;
-  padding: 24px;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.cardImage {
-  margin-bottom: 12px;
-  width: 200px;
-  height: 200px;
-  border-radius: 10px;
-}
-
-.cardWrapper h3 {
-  margin: 8px 0;
-  @include font-style(1.8rem, black, 600);
-}
-
-.cardWrapper p {
-  font-size: 14px;
-  color: #ccc;
-  @include font-style(1.4rem, #333d4b, 600);
-}
-
-@media (min-width: 768px) {
   .title {
-    @include font-style(4rem, black, 600);
+    text-align: center;
+    margin: 0 0 24px 0;
+    @include font-style(2.4rem, #333d4b, 700);
   }
 
   .cardGrid {
+    display: flex;
     flex-direction: column;
-  }
-}
+    gap: 16px;
 
-@media (min-width: 1024px) {
-  .title {
-    @include font-style(6rem, black, 600);
-    margin-bottom: 0;
-  }
-
-  .subtitle {
-    @include font-style(2rem, #858585, 400);
-  }
-
-  .cardGrid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 32px;
-    justify-content: center;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-  .cardWrapper {
-    min-height: 320px;
-    max-width: 340px;
-    width: 100%;
-    margin: 0 auto;
-
-    h3 {
-      @include font-style(2.5rem, black, 600);
+    &.animate {
+      animation: slideUp 1.2s ease-out forwards;
     }
 
-    p {
-      @include font-style(1.8rem, #333d4b, 400);
+    .card {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #e5edfa;
+      border-radius: 16px;
+      padding: 10px 20px;
+      gap: 16px;
+
+      .cardText {
+        flex: 1;
+
+        h3 {
+          @include font-style(2.5rem, #333d4b, 700);
+          margin-bottom: 5px;
+        }
+
+        p {
+          @include font-style(1.4rem, #858585, 500);
+          margin-top: 0;
+        }
+      }
+
+      .cardImage {
+        flex-shrink: 0;
+        width: 70px;
+        height: 70px;
+        border-radius: 10px;
+      }
+    }
+  }
+  @media (min-width: 768px) {
+    padding: 60px 24px; // 데스크탑보다 살짝 작게
+
+    .title {
+      @include font-style(3.2rem, #333d4b, 700);
+      margin-bottom: 60px;
+      margin-top: 0;
+    }
+
+    .cardGrid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      max-width: 800px;
+      margin: 0 auto;
+
+      .card {
+        flex-direction: row;
+        padding: 16px;
+
+        .cardText {
+          h3 {
+            @include font-style(3rem, #333d4b, 700);
+            margin-top: 12px;
+          }
+
+          p {
+            @include font-style(1.6rem, #858585, 500);
+          }
+        }
+
+        .cardImage {
+          width: 110px;
+          height: 110px;
+        }
+      }
     }
   }
 
-  .cardWrapper.item1 {
-    grid-column: 1;
-    grid-row: 1;
-  }
+  @media (min-width: 1024px) {
+    padding: 70px 40px;
+    .title {
+      @include font-style(4rem, #333d4b, 700);
+      margin-bottom: 70px;
+      margin-top: 0;
+    }
 
-  .cardWrapper.item2 {
-    grid-column: 2;
-    grid-row: 1;
-  }
+    .cardGrid {
+      gap: 32px;
+      max-width: 1000px;
+      margin: 0 auto;
 
-  .cardWrapper.item3 {
-    grid-column: 2;
-    grid-row: 2;
-  }
+      .card {
+        padding: 20px;
 
-  .cardWrapper.item4 {
-    grid-column: 1;
-    grid-row: 2;
+        .cardText {
+          h3 {
+            @include font-style(3.5rem, #333d4b, 700);
+            margin-top: 20px;
+          }
+
+          p {
+            @include font-style(2rem, #858585, 500);
+          }
+        }
+
+        .cardImage {
+          width: 100px;
+          height: 100px;
+        }
+      }
+    }
   }
 }

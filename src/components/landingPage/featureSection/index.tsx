@@ -28,30 +28,24 @@ const FeatureSection = () => {
 
   return (
     <section id="features" ref={ref} className={cn('container')}>
-      <div className={cn('contentWrapper', { animate: isVisible })}>
-        <h3 className={cn('title')}>클라이머를 위한 필수 기능 모음</h3>
-        <p className={cn('subtitle')}>
-          다른 클라이머의 루트를 확인하고, 빠르게 감 잡아보세요. 기록과 공유까지
-          한 번에!
-        </p>
+      <h3 className={cn('title')}>클라이머를 위한 필수 기능 모음</h3>
 
-        <div className={cn('cardGrid', { animate: isVisible })}>
-          {landingFeaturesOptions.map((item, index) => (
-            <div key={index} className={cn('cardWrapper', `item${index + 1}`)}>
-              <div className={cn('card')}>
-                <Image
-                  src={process.env.NEXT_PUBLIC_URL + item.cardImage}
-                  alt={`${item.title} illustration`}
-                  width={80}
-                  height={80}
-                  className={cn('cardImage')}
-                />
-                <h3>{item.title}</h3>
-                <p>{item.desc}</p>
-              </div>
+      <div className={cn('cardGrid', { animate: isVisible })}>
+        {landingFeaturesOptions.map((item, index) => (
+          <div key={index} className={cn('card')}>
+            <div className={cn('cardText')}>
+              <h3>{item.title}</h3>
+              <p>{item.desc}</p>
             </div>
-          ))}
-        </div>
+            <Image
+              src={process.env.NEXT_PUBLIC_URL + item.cardImage}
+              alt={`${item.title} illustration`}
+              width={80}
+              height={80}
+              className={cn('cardImage')}
+            />
+          </div>
+        ))}
       </div>
     </section>
   );
