@@ -30,6 +30,7 @@ const HowWorkSection = () => {
       {landingHowOptions.map((step, idx) => (
         <div
           key={idx}
+          id={step.id}
           className={cn('row', { reverse: idx % 2 === 1, animate: isVisible })}
         >
           <div className={cn('text')}>

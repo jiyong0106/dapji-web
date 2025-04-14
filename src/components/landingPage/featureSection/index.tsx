@@ -11,6 +11,19 @@ const FeatureSection = () => {
   const ref = useRef<HTMLDivElement | null>(null);
   const [isVisible, setIsVisible] = useState(false);
 
+  const scrollClick = (id: string) => {
+    const section = document.getElementById(id);
+    if (section) {
+      const offset = 150; // 원하는 만큼 조정
+      const top = section.getBoundingClientRect().top + window.scrollY - offset;
+
+      window.scrollTo({
+        top,
+        behavior: 'smooth',
+      });
+    }
+  };
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -32,7 +45,11 @@ const FeatureSection = () => {
 
       <div className={cn('cardGrid', { animate: isVisible })}>
         {landingFeaturesOptions.map((item, index) => (
-          <div key={index} className={cn('card')}>
+          <div
+            key={index}
+            className={cn('card')}
+            onClick={() => scrollClick(item.sectionId)}
+          >
             <div className={cn('cardText')}>
               <h3>{item.title}</h3>
               <p>{item.desc}</p>

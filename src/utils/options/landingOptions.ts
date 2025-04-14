@@ -46,21 +46,25 @@ export const landingFeaturesOptions = [
     cardImage: '/images/grayVideo.png',
     title: '답지 검색',
     desc: '쉽고 빠른 클라이밍 영상 찾기 ',
+    sectionId: 'search',
   },
   {
     cardImage: '/images/grayCalendar.png',
     title: '캘린더 기록',
     desc: '내 클라이밍 기록 한눈에 확인!',
+    sectionId: 'calendar',
   },
   {
     cardImage: '/images/grayProfile.png',
     title: '클라이밍 프로필',
     desc: '조금씩 쌓아가는 클라이밍 프로필',
+    sectionId: 'profile',
   },
   {
     cardImage: '/images/grayCommu.png',
     title: '커뮤니티',
     desc: '각종 정보와 꿀팁 공유, 여기서!',
+    sectionId: 'commu',
   },
 ];
 
@@ -75,6 +79,7 @@ export const landingHowOptions = [
       '보고싶은 문제가 있는지 확인',
       '링크 전달해서 친구들과 공유!',
     ],
+    id: 'search',
   },
   {
     icon: '/images/landingUpload.png',
@@ -97,6 +102,7 @@ export const landingHowOptions = [
       '향후 클라이밍 일정 등록 및 알림 설정',
       '과거 기록 열람 및 일별 히스토리 조회',
     ],
+    id: 'calendar',
   },
   {
     icon: '/images/landingProfile.png',
@@ -108,6 +114,7 @@ export const landingHowOptions = [
       '암장별로 내가 올린 모든 답지 확인',
       '클라이머 간 팔로우 및 답지 교류',
     ],
+    id: 'profile',
   },
   {
     icon: '/images/landingCommu.png',
@@ -119,6 +126,7 @@ export const landingHowOptions = [
       '좋아요, 댓글, 반응으로 소통 ',
       '링크나 이미지 등 외부 콘텐츠도 공유',
     ],
+    id: 'commu',
   },
 ];
 

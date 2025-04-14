@@ -6,6 +6,19 @@ import { landingHeaderOptions } from '@/src/utils/options/landingOptions';
 const cn = classNames.bind(styles);
 
 const LandingHeader = () => {
+  const scrollClick = (id: string) => {
+    const section = document.getElementById(id);
+    if (section) {
+      const offset = 150; // 원하는 만큼 조정
+      const top = section.getBoundingClientRect().top + window.scrollY - offset;
+
+      window.scrollTo({
+        top,
+        behavior: 'smooth',
+      });
+    }
+  };
+
   return (
     <nav className={cn('container')}>
       <a
@@ -35,14 +48,7 @@ const LandingHeader = () => {
       <div className={cn('right')}>
         <ul className={cn('menu')}>
           {landingHeaderOptions.map((item, index) => (
-            <li
-              key={index}
-              onClick={() =>
-                document
-                  .getElementById(`${item.sectionId}`)
-                  ?.scrollIntoView({ behavior: 'smooth' })
-              }
-            >
+            <li key={index} onClick={() => scrollClick(item.sectionId)}>
               {item.title}
             </li>
           ))}
