@@ -101,6 +101,7 @@
         top: 150px;
         animation: fadeInUp 1.5s ease-out 0.7s forwards;
         opacity: 0;
+        z-index: 1;
       }
       .mock2 {
         width: 400px;
