@@ -1,13 +1,13 @@
 'use client';
 import classNames from 'classnames/bind';
 import styles from './HomePage.module.scss';
-import HeroSection from '@/src/components/landingPage/heroSection';
 import MainSection from '@/src/components/landingPage/mainSection';
 import HowWorkSection from '@/src/components/landingPage/howWorkSection';
 import { useEffect, useState } from 'react';
 import LandingHeader from '@/src/components/landingPage/landingHeader';
 import FeatureSection from '@/src/components/landingPage/featureSection';
 import LandingFooter from '@/src/components/landingPage/landingFooter';
+import BrandSection from '@/src/components/landingPage/brandSection';
 
 const cn = classNames.bind(styles);
 
@@ -44,7 +44,7 @@ const HomePage = () => {
     <div className={cn('container')}>
       <LandingHeader />
       <div className={cn('progress')} style={{ width: `${scroll}%` }} />
-      <HeroSection />
+      <BrandSection />
       <MainSection />
       <FeatureSection />
       <HowWorkSection />
@@ -54,4 +54,3 @@ const HomePage = () => {
 };
 
 export default HomePage;
-
