@@ -26,27 +26,42 @@
     flex-direction: column;
     display: flex;
     align-items: center;
-    text-align: center;
+    text-align: left;
     padding: 10px;
+
     .slogan {
-      margin-bottom: 20px;
-      @include font-style(3rem, #2f5597, 600);
+      margin-bottom: 0;
+      @include font-style(2rem, #2f5597, 400);
       @media (min-width: 769px) {
-        font-size: 5rem;
+        font-size: 3rem;
       }
     }
+
+    .name {
+      @include font-style(6rem, #2f5597, 600);
+      margin: 0 0 20px 0;
+      @media (min-width: 769px) {
+        font-size: 7rem;
+      }
+    }
+
     .appStore {
       margin-right: 4px;
       background-color: rgba(0, 12, 30, 0.8);
       color: rgb(255, 255, 255);
       font-size: 17px;
-      padding: 11px 22px;
+      padding: 20px 10px;
       border-radius: 10px;
       align-items: center;
       justify-content: center;
       display: flex;
       gap: 10px;
       text-decoration-line: none;
+      max-width: 150px;
+      transition: transform 0.5s ease;
+      &:hover {
+        transform: scale(1.1);
+      }
     }
   }
 
@@ -64,10 +79,13 @@
 
     .content {
       display: flex;
-      justify-content: center;
       flex: 1;
+      margin: auto;
       .slogan {
-        font-size: 6rem;
+        font-size: 3.5rem;
+      }
+      .name {
+        font-size: 9rem;
       }
     }
     .mockup {
@@ -79,9 +97,9 @@
         width: 400px;
         height: 800px;
         position: absolute;
-        left: 0;
-        top: 100px;
-        animation: fadeInUp 1.5s ease-out 1s forwards;
+        left: 80px;
+        top: 150px;
+        animation: fadeInUp 1.5s ease-out 0.7s forwards;
         opacity: 0;
       }
       .mock2 {
@@ -90,7 +108,7 @@
         position: absolute;
         bottom: -90px;
         right: 100px;
-        animation: fadeInUp 1.5s ease-out 1.3s forwards;
+        animation: fadeInUp 1.5s ease-out 1s forwards;
         opacity: 0;
       }
     }
