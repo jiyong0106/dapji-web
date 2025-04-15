@@ -21,7 +21,7 @@ const BrandSection = () => {
               src={`${process.env.NEXT_PUBLIC_URL}/icon/applewhitepng.png`}
               alt="앱스토어"
               width={20}
-              height={20}
+              height={24}
               className={cn('logo')}
               priority
             />
