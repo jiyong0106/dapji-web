@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ['latin'] });
 
 const APP_NAME = 'DAPJI';
 const APP_DEFAULT_TITLE = 'DAPJI';
-const APP_TITLE_TEMPLATE = '%s - DAPJI';
+const APP_TITLE_TEMPLATE = '%s';
 const APP_DESCRIPTION = 'DAPJI';
 
 export const metadata: Metadata = {
