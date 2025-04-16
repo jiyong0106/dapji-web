@@ -8,6 +8,7 @@
   .containerWrapper {
     display: grid;
     grid-template-columns: 2fr 1fr;
+    cursor: pointer;
     .contentWrapper {
       width: 100%;
       @include flex-arrange(flex-start, flex-start);

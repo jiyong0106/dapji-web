@@ -16,7 +16,7 @@ import { useLikeAction } from '@/src/hooks/useLikeAction';
 import CommentCount from '@/src/components/common/commentCount';
 import Link from 'next/link';
 import { useQuery } from '@tanstack/react-query';
-import { fetchRenderSingleVideo } from '@/src/app/gym/api';
+import { fetchRenderSingleVideo } from '@/src/app/(main)/gym/api';
 import { useState } from 'react';
 
 const cn = classNames.bind(styles);
@@ -73,7 +73,6 @@ const DetailMainContent = ({ list, gymName }: DetailMainContentProps) => {
   } = useQuery({
     queryKey: ['singleVideoDatasKey', post_idx, currentIndex],
     queryFn: () => fetchRenderSingleVideo(post_idx, currentIndex),
-    // enabled: !!isParentVisible, // isParentVisible이 true일 때만 fetch 실행
     staleTime: 5 * 60 * 1000, // 5분
   });
 

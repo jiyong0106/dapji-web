@@ -3,7 +3,7 @@ import styles from './ProfileAllData.module.scss';
 import { useState } from 'react';
 import ProfileGymDatas from '../profileGymData/ProfileGymDatas';
 import ProfilePostDatas from '../profilePostData';
-import { PostIcon, BoardIcon } from '@/public/icon';
+import { PostIcon } from '@/public/icon';
 import { ProfilePostDetailType } from '@/src/utils/type';
 import Image from 'next/image';
 
@@ -51,12 +51,12 @@ const ProfileAllData = ({ profileData, params }: ProfileAllDataProps) => {
       </div>
       {selectList === 'post' ? (
         profileData.posts.length === 0 ? (
-          <span className={cn('emptyMessage')}>답지를 추가해 보세요 🔥</span>
+          <p className={cn('emptyMessage')}>공유한 답지가 없어요! 🔥</p>
         ) : (
           <ProfilePostDatas lists={profileData.posts} />
         )
       ) : (
-        <ProfileGymDatas params={params} name={profileData.userName} />
+        <ProfileGymDatas params={params} />
       )}
     </div>
   );

@@ -13,7 +13,7 @@ import {
   boardUploadData,
   useBoardImageDelete,
   boardUpdateData,
-} from '@/src/app/board/api';
+} from '@/src/app/(main)/board/api';
 import { useMutation } from '@tanstack/react-query';
 import { useModal } from '@/src/hooks/useModal';
 import ModalChoice from '@/src/components/common/moadlChoice';

@@ -10,6 +10,7 @@
   height: 60px;
   @include flex-arrange(space-between, center);
   margin: 5px 0;
+  cursor: pointer;
 
   .infoWrapper {
     @include flex-arrange(center, center);

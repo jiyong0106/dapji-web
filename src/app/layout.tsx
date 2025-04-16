@@ -1,19 +1,16 @@
 import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import '@/src/styles/globals.css';
-import QueryProvider from '@/src/utils/QueryProvider';
-import FooterBar from '../components/common/footerBar';
-import Toast from '../components/common/toast';
 
 const inter = Inter({ subsets: ['latin'] });
 
-const APP_NAME = 'Dap Ji';
-const APP_DEFAULT_TITLE = 'Dap Ji';
-const APP_TITLE_TEMPLATE = '%s - Dap Ji';
-const APP_DESCRIPTION = 'Dap Ji';
+const APP_NAME = 'DAPJI';
+const APP_DEFAULT_TITLE = 'DAPJI';
+const APP_TITLE_TEMPLATE = '%s';
+const APP_DESCRIPTION = 'DAPJI';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('http://localhost:3000'),
+  metadataBase: new URL('https://climbdapji.kr'),
   //이거 url바꾸기
   applicationName: APP_NAME,
   title: {
@@ -35,10 +32,10 @@ export const metadata: Metadata = {
     description: APP_DESCRIPTION,
     images: [
       {
-        url: '/icon/icon.png',
+        url: '/icon/widelogo.png',
         width: 1200,
         height: 630,
-        alt: 'Dap Ji',
+        alt: 'DAPJI',
       },
     ],
   },
@@ -52,7 +49,7 @@ export const metadata: Metadata = {
     images: [
       {
         url: '/icon/icon.png',
-        alt: 'Dap Ji',
+        alt: 'DAPJI',
       },
     ],
   },
@@ -69,7 +66,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
-  themeColor: 'rgb(247, 244, 244)',
+  themeColor: 'white',
 };
 
 export default function RootLayout({
@@ -82,43 +79,34 @@ export default function RootLayout({
       <head>
         {/* <!-- Open Graph 메타 태그 --> */}
         <meta property="og:type" content="website" />
-        <meta
-          property="og:title"
-          content="Dap Ji - 당신의 클라이밍 영상을 공유해보세요!"
-        />
+        <meta property="og:title" content="DAPJI - 클라이밍이 쉬워지는 순간," />
         <meta
           property="og:description"
-          content="Dap Ji - 클라이밍 정답지를 찾아보고 공유해보세요"
+          content="DAPJI - 클라이밍 정답지를 찾아보고 공유해보세요"
         />
-        <meta property="og:image" content="/icon/icon.png" />
+        <meta property="og:image" content="/icon/widelogo.png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:url" content="https://climbdapji.kr" />
-        <meta property="og:site_name" content="Dap Ji" />
+        <meta property="og:site_name" content="DAPJI" />
 
         {/* <!-- Twitter 메타 태그 --> */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="Dap Ji - 당신의 클라이밍 영상을 공유해보세요!"
+          content="DAPJI - 클라이밍이 쉬워지는 순간,"
         />
         <meta
           name="twitter:description"
-          content="Dap Ji - Y클라이밍 정답지를 찾아보고 공유해보세요"
+          content="DAPJI - 클라이밍 정답지를 찾아보고 공유해보세요"
         />
         <meta name="twitter:image" content="/icon/icon.png" />
-        <meta name="twitter:image:alt" content="Dap Ji" />
+        <meta name="twitter:image:alt" content="DAPJI" />
 
         {/* 파비콘 */}
-        <link rel="icon" href="/icon/icon.png" sizes="any" />
+        <link rel="icon" href="/icon/btransparent.png" sizes="any" />
       </head>
-      <body className={inter.className}>
-        <QueryProvider>
-          <Toast />
-          {children}
-          <FooterBar />
-        </QueryProvider>
-      </body>
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }

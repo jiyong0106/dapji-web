@@ -1,0 +1,59 @@
+.container {
+  width: 100%;
+  min-height: 100vh;
+  padding: 10px;
+  .gymInfo {
+    display: flex;
+    gap: 10px;
+    padding-left: 5px;
+    align-items: center;
+
+    .imageWrapper {
+      position: relative;
+      width: 80px;
+      min-width: 80px;
+      aspect-ratio: 1 / 1;
+      border-radius: 25%;
+      overflow: hidden;
+      flex: 1;
+    }
+
+    .image {
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .gymInfoText {
+      flex: 3;
+      h4 {
+        margin: 0 0 10px 0;
+        @include font-style(1.5rem, black, 600);
+      }
+
+      p {
+        @include font-style(1.2rem, #858585, 400);
+        margin: 5px 0 0 0;
+      }
+    }
+  }
+
+  @media (min-width: 769px) {
+    .gymInfo {
+      gap: 20px;
+
+      .imageWrapper {
+        width: 100px;
+      }
+
+      .gymInfoText {
+        h4 {
+          @include font-style(2.5rem, black, 600);
+        }
+
+        p {
+          @include font-style(1.5rem, #858585, 400);
+        }
+      }
+    }
+  }
+}

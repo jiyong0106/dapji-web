@@ -119,8 +119,6 @@ export type ClimbPostResponseType = {
 
 /// 단일 비디오 렌더링 타입
 
-
-
 //클라이밍장별 영상 좋아요 타입
 export type VideoLikeType = {
   likeCount: number;
@@ -150,6 +148,9 @@ export type ProfileUserType = {
   introduce: string | null;
   provider: string;
   email: string;
+  gender: string;
+  height: string;
+  reach: string;
 };
 
 export type ProfilePostType = {
@@ -164,12 +165,58 @@ export type ProfilePostType = {
   followingCount: number;
 };
 
+//////////////////////////////////////////////
+//////////////////////////////////////////////
+//////////////////////////////////////////////
+
+//// 내가 올린 암장 타입(안씀)
 export type ProfileFavoriteGymType = {
   favoriteGyms: GymsType[];
   meta: metaType;
   isOwnProfile: boolean;
   userRole: string;
 };
+
+// 사용자가 답지 업로드한 클라이밍장 조회
+export type ProfileGymsType = {
+  gym_idx: number;
+  logo: string;
+  name: string;
+  post_count: number;
+};
+
+export type ProfileGymsResponseType = {
+  gyms: ProfileGymsType[];
+  meta: metaType;
+};
+
+// 사용자가 답지 업로드한 클라이밍장 상세 데이터 조회
+export type ProfileGymDetailType = {
+  gym_idx: number;
+  name: string;
+  address: string;
+  logo: string;
+  post_count: number;
+};
+
+export type ProfileGymDetailPostType = {
+  post_idx: number;
+  thumbnailUrl: string;
+  clearday: any;
+  color: string;
+  media_count: number;
+};
+
+export type ProfileGymsDetailResponseType = {
+  gym: ProfileGymDetailType;
+  posts: ProfileGymDetailPostType[];
+  meta: metaType;
+};
+
+//여기가 끝끝
+//////////////////////////////////////////////
+//////////////////////////////////////////////
+//////////////////////////////////////////////
 
 //프로필 수정 폼타입
 export type useFormProfileEditProps = {
@@ -287,6 +334,7 @@ type BoardlikeType = {
 export type CategroyListType = {
   category_idx: number;
   category: string;
+  option?: string;
 };
 
 //preview 타입들

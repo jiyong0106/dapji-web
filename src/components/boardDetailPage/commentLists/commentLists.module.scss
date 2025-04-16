@@ -38,11 +38,13 @@
         }
         .deleteIcon {
           margin-left: 5px;
+          cursor: pointer;
         }
       }
       .replyButton {
         display: block;
         margin-top: 8px;
+        cursor: pointer;
         @include font-style(1.1rem, gray, 400);
       }
     }

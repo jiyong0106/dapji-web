@@ -1,0 +1,142 @@
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.container {
+  padding: 40px 20px;
+  background-color: white;
+  width: 100%;
+
+  .title {
+    text-align: center;
+    margin: 0 0 24px 0;
+    @include font-style(2.4rem, #333d4b, 700);
+  }
+
+  .cardGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    &.animate {
+      animation: slideUp 1.2s ease-out forwards;
+    }
+
+    .card {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #e5edfa;
+      border-radius: 16px;
+      padding: 10px 20px;
+      gap: 16px;
+      cursor: pointer;
+      transition: transform 0.5s ease;
+      &:hover {
+        transform: scale(1.1);
+      }
+
+      .cardText {
+        flex: 1;
+
+        h3 {
+          @include font-style(2.5rem, #333d4b, 700);
+          margin-bottom: 5px;
+        }
+
+        p {
+          @include font-style(1.4rem, #858585, 500);
+          margin-top: 0;
+        }
+      }
+
+      .cardImage {
+        flex-shrink: 0;
+        width: 70px;
+        height: 70px;
+        border-radius: 10px;
+      }
+    }
+  }
+  @media (min-width: 768px) {
+    padding: 60px 24px; // 데스크탑보다 살짝 작게
+
+    .title {
+      @include font-style(3.2rem, #333d4b, 700);
+      margin-bottom: 60px;
+      margin-top: 0;
+    }
+
+    .cardGrid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      max-width: 800px;
+      margin: 0 auto;
+
+      .card {
+        flex-direction: row;
+        padding: 16px;
+
+        .cardText {
+          h3 {
+            @include font-style(2.7rem, #333d4b, 700);
+            margin-top: 12px;
+          }
+
+          p {
+            @include font-style(1.6rem, #444, 500);
+          }
+        }
+
+        .cardImage {
+          width: 110px;
+          height: 110px;
+        }
+      }
+    }
+  }
+
+  @media (min-width: 1024px) {
+    padding: 70px 40px;
+    .title {
+      @include font-style(4rem, #333d4b, 700);
+      margin-bottom: 70px;
+      margin-top: 0;
+    }
+
+    .cardGrid {
+      gap: 32px;
+      max-width: 1000px;
+      margin: 0 auto;
+
+      .card {
+        padding: 20px;
+
+        .cardText {
+          h3 {
+            @include font-style(3rem, #333d4b, 700);
+            margin-top: 20px;
+          }
+
+          p {
+            // @include font-style(2rem, #444, 500);
+            @include font-style(2rem, #858585, 500);
+          }
+        }
+
+        .cardImage {
+          width: 100px;
+          height: 100px;
+        }
+      }
+    }
+  }
+}

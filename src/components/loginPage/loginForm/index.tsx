@@ -31,7 +31,7 @@ const LoginForm = () => {
         router.replace('/join');
         return;
       }
-      router.replace(`/auth/dapji`);
+      router.replace(`/gym`);
     },
     onError: (e) => {
       if (isServerError(e) && e.response && e.response.status === 401) {
@@ -76,7 +76,6 @@ const LoginForm = () => {
         {errors.password && <span>{errors.password.message as string}</span>}
         <CommonButton name="답지 로그인" type="submit" />
       </form>
-      <span onClick={() => router.replace(`/signup`)}>회원가입 </span>
       <ModalChoice />
     </div>
   );

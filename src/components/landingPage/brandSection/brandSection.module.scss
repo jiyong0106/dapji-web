@@ -1,0 +1,117 @@
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.container {
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #a0e9ff 0%, #d9fff8 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 10px;
+  overflow: hidden;
+
+  .content {
+    opacity: 0;
+    animation: fadeInUp 1.5s ease-out 0.5s forwards;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    padding: 10px;
+
+    .slogan {
+      margin-bottom: 0;
+      @include font-style(2rem, #2f5597, 400);
+      @media (min-width: 769px) {
+        font-size: 3rem;
+      }
+    }
+
+    .name {
+      @include font-style(6rem, #2f5597, 600);
+      margin: 0 0 20px 0;
+      @media (min-width: 769px) {
+        font-size: 7rem;
+      }
+    }
+
+    .appStore {
+      margin-right: 4px;
+      background-color: rgba(0, 12, 30, 0.8);
+      color: rgb(255, 255, 255);
+      font-size: 17px;
+      padding: 20px 10px;
+      border-radius: 10px;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+      gap: 10px;
+      text-decoration-line: none;
+      max-width: 150px;
+      transition: transform 0.5s ease;
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  .mockup {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding-bottom: 0;
+
+    .content {
+      display: flex;
+      flex: 1;
+      margin: auto;
+      .slogan {
+        font-size: 3.5rem;
+      }
+      .name {
+        font-size: 9rem;
+      }
+    }
+    .mockup {
+      display: block;
+      min-height: 100vh;
+      position: relative;
+      flex: 1;
+      .mock1 {
+        width: 400px;
+        height: 800px;
+        position: absolute;
+        left: 0;
+        top: 150px;
+        animation: fadeInUp 1.5s ease-out 0.7s forwards;
+        opacity: 0;
+        z-index: 1;
+      }
+      .mock2 {
+        width: 400px;
+        height: 800px;
+        position: absolute;
+        bottom: -90px;
+        right: 100px;
+        animation: fadeInUp 1.5s ease-out 1s forwards;
+        opacity: 0;
+      }
+    }
+  }
+}

@@ -2,6 +2,9 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import instance from '../utils/axios';
 import { useState } from 'react';
 import { useToast } from './useToast';
+import { isServerError } from '../utils/axiosError';
+import { useModal } from './useModal';
+import { useRouter } from 'next/navigation';
 
 const favoriteRequestData = async (gymId: number) => {
   const res = await instance.post(`/gyms/${gymId}/favorite`);
@@ -20,6 +23,8 @@ const useFavoriteAction = ({
   const [favoriteToggle, setFavoriteToggle] = useState(initalFavoriteToggle);
   const queryClient = useQueryClient();
   const { showToastHandler } = useToast();
+  const { showModalHandler } = useModal();
+  const router = useRouter();
 
   const { mutate: favoriteRequest } = useMutation({
     mutationKey: ['favoriteRequest'],
@@ -39,7 +44,12 @@ const useFavoriteAction = ({
       });
     },
     onError: (e) => {
-      console.error(e, '페이보릿실패');
+      if (isServerError(e) && e.response && e.response.status === 401) {
+        showModalHandler('alert', ' 해당 기능은 로그인이 필요해요', () =>
+          router.replace('/signin'),
+        );
+        return;
+      }
     },
   });
 

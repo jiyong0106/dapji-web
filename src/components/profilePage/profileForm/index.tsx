@@ -1,11 +1,11 @@
 import classNames from 'classnames/bind';
 import styles from './profileForm.module.scss';
 import Image from 'next/image';
-import { NaverIcon, KakaoIcon } from '@/public/icon/';
 import { ProfilePostType } from '@/src/utils/type';
 import { useRouter } from 'next/navigation';
 import FollowingBtn from '@/src/components/common/followingBtn';
 import useFollowRequest from '@/src/hooks/useFollowRequest';
+import ProfileBtn from '../profileBtn';
 
 const cn = classNames.bind(styles);
 
@@ -24,37 +24,20 @@ const ProfileForm = ({ params, profileInfo }: ProfileFormProps) => {
     initalFollowToggle: profileInfo.isFollowing,
   });
 
+
   const renderProviderIcon = () => {
-    switch (profileInfo.user.provider) {
-      case 'kakao':
-        return (
-          <>
-            <KakaoIcon width="17" height="17" />
-            <span>Kakao</span>
-          </>
-        );
-      case 'naver':
-        return (
-          <>
-            <NaverIcon width="30" height="30" />
-            <span>NAVER</span>
-          </>
-        );
-      case 'dapji':
-        return (
-          <>
-            <Image
-              src={process.env.NEXT_PUBLIC_URL + '/icon/icon.png'}
-              width="30"
-              height="30"
-              alt="provider 기본이미지"
-            />
-            <span></span>
-          </>
-        );
-      default:
-        return null;
-    }
+    return (
+      <>
+        <Image
+          src={process.env.NEXT_PUBLIC_URL + '/icon/iconTransparent.png'}
+          width="30"
+          height="30"
+          alt="provider 기본이미지"
+          priority
+        />
+        <span>DAPJI</span>
+      </>
+    );
   };
 
   const followPageClick = (userId: string, page: string) => {
@@ -80,39 +63,35 @@ const ProfileForm = ({ params, profileInfo }: ProfileFormProps) => {
         />
 
         <div className={cn('infoWrapper')}>
-          {profileInfo.isOwnProfile ? (
-            <div className={cn('btnWrapper')}>
-              <div
-                className={cn('oauth', `oauth-${profileInfo.user.provider}`)}
-              >
-                {renderProviderIcon()}
-              </div>
-              <div
+          <div className={cn('btnWrapper')}>
+            <ProfileBtn
+              className={cn('oauth')}
+              onClick={() => profileEditClick(userId)}
+            >
+              {renderProviderIcon()}
+            </ProfileBtn>
+
+            {profileInfo.isOwnProfile ? (
+              <ProfileBtn
                 className={cn('profileEdit')}
                 onClick={() => profileEditClick(userId)}
               >
                 프로필 편집
-              </div>
-            </div>
-          ) : (
-            <div className={cn('btnWrapper')}>
-              <div className={cn('oauth', `oauth-${'dapji'}`)}>
-                <Image
-                  src={process.env.NEXT_PUBLIC_URL + '/icon/icon.png'}
-                  width="30"
-                  height="30"
-                  alt="provider 기본이미지"
-                  priority
-                />
-                <span>Dap Ji</span>
-              </div>
+              </ProfileBtn>
+            ) : (
               <FollowingBtn onClick={handleFollowRequest} isFollow={isFollow} />
-            </div>
-          )}
+            )}
+          </div>
+          <ProfileBtn className={cn('BodyStat')}>
+            <span>키 {profileInfo.user.height ?? '--'}cm</span>
+            <span>|</span>
+            <span>리치 {profileInfo.user.reach ?? '--'}cm</span>
+          </ProfileBtn>
+
           <div className={cn('followWrapper')}>
             <div
               className={cn('follower')}
-              onClick={() => followPageClick (userId, 'follower')}
+              onClick={() => followPageClick(userId, 'follower')}
             >
               <span>클로워</span>
               <span>{profileInfo.followerCount}</span>

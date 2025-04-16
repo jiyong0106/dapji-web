@@ -1,16 +1,14 @@
-// /PostDetailForm
 .container {
   @include flex-arrange(space-between, center);
   flex-direction: column;
   width: 100%;
   background: white;
-  margin-top: 10px;
   gap: 10px;
   border-radius: 5px;
   .userWrapper {
     width: 100%;
     padding: 10px 10px 0 10px;
-
+    cursor: pointer;
     @include flex-arrange(space-between, center);
     .userInfo {
       @include flex-arrange(center, flex-start);
