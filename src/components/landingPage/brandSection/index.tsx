@@ -32,7 +32,7 @@ const BrandSection = () => {
 
       <div className={cn('mockup')}>
         <Image
-          src="/images/mockgymvideo.png"
+          src="/images/mockgymdetail.png"
           alt="앱 이미지 1"
           width={300}
           height={600}
