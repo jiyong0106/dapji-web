@@ -77,6 +77,11 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <head>
+        {/* 네이버서치어드바이저 */}
+        <meta
+          name="naver-site-verification"
+          content="88d757e9f613a6c254b90d739f5ebfb31bba00fc"
+        />
         {/* <!-- Open Graph 메타 태그 --> */}
         <meta property="og:type" content="website" />
         <meta property="og:title" content="DAPJI - 클라이밍이 쉬워지는 순간," />
