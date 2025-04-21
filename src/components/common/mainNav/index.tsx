@@ -7,6 +7,8 @@ import { useRouter } from 'next/navigation';
 import { useMyInfoStore } from '@/src/utils/store/useMyImfoStore';
 import { fetchUserLogout } from '@/src/app/(main)/profile/api';
 import { useModal } from '@/src/hooks/useModal';
+import { useEffect } from 'react';
+import { fetchMyInfo } from '@/src/app/(main)/auth/api';
 
 const cn = classNames.bind(styles);
 
@@ -30,6 +32,22 @@ const MainNav = () => {
 
     showModalHandler('choice', '로그아웃 하시겠어요?', confirmAction);
   };
+  console.log('myId==>', myId);
+
+  useEffect(() => {
+    const getMyInfo = async () => {
+      try {
+        const data = await fetchMyInfo();
+        if (data) {
+          setmyId(data);
+        }
+      } catch (error) {
+        console.error('my info error');
+      }
+    };
+
+    getMyInfo();
+  }, [setmyId]);
 
   return (
     <nav className={cn('container')}>
