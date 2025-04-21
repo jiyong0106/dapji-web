@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import type { MetadataRoute } from 'next';
 import { sitemapBoardList } from './(main)/board/api';
 import { boardSitemapType } from '../utils/type';
