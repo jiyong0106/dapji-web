@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     description: APP_DESCRIPTION,
     images: [
       {
-        url: '/icon/icon.png',
+        url: '/icon/btransparent.png',
         alt: 'DAPJI',
       },
     ],
@@ -105,7 +105,7 @@ export default function RootLayout({
           name="twitter:description"
           content="DAPJI - 클라이밍 정답지를 찾아보고 공유해보세요"
         />
-        <meta name="twitter:image" content="/icon/icon.png" />
+        <meta name="twitter:image" content="/icon/btransparent.png" />
         <meta name="twitter:image:alt" content="DAPJI" />
 
         {/* 파비콘 */}

@@ -1,6 +1,7 @@
 import instance from '@/src/utils/axios';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useModal } from '@/src/hooks/useModal';
+import { boardSitemapType } from '@/src/utils/type';
 
 type boardListGetDatasProps = {
   page: number;
@@ -22,6 +23,25 @@ export const boardListGetDatas = async ({
       search,
       category,
       sortOption,
+    },
+  });
+  return res.data;
+};
+
+type SitemapBoardListType = {
+  offset: number;
+  limit: number;
+};
+
+//사이트맵 전용 게시판 전체 조회
+export const sitemapBoardList = async ({
+  offset,
+  limit,
+}: SitemapBoardListType) => {
+  const res = await instance.get<boardSitemapType[]>(`/sitemap_boards`, {
+    params: {
+      offset,
+      limit,
     },
   });
   return res.data;
