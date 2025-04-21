@@ -325,6 +325,13 @@ export type PostRecommentType = {
 
 //////////////////////////게시판 페이지 타입들//////////////////////////
 
+//게시판 사이트맵 탕입
+
+export type boardSitemapType = {
+  boardId: number;
+  updatedAt: string;
+};
+
 //게시물 좋아요
 type BoardlikeType = {
   board_like_idx: number;
