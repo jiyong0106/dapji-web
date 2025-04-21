@@ -98,12 +98,12 @@ const BoardDetailForm = ({ boardDetailData }: BoardDetailFormProps) => {
             </div>
           </div>
         </div>
-        {/* {is_owner && (
+        {is_owner && (
           <div className={cn('iconWrapper')}>
             <EditIcon onClick={boardEditClick} />
             <DeleteIcon onClick={handleBoardDelete} />
           </div>
-        )} */}
+        )}
       </header>
       <main className={cn('mainWrapper')}>
         <div className={cn('textWrapper')}>

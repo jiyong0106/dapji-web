@@ -29,13 +29,7 @@ const BoardEditPage = ({ params }: BoardEditPageProps) => {
   }
   return (
     <div className={cn('container')}>
-      <Header page={`/board/${boardId}`}></Header>
-      <div className={cn('secondContainer')}>
-        <BoardUploadForm
-          params={params}
-          initialData={boardDetailData?.result}
-        />
-      </div>
+      <BoardUploadForm params={params} initialData={boardDetailData?.result} />
     </div>
   );
 };

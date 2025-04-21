@@ -16,6 +16,7 @@
         border-radius: 50%;
         aspect-ratio: 1/1;
         object-fit: cover;
+        cursor: pointer;
       }
       .userText {
         @include flex-arrange(center, flex-start);
@@ -68,6 +69,7 @@
     @include flex-arrange(flex-start, center);
     gap: 12px;
     margin-top: 15px;
+    cursor: pointer;
   }
 }
 

@@ -14,9 +14,8 @@ import {
   useBoardImageDelete,
   boardUpdateData,
 } from '@/src/app/(main)/board/api';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useModal } from '@/src/hooks/useModal';
-import ModalChoice from '@/src/components/common/moadlChoice';
 import { useRouter } from 'next/navigation';
 import LoadingSpinner from '../../common/loadingSpinner';
 import AnonymousToggle from '../anonymousToggle';
@@ -39,6 +38,7 @@ const BoardUploadForm = ({ params, initialData }: BoardUploadFormProps) => {
   const { mutate: imageDelete } = useBoardImageDelete();
   const { boardId } = params;
   const [isAnonymous, setIsAnonymous] = useState(true);
+  const queryClient = useQueryClient();
 
   const {
     register,
@@ -52,6 +52,7 @@ const BoardUploadForm = ({ params, initialData }: BoardUploadFormProps) => {
     mutationKey: ['boardUpload'],
     mutationFn: (formData) => boardUploadData(formData),
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['boardListData'] });
       router.replace('/board');
     },
     onError: (e) => {
@@ -197,7 +198,6 @@ const BoardUploadForm = ({ params, initialData }: BoardUploadFormProps) => {
         setIsAnonymous={setIsAnonymous}
       />
       <CommonButton name={initialData ? '수정하기' : '업로드'} type="submit" />
-      <ModalChoice />
     </form>
   );
 };
