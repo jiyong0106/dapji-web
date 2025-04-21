@@ -19,7 +19,7 @@ const Dapjipage = () => {
       return;
     }
     router.replace(`/`);
-  }, [router]);
+  }, [router, myId]);
   return (
     <div className={cn('contaienr')}>
       <Image

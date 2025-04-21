@@ -63,7 +63,7 @@ const ClimbListPage = () => {
     };
 
     getMyInfo();
-  }, []);
+  }, [setmyId]);
 
   if (isLoading) {
     return <LoadingSpinner />;
