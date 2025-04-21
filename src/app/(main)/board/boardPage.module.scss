@@ -3,10 +3,31 @@
   display: flex;
   flex-direction: column;
   justify-self: center;
+  position: relative;
 
   .noSearchData {
     @include font-style(1.5rem, black, 400);
     text-align: center;
+  }
+  .searchWrapper {
+    display: flex;
+    gap: 10px;
+    flex-direction: row;
+    align-items: center;
+
+    .uploadBtn {
+      background: #38b6ff;
+      padding: 8px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      white-space: nowrap;
+      height: 40px;
+      @include font-style(1.7rem, white, 500);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
   }
 }
 
