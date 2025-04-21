@@ -15,7 +15,7 @@ export default function AdminLayout({
     if (role !== 'admin') {
       router.replace('/gym');
     }
-  }, [role]);
+  }, [role, router]);
 
   return <>{children}</>;
 }
