@@ -14,10 +14,14 @@ import useInfiniteScroll from '@/src/hooks/useInfiniteScroll';
 import { BoardResponseType } from '@/src/utils/type';
 import LoadingSpinner from '@/src/components/common/loadingSpinner';
 import { useMyInfoStore } from '@/src/utils/store/useMyImfoStore';
+import { useRouter } from 'next/navigation';
+import { useModal } from '@/src/hooks/useModal';
 
 const cn = classNames.bind(styles);
 
 const BoardPage = () => {
+  const router = useRouter();
+  const { showModalHandler } = useModal();
   const [selectCategory, setSelectCategory] = useState('전체');
   const [selectSortOption, setSelectSortOption] = useState('recent');
   const [searchName, setSearchName] = useState('');
@@ -59,17 +63,33 @@ const BoardPage = () => {
     setSelectCategory(category);
   };
 
+  const uploadClick = () => {
+    if (myId === null) {
+      showModalHandler('alert', '로그인 후 이용해 주세요', () =>
+        router.push('/signin'),
+      );
+      return;
+    }
+    router.push('/board/upload');
+  };
+
   if (isLoading) {
     <LoadingSpinner />;
   }
 
   return (
     <div className={cn('container')}>
-      <SearchBar
-        placeholder="게시글을 검색해 보세요"
-        searchName={searchName}
-        onSearchChange={handleSearchChange}
-      />
+      <div className={cn('searchWrapper')}>
+        <SearchBar
+          placeholder="게시글을 검색해 보세요"
+          searchName={searchName}
+          onSearchChange={handleSearchChange}
+        />
+        <div className={cn('uploadBtn')} onClick={uploadClick}>
+          <span>+</span>
+          <span>글 작성</span>
+        </div>
+      </div>
       <CategoryLists
         lists={filteredSortOptionCategories}
         selectCategory={selectSortOption}
