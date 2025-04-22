@@ -5,7 +5,6 @@ import classNames from 'classnames/bind';
 import PostDetailForm from '@/src/components/postDetailPage/postDetailForm';
 import { usePostDetailDatas } from '@/src/app/(main)/gym/api';
 import LoadingSpinner from '@/src/components/common/loadingSpinner';
-import ModalChoice from '@/src/components/common/moadlChoice';
 import CommentInput from '@/src/components/boardDetailPage/commentInput';
 import PostCommentLists from '@/src/components/postDetailPage/postCommentLists';
 import useInfiniteScroll from '@/src/hooks/useInfiniteScroll';
