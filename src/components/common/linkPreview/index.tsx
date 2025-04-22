@@ -31,7 +31,10 @@ const LinkPreview = ({ previews, singlePreview = false }: LinkPreviewProps) => {
           onClick={() => urlClick(preview.url)}
         >
           <Image
-            src={process.env.NEXT_PUBLIC_URL + '/icon/widelogo.png'}
+            src={
+              preview.image ||
+              process.env.NEXT_PUBLIC_URL + '/icon/widelogo.png'
+            }
             alt="링크 미리보기"
             height="50"
             width="50"
