@@ -86,7 +86,7 @@ const BoardList = ({ list }: BoardListProps) => {
           <h1>{truncateString(title, 15)}</h1>
           <span className={cn('content')}>{truncateString(content, 20)}</span>
         </section>
-        <section className={cn('boardImageWrapper')}>
+        <section className={cn('c')}>
           {img.length > 0 ? (
             <>
               <Image
