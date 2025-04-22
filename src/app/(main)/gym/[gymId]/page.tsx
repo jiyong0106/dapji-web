@@ -5,16 +5,13 @@ import styles from './DetailPage.module.scss';
 import Notification from '@/src/components/climbListDetailPage/notification';
 import HoldColorList from '@/src/components/climbListDetailPage/holdColorList';
 import DetailMainContentList from '@/src/components/climbListDetailPage/detailMainContent';
-import { AddIcon } from '@/public/icon';
 import { useRouter } from 'next/navigation';
 import { climbPostDatas } from '@/src/app/(main)/gym/api';
 import NodetailData from '@/src/components/common/noDetailData';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import LoadingSpinner from '@/src/components/common/loadingSpinner';
-import Header from '@/src/components/common/header';
 import useInfiniteScroll from '@/src/hooks/useInfiniteScroll';
 import { ClimbPostResponseType } from '@/src/utils/type';
-import { useMyInfoStore } from '@/src/utils/store/useMyImfoStore';
 
 const cn = classNames.bind(styles);
 type DetailPageProps = {
