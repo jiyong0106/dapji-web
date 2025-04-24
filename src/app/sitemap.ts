@@ -23,7 +23,7 @@ const defaultSitemap: MetadataRoute.Sitemap = [
 
 const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
   const limit = 1000;
-  const offset = 0; //일단 예시
+  const offset = 0; 
 
   const sitemapBoardData = await sitemapBoardList({ offset, limit });
 

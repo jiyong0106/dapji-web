@@ -3,13 +3,6 @@ import { NextRequest, NextResponse } from 'next/server';
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  if (process.env.NODE_ENV !== 'production') {
-    return NextResponse.next();
-  }
-
-  if (pathname === '/sitemap.xml' || pathname === '/robots.txt') {
-    return NextResponse.redirect(new URL('/', request.url));
-  }
   return NextResponse.next();
 }
 
