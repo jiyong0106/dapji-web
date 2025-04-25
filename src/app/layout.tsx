@@ -1,3 +1,5 @@
+// app/layout.tsx
+
 import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import '@/src/styles/globals.css';
@@ -5,13 +7,13 @@ import '@/src/styles/globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 const APP_NAME = 'DAPJI';
-const APP_DEFAULT_TITLE = 'DAPJI';
-const APP_TITLE_TEMPLATE = '%s';
-const APP_DESCRIPTION = 'DAPJI';
+const APP_DEFAULT_TITLE = '답지(DAPJI) | 클라이밍이 쉬워지는 순간,';
+const APP_TITLE_TEMPLATE = '%s | DAPJI';
+const APP_DESCRIPTION =
+  'DAPJI - 루트 파인딩 너무 고민하지 마세요, 답지에서 클라이밍 루트를 쉽고 빠르게 찾아보세요요 ';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://climbdapji.kr'),
-  //이거 url바꾸기
   applicationName: APP_NAME,
   title: {
     default: APP_DEFAULT_TITLE,
@@ -25,41 +27,30 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     siteName: APP_NAME,
-    title: {
-      default: APP_DEFAULT_TITLE,
-      template: APP_TITLE_TEMPLATE,
-    },
+    title: APP_DEFAULT_TITLE,
     description: APP_DESCRIPTION,
+    url: 'https://climbdapji.kr',
     images: [
       {
         url: '/icon/widelogo.png',
         width: 1200,
         height: 630,
-        alt: 'DAPJI',
+        alt: 'DAPJI OG 이미지',
       },
     ],
   },
   twitter: {
-    card: 'summary',
-    title: {
-      default: APP_DEFAULT_TITLE,
-      template: APP_TITLE_TEMPLATE,
-    },
+    card: 'summary_large_image',
+    title: APP_DEFAULT_TITLE,
     description: APP_DESCRIPTION,
     images: [
       {
         url: '/icon/btransparent.png',
-        alt: 'DAPJI',
+        alt: 'DAPJI 트위터 이미지',
       },
     ],
   },
 };
-
-declare global {
-  interface Window {
-    Kakao: any;
-  }
-}
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -69,6 +60,12 @@ export const viewport: Viewport = {
   themeColor: 'white',
 };
 
+declare global {
+  interface Window {
+    Kakao: any;
+  }
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -77,39 +74,13 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <head>
-        {/* 네이버서치어드바이저 */}
+        {/* 네이버 서치 어드바이저용 */}
         <meta
           name="naver-site-verification"
           content="88d757e9f613a6c254b90d739f5ebfb31bba00fc"
         />
-        {/* <!-- Open Graph 메타 태그 --> */}
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="DAPJI - 클라이밍이 쉬워지는 순간," />
-        <meta
-          property="og:description"
-          content="DAPJI - 클라이밍 정답지를 찾아보고 공유해보세요"
-        />
-        <meta property="og:image" content="/icon/widelogo.png" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:url" content="https://climbdapji.kr" />
-        <meta property="og:site_name" content="DAPJI" />
-
-        {/* <!-- Twitter 메타 태그 --> */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta
-          name="twitter:title"
-          content="DAPJI - 클라이밍이 쉬워지는 순간,"
-        />
-        <meta
-          name="twitter:description"
-          content="DAPJI - 클라이밍 정답지를 찾아보고 공유해보세요"
-        />
-        <meta name="twitter:image" content="/icon/btransparent.png" />
-        <meta name="twitter:image:alt" content="DAPJI" />
-
-        {/* 파비콘 */}
-        <link rel="icon" href="/icon/btransparent.png" sizes="any" />
+        {/* favicon */}
+        <link rel="icon" href="/icon/blueicon.png" sizes="any" />
       </head>
       <body className={inter.className}>{children}</body>
     </html>
