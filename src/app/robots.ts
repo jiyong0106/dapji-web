@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: '/admin/',
+      disallow: ['/admin/', '/privacy', '/terms', '/deletionpolicy'],
     },
     sitemap: 'https://climbdapji.kr/sitemap.xml',
   };
