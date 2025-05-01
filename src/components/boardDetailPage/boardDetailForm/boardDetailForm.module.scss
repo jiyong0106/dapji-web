@@ -16,6 +16,7 @@
         border-radius: 50%;
         aspect-ratio: 1/1;
         object-fit: cover;
+        cursor: pointer;
       }
       .userText {
         @include flex-arrange(center, flex-start);
@@ -55,10 +56,8 @@
       }
     }
     .boardImage {
-      width: 100%;
-      max-width: 200px;
+      width: 60%;
       height: auto;
-      max-height: 300px;
       border-radius: 10px;
       margin-bottom: 10px;
     }
@@ -68,6 +67,7 @@
     @include flex-arrange(flex-start, center);
     gap: 12px;
     margin-top: 15px;
+    cursor: pointer;
   }
 }
 

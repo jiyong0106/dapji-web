@@ -14,9 +14,8 @@ import {
   useBoardImageDelete,
   boardUpdateData,
 } from '@/src/app/(main)/board/api';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useModal } from '@/src/hooks/useModal';
-import ModalChoice from '@/src/components/common/moadlChoice';
 import { useRouter } from 'next/navigation';
 import LoadingSpinner from '../../common/loadingSpinner';
 import AnonymousToggle from '../anonymousToggle';
@@ -39,6 +38,7 @@ const BoardUploadForm = ({ params, initialData }: BoardUploadFormProps) => {
   const { mutate: imageDelete } = useBoardImageDelete();
   const { boardId } = params;
   const [isAnonymous, setIsAnonymous] = useState(true);
+  const queryClient = useQueryClient();
 
   const {
     register,
@@ -52,11 +52,12 @@ const BoardUploadForm = ({ params, initialData }: BoardUploadFormProps) => {
     mutationKey: ['boardUpload'],
     mutationFn: (formData) => boardUploadData(formData),
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['boardListData'] });
       router.replace('/board');
     },
     onError: (e) => {
       showModalHandler('alert', '제목, 내용, 카테고리 선택은 필수입니다.');
-      console.error(e, '게시물 업로드 에러');
+      console.error('게시물 업로드 에러');
     },
   });
 
@@ -83,8 +84,6 @@ const BoardUploadForm = ({ params, initialData }: BoardUploadFormProps) => {
 
   const title = fieldLength(titleValue, 50);
   const content = fieldLength(contentValue, 2000);
-
-  //글자수 조회, 이렇게 할거면 그냥 단순하게 하는게 나을듯
 
   //카테고리 선택
   const uploadCategory = categoryListData.filter(
@@ -199,7 +198,6 @@ const BoardUploadForm = ({ params, initialData }: BoardUploadFormProps) => {
         setIsAnonymous={setIsAnonymous}
       />
       <CommonButton name={initialData ? '수정하기' : '업로드'} type="submit" />
-      <ModalChoice />
     </form>
   );
 };

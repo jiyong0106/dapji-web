@@ -50,20 +50,20 @@ const ClimbListPage = () => {
     setSelectSort(sort);
   };
 
-  useEffect(() => {
-    const getMyInfo = async () => {
-      try {
-        const data = await fetchMyInfo();
-        if (data) {
-          setmyId(data);
-        }
-      } catch (error) {
-        console.error('my info error');
-      }
-    };
+  // useEffect(() => {
+  //   const getMyInfo = async () => {
+  //     try {
+  //       const data = await fetchMyInfo();
+  //       if (data) {
+  //         setmyId(data);
+  //       }
+  //     } catch (error) {
+  //       console.error('my info error');
+  //     }
+  //   };
 
-    getMyInfo();
-  }, []);
+  //   getMyInfo();
+  // }, [setmyId]);
 
   if (isLoading) {
     return <LoadingSpinner />;

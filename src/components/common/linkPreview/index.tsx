@@ -32,7 +32,8 @@ const LinkPreview = ({ previews, singlePreview = false }: LinkPreviewProps) => {
         >
           <Image
             src={
-              preview.image || process.env.NEXT_PUBLIC_URL + '/icon/icon.png'
+              preview.image ||
+              process.env.NEXT_PUBLIC_URL + '/icon/widelogo.png'
             }
             alt="링크 미리보기"
             height="50"
