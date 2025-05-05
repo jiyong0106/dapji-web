@@ -25,7 +25,7 @@ const NoticeLists = ({ noticeDatas }: NoticeListProps) => {
         img.map((image, index) => (
           <Image
             key={index}
-            src={image || process.env.NEXT_PUBLIC_URL + '/icon/icon.png'}
+            src={image || process.env.NEXT_PUBLIC_URL + '/icon/blueicon.png'}
             width={100}
             height={100}
             alt={`게시물 이미지 ${index + 1}`}

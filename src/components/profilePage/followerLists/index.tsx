@@ -28,7 +28,7 @@ const FollowerList = ({ list }: FollowerListProps) => {
     <div className={cn('container')}>
       <div className={cn('infoWrapper')} onClick={profilePageClick}>
         <Image
-          src={img || process.env.NEXT_PUBLIC_URL + '/icon/icon.png'}
+          src={img || process.env.NEXT_PUBLIC_URL + '/icon/blueicon.png'}
           width={50}
           height={50}
           className={cn('profileImage')}

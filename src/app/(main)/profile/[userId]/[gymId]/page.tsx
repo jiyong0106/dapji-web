@@ -45,7 +45,7 @@ const ProfileGymPage = ({ params }: ProfilePageProps) => {
           <Image
             src={
               gymDetailDatas?.logo ||
-              process.env.NEXT_PUBLIC_URL + '/icon/icon.png'
+              process.env.NEXT_PUBLIC_URL + '/icon/blueicon.png'
             }
             alt="로고이미지"
             fill

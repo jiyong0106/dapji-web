@@ -26,7 +26,9 @@ const ProfileGymDetail = ({ item, gymId }: ProfileGymDetailDatapProps) => {
     <div className={cn('container')} onClick={postClick}>
       <div className={cn('imageWrapper')}>
         <Image
-          src={thumbnailUrl || process.env.NEXT_PUBLIC_URL + '/icon/icon.png'}
+          src={
+            thumbnailUrl || process.env.NEXT_PUBLIC_URL + '/icon/blueicon.png'
+          }
           alt="로고이미지"
           fill
           className={cn('image')}
