@@ -39,14 +39,39 @@ export const useNoticeImageDelete = () => {
   return imageDelete;
 };
 
-// 인스타그램 동기화 상태 조회
+// 인스타그램 계정이 있는 사용자 목록 조회
+export const useFetchInstaUsers = () => {
+  return useQuery({
+    queryKey: ['instaUsers'],
+    queryFn: async () => {
+      const res = await instance.get('/videos/instagram/users');
+      return res.data;
+    }
+  });
+};
+
+// 특정 사용자의 인스타그램 숏코드 조회
+export const useFetchUserShortcodes = (instaName: string) => {
+  return useQuery({
+    queryKey: ['userShortcodes', instaName],
+    queryFn: async () => {
+      if (!instaName) return null;
+      const res = await instance.get(`/videos/instagram/users/${instaName}/shortcodes`);
+      return res.data;
+    },
+    enabled: !!instaName, // instaName이 있을 때만 쿼리 실행
+  });
+};
+
+// 모든 사용자의 인스타그램 동기화 상태 조회 (기존 함수, 필요시 사용)
 export const useFetchInstaSyncStatus = () => {
   return useQuery({
     queryKey: ['instaSyncStatus'],
     queryFn: async () => {
       const res = await instance.get('/videos/instagram/sync');
       return res.data;
-    }
+    },
+    enabled: false, // 기본적으로 비활성화하고 필요할 때만 실행
   });
 };
 
@@ -61,8 +86,9 @@ export const useCreateSyncPost = () => {
       const res = await instance.post('/videos/instagram/sync-post', { shortcode });
       return res.data;
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['instaSyncStatus'] });
+    onSuccess: (_, shortcode) => {
+      // 특정 사용자의 숏코드 목록 갱신
+      queryClient.invalidateQueries({ queryKey: ['userShortcodes'] });
       showModalHandler('alert', '인스타그램 동영상 동기화에 성공했습니다.');
     },
     onError: (error) => {
