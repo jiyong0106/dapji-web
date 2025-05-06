@@ -1,0 +1,146 @@
+.container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  font-size: 18px;
+  color: #666;
+}
+
+.users-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+  gap: 20px;
+}
+
+.user-card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.user-name {
+  font-size: 20px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.invalid {
+  font-size: 14px;
+  background-color: #ffecec;
+  color: #e74c3c;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-weight: normal;
+}
+
+.section-title {
+  font-size: 18px;
+  margin: 20px 0 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #eee;
+}
+
+.shortcodes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 10px;
+  margin-bottom: 20px;
+
+  &.synced {
+    opacity: 0.8;
+  }
+}
+
+.shortcode-item {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 15px;
+  transition: all 0.2s ease;
+  border: 1px solid #eee;
+  
+  &:hover {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  &.synced {
+    background-color: #f0f7ff;
+    border-color: #d1e5ff;
+  }
+}
+
+.shortcode {
+  font-family: monospace;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.date {
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.sync-btn {
+  width: 100%;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+  
+  &:hover {
+    background-color: #45a049;
+  }
+  
+  &:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+}
+
+.synced-tag {
+  display: inline-block;
+  background-color: #e9f7ef;
+  color: #27ae60;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.no-data {
+  color: #999;
+  font-style: italic;
+  padding: 10px 0;
+}
+
+.error-message {
+  color: #e74c3c;
+  background-color: #ffecec;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+} 
