@@ -3,10 +3,10 @@ import styles from './cardList.module.scss';
 import classNames from 'classnames/bind';
 import { GymsType } from '@/src/utils/type';
 import Image from 'next/image';
-import { RightArrowIcon } from '@/public/icon';
 import { useRouter } from 'next/navigation';
 import FavoriteAction from '../favoriteClimbList';
 import useFavoriteAction from '@/src/hooks/useFavoriteAction';
+import { PostIcon } from '@/public/icon';
 
 const cn = classNames.bind(styles);
 
@@ -15,7 +15,8 @@ type CardListProps = {
 };
 
 const CardList = ({ list }: CardListProps) => {
-  const { logo, name, gym_idx, address, is_favorite } = list;
+  const { logo, name, gym_idx, address, is_favorite, post_count } = list;
+  console.log(list);
 
   const router = useRouter();
 
@@ -30,28 +31,31 @@ const CardList = ({ list }: CardListProps) => {
 
   return (
     <li className={cn('container')} onClick={detailClick}>
-      <div className={cn('image')}>
+      <div className={cn('imageWrapper')}>
         <Image
           src={logo || process.env.NEXT_PUBLIC_URL + '/icon/blueicon.png'}
           alt="로고이미지"
-          width={80}
-          height={80}
+          width={100}
+          height={100}
           priority
           className={cn('image')}
         />
-      </div>
-      <div className={cn('textWrapper')}>
-        <div className={cn('nameWrapper')}>
-          <span className={cn('name')}>{name}</span>
+        <div className={cn('like')}>
           <FavoriteAction
             favoriteToggle={favoriteToggle}
             onClick={handleFavoriteClick}
           />
         </div>
-        <span className={cn('address')}>{address}</span>
+        <p>
+          <PostIcon width="15" height="15" fill="white" />
+          {post_count}개
+        </p>
       </div>
-      <div className={cn('actionBtn')}>
-        <RightArrowIcon width="15" height="15" />
+      <div className={cn('textWrapper')}>
+        <div className={cn('nameWrapper')}>
+          <span className={cn('name')}>{name}</span>
+        </div>
+        <span className={cn('address')}>{address}</span>
       </div>
     </li>
   );
