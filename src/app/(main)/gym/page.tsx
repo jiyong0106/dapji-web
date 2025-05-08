@@ -51,16 +51,18 @@ const ClimbListPage = () => {
 
   return (
     <div className={cn('container')}>
-      <SearchBar
-        placeholder="클라이밍장을 검색해 보세요"
-        searchName={searchName}
-        onSearchChange={handleSearchChange}
-      />
-      <CategoryLists
-        lists={favoritecategoryListData}
-        selectCategory={selectSort}
-        onCategorySelect={handleSelectCategory}
-      />
+      <div className={cn('header')}>
+        <SearchBar
+          placeholder="클라이밍장을 검색해 보세요"
+          searchName={searchName}
+          onSearchChange={handleSearchChange}
+        />
+        <CategoryLists
+          lists={favoritecategoryListData}
+          selectCategory={selectSort}
+          onCategorySelect={handleSelectCategory}
+        />
+      </div>
       {lists.length === 0 ? (
         <p className={cn('noSearchData')}>검색 결과가 없습니다</p>
       ) : (
