@@ -1,0 +1,25 @@
+.container {
+  width: 220px;
+  position: fixed;
+  top: 80px; /* ✅ 헤더 아래에서 시작 */
+  left: 0;
+  height: calc(100vh - 80px); /* ✅ 남은 높이만큼만 사용 */
+  padding: 10px;
+  background: white;
+  border-right: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  overflow-y: auto;
+
+  p {
+    font-size: 20px;
+  }
+
+  &::-webkit-scrollbar {
+    width: 6px; // 👉 스크롤바 두께
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2); // 👉 스크롤 손잡이 색상
+    border-radius: 3px;
+  }
+}

@@ -17,8 +17,6 @@ import { fetchMyInfo } from '../auth/api';
 const cn = classNames.bind(styles);
 
 const ClimbListPage = () => {
-  const { setmyId } = useMyInfoStore();
-  const router = useRouter();
   const [searchName, setSearchName] = useState('');
   const [selectSort, setSelectSort] = useState('latest');
   const {
