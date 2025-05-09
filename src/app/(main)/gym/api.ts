@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 import instance from '@/src/utils/axios';
 import { useModal } from '@/src/hooks/useModal';
 
-type ClimbListProps = {
+export type ClimbListProps = {
   page: number;
   search: string;
   is_favorite?: boolean;
