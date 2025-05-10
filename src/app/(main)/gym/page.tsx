@@ -1,5 +1,4 @@
 import ClientClimbList from '@/src/components/climbListPage/clientClimbList';
-import instance from '@/src/utils/axios';
 
 export const generateMetadata = async () => {
   return {
@@ -15,16 +14,7 @@ export const generateMetadata = async () => {
 };
 
 const ClimbListPage = async () => {
-  const initialData = await instance.get(`/gyms`, {
-    params: {
-      page: 1,
-      search: '',
-      // is_favorite: 'favorite-popular',
-      sort: 'latest',
-    },
-  });
-
-  return <ClientClimbList initialData={initialData.data} />;
+  return <ClientClimbList />;
 };
 
 export default ClimbListPage;

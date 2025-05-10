@@ -51,7 +51,7 @@ export const useClimbListDatasUpload = () => {
     mutationFn: (formData: useFormListUploadProps) =>
       instance.post(`/gyms`, formData),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['climbList'] });
+      queryClient.invalidateQueries({ queryKey: ['climbListKey'] });
       router.push(`/admin/list`);
     },
     onError: (error) => {
@@ -70,7 +70,7 @@ export const useClimbListDatasDelete = (gymId: number) => {
     mutationKey: ['climbListDelete'],
     mutationFn: () => instance.delete(`/gyms/${gymId}`),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['climbList'] });
+      queryClient.invalidateQueries({ queryKey: ['climbListKey'] });
     },
     onError: (error) => {
       console.error('삭제 실패:', error);
@@ -89,7 +89,7 @@ export const useClimbListDataUpdate = (gymId: string) => {
     mutationFn: (formData: useFormListUploadProps) =>
       instance.patch(`/gyms/${gymId}`, formData),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['climbList'] });
+      queryClient.invalidateQueries({ queryKey: ['climbListKey'] });
       router.push(`/admin/list`);
     },
     onError: (error) => {

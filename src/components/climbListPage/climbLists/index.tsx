@@ -1,5 +1,5 @@
 'use client';
-import styles from './cardList.module.scss';
+import styles from './climbLists.module.scss';
 import classNames from 'classnames/bind';
 import { GymsType } from '@/src/utils/type';
 import Image from 'next/image';
@@ -10,11 +10,11 @@ import { PostIcon } from '@/public/icon';
 
 const cn = classNames.bind(styles);
 
-type CardListProps = {
+type ClimbListProps = {
   list: GymsType;
 };
 
-const CardList = ({ list }: CardListProps) => {
+const ClimbList = ({ list }: ClimbListProps) => {
   const { logo, name, gym_idx, address, is_favorite, post_count } = list;
   console.log(list);
 
@@ -61,4 +61,19 @@ const CardList = ({ list }: CardListProps) => {
   );
 };
 
-export default CardList;
+//ㅋㅋ
+type ClimbListsProps = {
+  lists: GymsType[];
+};
+
+const ClimbLists = ({ lists }: ClimbListsProps) => {
+  return (
+    <div className={cn('outercontainer')}>
+      {lists.map((list: GymsType) => (
+        <ClimbList key={list.gym_idx} list={list} />
+      ))}
+    </div>
+  );
+};
+
+export default ClimbLists;

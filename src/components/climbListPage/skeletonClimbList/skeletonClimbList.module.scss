@@ -1,0 +1,41 @@
+.container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.card {
+  padding: 5px;
+  border-radius: 5px;
+  animation: pulse 1.2s infinite ease-in-out;
+
+  .imageWrapper {
+    height: 160px;
+    border-radius: 5px;
+    // background: #e0e0e0;
+    background-color: rgba(0, 0, 0, 0.05);
+    margin-bottom: 10px;
+  }
+
+  .textWrapper {
+    display: flex;
+    flex-direction: column;
+
+    .line {
+      height: 14px;
+      background: #ddd;
+      border-radius: 4px;
+      margin-bottom: 8px;
+
+      &.title {
+        width: 70%;
+      }
+
+      &.address {
+        width: 90%;
+      }
+    }
+  }
+}

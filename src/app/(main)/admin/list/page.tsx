@@ -24,7 +24,7 @@ const AdminClimbListPage = () => {
     isLoading,
     isFetchingNextPage,
   } = useInfiniteScroll<ClimbLIstResponseType>({
-    queryKey: ['climbList', searchName],
+    queryKey: ['climbListKey', searchName],
     fetchFunction: (page = 1) => ClimbListDatas({ page, search: searchName }),
     getNextPageParam: (lastPage) =>
       lastPage.meta.hasNextPage ? lastPage.meta.page + 1 : undefined,
@@ -40,7 +40,7 @@ const AdminClimbListPage = () => {
 
   useEffect(() => {
     if (searchName !== '') {
-      queryClient.invalidateQueries({ queryKey: ['climbList'] });
+      queryClient.invalidateQueries({ queryKey: ['climbListKey'] });
     }
   }, [searchName, queryClient]);
 
