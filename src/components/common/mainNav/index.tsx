@@ -2,6 +2,7 @@
 import classNames from 'classnames/bind';
 import styles from './mainNav.module.scss';
 import Image from 'next/image';
+import { mainHeaderOptions } from '@/src/utils/options/landingOptions';
 import { useRouter } from 'next/navigation';
 import { useMyInfoStore } from '@/src/utils/store/useMyImfoStore';
 import { fetchUserLogout } from '@/src/app/(main)/profile/api';
@@ -16,6 +17,8 @@ const MainNav = () => {
   const { showModalHandler } = useModal();
   const router = useRouter();
 
+  const menuItems = mainHeaderOptions(myId);
+
   const handleLogoutClick = () => {
     const confirmAction = async () => {
       try {
@@ -29,6 +32,7 @@ const MainNav = () => {
 
     showModalHandler('choice', '로그아웃 하시겠어요?', confirmAction);
   };
+  console.log('myId==>', myId);
 
   useEffect(() => {
     const getMyInfo = async () => {
