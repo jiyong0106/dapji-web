@@ -1,0 +1,28 @@
+.item {
+  display: flex;
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: 10px;
+  text-decoration: none;
+  gap: 20px;
+  transition: background 0.2s;
+
+  .label {
+    font-size: 14px;
+    color: #0f0f0f;
+    font-weight: 500;
+  }
+  svg {
+    fill: #000; // 활성 아이콘 강조
+  }
+  &.active {
+    background: #e5e5e5;
+
+    .label {
+      font-weight: 700;
+    }
+  }
+  &:hover {
+    background: #f1f1f1;
+  }
+}
