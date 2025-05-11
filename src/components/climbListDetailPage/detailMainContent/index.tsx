@@ -124,7 +124,7 @@ const DetailMainContent = ({ list, gymName }: DetailMainContentProps) => {
       <div className={cn('userWrapper')}>
         <div className={cn('userInfo')} onClick={profileClick}>
           <Image
-            src={User.img || '/icon/icon.png'}
+            src={User.img || '/icon/blueicon.png'}
             width="30"
             height="30"
             alt="userImg"

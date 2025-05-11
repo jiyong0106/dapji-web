@@ -24,12 +24,11 @@ const ProfileForm = ({ params, profileInfo }: ProfileFormProps) => {
     initalFollowToggle: profileInfo.isFollowing,
   });
 
-
   const renderProviderIcon = () => {
     return (
       <>
         <Image
-          src={process.env.NEXT_PUBLIC_URL + '/icon/iconTransparent.png'}
+          src={process.env.NEXT_PUBLIC_URL + '/icon/blueicon.png'}
           width="30"
           height="30"
           alt="provider 기본이미지"
@@ -53,7 +52,7 @@ const ProfileForm = ({ params, profileInfo }: ProfileFormProps) => {
         <Image
           src={
             profileInfo.user.img ||
-            process.env.NEXT_PUBLIC_URL + '/icon/icon.png'
+            process.env.NEXT_PUBLIC_URL + '/icon/blueicon.png'
           }
           alt="profileImage"
           width="120"

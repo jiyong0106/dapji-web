@@ -67,7 +67,9 @@ const BoardList = ({ list }: BoardListProps) => {
         <section className={cn('contentWrapper')}>
           <header className={cn('userInfo')}>
             <Image
-              src={User?.img || process.env.NEXT_PUBLIC_URL + '/icon/icon.png'}
+              src={
+                User?.img || process.env.NEXT_PUBLIC_URL + '/icon/blueicon.png'
+              }
               width={30}
               height={30}
               alt="유저 이미지"

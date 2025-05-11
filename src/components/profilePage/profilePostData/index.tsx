@@ -17,7 +17,7 @@ const ProfilePostData = ({ list }: ProfilePostDataProps) => {
   const imageUrl =
     Array.isArray(thumbnailUrl) && thumbnailUrl.length > 0
       ? thumbnailUrl[0]
-      : '/icon/icon.png';
+      : '/icon/blueicon.png';
 
   return (
     <div className={cn('container')}>

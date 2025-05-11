@@ -25,7 +25,7 @@ const ProfileGymData = ({ item, userId }: ProfileGymDataProps) => {
   return (
     <li className={cn('container')} onClick={gymClick}>
       <Image
-        src={logo || process.env.NEXT_PUBLIC_URL + '/icon/icon.png'}
+        src={logo || process.env.NEXT_PUBLIC_URL + '/icon/blueicon.png'}
         alt="로고이미지"
         width={80}
         height={80}

@@ -82,7 +82,9 @@ const BoardDetailForm = ({ boardDetailData }: BoardDetailFormProps) => {
       <header className={cn('boardDetailHeader')}>
         <div className={cn('userInfo')}>
           <Image
-            src={User?.img || process.env.NEXT_PUBLIC_URL + '/icon/icon.png'}
+            src={
+              User?.img || process.env.NEXT_PUBLIC_URL + '/icon/blueicon.png'
+            }
             width="30"
             height="30"
             alt="게시물 작성자 프로필 이미지"
@@ -116,7 +118,7 @@ const BoardDetailForm = ({ boardDetailData }: BoardDetailFormProps) => {
           img.map((image, index) => (
             <Image
               key={index}
-              src={image || process.env.NEXT_PUBLIC_URL + '/icon/icon.png'}
+              src={image || process.env.NEXT_PUBLIC_URL + '/icon/blueicon.png'}
               width={100}
               height={100}
               alt={`게시물 이미지 ${index + 1}`}
