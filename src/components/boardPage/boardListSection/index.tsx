@@ -9,6 +9,7 @@ import { useMyInfoStore } from '@/src/utils/store/useMyImfoStore';
 import { useRouter } from 'next/navigation';
 import { useModal } from '@/src/hooks/useModal';
 import { boardListGetDatas } from '@/src/app/(main)/board/api';
+import SkeletonBoardList from '../skeletonBoardList';
 
 const cn = classNames.bind(styles);
 
@@ -59,7 +60,7 @@ const BoardListSection = ({
   };
 
   if (isLoading) {
-    <LoadingSpinner />;
+    return <SkeletonBoardList />;
   }
 
   return (
