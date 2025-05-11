@@ -24,7 +24,17 @@ export const generateMetadata = async ({
 };
 
 const BoardDetailPage = ({ params }: { params: { boardId: string } }) => {
-  return <BoardDetailClient boardId={params.boardId} />;
+  return (
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      <BoardDetailClient boardId={params.boardId} />
+    </div>
+  );
 };
 
 export default BoardDetailPage;
