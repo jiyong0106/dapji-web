@@ -8,7 +8,14 @@ export const generateMetadata = async () => {
       title: '클라이밍장 목록',
       description: '클라이밍장 목록',
       url: `${process.env.NEXT_PUBLIC_URL}/gym`,
-      images: '/icon/widelogo.png',
+      images: [
+        {
+          url: `/icon/blueicon.png`,
+          width: 1200,
+          height: 630,
+          alt: 'DAPJI 클라이밍 로고',
+        },
+      ],
     },
   };
 };

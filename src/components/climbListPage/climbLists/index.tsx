@@ -61,7 +61,7 @@ const ClimbList = ({ list }: ClimbListProps) => {
   );
 };
 
-//ㅋㅋ
+//
 type ClimbListsProps = {
   lists: GymsType[];
 };
