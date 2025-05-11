@@ -52,6 +52,9 @@
       @include font-style(1.4rem, grey, 400);
     }
   }
+  &:hover {
+    background: #f1f1f1;
+  }
 }
 
 //cardLists
