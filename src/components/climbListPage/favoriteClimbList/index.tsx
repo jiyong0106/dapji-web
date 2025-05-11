@@ -14,9 +14,9 @@ const FavoriteAction = ({ favoriteToggle, onClick }: FavoriteActionProps) => {
   return (
     <div className={cn('container')}>
       {favoriteToggle ? (
-        <FavoritedIcon width="15" height="15" onClick={onClick} />
+        <FavoritedIcon width="20" height="20" onClick={onClick} />
       ) : (
-        <FavoriteIcon width="15" height="15" onClick={onClick} />
+        <FavoriteIcon width="20" height="20" onClick={onClick} />
       )}
     </div>
   );

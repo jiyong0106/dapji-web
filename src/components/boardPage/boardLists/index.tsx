@@ -49,8 +49,6 @@ const BoardList = ({ list }: BoardListProps) => {
   const imageLeghth = img.length;
   //이미지 갯수 표시
 
-  //좋아요 클릭
-
   const profileClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (typeof user_idx === 'undefined') return;
@@ -88,8 +86,9 @@ const BoardList = ({ list }: BoardListProps) => {
           <h1>{truncateString(title, 15)}</h1>
           <span className={cn('content')}>{truncateString(content, 20)}</span>
         </section>
+
         <section className={cn('boardImageWrapper')}>
-          {img.length > 0 ? (
+          {img.length > 0 && (
             <>
               <Image
                 src={img[0]}
@@ -99,16 +98,11 @@ const BoardList = ({ list }: BoardListProps) => {
                 className={cn('boardImage')}
                 priority
               />
-              {img.length > 1 ? (
+              {img.length >= 1 && (
                 <span className={cn('imageLength')}>+ {imageLeghth}</span>
-              ) : (
-                <></>
               )}
             </>
-          ) : (
-            <div className={cn('noBoardImage')}></div>
           )}
-
           <div className={cn('iconWrapper')}>
             <LikeAction
               likeToggle={likeToggle}

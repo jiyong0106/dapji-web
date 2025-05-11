@@ -34,7 +34,7 @@ const ProfileAllData = ({ profileData, params }: ProfileAllDataProps) => {
           className={cn('icon')}
           onClick={() => handleIconClick('post', '0%')}
         >
-          <PostIcon width="30" height="30" />
+          <PostIcon width="30" height="30" fill="black" />
         </div>
         <div
           className={cn('icon')}

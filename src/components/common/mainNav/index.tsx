@@ -69,13 +69,6 @@ const MainNav = () => {
       </a>
 
       <div className={cn('right')}>
-        <ul className={cn('menu')}>
-          {menuItems.map((item, index) => (
-            <li key={index} onClick={() => router.push(item.getPath())}>
-              {item.title}
-            </li>
-          ))}
-        </ul>
         <p
           className={cn('downloadBtn')}
           onClick={() => {
