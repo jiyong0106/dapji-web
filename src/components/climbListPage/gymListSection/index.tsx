@@ -1,22 +1,22 @@
 'use client';
 import React from 'react';
 import classNames from 'classnames/bind';
-import styles from './climbListSection.module.scss';
+import styles from './gymListSection.module.scss';
 import LoadingSpinner from '@/src/components/common/loadingSpinner';
 import { ClimbListDatas } from '@/src/app/(main)/gym/api';
 import { ClimbLIstResponseType } from '@/src/utils/type';
 import useInfiniteScroll from '@/src/hooks/useInfiniteScroll';
-import SkeletonClimbList from '../skeletonClimbList';
-import ClimbLists from '../climbLists';
+import SkeletonGymList from '../skeletonGymList';
+import ClimbLists from '../gymLists';
 
 const cn = classNames.bind(styles);
 
-type CardListSectionProps = {
+type GymListSectionProps = {
   searchName: string;
   selectSort: string;
 };
 
-const ClimbListSection = ({ searchName, selectSort }: CardListSectionProps) => {
+const GymListSection = ({ searchName, selectSort }: GymListSectionProps) => {
   const {
     data: climbListData,
     ref,
@@ -35,7 +35,7 @@ const ClimbListSection = ({ searchName, selectSort }: CardListSectionProps) => {
 
   // 초기 로딩 시 스켈레톤만 렌더
   if (isLoading) {
-    return <SkeletonClimbList />;
+    return <SkeletonGymList />;
   }
 
   return (
@@ -53,4 +53,4 @@ const ClimbListSection = ({ searchName, selectSort }: CardListSectionProps) => {
   );
 };
 
-export default ClimbListSection;
+export default GymListSection;

@@ -79,12 +79,12 @@
 // export default DetailPage;
 
 import classNames from 'classnames/bind';
-import styles from './DetailPage.module.scss';
+import styles from './gymDetailPage.module.scss';
 import { ClimbPostResponseType } from '@/src/utils/type';
 import instance from '@/src/utils/axios';
 
 const cn = classNames.bind(styles);
-type DetailPageProps = {
+type GymDetailPageProps = {
   params: { gymId: string };
 };
 
@@ -113,9 +113,9 @@ export const generateMetadata = async ({
   };
 };
 
-const DetailPage = ({ params }: DetailPageProps) => {
+const GymDetailPage = ({ params }: GymDetailPageProps) => {
   //로딩중 들어가야할 것
   return <div className={cn('container')}></div>;
 };
 
-export default DetailPage;
+export default GymDetailPage;

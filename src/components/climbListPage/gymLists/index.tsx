@@ -1,20 +1,20 @@
 'use client';
-import styles from './climbLists.module.scss';
+import styles from './gymLists.module.scss';
 import classNames from 'classnames/bind';
 import { GymsType } from '@/src/utils/type';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import FavoriteAction from '../favoriteClimbList';
+import FavoriteAction from '../favoriteAction';
 import useFavoriteAction from '@/src/hooks/useFavoriteAction';
 import { PostIcon } from '@/public/icon';
 
 const cn = classNames.bind(styles);
 
-type ClimbListProps = {
+type GymListProps = {
   list: GymsType;
 };
 
-const ClimbList = ({ list }: ClimbListProps) => {
+const GymList = ({ list }: GymListProps) => {
   const { logo, name, gym_idx, address, is_favorite, post_count } = list;
   console.log(list);
 
@@ -62,18 +62,18 @@ const ClimbList = ({ list }: ClimbListProps) => {
 };
 
 //
-type ClimbListsProps = {
+type GymListsProps = {
   lists: GymsType[];
 };
 
-const ClimbLists = ({ lists }: ClimbListsProps) => {
+const GymLists = ({ lists }: GymListsProps) => {
   return (
     <div className={cn('outercontainer')}>
       {lists.map((list: GymsType) => (
-        <ClimbList key={list.gym_idx} list={list} />
+        <GymList key={list.gym_idx} list={list} />
       ))}
     </div>
   );
 };
 
-export default ClimbLists;
+export default GymLists;

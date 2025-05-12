@@ -1,15 +1,15 @@
 'use client';
 import React, { useState } from 'react';
 import classNames from 'classnames/bind';
-import styles from './clientClimbList.module.scss';
+import styles from './clientGymList.module.scss';
 import SearchBar from '@/src/components/common/searchBar';
 import CategoryLists from '@/src/components/boardPage/categroyLists';
 import { favoritecategoryListData } from '@/src/utils/categoryListDatas';
-import ClimbListSection from '../climbListSection';
+import GymListSection from '../gymListSection';
 
 const cn = classNames.bind(styles);
 
-const ClientClimbList = () => {
+const ClientGymList = () => {
   const [searchName, setSearchName] = useState('');
   const [selectSort, setSelectSort] = useState('latest');
 
@@ -29,9 +29,9 @@ const ClientClimbList = () => {
       </div>
 
       {/* 여기서만 리스트 관련 로직이 재렌더링 */}
-      <ClimbListSection searchName={searchName} selectSort={selectSort} />
+      <GymListSection searchName={searchName} selectSort={selectSort} />
     </div>
   );
 };
 
-export default ClientClimbList;
+export default ClientGymList;
