@@ -136,6 +136,7 @@ const DetailMainContent = ({ list, gymName }: DetailMainContentProps) => {
         </div>
         <RightArrowIcon width="15" height="15" onClick={postDetailPage} />
       </div>
+
       <div className={cn('videoWrapper')}>
         <StyledSlider {...settings}>
           {thumbnailUrl?.map((url, index) => (
