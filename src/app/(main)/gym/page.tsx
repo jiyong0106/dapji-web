@@ -1,4 +1,4 @@
-import ClientGymList from '@/src/components/climbListPage/clientGymList';
+import ClientGymList from '@/src/components/gymListPage/clientGymList';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
