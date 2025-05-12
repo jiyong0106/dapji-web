@@ -100,17 +100,17 @@ export const useClimbListDataUpdate = (gymId: string) => {
 };
 
 // 클라이밍장 포스트 데이터 조회 함수
-type ClimbPostDatasProps = {
+type fetchGymDetailDatasProps = {
   pageParam: number;
   gymId: string;
   color: string | null;
 };
 
-export const climbPostDatas = async ({
+export const fetchGymDetailDatas = async ({
   pageParam = 1,
   gymId,
   color,
-}: ClimbPostDatasProps) => {
+}: fetchGymDetailDatasProps) => {
   const res = await instance(`/posts/gym/${gymId}`, {
     params: {
       page: pageParam,

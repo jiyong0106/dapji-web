@@ -1,4 +1,4 @@
-import BoardDetailClient from '@/src/components/boardDetailPage/boardDetailClient';
+import ClientBoardDetail from '@/src/components/boardDetailPage/clientBoardDetail';
 import { boardDetailGetDatas } from '../api';
 import { BorardDetailResponseType } from '@/src/utils/type';
 
@@ -32,7 +32,7 @@ const BoardDetailPage = ({ params }: { params: { boardId: string } }) => {
         alignItems: 'center',
       }}
     >
-      <BoardDetailClient boardId={params.boardId} />
+      <ClientBoardDetail boardId={params.boardId} />
     </div>
   );
 };
