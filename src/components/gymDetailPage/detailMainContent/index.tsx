@@ -3,7 +3,7 @@ import classNames from 'classnames/bind';
 import styles from './detailMainContent.module.scss';
 import { RightArrowIcon } from '@/public/icon';
 import { useRouter } from 'next/navigation';
-import { DetailType } from '@/src/utils/type';
+import { PostDetailType } from '@/src/utils/type';
 import Image from 'next/image';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
@@ -42,7 +42,7 @@ export const StyledSlider = styled(Slider)`
 `;
 
 export type DetailMainContentProps = {
-  list: DetailType;
+  list: PostDetailType;
   gymName: string;
 };
 
@@ -224,7 +224,7 @@ const DetailMainContent = ({ list, gymName }: DetailMainContentProps) => {
 };
 
 export type DetailMainContentListProps = {
-  lists: DetailType[];
+  lists: PostDetailType[];
   gymName: string;
 };
 
@@ -234,7 +234,7 @@ const DetailMainContentList = ({
 }: DetailMainContentListProps) => {
   return (
     <div className={cn('listContainer')}>
-      {lists?.map((list: DetailType) => (
+      {lists?.map((list: PostDetailType) => (
         <DetailMainContent key={list.post_idx} list={list} gymName={gymName} />
       ))}
     </div>

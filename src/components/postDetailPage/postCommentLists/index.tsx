@@ -45,7 +45,7 @@ const PostCommentList = memo(
       content_id: post_comment_idx,
       mainKey: 'postCommentDelete',
       firKey: 'postDetailComment',
-      secKey: 'postDetailDatas',
+      secKey: 'postDatasKey',
     });
 
     const [showRecomments, setShowRecomments] = useState(false);

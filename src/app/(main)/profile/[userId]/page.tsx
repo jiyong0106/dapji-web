@@ -8,7 +8,7 @@ import {
   fethcProfilePostDatas,
 } from '@/src/app/(main)/profile/api';
 import useInfiniteScroll from '@/src/hooks/useInfiniteScroll';
-import { ProfilePostType } from '@/src/utils/type';
+import { ProfilePostType, ProfilePostResponseType } from '@/src/utils/type';
 import LoadingSpinner from '@/src/components/common/loadingSpinner';
 import { AdminIcon } from '@/public/icon';
 import Link from 'next/link';
@@ -38,7 +38,7 @@ const ProfilePage = ({ params }: ProfilePageProps) => {
     ref,
     isLoading,
     isFetchingNextPage,
-  } = useInfiniteScroll<ProfilePostType>({
+  } = useInfiniteScroll<ProfilePostResponseType>({
     queryKey: ['profileDatas', userId],
     fetchFunction: (page = 1) =>
       fethcProfilePostDatas({

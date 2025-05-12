@@ -8,8 +8,8 @@ import CommonInput from '../../common/commonInput';
 import { useForm } from 'react-hook-form';
 import { useFormPostUploadProps, PostDetailDataType } from '@/src/utils/type';
 import {
-  usePostDetailUpload,
-  usePostDetailUpdate,
+  usePostUpload,
+  usePostUpdate,
   useVideoUpload,
 } from '@/src/app/(main)/gym/api';
 import CommonButton from '../../common/commonButton';
@@ -45,8 +45,8 @@ const PostUploadForm = ({ gymId, initialData }: PostUploadFormProps) => {
   });
   const text = watch('content', '');
 
-  const { mutate: detailUploadDatas, isPending } = usePostDetailUpload(gymId);
-  const { mutate: postDetailUpdate } = usePostDetailUpdate(
+  const { mutate: detailUploadDatas, isPending } = usePostUpload(gymId);
+  const { mutate: postDetailUpdate } = usePostUpdate(
     String(initialData?.post_idx),
     String(gymId),
   );

@@ -6,7 +6,7 @@ import { DeleteIcon, EditIcon } from '@/public/icon';
 import { useRouter } from 'next/navigation';
 import {
   fetchRenderSingleVideo,
-  usePostDetailDelete,
+  usePostDelete,
 } from '@/src/app/(main)/gym/api';
 import Image from 'next/image';
 import { useModal } from '@/src/hooks/useModal';
@@ -83,7 +83,7 @@ const PostDetailForm = ({ params, postDetailDatas }: PostDetailFormProps) => {
     content_id: post_idx,
     initalLikeCount: like_count,
     initalLikeToggle: is_liked,
-    firQueryKeyName: 'postDetailDatas',
+    firQueryKeyName: 'postDatasKey',
   });
 
   const settings = {
@@ -106,7 +106,7 @@ const PostDetailForm = ({ params, postDetailDatas }: PostDetailFormProps) => {
 
   const router = useRouter();
 
-  const { mutate: postDetailDelete } = usePostDetailDelete(post_idx, gym_idx);
+  const { mutate: postDetailDelete } = usePostDelete(post_idx, gym_idx);
 
   const { showModalHandler } = useModal();
 

@@ -6,7 +6,7 @@ import ImageInput from '@/src/components/common/imageInput';
 import CommonInput from '@/src/components/common/commonInput';
 import CommonButton from '@/src/components/common/commonButton';
 import { useForm } from 'react-hook-form';
-import { useClimbListDataUpdate } from '@/src/app/(main)/gym/api';
+import { useGymListDataUpdate } from '@/src/app/(main)/gym/api';
 import { useFormListUploadProps } from '@/src/utils/type';
 
 const cn = classNames.bind(styles);
@@ -26,7 +26,7 @@ const AdminClimbListEditForm = ({
   //gymId값
   const { logo, name, address } = climbListDetail;
   //리스트 데이터
-  const { mutate: climbListDatasUpdate } = useClimbListDataUpdate(gymId);
+  const { mutate: climbListDatasUpdate } = useGymListDataUpdate(gymId);
   //리스트 업데이트 함수
   const [fileUrl, setFileUrl] = useState<string>(logo);
   //이미지 파일 url

@@ -11,7 +11,7 @@
 // import { useState } from 'react';
 // import LoadingSpinner from '@/src/components/common/loadingSpinner';
 // import useInfiniteScroll from '@/src/hooks/useInfiniteScroll';
-// import { ClimbPostResponseType } from '@/src/utils/type';
+// import { GymDetailResponseType } from '@/src/utils/type';
 
 // const cn = classNames.bind(styles);
 // type DetailPageProps = {
@@ -29,7 +29,7 @@
 //     ref,
 //     isLoading,
 //     isFetchingNextPage,
-//   } = useInfiniteScroll<ClimbPostResponseType>({
+//   } = useInfiniteScroll<GymDetailResponseType>({
 //     queryKey: ['climbDetail', activeColor],
 //     fetchFunction: (pageParam = 1) =>
 //       fetchGymDetailDatas({ pageParam, gymId, color: activeColor }),
@@ -80,7 +80,7 @@
 
 import classNames from 'classnames/bind';
 import styles from './gymDetailPage.module.scss';
-import { ClimbPostResponseType } from '@/src/utils/type';
+import { GymDetailResponseType } from '@/src/utils/type';
 import instance from '@/src/utils/axios';
 
 const cn = classNames.bind(styles);
@@ -99,7 +99,7 @@ export const generateMetadata = async ({
       color: '',
     },
   });
-  const getgymDetailData: ClimbPostResponseType = fetchgymDetailData.data;
+  const getgymDetailData: GymDetailResponseType = fetchgymDetailData.data;
 
   return {
     title: getgymDetailData.gym_name,

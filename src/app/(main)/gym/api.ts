@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 import instance from '@/src/utils/axios';
 import { useModal } from '@/src/hooks/useModal';
 
-export type ClimbListProps = {
+export type fetchGymListDatasProps = {
   page: number;
   search: string;
   is_favorite?: boolean;
@@ -15,12 +15,12 @@ export type ClimbListProps = {
 };
 
 //클라이밍장 리스트 조회 함수
-export const ClimbListDatas = async ({
+export const fetchGymListDatas = async ({
   page,
   search,
   is_favorite,
   sort,
-}: ClimbListProps) => {
+}: fetchGymListDatasProps) => {
   const res = await instance.get(`/gyms`, {
     params: {
       page,
@@ -33,21 +33,21 @@ export const ClimbListDatas = async ({
 };
 
 //클라이밍장 리스트 상세 조회 함수
-export const useClimbListDetails = (gymId: string) => {
+export const useGymListDetails = (gymId: string) => {
   return useQuery({
-    queryKey: ['climbListDetails', gymId],
+    queryKey: ['gymDetailsKey', gymId],
     queryFn: () => instance.get(`/gyms/${gymId}`),
     select: (res: any) => res.data,
   });
 };
 
 //클라이밍장 리스트 업로드 함수
-export const useClimbListDatasUpload = () => {
+export const useGymListDatasUpload = () => {
   const router = useRouter();
   const queryClient = useQueryClient();
   const { showModalHandler } = useModal();
   return useMutation({
-    mutationKey: ['climbListUpload'],
+    mutationKey: ['gymListUploadKey'],
     mutationFn: (formData: useFormListUploadProps) =>
       instance.post(`/gyms`, formData),
     onSuccess: () => {
@@ -62,12 +62,12 @@ export const useClimbListDatasUpload = () => {
 };
 
 //클라이밍장 리스트 삭제 함수
-export const useClimbListDatasDelete = (gymId: number) => {
+export const useGymListDatasDelete = (gymId: number) => {
   const queryClient = useQueryClient();
   const { showModalHandler } = useModal();
 
   return useMutation({
-    mutationKey: ['climbListDelete'],
+    mutationKey: ['gymListDeleteKey'],
     mutationFn: () => instance.delete(`/gyms/${gymId}`),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['gymListKey'] });
@@ -79,13 +79,13 @@ export const useClimbListDatasDelete = (gymId: number) => {
   });
 };
 //클라이밍장 리스트 수정 함수
-export const useClimbListDataUpdate = (gymId: string) => {
+export const useGymListDataUpdate = (gymId: string) => {
   const queryClient = useQueryClient();
   const router = useRouter();
   const { showModalHandler } = useModal();
 
   return useMutation({
-    mutationKey: ['climbListUpdate'],
+    mutationKey: ['gymListUpdateKey'],
     mutationFn: (formData: useFormListUploadProps) =>
       instance.patch(`/gyms/${gymId}`, formData),
     onSuccess: () => {
@@ -131,17 +131,16 @@ export const fetchRenderSingleVideo = async (
 };
 
 //클라이밍장 포스트 데이터 업로드 함수
-export const usePostDetailUpload = (gymId: string | number) => {
+export const usePostUpload = (gymId: string | number) => {
   const router = useRouter();
   const { showModalHandler } = useModal();
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationKey: ['detailUpload'],
+    mutationKey: ['postUploadKey'],
     mutationFn: (formData: useFormPostUploadProps) =>
       instance.post('/posts', formData),
     onSuccess: () => {
-      // queryClient.invalidateQueries({ queryKey: ['userProfileData'] });
       router.replace(`/gym/${gymId}`);
     },
     onError: () => {
@@ -172,12 +171,12 @@ export const useVideoUpload = () => {
 };
 
 // 클라이밍장 포스트 수정 함수
-export const usePostDetailUpdate = (postid: string, gymId: string) => {
+export const usePostUpdate = (postid: string, gymId: string) => {
   const router = useRouter();
   const { showModalHandler } = useModal();
 
   return useMutation({
-    mutationKey: ['postDetailUpdate'],
+    mutationKey: ['postUpdateKey'],
     mutationFn: (formData: useFormPostUploadProps) =>
       instance.patch(`/posts/${postid}`, formData),
     onSuccess: () => {
@@ -190,22 +189,22 @@ export const usePostDetailUpdate = (postid: string, gymId: string) => {
 };
 
 // 클라이밍장 포스트의 디테일 함수
-export const usePostDetailDatas = (postid: string) => {
+export const usePostDatas = (postid: string) => {
   return useQuery({
-    queryKey: ['postDetailDatas', postid],
+    queryKey: ['postDatasKey', postid],
     queryFn: () => instance.get(`/posts/${postid}`),
     select: (res: any) => res.data,
   });
 };
 
 // 클라이밍장 포스트 삭제 함수
-export const usePostDetailDelete = (postid: string, gymId: string) => {
+export const usePostDelete = (postid: string, gymId: string) => {
   const router = useRouter();
   const queryClient = useQueryClient();
   const { showModalHandler } = useModal();
 
   return useMutation({
-    mutationKey: ['postDetailDelete'],
+    mutationKey: ['postDeleteKey'],
     mutationFn: () => instance.delete(`/posts/${postid}`),
     onSuccess: () => {
       router.replace(`/gym/${gymId}`);
