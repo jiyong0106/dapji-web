@@ -36,7 +36,7 @@ export type GymsType = {
   is_favorite: boolean;
 };
 
-export type ClimbLIstResponseType = {
+export type GymListResponseType = {
   gyms: GymsType[];
   meta: metaType;
 };

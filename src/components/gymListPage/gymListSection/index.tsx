@@ -4,7 +4,7 @@ import classNames from 'classnames/bind';
 import styles from './gymListSection.module.scss';
 import LoadingSpinner from '@/src/components/common/loadingSpinner';
 import { ClimbListDatas } from '@/src/app/(main)/gym/api';
-import { ClimbLIstResponseType } from '@/src/utils/type';
+import { GymListResponseType } from '@/src/utils/type';
 import useInfiniteScroll from '@/src/hooks/useInfiniteScroll';
 import SkeletonGymList from '../skeletonGymList';
 import ClimbLists from '../gymLists';
@@ -22,8 +22,8 @@ const GymListSection = ({ searchName, selectSort }: GymListSectionProps) => {
     ref,
     isFetchingNextPage,
     isLoading,
-  } = useInfiniteScroll<ClimbLIstResponseType>({
-    queryKey: ['climbListKey', searchName, selectSort],
+  } = useInfiniteScroll<GymListResponseType>({
+    queryKey: ['gymListKey', searchName, selectSort],
     fetchFunction: (page = 1) =>
       ClimbListDatas({ page, search: searchName, sort: selectSort }),
     getNextPageParam: (lastPage) =>
