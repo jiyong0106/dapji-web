@@ -3,7 +3,7 @@ import { useState } from 'react';
 import styles from './PostDetailPage.module.scss';
 import classNames from 'classnames/bind';
 import PostDetailForm from '@/src/components/postDetailPage/postDetailForm';
-import { usePostDetailDatas } from '@/src/app/(main)/gym/api';
+import { usePostDatas } from '@/src/app/(main)/gym/api';
 import LoadingSpinner from '@/src/components/common/loadingSpinner';
 import CommentInput from '@/src/components/boardDetailPage/commentInput';
 import PostCommentLists from '@/src/components/postDetailPage/postCommentLists';
@@ -22,7 +22,7 @@ const PostDetailPage = ({ params }: PostDetailPageProps) => {
   const [tagNickname, setTagNickname] = useState('');
   const [selectId, setSelectId] = useState('');
 
-  const { data: postDetailDatas, isLoading } = usePostDetailDatas(postid);
+  const { data: postDetailDatas, isLoading } = usePostDatas(postid);
   //포스트 상세페이지 데이터
 
   const {

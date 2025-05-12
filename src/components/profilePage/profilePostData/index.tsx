@@ -2,12 +2,12 @@ import classNames from 'classnames/bind';
 import styles from './profilePostData.module.scss';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ProfilePostDetailType } from '@/src/utils/type';
+import { ProfilePostType } from '@/src/utils/type';
 
 const cn = classNames.bind(styles);
 
 type ProfilePostDataProps = {
-  list: ProfilePostDetailType;
+  list: ProfilePostType;
 };
 
 const ProfilePostData = ({ list }: ProfilePostDataProps) => {
@@ -36,13 +36,13 @@ const ProfilePostData = ({ list }: ProfilePostDataProps) => {
 };
 
 type ProfilePostDatasProps = {
-  lists: ProfilePostDetailType[];
+  lists: ProfilePostType[];
 };
 
 const ProfilePostDatas = ({ lists }: ProfilePostDatasProps) => {
   return (
     <div className={cn('outerContainer')}>
-      {lists.map((list: ProfilePostDetailType) => (
+      {lists.map((list: ProfilePostType) => (
         <ProfilePostData key={list.post_idx} list={list} />
       ))}
     </div>

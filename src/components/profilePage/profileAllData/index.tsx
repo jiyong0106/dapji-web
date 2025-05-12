@@ -4,14 +4,14 @@ import { useState } from 'react';
 import ProfileGymDatas from '../profileGymData/ProfileGymDatas';
 import ProfilePostDatas from '../profilePostData';
 import { PostIcon } from '@/public/icon';
-import { ProfilePostDetailType } from '@/src/utils/type';
+import { ProfilePostType } from '@/src/utils/type';
 import Image from 'next/image';
 
 const cn = classNames.bind(styles);
 
 type ProfileAllDataProps = {
   profileData: {
-    posts: ProfilePostDetailType[];
+    posts: ProfilePostType[];
     userName: string;
   };
   params: {

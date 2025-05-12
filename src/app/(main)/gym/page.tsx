@@ -1,4 +1,4 @@
-import ClientClimbList from '@/src/components/climbListPage/clientClimbList';
+import ClientGymList from '@/src/components/gymListPage/clientGymList';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 };
 
 const ClimbListPage = () => {
-  return <ClientClimbList />;
+  return <ClientGymList />;
 };
 
 export default ClimbListPage;

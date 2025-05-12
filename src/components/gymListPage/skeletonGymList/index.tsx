@@ -1,9 +1,9 @@
 import classNames from 'classnames/bind';
-import styles from './skeletonClimbList.module.scss';
+import styles from './skeletonGymList.module.scss';
 
 const cn = classNames.bind(styles);
 
-const SkeletonClimbList = () => {
+const SkeletonGymList = () => {
   const placeholders = Array.from({ length: 20 });
 
   return (
@@ -21,4 +21,4 @@ const SkeletonClimbList = () => {
   );
 };
 
-export default SkeletonClimbList;
+export default SkeletonGymList;

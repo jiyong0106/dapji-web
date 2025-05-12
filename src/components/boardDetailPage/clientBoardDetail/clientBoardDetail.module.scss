@@ -1,0 +1,9 @@
+.container {
+  width: 40%;
+  border-left: 0.5px solid #d9d9d9;
+  border-right: 0.5px solid #d9d9d9;
+}
+
+.container::-webkit-scrollbar {
+  display: none;
+}

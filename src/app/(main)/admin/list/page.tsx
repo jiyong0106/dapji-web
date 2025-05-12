@@ -3,8 +3,8 @@ import SearchBar from '@/src/components/common/searchBar';
 import classNames from 'classnames/bind';
 import styles from './adminList.module.scss';
 import AdminClimbListDatas from '@/src/components/adminPage/adminClimbListPage/AdminClimbListDatas';
-import { ClimbListDatas } from '@/src/app/(main)/gym/api';
-import { ClimbLIstResponseType } from '@/src/utils/type';
+import { fetchGymListDatas } from '@/src/app/(main)/gym/api';
+import { GymListResponseType } from '@/src/utils/type';
 import useInfiniteScroll from '@/src/hooks/useInfiniteScroll';
 import { useState, useEffect } from 'react';
 import LoadingSpinner from '@/src/components/common/loadingSpinner';
@@ -23,9 +23,9 @@ const AdminClimbListPage = () => {
     ref,
     isLoading,
     isFetchingNextPage,
-  } = useInfiniteScroll<ClimbLIstResponseType>({
-    queryKey: ['climbListKey', searchName],
-    fetchFunction: (page = 1) => ClimbListDatas({ page, search: searchName }),
+  } = useInfiniteScroll<GymListResponseType>({
+    queryKey: ['gymListKey', searchName],
+    fetchFunction: (page = 1) => fetchGymListDatas({ page, search: searchName }),
     getNextPageParam: (lastPage) =>
       lastPage.meta.hasNextPage ? lastPage.meta.page + 1 : undefined,
   });
@@ -40,7 +40,7 @@ const AdminClimbListPage = () => {
 
   useEffect(() => {
     if (searchName !== '') {
-      queryClient.invalidateQueries({ queryKey: ['climbListKey'] });
+      queryClient.invalidateQueries({ queryKey: ['gymListKey'] });
     }
   }, [searchName, queryClient]);
 

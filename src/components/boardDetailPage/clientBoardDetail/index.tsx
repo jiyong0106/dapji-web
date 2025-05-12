@@ -1,5 +1,5 @@
 'use client';
-import styles from './boardDetailClient.module.scss';
+import styles from './ClientBoardDetail.module.scss';
 import classNames from 'classnames/bind';
 import BoardDetailForm from '@/src/components/boardDetailPage/boardDetailForm';
 import CommentLists from '@/src/components/boardDetailPage/commentLists';
@@ -18,10 +18,10 @@ import useInfiniteScroll from '@/src/hooks/useInfiniteScroll';
 
 const cn = classNames.bind(styles);
 
-type BoardDetailClientProps = {
+type ClientBoardDetailProps = {
   boardId: string;
 };
-const BoardDetailClient = ({ boardId }: BoardDetailClientProps) => {
+const ClientBoardDetail = ({ boardId }: ClientBoardDetailProps) => {
   const [tagNickname, setTagNickname] = useState('');
   const [selectId, setSelectId] = useState('');
 
@@ -78,4 +78,4 @@ const BoardDetailClient = ({ boardId }: BoardDetailClientProps) => {
   );
 };
 
-export default BoardDetailClient;
+export default ClientBoardDetail;
