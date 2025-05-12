@@ -3,7 +3,7 @@ import classNames from 'classnames/bind';
 import styles from './uploadForm.module.scss';
 import VideoInput from '@/src/components/common/videoInput';
 import React, { useState, useEffect } from 'react';
-import HoldColorList from '../../climbListDetailPage/holdColorList';
+import HoldColorList from '../../gymDetailPage/holdColorList';
 import CommonInput from '../../common/commonInput';
 import { useForm } from 'react-hook-form';
 import { useFormPostUploadProps, PostDetailDataType } from '@/src/utils/type';

@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 import styles from './holdColorList.module.scss';
-import HolderColor from '@/src/components/climbListDetailPage/holdColor';
+import HolderColor from '@/src/components/gymDetailPage/holdColor';
 import { useState } from 'react';
 import { RightArrowIcon } from '@/public/icon';
 
