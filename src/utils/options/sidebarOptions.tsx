@@ -4,7 +4,6 @@ import {
   BordIcon,
   SettingIcon,
   PictureIcon,
-  UploadIcon,
 } from '@/public/icon';
 
 export const pageMenuItems = (id?: number | null) => [
