@@ -7,12 +7,18 @@
   margin-bottom: 10px;
   //이미지
   .imageWrapper {
-    background-color: rgba(0, 0, 0, 0.05);
+    background: white;
     padding: 30px 20px;
     @include flex-arrange(center, center);
     border-radius: 5px;
     margin-bottom: 10px;
     position: relative;
+    transition: transform 0.2s ease-in-out;
+
+    &:hover {
+      transform: scale(1.08);
+    }
+
     .image {
       border-radius: 5px;
     }
@@ -51,9 +57,6 @@
     .address {
       @include font-style(1.4rem, grey, 400);
     }
-  }
-  &:hover {
-    background: #f1f1f1;
   }
 }
 

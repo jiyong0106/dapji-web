@@ -20,5 +20,11 @@
     padding: 80px 20px 20px 20px; /* Header 높이만큼 여백 */
     flex: 1;
     overflow-y: auto;
+    background: rgb(247, 244, 244);
+    min-height: 100vh;
+  }
+  .noSideBarContent {
+    margin-left: 0;
+    padding: 0;
   }
 }

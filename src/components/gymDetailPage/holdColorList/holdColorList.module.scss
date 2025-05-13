@@ -11,6 +11,7 @@
   .holdText {
     display: none;
   }
+
   .innerContainer {
     display: flex;
     white-space: nowrap;
@@ -19,7 +20,7 @@
 
   @media (min-width: 769px) {
     .holdText {
-      @include font-style(1.5rem, black, 500);
+      @include font-style(1.2rem, black, 500);
       padding: 0 10px;
       display: block;
     }

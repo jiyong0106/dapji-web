@@ -6,9 +6,8 @@
   margin-top: 5px;
   gap: 10px;
   border-radius: 5px;
-  border-style: solid;
-  border-color: rgb(215, 215, 215);
-  border-width: 0.5px;
+
+  border: 0.5px solid rgb(215, 215, 215);
   cursor: pointer;
 
   .userWrapper {
@@ -122,6 +121,7 @@
     width: 100%;
     max-width: 900px;
     margin: 0 auto;
+    min-height: 700px;
     .videoBox {
       position: relative;
       width: 100%;

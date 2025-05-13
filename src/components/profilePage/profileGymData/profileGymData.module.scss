@@ -15,7 +15,7 @@
 }
 
 .container {
-  background-color: white;
+  background: rgba(0, 0, 0, 0.05);
   padding: 10px 5px;
   gap: 20px;
   display: flex;
@@ -24,6 +24,11 @@
   flex-direction: column;
   border-radius: 5px;
   cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.02);
+  }
   .image {
     width: 100%;
     max-width: 150px;
