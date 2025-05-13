@@ -2,10 +2,7 @@ import React from 'react';
 import classNames from 'classnames/bind';
 import styles from './sidebar.module.scss';
 import SidebarItems from '../sidebarItems';
-import {
-  pageMenuItems,
-  bottomMenuItems,
-} from '@/src/utils/options/sidebarOptions';
+import { pageMenuItems } from '@/src/utils/options/sidebarOptions';
 import { useMyInfoStore } from '@/src/utils/store/useMyImfoStore';
 import { usePathname } from 'next/navigation';
 
@@ -27,11 +24,6 @@ const SideBar = () => {
         ))}
       </nav>
       <div className={cn('divider')} />
-      {/* <nav>
-        {bottomMenuItems.map((item) => (
-          <SidebarItems key={item.label} {...item} />
-        ))}
-      </nav> */}
     </div>
   );
 };
