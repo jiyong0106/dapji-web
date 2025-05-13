@@ -2,7 +2,6 @@
 import classNames from 'classnames/bind';
 import styles from './mainNav.module.scss';
 import Image from 'next/image';
-import { mainHeaderOptions } from '@/src/utils/options/landingOptions';
 import { useRouter } from 'next/navigation';
 import { useMyInfoStore } from '@/src/utils/store/useMyImfoStore';
 import { fetchUserLogout } from '@/src/app/(main)/profile/api';
@@ -16,8 +15,6 @@ const MainNav = () => {
   const { myId, setmyId } = useMyInfoStore();
   const { showModalHandler } = useModal();
   const router = useRouter();
-
-  const menuItems = mainHeaderOptions(myId);
 
   const handleLogoutClick = () => {
     const confirmAction = async () => {
