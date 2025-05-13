@@ -1,8 +1,5 @@
 .outerContainer {
   width: 100%;
-  .followingDataContainer {
-    padding: 0 10px;
-  }
 }
 
 .container {
@@ -11,7 +8,14 @@
   @include flex-arrange(space-between, center);
   margin: 5px 0;
   cursor: pointer;
+  background: rgba(0, 0, 0, 0.05);
+  padding: 0 10px;
+  border-radius: 5px;
+  transition: transform 0.2s ease-in-out;
 
+  &:hover {
+    transform: scale(1.02);
+  }
   .infoWrapper {
     @include flex-arrange(center, center);
     gap: 10px;
