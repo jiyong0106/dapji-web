@@ -36,7 +36,6 @@ const PostDetailPage = ({ params }: PostDetailPageProps) => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        // background: 'red',
       }}
     >
       <ClientPostDetail params={params} />
