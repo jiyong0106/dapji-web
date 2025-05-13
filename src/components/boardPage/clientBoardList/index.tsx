@@ -10,12 +10,13 @@ import { useState } from 'react';
 import SearchBar from '@/src/components/common/searchBar';
 import { useMyInfoStore } from '@/src/utils/store/useMyImfoStore';
 import BoardListSection from '../boardListSection';
+import { useRouter } from 'next/navigation';
 
 const cn = classNames.bind(styles);
 
 const ClientBoardList = () => {
   const { myId } = useMyInfoStore();
-
+  const router = useRouter();
   const [searchName, setSearchName] = useState('');
   const [selectSortOption, setSelectSortOption] = useState('recent');
   const [selectCategory, setSelectCategory] = useState('전체');
@@ -27,11 +28,19 @@ const ClientBoardList = () => {
   return (
     <div className={cn('container')}>
       <div className={cn('header')}>
-        <SearchBar
-          placeholder="게시글을 검색해 보세요"
-          searchName={searchName}
-          onSearchChange={setSearchName}
-        />
+        <div className={cn('headerTop')}>
+          <SearchBar
+            placeholder="게시글을 검색해 보세요"
+            searchName={searchName}
+            onSearchChange={setSearchName}
+          />
+          <div
+            className={cn('upload')}
+            onClick={() => router.push('/board/upload')}
+          >
+            + 글 작성
+          </div>
+        </div>
         <CategoryLists
           lists={filteredSortOptionCategories}
           selectCategory={selectSortOption}

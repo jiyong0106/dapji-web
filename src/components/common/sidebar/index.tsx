@@ -14,7 +14,6 @@ const cn = classNames.bind(styles);
 const SideBar = () => {
   const path = usePathname();
   const { myId } = useMyInfoStore();
-  console.log(path);
 
   if (path === '/signin') {
     return null;

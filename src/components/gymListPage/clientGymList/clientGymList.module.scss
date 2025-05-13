@@ -3,9 +3,9 @@
   display: flex;
   flex-direction: column;
   justify-self: center;
+  padding-top: 20px;
   .header {
     max-width: 500px;
-    padding-top: 20px;
     flex-direction: column;
     @include flex-arrange(center, center);
     gap: 10px;

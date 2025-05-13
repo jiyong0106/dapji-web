@@ -5,7 +5,6 @@ import CommonInput from '@/src/components/common/commonInput';
 import { GlassIcon, AddIcon, CloseIcon } from '@/public/icon';
 import { useState, useEffect } from 'react';
 import useDebounce from '@/src/hooks/useDebounce';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 const cn = classNames.bind(styles);
