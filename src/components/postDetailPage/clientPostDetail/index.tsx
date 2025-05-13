@@ -10,6 +10,7 @@ import PostCommentLists from '@/src/components/postDetailPage/postCommentLists';
 import useInfiniteScroll from '@/src/hooks/useInfiniteScroll';
 import { CommentDatas } from '@/src/hooks/useCommentDatas';
 import { PostCommentType, PostCommentDetailType } from '@/src/utils/type';
+import SkeletonGymDetail from '../../gymDetailPage/skeletonGymDetail';
 
 const cn = classNames.bind(styles);
 
@@ -46,7 +47,7 @@ const ClientPostDetail = ({ params }: ClientPostDetail) => {
   const isMyPost = postDetailDatas?.is_post_owner;
 
   if (isLoading || !postDetailDatas) {
-    return <LoadingSpinner />;
+    return <SkeletonGymDetail />;
   }
 
   return (
