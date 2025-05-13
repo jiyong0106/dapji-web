@@ -7,14 +7,13 @@ import {
   UploadIcon,
 } from '@/public/icon';
 
-export const pageMenuItems = (id: number) => [
+export const pageMenuItems = (id?: number | null) => [
   { label: '홈', icon: <HomeIcon />, path: '/gym' },
   { label: '게시판', icon: <BordIcon />, path: '/board' },
-  // { label: '검색', icon: <HomeIcon />, path: '/search' },
   {
     label: '프로필',
     icon: <UserIcon />,
-    path: (id: number) => `/profile/${id}`,
+    path: id ? `/profile/${id}` : '/signin',
   },
 ];
 
