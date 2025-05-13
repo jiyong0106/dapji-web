@@ -4,10 +4,12 @@ import styles from './signInPage.module.scss';
 import OauthBtnForm from '@/src/components/loginPage/oauthBtnForm';
 import Image from 'next/image';
 import LoginForm from '@/src/components/loginPage/loginForm';
+import { useRouter } from 'next/navigation';
 
 const cn = classNames.bind(styles);
 
 const SignInPage = () => {
+  const router = useRouter();
   return (
     <div className={cn('container')}>
       <div className={cn('loginContaienr')}>
@@ -27,6 +29,9 @@ const SignInPage = () => {
         <p className={cn('oauth')}>소셜 계정으로 간편 로그인</p>
         <OauthBtnForm />
       </div>
+      <p className={cn('gymRouter')} onClick={() => router.push('/gym')}>
+        홈으로 이동
+      </p>
     </div>
   );
 };

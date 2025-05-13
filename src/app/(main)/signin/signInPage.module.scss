@@ -45,4 +45,9 @@
       }
     }
   }
+  .gymRouter {
+    @include font-style(1.5rem, gray, 400);
+    cursor: pointer;
+    text-decoration: underline;
+  }
 }

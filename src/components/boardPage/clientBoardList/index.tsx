@@ -30,7 +30,7 @@ const ClientBoardList = () => {
       router.replace('/signin');
       return;
     }
-    router.push('/board/upload');
+    router.replace('/board/upload');
   };
 
   return (
