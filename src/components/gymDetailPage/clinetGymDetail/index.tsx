@@ -52,9 +52,9 @@ const ClinetGymDetail = ({ params }: DetailPageProps) => {
   //로딩중 들어가야할 것
   return (
     <div className={cn('container')}>
-      {/* {noticeData?.title && ( */}
-      <Notification onClick={noticePageClick} title={'이번주공지'} />
-      {/* )} */}
+      {noticeData?.title && (
+        <Notification onClick={noticePageClick} title={noticeData.title} />
+      )}
       <HoldColorList
         type="list"
         activeColor={activeColor}

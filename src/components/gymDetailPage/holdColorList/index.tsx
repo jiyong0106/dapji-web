@@ -54,7 +54,7 @@ const HoldColorList = ({
 
   return (
     <div className={cn('outerContainer')}>
-      <p className={cn('holdText')}>난이도</p>
+      <p className={cn('holdText')}>선택</p>
       {renderColors()}
     </div>
   );

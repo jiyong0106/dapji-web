@@ -12,8 +12,10 @@ type NotificationProps = {
 const Notification = ({ onClick, title }: NotificationProps) => {
   return (
     <div className={cn('container')} onClick={onClick}>
-      <BellIcon />
-      <p>{title}</p>
+      <div className={cn('left')}>
+        <BellIcon />
+        <p>{title}</p>
+      </div>
       <RightArrowIcon width="15" height="15" />
     </div>
   );
