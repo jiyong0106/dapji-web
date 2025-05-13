@@ -7,11 +7,18 @@ import {
   bottomMenuItems,
 } from '@/src/utils/options/sidebarOptions';
 import { useMyInfoStore } from '@/src/utils/store/useMyImfoStore';
+import { usePathname } from 'next/navigation';
 
 const cn = classNames.bind(styles);
 
 const SideBar = () => {
+  const path = usePathname();
   const { myId } = useMyInfoStore();
+  console.log(path);
+
+  if (path === '/signin') {
+    return null;
+  }
 
   return (
     <div className={cn('container')}>

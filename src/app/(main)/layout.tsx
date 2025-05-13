@@ -6,10 +6,13 @@ import styles from './mainLayout.module.scss';
 import classNames from 'classnames/bind';
 import ModalChoice from '@/src/components/common/moadlChoice';
 import SideBar from '@/src/components/common/sidebar';
+import { usePathname } from 'next/navigation';
 
 const cn = classNames.bind(styles);
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
+  const path = usePathname();
+
   return (
     <QueryProvider>
       <div className={cn('container')}>
@@ -18,7 +21,13 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
         </div>
         <div className={cn('secContainer')}>
           <SideBar />
-          <div className={cn('content')}>{children}</div>
+          <div
+            className={cn('content', {
+              noSideBarContent: path === '/signin',
+            })}
+          >
+            {children}
+          </div>
         </div>
         <Toast />
         <ModalChoice />
