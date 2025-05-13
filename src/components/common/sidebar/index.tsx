@@ -28,11 +28,11 @@ const SideBar = () => {
         ))}
       </nav>
       <div className={cn('divider')} />
-      <nav>
+      {/* <nav>
         {bottomMenuItems.map((item) => (
           <SidebarItems key={item.label} {...item} />
         ))}
-      </nav>
+      </nav> */}
     </div>
   );
 };
