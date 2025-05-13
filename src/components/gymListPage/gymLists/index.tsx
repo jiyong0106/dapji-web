@@ -16,7 +16,6 @@ type GymListProps = {
 
 const GymList = ({ list }: GymListProps) => {
   const { logo, name, gym_idx, address, is_favorite, post_count } = list;
-  console.log(list);
 
   const router = useRouter();
 
