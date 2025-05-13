@@ -25,6 +25,14 @@ const ClientBoardList = () => {
     (item) => !(item.option === 'myBoards' && !myId),
   );
 
+  const uploadClick = () => {
+    if (!myId) {
+      router.replace('/signin');
+      return;
+    }
+    router.push('/board/upload');
+  };
+
   return (
     <div className={cn('container')}>
       <div className={cn('header')}>
@@ -34,10 +42,7 @@ const ClientBoardList = () => {
             searchName={searchName}
             onSearchChange={setSearchName}
           />
-          <div
-            className={cn('upload')}
-            onClick={() => router.push('/board/upload')}
-          >
+          <div className={cn('upload')} onClick={uploadClick}>
             + 글 작성
           </div>
         </div>
