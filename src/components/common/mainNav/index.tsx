@@ -17,8 +17,6 @@ const MainNav = () => {
   const { showModalHandler } = useModal();
   const router = useRouter();
 
-  const menuItems = mainHeaderOptions(myId);
-
   const handleLogoutClick = () => {
     const confirmAction = async () => {
       try {
