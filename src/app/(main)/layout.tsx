@@ -4,15 +4,16 @@ import Toast from '@/src/components/common/toast';
 import QueryProvider from '@/src/utils/QueryProvider';
 import styles from './mainLayout.module.scss';
 import classNames from 'classnames/bind';
-import ModalChoice from '@/src/components/common/moadlChoice';
 import SideBar from '@/src/components/common/sidebar';
 import { usePathname } from 'next/navigation';
+import { useMenuToggleStore } from '@/src/utils/store/useMenuTogglelStore';
+import ModalChoice from '@/src/components/common/moadlChoice';
 
 const cn = classNames.bind(styles);
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   const path = usePathname();
-
+  const { toggle, toggleMenu } = useMenuToggleStore();
   return (
     <QueryProvider>
       <div className={cn('container')}>
@@ -21,9 +22,17 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
         </div>
         <div className={cn('secContainer')}>
           <SideBar />
+
+          {/* 오버레이 */}
+          <div
+            className={cn('backdrop', { active: !toggle })}
+            onClick={toggleMenu}
+          />
+
           <div
             className={cn('content', {
               noSideBarContent: path === '/signin',
+              hideSidebar: toggle === true,
             })}
           >
             {children}

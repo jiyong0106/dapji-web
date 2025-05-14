@@ -8,6 +8,8 @@ import { fetchUserLogout } from '@/src/app/(main)/profile/api';
 import { useModal } from '@/src/hooks/useModal';
 import { useEffect } from 'react';
 import { fetchMyInfo } from '@/src/app/(main)/auth/api';
+import { MenuIcon } from '@/public/icon';
+import { useMenuToggleStore } from '@/src/utils/store/useMenuTogglelStore';
 
 const cn = classNames.bind(styles);
 
@@ -15,6 +17,7 @@ const MainNav = () => {
   const { myId, setmyId } = useMyInfoStore();
   const { showModalHandler } = useModal();
   const router = useRouter();
+  const { toggleMenu } = useMenuToggleStore();
 
   const handleLogoutClick = () => {
     const confirmAction = async () => {
@@ -47,23 +50,30 @@ const MainNav = () => {
 
   return (
     <nav className={cn('container')}>
-      <a
-        className={cn('left')}
-        href={process.env.NEXT_PUBLIC_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <Image
-          src={process.env.NEXT_PUBLIC_URL + '/icon/btransparent.png'}
-          alt="로고이미지"
-          width={60}
-          height={60}
-          className={cn('logo')}
-          priority
+      <div className={cn('left')}>
+        <MenuIcon
+          width="35"
+          height="35"
+          className={cn('menu')}
+          onClick={toggleMenu}
         />
-        <p className={cn('leftText')}>DAPJI</p>
-      </a>
-
+        <a
+          className={cn('left')}
+          href={process.env.NEXT_PUBLIC_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Image
+            src={process.env.NEXT_PUBLIC_URL + '/icon/btransparent.png'}
+            alt="로고이미지"
+            width={60}
+            height={60}
+            className={cn('logo')}
+            priority
+          />
+          <p className={cn('leftText')}>DAPJI</p>
+        </a>
+      </div>
       <div className={cn('right')}>
         <p
           className={cn('downloadBtn')}

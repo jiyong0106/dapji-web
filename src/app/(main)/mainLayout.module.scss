@@ -1,7 +1,6 @@
 .container {
   min-height: 100vh;
 
-  //main-nav
   .header-container {
     position: fixed;
     z-index: 100;
@@ -13,18 +12,55 @@
 
   .secContainer {
     display: flex;
+    position: relative;
   }
 
   .content {
-    margin-left: 220px; /* Sidebar 너비만큼 여백 */
-    padding: 80px 20px 20px 20px; /* Header 높이만큼 여백 */
+    padding: 80px 20px 20px 20px;
     flex: 1;
     overflow-y: auto;
     background: rgb(247, 244, 244);
     min-height: 100vh;
+    margin-left: 0;
+    transition: margin-left 0.3s ease;
   }
+
   .noSideBarContent {
     margin-left: 0;
     padding: 0;
+  }
+
+  @media (min-width: 768px) {
+    .content {
+      margin-left: 220px;
+    }
+    .hideSidebar {
+      margin-left: 70px;
+    }
+  }
+
+  //모바일 전용 오버레이(backdrop)
+  .backdrop {
+    display: none;
+    position: fixed;
+    top: 80px; /* header 높이와 동일하게 */
+    left: 0;
+    width: 100vw;
+    height: calc(100vh - 80px);
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 5; /* sidebar(z-index:10) 아래, content 위 */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .backdrop.active {
+    display: block;
+    opacity: 1;
+  }
+
+  @media (min-width: 768px) {
+    .backdrop {
+      display: none !important;
+    }
   }
 }
