@@ -25,14 +25,12 @@
     transition: margin-left 0.3s ease;
   }
 
-  .noSideBarContent {
-    margin-left: 0;
-    padding: 0;
-  }
-
   @media (min-width: 768px) {
     .content {
       margin-left: 220px;
+    }
+    .signin {
+      margin-left: 0;
     }
     .hideSidebar {
       margin-left: 70px;
