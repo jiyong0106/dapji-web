@@ -7,11 +7,13 @@ import classNames from 'classnames/bind';
 import ModalChoice from '@/src/components/common/moadlChoice';
 import SideBar from '@/src/components/common/sidebar';
 import { usePathname } from 'next/navigation';
+import { useMenuToggleStore } from '@/src/utils/store/useMenuTogglelStore';
 
 const cn = classNames.bind(styles);
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   const path = usePathname();
+  const { toggle, toggleMenu } = useMenuToggleStore();
 
   return (
     <QueryProvider>
@@ -24,6 +26,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
           <div
             className={cn('content', {
               noSideBarContent: path === '/signin',
+              hideSidebar: toggle === true,
             })}
           >
             {children}

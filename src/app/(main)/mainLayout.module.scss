@@ -16,15 +16,26 @@
   }
 
   .content {
-    margin-left: 220px; /* Sidebar 너비만큼 여백 */
     padding: 80px 20px 20px 20px; /* Header 높이만큼 여백 */
     flex: 1;
     overflow-y: auto;
     background: rgb(247, 244, 244);
     min-height: 100vh;
   }
+
   .noSideBarContent {
     margin-left: 0;
     padding: 0;
+  }
+
+  //반응형
+}
+
+@media (min-width: 768px) {
+  .content {
+    margin-left: 220px;
+  }
+  .hideSidebar {
+    margin-left: 70px;
   }
 }

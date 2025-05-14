@@ -567,3 +567,22 @@ export const FavoritedIcon = ({ ...props }: IconPropsType) => {
     </IconTemplate>
   );
 };
+
+export const MenuIcon = ({ ...props }: IconPropsType) => {
+  return (
+    <IconTemplate {...props}>
+      <path
+        fill="black"
+        d="M3 6C3 5.44772 3.44772 5 4 5H20C20.5523 5 21 5.44772 21 6C21 6.55228 20.5523 7 20 7H4C3.44772 7 3 6.55228 3 6Z"
+      />
+      <path
+        fill="black"
+        d="M3 11C3 10.4477 3.44772 10 4 10H20C20.5523 10 21 10.4477 21 11C21 11.5523 20.5523 12 20 12H4C3.44772 12 3 11.5523 3 11Z"
+      />
+      <path
+        fill="black"
+        d="M3 16C3 15.4477 3.44772 15 4 15H20C20.5523 15 21 15.4477 21 16C21 16.5523 20.5523 17 20 17H4C3.44772 17 3 16.5523 3 16Z"
+      />
+    </IconTemplate>
+  );
+};
