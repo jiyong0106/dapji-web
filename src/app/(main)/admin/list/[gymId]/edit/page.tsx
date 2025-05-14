@@ -3,7 +3,7 @@ import classNames from 'classnames/bind';
 import styles from './adminClimbListEditPage.module.scss';
 import Header from '@/src/components/common/header';
 import AdminClimbListEditForm from '@/src/components/adminPage/adminClimbListEditPage/adminClimbListUpdateForm';
-import { useClimbListDetails } from '@/src/app/(main)/gym/api';
+import { useGymListDetails } from '@/src/app/(main)/gym/api';
 const cn = classNames.bind(styles);
 
 type AdminClimbListEditPageprops = {
@@ -14,7 +14,7 @@ type AdminClimbListEditPageprops = {
 
 const AdminClimbListEditPage = ({ params }: AdminClimbListEditPageprops) => {
   const { gymId } = params;
-  const { data: climbListDetails } = useClimbListDetails(gymId);
+  const { data: climbListDetails } = useGymListDetails(gymId);
   const climbListDetail = climbListDetails ?? '';
 
   return (

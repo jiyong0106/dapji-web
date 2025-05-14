@@ -3,7 +3,7 @@ import styles from './postDetailEdit.module.scss';
 import classNames from 'classnames/bind';
 import PostUploadForm from '@/src/components/postUploadPage/postUploadForm';
 import LoadingSpinner from '@/src/components/common/loadingSpinner';
-import { usePostDetailDatas } from '@/src/app/(main)/gym/api';
+import { usePostDatas } from '@/src/app/(main)/gym/api';
 import Header from '@/src/components/common/header';
 import ModalChoice from '@/src/components/common/moadlChoice';
 
@@ -15,7 +15,7 @@ type PostDetailEditPageProps = {
 
 const PostDetailEditPage = ({ params }: PostDetailEditPageProps) => {
   const { postid, gymId } = params;
-  const { data: postDetailDatas, isLoading } = usePostDetailDatas(postid);
+  const { data: postDetailDatas, isLoading } = usePostDatas(postid);
 
   if (isLoading || !postDetailDatas) {
     return <LoadingSpinner />;

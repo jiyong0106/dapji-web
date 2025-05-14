@@ -3,7 +3,7 @@ import classNames from 'classnames/bind';
 import { GymsType } from '@/src/utils/type';
 import Image from 'next/image';
 import { DeleteIcon, EditIcon } from '@/public/icon';
-import { useClimbListDatasDelete } from '@/src/app/(main)/gym/api';
+import { useGymListDatasDelete } from '@/src/app/(main)/gym/api';
 import Link from 'next/link';
 import { useModal } from '@/src/hooks/useModal';
 import ModalChoice from '@/src/components/common/moadlChoice';
@@ -19,7 +19,7 @@ const AdminClimbList = ({ list }: CardListProps) => {
   const { logo, name, gym_idx, address, gym_notice_idx } = list;
   const router = useRouter();
 
-  const { mutate: ClimbListDatasDelete } = useClimbListDatasDelete(gym_idx);
+  const { mutate: ClimbListDatasDelete } = useGymListDatasDelete(gym_idx);
   const { showModalHandler } = useModal();
 
   const deleteClick = () => {

@@ -3,20 +3,14 @@ import classNames from 'classnames/bind';
 import styles from './userProfilePage.module.scss';
 import ProfileAllData from '@/src/components/profilePage/profileAllData';
 import ProfileForm from '@/src/components/profilePage/profileForm';
-import {
-  fetchUserLogout,
-  fethcProfilePostDatas,
-} from '@/src/app/(main)/profile/api';
+import { fethcProfilePostDatas } from '@/src/app/(main)/profile/api';
 import useInfiniteScroll from '@/src/hooks/useInfiniteScroll';
-import { ProfilePostType } from '@/src/utils/type';
+import { ProfilePostResponseType } from '@/src/utils/type';
 import LoadingSpinner from '@/src/components/common/loadingSpinner';
 import { AdminIcon } from '@/public/icon';
 import Link from 'next/link';
-import { useModal } from '@/src/hooks/useModal';
 import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import { useRoleStore } from '@/src/utils/store/useRoleStore';
-import { useMyInfoStore } from '@/src/utils/store/useMyImfoStore';
 
 const cn = classNames.bind(styles);
 
@@ -28,17 +22,14 @@ type ProfilePageProps = {
 
 const ProfilePage = ({ params }: ProfilePageProps) => {
   const { userId } = params;
-  const { showModalHandler } = useModal();
-  const router = useRouter();
   const { setrole } = useRoleStore();
-  const { setmyId } = useMyInfoStore();
 
   const {
     data: profileData,
     ref,
     isLoading,
     isFetchingNextPage,
-  } = useInfiniteScroll<ProfilePostType>({
+  } = useInfiniteScroll<ProfilePostResponseType>({
     queryKey: ['profileDatas', userId],
     fetchFunction: (page = 1) =>
       fethcProfilePostDatas({
@@ -55,25 +46,11 @@ const ProfilePage = ({ params }: ProfilePageProps) => {
 
   const profileInfo = profileData?.pages[0];
 
-  const role = profileData?.pages[0]?.userRole === 'admin';
+  const admin = profileData?.pages[0]?.userRole === 'admin';
 
   const profileDataObject = {
     posts: profilePosts,
     userName: name,
-  };
-
-  const handleLogoutClick = () => {
-    const confirmAction = async () => {
-      try {
-        await fetchUserLogout();
-        setmyId(null);
-        router.replace('/signin');
-      } catch (error) {
-        console.error('로그아웃 실패', error);
-      }
-    };
-
-    showModalHandler('choice', '로그아웃 하시겠어요?', confirmAction);
   };
 
   useEffect(() => {
@@ -89,7 +66,7 @@ const ProfilePage = ({ params }: ProfilePageProps) => {
   return (
     <div className={cn('container')}>
       <div className={cn('BtnStyles')}>
-        {role && (
+        {admin && (
           <Link href={'/admin'}>
             <AdminIcon />
           </Link>

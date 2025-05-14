@@ -1,7 +1,7 @@
 .container {
   @include flex-arrange(center, center);
   flex-direction: column;
-  background: rgb(247, 244, 244);
+
   width: 100%;
   padding-top: 40px;
   .signInForm {

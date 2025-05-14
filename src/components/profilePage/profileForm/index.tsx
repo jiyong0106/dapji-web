@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 import styles from './profileForm.module.scss';
 import Image from 'next/image';
-import { ProfilePostType } from '@/src/utils/type';
+import { ProfilePostResponseType } from '@/src/utils/type';
 import { useRouter } from 'next/navigation';
 import FollowingBtn from '@/src/components/common/followingBtn';
 import useFollowRequest from '@/src/hooks/useFollowRequest';
@@ -10,7 +10,7 @@ import ProfileBtn from '../profileBtn';
 const cn = classNames.bind(styles);
 
 type ProfileFormProps = {
-  profileInfo: ProfilePostType;
+  profileInfo: ProfilePostResponseType;
   params: {
     userId: string;
   };

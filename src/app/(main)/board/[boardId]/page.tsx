@@ -1,4 +1,4 @@
-import BoardDetailClient from '@/src/components/boardDetailPage/boardDetailClient';
+import ClientBoardDetail from '@/src/components/boardDetailPage/clientBoardDetail';
 import { boardDetailGetDatas } from '../api';
 import { BorardDetailResponseType } from '@/src/utils/type';
 
@@ -22,8 +22,19 @@ export const generateMetadata = async ({
     },
   };
 };
+
 const BoardDetailPage = ({ params }: { params: { boardId: string } }) => {
-  return <BoardDetailClient boardId={params.boardId} />;
+  return (
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      <ClientBoardDetail boardId={params.boardId} />
+    </div>
+  );
 };
 
 export default BoardDetailPage;

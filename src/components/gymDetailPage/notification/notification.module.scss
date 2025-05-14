@@ -1,0 +1,23 @@
+.container {
+  @include flex-arrange(space-between, center);
+  @include font-style(1.5rem, black, 500);
+  width: 100%;
+  height: 60px;
+  background: white;
+  border-radius: 5px;
+  padding: 0 10px;
+  margin: 20px 0 5px 0;
+  border: 0.5px solid rgb(215, 215, 215);
+  .left {
+    @include flex-arrange(center, center);
+
+    gap: 15px;
+  }
+
+  p {
+    width: 260px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}

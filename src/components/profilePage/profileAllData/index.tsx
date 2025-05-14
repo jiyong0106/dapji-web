@@ -4,14 +4,14 @@ import { useState } from 'react';
 import ProfileGymDatas from '../profileGymData/ProfileGymDatas';
 import ProfilePostDatas from '../profilePostData';
 import { PostIcon } from '@/public/icon';
-import { ProfilePostDetailType } from '@/src/utils/type';
+import { ProfilePostType } from '@/src/utils/type';
 import Image from 'next/image';
 
 const cn = classNames.bind(styles);
 
 type ProfileAllDataProps = {
   profileData: {
-    posts: ProfilePostDetailType[];
+    posts: ProfilePostType[];
     userName: string;
   };
   params: {
@@ -34,7 +34,7 @@ const ProfileAllData = ({ profileData, params }: ProfileAllDataProps) => {
           className={cn('icon')}
           onClick={() => handleIconClick('post', '0%')}
         >
-          <PostIcon width="30" height="30" />
+          <PostIcon width="30" height="30" fill="black" />
         </div>
         <div
           className={cn('icon')}

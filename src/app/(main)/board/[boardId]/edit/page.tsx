@@ -1,7 +1,6 @@
 'use client';
 import styles from './boardDetailEditPage.module.scss';
 import classNames from 'classnames/bind';
-import Header from '@/src/components/common/header';
 import BoardUploadForm from '@/src/components/boardUploadPage/boardUploadForm';
 import { boardDetailGetDatas } from '@/src/app/(main)/board/api';
 import { BorardDetailResponseType } from '@/src/utils/type';

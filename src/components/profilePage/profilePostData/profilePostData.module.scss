@@ -2,7 +2,12 @@
   width: 100%;
   aspect-ratio: 1 / 1;
   overflow: hidden;
+  transition: transform 0.2s ease-in-out;
+  border-radius: 5px;
 
+  &:hover {
+    transform: scale(1.02);
+  }
   img {
     object-fit: cover;
     width: 100%;
