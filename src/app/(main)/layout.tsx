@@ -14,7 +14,6 @@ const cn = classNames.bind(styles);
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   const path = usePathname();
   const { toggle, toggleMenu } = useMenuToggleStore();
-  console.log(toggle);
   return (
     <QueryProvider>
       <div className={cn('container')}>
