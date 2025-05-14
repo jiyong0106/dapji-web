@@ -1,5 +1,5 @@
 'use client';
-import styles from './ClientBoardDetail.module.scss';
+import styles from './clientBoardDetail.module.scss';
 import classNames from 'classnames/bind';
 import BoardDetailForm from '@/src/components/boardDetailPage/boardDetailForm';
 import CommentLists from '@/src/components/boardDetailPage/commentLists';
