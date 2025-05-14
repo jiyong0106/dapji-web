@@ -180,80 +180,85 @@
 }
 
 .shortcodes-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 12px;
+  margin-top: 16px;
 
   &.synced {
-    opacity: 0.8;
+    margin-top: 12px;
+    margin-bottom: 30px;
   }
 }
 
 .shortcode-item {
-  background-color: #f8f9fa;
-  border-radius: 6px;
-  padding: 6px 16px;
-  transition: all 0.2s ease;
-  border: 1px solid #eee;
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  height: 36px;
-  width: 100%;
-  
-  &:hover {
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  }
-  
+  align-items: center;
+  padding: 12px 16px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+
   &.synced {
     background-color: #f0f7ff;
-    border-color: #d1e5ff;
   }
 }
 
 .shortcode-info {
   display: flex;
-  align-items: center;
-  gap: 30px;
-  flex: 1;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .shortcode {
   font-family: monospace;
-  font-size: 13px;
+  font-weight: 600;
   color: #333;
-  font-weight: bold;
-  width: 180px;
-  margin: 0;
+  font-size: 14px;
 }
 
 .date-small {
-  font-size: 11px;
-  color: #888;
-  width: 100px;
+  font-size: 12px;
+  color: #666;
 }
 
 .sync-btn {
   background-color: #4caf50;
   color: white;
   border: none;
-  padding: 4px 10px;
   border-radius: 4px;
+  padding: 6px 12px;
   cursor: pointer;
-  font-size: 12px;
-  transition: background-color 0.2s;
-  width: 80px;
-  text-align: center;
-  height: 24px;
-  line-height: 16px;
-  
+  font-size: 14px;
+  transition: background-color 0.3s;
+
   &:hover {
-    background-color: #45a049;
+    background-color: #3d8b40;
   }
-  
+
   &:disabled {
-    background-color: #cccccc;
+    background-color: #a5d6a7;
+    cursor: not-allowed;
+  }
+}
+
+.notify-btn {
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #1976d2;
+  }
+
+  &:disabled {
+    background-color: #90caf9;
     cursor: not-allowed;
   }
 }

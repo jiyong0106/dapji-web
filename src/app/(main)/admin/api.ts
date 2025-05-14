@@ -97,3 +97,23 @@ export const useCreateSyncPost = () => {
     }
   });
 };
+
+// 인스타그램 동기화 게시물에 대한 알림 발송
+export const useSendInstaSyncNotification = () => {
+  const { showModalHandler } = useModal();
+
+  return useMutation({
+    mutationKey: ['sendInstaSyncNotification'],
+    mutationFn: async (insta_sync_post_idx: number) => {
+      const res = await instance.post(`/videos/instagram/sync-post/${insta_sync_post_idx}/notify`);
+      return res.data;
+    },
+    onSuccess: () => {
+      showModalHandler('alert', '알림이 성공적으로 발송되었습니다.');
+    },
+    onError: (error) => {
+      showModalHandler('alert', '알림 발송 실패: 다시 시도해 주세요');
+      console.error('알림 발송 실패:', error);
+    }
+  });
+};

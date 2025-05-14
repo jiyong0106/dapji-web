@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { useCreateSyncPost, useFetchInstaUsers, useFetchUserShortcodes } from '../api';
+import { useCreateSyncPost, useFetchInstaUsers, useFetchUserShortcodes, useSendInstaSyncNotification } from '../api';
 import styles from './instasync.module.scss';
 import classNames from 'classnames/bind';
 
@@ -10,6 +10,7 @@ const InstaSyncPage = () => {
   const [selectedInstaName, setSelectedInstaName] = useState<string>('');
   const [selectedShortcode, setSelectedShortcode] = useState('');
   const [isSyncingAll, setIsSyncingAll] = useState(false);
+  const [notifyingPostId, setNotifyingPostId] = useState<number | null>(null);
   
   // 인스타그램 아이디가 있는 사용자 목록 조회
   const { data: usersData, isLoading: isUsersLoading } = useFetchInstaUsers();
@@ -23,6 +24,7 @@ const InstaSyncPage = () => {
   } = useFetchUserShortcodes(selectedInstaName);
   
   const { mutate: createSyncPost, isPending } = useCreateSyncPost();
+  const { mutate: sendNotification, isPending: isNotifying } = useSendInstaSyncNotification();
 
   // 특정 사용자 선택
   const handleUserSelect = (instaName: string) => {
@@ -41,6 +43,12 @@ const InstaSyncPage = () => {
   const handleSync = (shortcode: string) => {
     setSelectedShortcode(shortcode);
     createSyncPost(shortcode);
+  };
+
+  // 알림 발송 처리
+  const handleSendNotification = async (insta_sync_post_idx: number) => {
+    setNotifyingPostId(insta_sync_post_idx);
+    sendNotification(insta_sync_post_idx);
   };
 
   // 전체 숏코드 동기화 처리 (미구현 - 향후 백엔드 API 개발 후 연결)
@@ -134,14 +142,28 @@ const InstaSyncPage = () => {
                     <>
                       <h3 className={cn('section-title', 'synced-title')}>동기화 완료 ({Object.keys(shortcodesData.synced_shortcodes).length}개)</h3>
                       <div className={cn('shortcodes-grid', 'synced')}>
-                        {Object.entries(shortcodesData.synced_shortcodes).map(([shortcode, date]: [string, any]) => (
-                          <div key={shortcode} className={cn('shortcode-item', 'synced')}>
-                            <div className={cn('shortcode-info')}>
-                              <p className={cn('shortcode')}>{shortcode}</p>
-                              <span className={cn('date-small')}>{date}</span>
+                        {Object.entries(shortcodesData.synced_shortcodes).map(([shortcode, data]: [string, any]) => {
+                          // 수정: 이제 data는 객체이므로 date와 insta_sync_post_idx를 직접 추출
+                          const date = typeof data === 'object' ? data.date : data;
+                          // 실제 게시물 ID를 사용합니다
+                          const syncedPostId = typeof data === 'object' ? data.insta_sync_post_idx : parseInt(shortcode.replace(/\D/g, '')) || 1;
+                          
+                          return (
+                            <div key={shortcode} className={cn('shortcode-item', 'synced')}>
+                              <div className={cn('shortcode-info')}>
+                                <p className={cn('shortcode')}>{shortcode}</p>
+                                <span className={cn('date-small')}>{date}</span>
+                              </div>
+                              <button 
+                                className={cn('notify-btn')} 
+                                onClick={() => handleSendNotification(syncedPostId)}
+                                disabled={isNotifying && notifyingPostId === syncedPostId}
+                              >
+                                {isNotifying && notifyingPostId === syncedPostId ? '발송중' : '알림 발송'}
+                              </button>
                             </div>
-                          </div>
-                        ))}
+                          );
+                        })}
                       </div>
                     </>
                   )}
