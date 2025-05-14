@@ -21,7 +21,7 @@ const AppleCallback = () => {
             router.replace('/join');
             return;
           }
-          router.replace('/gym');
+          window.location.href = '/gym';
         }
       }
     };
