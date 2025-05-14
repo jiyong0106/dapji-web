@@ -1,15 +1,36 @@
 .container {
   width: 220px;
   position: fixed;
-  top: 80px; /* ✅ 헤더 아래에서 시작 */
+  top: 80px;
   left: 0;
-  height: calc(100vh - 80px); /* ✅ 남은 높이만큼만 사용 */
+  height: calc(100vh - 80px);
   padding: 10px;
   background: white;
   border-right: 1px solid rgba(0, 0, 0, 0.05);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   overflow-y: auto;
-  z-index: 1;
+  z-index: 10;
+  transition: all 0.3s ease;
+
+  &.hideSidebar {
+    transform: translateX(-100%);
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  @media (min-width: 768px) {
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+
+    &.hideSidebar {
+      transform: none;
+      opacity: 1;
+      visibility: visible;
+      width: 70px;
+    }
+  }
+
   .menu {
     margin: 5px 5px 0;
   }
@@ -20,21 +41,11 @@
   }
 
   &::-webkit-scrollbar {
-    width: 6px; // 👉 스크롤바 두께
+    width: 6px;
   }
 
   &::-webkit-scrollbar-thumb {
-    background: rgba(0, 0, 0, 0.2); // 👉 스크롤 손잡이 색상
+    background: rgba(0, 0, 0, 0.2);
     border-radius: 3px;
-  }
-}
-.hideSidebar {
-  display: none;
-}
-
-@media (min-width: 768px) {
-  .hideSidebar {
-    display: block;
-    width: 70px;
   }
 }
