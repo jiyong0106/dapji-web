@@ -101,6 +101,7 @@ export const useCreateSyncPost = () => {
 // 인스타그램 동기화 게시물에 대한 알림 발송
 export const useSendInstaSyncNotification = () => {
   const { showModalHandler } = useModal();
+  const queryClient = useQueryClient();
 
   return useMutation({
     mutationKey: ['sendInstaSyncNotification'],
@@ -110,6 +111,8 @@ export const useSendInstaSyncNotification = () => {
     },
     onSuccess: () => {
       showModalHandler('alert', '알림이 성공적으로 발송되었습니다.');
+      // 알림 발송 성공 시 숏코드 목록 갱신
+      queryClient.invalidateQueries({ queryKey: ['userShortcodes'] });
     },
     onError: (error) => {
       showModalHandler('alert', '알림 발송 실패: 다시 시도해 주세요');

@@ -147,19 +147,31 @@ const InstaSyncPage = () => {
                           const date = typeof data === 'object' ? data.date : data;
                           // 실제 게시물 ID를 사용합니다
                           const syncedPostId = typeof data === 'object' ? data.insta_sync_post_idx : parseInt(shortcode.replace(/\D/g, '')) || 1;
+                          // 알림 발송 여부 및 게시글 연동 여부
+                          const notificationSent = typeof data === 'object' ? data.notification_sent : false;
+                          const convertedToPost = typeof data === 'object' ? data.converted_to_post : false;
+                          const postExists = typeof data === 'object' ? data.post_exists : false;
                           
                           return (
                             <div key={shortcode} className={cn('shortcode-item', 'synced')}>
                               <div className={cn('shortcode-info')}>
                                 <p className={cn('shortcode')}>{shortcode}</p>
                                 <span className={cn('date-small')}>{date}</span>
+                                <div className={cn('status-labels')}>
+                                  <span className={cn('status-label', { 'status-yes': notificationSent, 'status-no': !notificationSent })}>
+                                    알림 발송 여부: {notificationSent ? 'O' : 'X'}
+                                  </span>
+                                  <span className={cn('status-label', { 'status-yes': convertedToPost && postExists, 'status-no': !(convertedToPost && postExists) })}>
+                                    게시글 연동 여부: {convertedToPost && postExists ? 'O' : 'X'}
+                                  </span>
+                                </div>
                               </div>
                               <button 
-                                className={cn('notify-btn')} 
+                                className={cn('notify-btn', { 'sent': notificationSent })} 
                                 onClick={() => handleSendNotification(syncedPostId)}
                                 disabled={isNotifying && notifyingPostId === syncedPostId}
                               >
-                                {isNotifying && notifyingPostId === syncedPostId ? '발송중' : '알림 발송'}
+                                {isNotifying && notifyingPostId === syncedPostId ? '발송중' : notificationSent ? '재발송' : '알림 발송'}
                               </button>
                             </div>
                           );

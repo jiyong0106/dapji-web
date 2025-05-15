@@ -223,6 +223,32 @@
   color: #666;
 }
 
+.status-labels {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 5px;
+}
+
+.status-label {
+  font-size: 11px;
+  padding: 2px 4px;
+  border-radius: 3px;
+  display: inline-block;
+  
+  &.status-yes {
+    background-color: rgba(76, 175, 80, 0.15);
+    color: #2e7d32;
+    border: 1px solid rgba(76, 175, 80, 0.3);
+  }
+  
+  &.status-no {
+    background-color: rgba(244, 67, 54, 0.15);
+    color: #c62828;
+    border: 1px solid rgba(244, 67, 54, 0.3);
+  }
+}
+
 .sync-btn {
   background-color: #4caf50;
   color: white;
@@ -260,6 +286,14 @@
   &:disabled {
     background-color: #90caf9;
     cursor: not-allowed;
+  }
+  
+  &.sent {
+    background-color: #5c6bc0;
+    
+    &:hover {
+      background-color: #3949ab;
+    }
   }
 }
 
