@@ -21,7 +21,7 @@ const KakaoCallback = () => {
             router.replace('/join');
             return;
           }
-          router.replace('/gym');
+          window.location.href = '/gym';
         }
       }
     };

@@ -31,8 +31,11 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
 
           <div
             className={cn('content', {
-              noSideBarContent: path === '/signin',
               hideSidebar: toggle === true,
+              signin:
+                path === '/signin' ||
+                path === '/auth/apple/callback' ||
+                path === '/auth/kakao/callback',
             })}
           >
             {children}

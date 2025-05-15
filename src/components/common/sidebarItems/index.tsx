@@ -24,6 +24,7 @@ const SidebarItem = ({ label, icon, path }: SidebarItemsProps) => {
       href={path}
       className={cn('item', {
         active: isActive,
+        collapsed: toggle === true,
       })}
     >
       <div className={cn('icon')}>{icon}</div>

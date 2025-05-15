@@ -14,7 +14,11 @@ const SideBar = () => {
   const { myId } = useMyInfoStore();
   const { toggle } = useMenuToggleStore();
 
-  if (path === '/signin') {
+  if (
+    path === '/signin' ||
+    path === '/auth/apple/callback' ||
+    path === '/auth/kakao/callback'
+  ) {
     return null;
   }
 
