@@ -1,0 +1,322 @@
+.container {
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  font-size: 18px;
+  color: #666;
+}
+
+.section-title {
+  font-size: 18px;
+  margin: 20px 0 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #eee;
+  
+  &.synced-title {
+    color: #666;
+    font-size: 16px;
+    margin-top: 30px;
+  }
+}
+
+.content-container {
+  display: flex;
+  gap: 30px;
+}
+
+// 사용자 목록 영역
+.users-list {
+  margin-bottom: 30px;
+  flex: 0 0 200px;
+  border-right: 1px solid #eee;
+  padding-right: 20px;
+}
+
+.user-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.user-card {
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid #eee;
+  
+  &:hover {
+    transform: translateX(3px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  }
+  
+  &.active {
+    border-color: #4caf50;
+    background-color: #f1f8e9;
+    border-left: 3px solid #4caf50;
+  }
+  
+  .user-name {
+    font-size: 14px;
+    margin: 0;
+  }
+}
+
+// 선택된 사용자 상세 영역
+.user-details {
+  flex: 1;
+  min-width: 600px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  border: 1px solid #eaeaea;
+  
+  &.empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+    background-color: #f5f5f5;
+  }
+}
+
+.empty-message {
+  color: #888;
+  font-size: 15px;
+  text-align: center;
+}
+
+.empty-state {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+  
+  p {
+    color: #888;
+    font-size: 14px;
+    text-align: center;
+  }
+}
+
+.selected-user-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  
+  .section-title {
+    margin: 0;
+    border: none;
+  }
+}
+
+.action-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.fetch-btn {
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  
+  &:hover {
+    background-color: #1976d2;
+  }
+  
+  &:disabled {
+    background-color: #bbdefb;
+    cursor: not-allowed;
+  }
+}
+
+.sync-all-btn {
+  background-color: #ff5722;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  
+  &:hover {
+    background-color: #e64a19;
+  }
+  
+  &:disabled {
+    background-color: #ffccbc;
+    cursor: not-allowed;
+  }
+}
+
+.shortcodes-container {
+  margin-top: 20px;
+}
+
+.shortcodes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+
+  &.synced {
+    margin-top: 12px;
+    margin-bottom: 30px;
+  }
+}
+
+.shortcode-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+  &.synced {
+    background-color: #f0f7ff;
+  }
+}
+
+.shortcode-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.shortcode {
+  font-family: monospace;
+  font-weight: 600;
+  color: #333;
+  font-size: 14px;
+}
+
+.date-small {
+  font-size: 12px;
+  color: #666;
+}
+
+.status-labels {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 5px;
+}
+
+.status-label {
+  font-size: 11px;
+  padding: 2px 4px;
+  border-radius: 3px;
+  display: inline-block;
+  
+  &.status-yes {
+    background-color: rgba(76, 175, 80, 0.15);
+    color: #2e7d32;
+    border: 1px solid rgba(76, 175, 80, 0.3);
+  }
+  
+  &.status-no {
+    background-color: rgba(244, 67, 54, 0.15);
+    color: #c62828;
+    border: 1px solid rgba(244, 67, 54, 0.3);
+  }
+}
+
+.sync-btn {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #3d8b40;
+  }
+
+  &:disabled {
+    background-color: #a5d6a7;
+    cursor: not-allowed;
+  }
+}
+
+.notify-btn {
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #1976d2;
+  }
+
+  &:disabled {
+    background-color: #90caf9;
+    cursor: not-allowed;
+  }
+  
+  &.sent {
+    background-color: #5c6bc0;
+    
+    &:hover {
+      background-color: #3949ab;
+    }
+  }
+}
+
+.no-data {
+  color: #999;
+  font-style: italic;
+  padding: 10px 0;
+}
+
+.error-message {
+  color: #e74c3c;
+  background-color: #ffecec;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.invalid {
+  font-size: 14px;
+  background-color: #ffecec;
+  color: #e74c3c;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-weight: normal;
+  margin-left: 8px;
+} 
