@@ -22,8 +22,6 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
         </div>
         <div className={cn('secContainer')}>
           <SideBar />
-
-          {/* 오버레이 */}
           <div
             className={cn('backdrop', { active: !toggle })}
             onClick={toggleMenu}
