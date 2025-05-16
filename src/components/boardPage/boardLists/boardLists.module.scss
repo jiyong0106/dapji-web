@@ -1,9 +1,16 @@
 .container {
   width: 100%;
   height: auto;
-  background-color: white;
+  padding: 15px 10px;
+  border: 0.5px solid #d9d9d9;
+  background: white;
+  margin-bottom: 4px;
   border-radius: 5px;
-  padding: 10px;
+  transition: transform 0.2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.03);
+  }
 
   .containerWrapper {
     display: grid;
@@ -63,6 +70,7 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
+      width: 100px;
       .boardImage {
         width: 100px;
         height: 100px;
@@ -72,28 +80,19 @@
       }
 
       .imageLength {
-        @include font-style(1.4rem, white, 600);
+        @include font-style(1.2rem, white, 400);
         position: absolute;
         right: 6px;
         top: 5px;
-        padding: 2px 3px;
+        padding: 2px 7px;
         background: rgb(78, 77, 77, 0.5);
         border-radius: 4px;
       }
-      .noBoardImage {
-        width: 100px;
-        height: 100px;
-        background: white;
-      }
 
       .iconWrapper {
-        @include flex-arrange(space-around, center);
-        .like,
-        .comment {
-          @include flex-arrange(center);
-          @include font-style(1.4rem, black, 400);
-          gap: 7px;
-        }
+        @include flex-arrange(space-between, center);
+        margin-top: auto;
+        gap: 10px;
       }
     }
   }
@@ -102,5 +101,6 @@
 .outerContainer {
   @include flex-arrange(center, center);
   flex-direction: column;
-  gap: 5px;
+  margin-top: 15px;
+  max-width: 700px;
 }

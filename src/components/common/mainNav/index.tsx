@@ -2,13 +2,14 @@
 import classNames from 'classnames/bind';
 import styles from './mainNav.module.scss';
 import Image from 'next/image';
-import { mainHeaderOptions } from '@/src/utils/options/landingOptions';
 import { useRouter } from 'next/navigation';
 import { useMyInfoStore } from '@/src/utils/store/useMyImfoStore';
 import { fetchUserLogout } from '@/src/app/(main)/profile/api';
 import { useModal } from '@/src/hooks/useModal';
 import { useEffect } from 'react';
 import { fetchMyInfo } from '@/src/app/(main)/auth/api';
+import { MenuIcon } from '@/public/icon';
+import { useMenuToggleStore } from '@/src/utils/store/useMenuTogglelStore';
 
 const cn = classNames.bind(styles);
 
@@ -16,8 +17,7 @@ const MainNav = () => {
   const { myId, setmyId } = useMyInfoStore();
   const { showModalHandler } = useModal();
   const router = useRouter();
-
-  const menuItems = mainHeaderOptions(myId);
+  const { toggleMenu } = useMenuToggleStore();
 
   const handleLogoutClick = () => {
     const confirmAction = async () => {
@@ -32,7 +32,6 @@ const MainNav = () => {
 
     showModalHandler('choice', '로그아웃 하시겠어요?', confirmAction);
   };
-  console.log('myId==>', myId);
 
   useEffect(() => {
     const getMyInfo = async () => {
@@ -51,31 +50,31 @@ const MainNav = () => {
 
   return (
     <nav className={cn('container')}>
-      <a
-        className={cn('left')}
-        href={process.env.NEXT_PUBLIC_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <Image
-          src={process.env.NEXT_PUBLIC_URL + '/icon/btransparent.png'}
-          alt="로고이미지"
-          width={60}
-          height={60}
-          className={cn('logo')}
-          priority
+      <div className={cn('left')}>
+        <MenuIcon
+          width="35"
+          height="35"
+          className={cn('menu')}
+          onClick={toggleMenu}
         />
-        <p className={cn('leftText')}>DAPJI</p>
-      </a>
-
+        <a
+          className={cn('left')}
+          href={process.env.NEXT_PUBLIC_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Image
+            src={process.env.NEXT_PUBLIC_URL + '/icon/btransparent.png'}
+            alt="로고이미지"
+            width={60}
+            height={60}
+            className={cn('logo')}
+            priority
+          />
+          <p className={cn('leftText')}>DAPJI</p>
+        </a>
+      </div>
       <div className={cn('right')}>
-        <ul className={cn('menu')}>
-          {menuItems.map((item, index) => (
-            <li key={index} onClick={() => router.push(item.getPath())}>
-              {item.title}
-            </li>
-          ))}
-        </ul>
         <p
           className={cn('downloadBtn')}
           onClick={() => {

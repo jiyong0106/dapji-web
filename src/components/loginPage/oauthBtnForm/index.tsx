@@ -6,13 +6,10 @@ import { KakaoIcon } from '@/public/icon';
 import OauthPopup from '@/src/components/loginPage/oauthPopup';
 import OauthBtnStyle from '@/src/components/loginPage/oauthBtnStyle';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 
 const cn = classNames.bind(styles);
 
 const OauthBtnForm = () => {
-  const router = useRouter();
-
   const kakaoLogin = () => {
     OauthPopup('kakao');
   };

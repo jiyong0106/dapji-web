@@ -1,8 +1,10 @@
 .container {
   width: 100%;
+  max-width: 700px;
   display: flex;
   flex-direction: column;
   justify-self: center;
+  padding-top: 20px;
 }
 
 .container::-webkit-scrollbar {

@@ -44,6 +44,12 @@ const AdminPage = () => {
       >
         동영상 신고 관리
       </h3>
+      <h3
+        style={{ cursor: 'pointer' }}
+        onClick={() => pageClick('/admin/instasync')}
+      >
+        인스타그램 동기화 관리
+      </h3>
       <h3>유저 관리</h3>
     </div>
   );

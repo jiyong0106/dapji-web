@@ -1,0 +1,57 @@
+.item {
+  display: flex;
+  align-items: center;
+  padding: 15px 12px;
+  border-radius: 10px;
+  text-decoration: none;
+  gap: 20px;
+  transition: background 0.2s;
+
+  // 아이콘
+  .icon {
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+  }
+
+  // 레이블
+  .label {
+    @include font-style(1.7rem, black, 500);
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 150px; // 펼쳐진 상태 너비
+    opacity: 1;
+    transform: translateX(0);
+    transition:
+      max-width 0.3s ease,
+      opacity 0.3s ease,
+      transform 0.3s ease;
+  }
+
+  svg {
+    fill: #000;
+    transition: fill 0.3s ease;
+  }
+
+  &.active {
+    background: #e5e5e5;
+
+    .label {
+      font-weight: 500;
+    }
+  }
+
+  &:hover {
+    background: #f1f1f1;
+  }
+
+  // (사이드바 접힘)
+  &.collapsed {
+    cursor: pointer;
+
+    .label {
+      max-width: 0;
+      opacity: 0;
+      transform: translateX(-10px);
+    }
+  }
+}

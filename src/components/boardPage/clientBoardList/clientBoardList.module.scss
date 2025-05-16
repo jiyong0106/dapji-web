@@ -1,0 +1,36 @@
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  padding-top: 20px;
+  .header {
+    max-width: 500px;
+    flex-direction: column;
+    @include flex-arrange(center, center);
+    .headerTop {
+      width: 100%;
+      @include flex-arrange(center, center);
+      gap: 10px;
+      .upload {
+        width: 100%;
+        max-width: 100px;
+        height: 40px;
+        background: #38b6ff;
+        border-radius: 5px;
+        border: 0.5px solid rgb(215, 215, 215);
+        @include flex-arrange(center, center);
+        @include font-style(1.7rem, white, 400);
+        cursor: pointer;
+        transition: transform 0.2s ease-in-out;
+        &:hover {
+          transform: scale(1.05);
+        }
+      }
+    }
+  }
+}
+
+.container::-webkit-scrollbar {
+  display: none;
+}

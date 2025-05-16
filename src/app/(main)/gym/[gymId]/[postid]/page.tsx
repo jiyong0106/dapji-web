@@ -1,72 +1,44 @@
-'use client';
-import { useState } from 'react';
-import styles from './PostDetailPage.module.scss';
-import classNames from 'classnames/bind';
-import PostDetailForm from '@/src/components/postDetailPage/postDetailForm';
-import { usePostDetailDatas } from '@/src/app/(main)/gym/api';
-import LoadingSpinner from '@/src/components/common/loadingSpinner';
-import CommentInput from '@/src/components/boardDetailPage/commentInput';
-import PostCommentLists from '@/src/components/postDetailPage/postCommentLists';
-import useInfiniteScroll from '@/src/hooks/useInfiniteScroll';
-import { CommentDatas } from '@/src/hooks/useCommentDatas';
-import { PostCommentType, PostCommentDetailType } from '@/src/utils/type';
-
-const cn = classNames.bind(styles);
+import { PostDetailDataType } from '@/src/utils/type';
+import instance from '@/src/utils/axios';
+import ClientPostDetail from '@/src/components/postDetailPage/clientPostDetail';
 
 type PostDetailPageProps = {
   params: { postid: string; gymId: string };
 };
 
+export const generateMetadata = async ({
+  params,
+}: {
+  params: {
+    gymId: string;
+    postid: string;
+  };
+}) => {
+  const res = await instance.get(`/posts/${params.postid}`);
+  const postDetailData: PostDetailDataType = res.data;
+
+  return {
+    title: `${postDetailData.gym_name} - ${postDetailData.color}`,
+    description: `${postDetailData.gym_name}에서 완등한 ${postDetailData.color} 문제`,
+    openGraph: {
+      title: `${postDetailData.gym_name} - ${postDetailData.color}`,
+      description: `${postDetailData.gym_name}에서 완등한 ${postDetailData.color} 문제`,
+      url: `${process.env.NEXT_PUBLIC_URL}/gym/${params.gymId}/${params.postid}`,
+      images: '/icon/widelogo.png',
+    },
+  };
+};
+
 const PostDetailPage = ({ params }: PostDetailPageProps) => {
-  const { postid, gymId } = params;
-  const [tagNickname, setTagNickname] = useState('');
-  const [selectId, setSelectId] = useState('');
-
-  const { data: postDetailDatas, isLoading } = usePostDetailDatas(postid);
-  //포스트 상세페이지 데이터
-
-  const {
-    data: postDetailCommentData,
-    isFetchingNextPage,
-    ref,
-  } = useInfiniteScroll<PostCommentType>({
-    queryKey: ['postDetailComment'],
-    fetchFunction: (page = 1) =>
-      CommentDatas({
-        page,
-        content_id: postid,
-        category: 'postComment',
-      }),
-    getNextPageParam: (lastPage) =>
-      lastPage.meta.hasNextPage ? lastPage.meta.page + 1 : undefined,
-  });
-
-  const commentDatas: PostCommentDetailType[] =
-    postDetailCommentData?.pages.flatMap((page) => page.postComments) ?? [];
-
-  const isMyPost = postDetailDatas?.is_post_owner;
-
-  if (isLoading || !postDetailDatas) {
-    return <LoadingSpinner />;
-  }
-
   return (
-    <div className={cn('container')}>
-      <PostDetailForm params={params} postDetailDatas={postDetailDatas} />
-      <PostCommentLists
-        lists={commentDatas}
-        setTagNickname={setTagNickname}
-        setSelectId={setSelectId}
-        isMyPost={isMyPost}
-      />
-      <CommentInput
-        params={{ postId: postid }}
-        tagNickname={tagNickname}
-        setTagNickname={setTagNickname}
-        selectId={selectId}
-      />
-      <div ref={ref} />
-      {isFetchingNextPage && <LoadingSpinner />}
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      <ClientPostDetail params={params} />
     </div>
   );
 };

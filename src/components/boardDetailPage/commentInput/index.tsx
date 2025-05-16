@@ -61,7 +61,7 @@ const CommentInput = ({
     category: 'postComment',
     mainKey: 'postCommentUpload',
     firKey: 'postDetailComment',
-    secKey: 'postDetailDatas',
+    secKey: 'postDatasKey',
   });
   //포스트 답글
   const { mutate: postReCommentUpload } = useRecommentUploadData({

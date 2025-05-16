@@ -1,0 +1,51 @@
+.container {
+  width: 220px;
+  position: fixed;
+  top: 80px;
+  left: 0;
+  height: calc(100vh - 80px);
+  padding: 10px;
+  background: white;
+  border-right: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  overflow-y: auto;
+  z-index: 10;
+  transition: all 0.3s ease;
+
+  &.hideSidebar {
+    transform: translateX(-100%);
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  @media (min-width: 768px) {
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+
+    &.hideSidebar {
+      transform: none;
+      opacity: 1;
+      visibility: visible;
+      width: 70px;
+    }
+  }
+
+  .menu {
+    margin: 5px 5px 0;
+  }
+
+  .divider {
+    border-top: 1px solid #ddd;
+    margin: 12px 0;
+  }
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+  }
+}

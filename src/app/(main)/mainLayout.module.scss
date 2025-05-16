@@ -1,57 +1,64 @@
 .container {
-  background: rgb(247, 244, 244);
   min-height: 100vh;
-  position: relative;
+
   .header-container {
-    position: sticky;
-    z-index: 10;
-    background: rgb(247, 244, 244);
-    transition: top 0.5s ease-in-out;
-
-    &.up {
-      top: 0px; /* 스크롤을 올릴 때도 상단에 고정 */
-    }
-
-    &.down {
-      top: -120px; /* 스크롤을 내릴 때도 상단에 고정 */
-    }
+    position: fixed;
+    z-index: 100;
+    width: 100%;
+    top: 0;
+    left: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   }
 
   .secContainer {
-    max-width: 650px;
-    margin: 0 auto;
-    padding: 10px;
-  }
-  .scrollWrapper {
-    position: fixed;
-    right: 20px;
-    bottom: 50px;
     display: flex;
-    flex-direction: column;
-    gap: 12px;
+    position: relative;
+  }
 
-    button {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background-color: #333;
-      color: white;
-      font-size: 1.2rem;
-      border: none;
-      cursor: pointer;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-      transition:
-        background-color 0.2s ease,
-        transform 0.2s ease;
+  .content {
+    padding: 80px 20px 20px 20px;
+    flex: 1;
+    overflow-y: auto;
+    background: rgb(247, 244, 244);
+    min-height: 100vh;
+    margin-left: 0;
+    transition: margin-left 0.3s ease;
+  }
 
-      &:hover {
-        background-color: #555;
-        transform: translateY(-2px);
-      }
+  @media (min-width: 768px) {
+    .content {
+      margin-left: 220px;
+    }
+    .signin {
+      margin-left: 0;
+    }
+    .hideSidebar {
+      margin-left: 70px;
+    }
+  }
 
-      &:active {
-        transform: scale(0.95);
-      }
+  //모바일 전용 오버레이(backdrop)
+  .backdrop {
+    display: none;
+    position: fixed;
+    top: 80px; /* header 높이와 동일하게 */
+    left: 0;
+    width: 100vw;
+    height: calc(100vh - 80px);
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 5; /* sidebar(z-index:10) 아래, content 위 */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .backdrop.active {
+    display: block;
+    opacity: 1;
+  }
+
+  @media (min-width: 768px) {
+    .backdrop {
+      display: none !important;
     }
   }
 }

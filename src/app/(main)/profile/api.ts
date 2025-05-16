@@ -1,7 +1,7 @@
 'use client';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import {
-  ProfilePostType,
+  ProfilePostResponseType,
   useFormProfileEditProps,
   FollowRequestType,
 } from '@/src/utils/type';
@@ -82,10 +82,10 @@ export const fetchProfileGymDetail = async ({
 
 //프로필 유저 정보 및 동영상 썸네일
 export const useProfileDatas = (userId: string) => {
-  return useQuery<ProfilePostType>({
+  return useQuery<ProfilePostResponseType>({
     queryKey: ['userProfileData'],
     queryFn: () => instance.get(`/profile/${userId}`),
-    select: (res: ProfilePostType) => res?.data,
+    select: (res: ProfilePostResponseType) => res?.data,
   });
 };
 

@@ -1,10 +1,14 @@
 .container {
-  @include flex-arrange(center, center);
+  @include flex-arrange(flex-start, center);
   flex-direction: column;
-  background: rgb(247, 244, 244);
   width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 100px 50px 0 50px;
+  border-radius: 5px;
+  border: 0.5px solid rgb(215, 215, 215);
   height: 100vh;
-  padding: 10px;
+  background: white;
 
   .loginContaienr {
     width: 100%;
@@ -40,5 +44,10 @@
         margin: 0 10px;
       }
     }
+  }
+  .gymRouter {
+    @include font-style(1.5rem, gray, 400);
+    cursor: pointer;
+    text-decoration: underline;
   }
 }

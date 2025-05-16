@@ -59,7 +59,7 @@ const ModalChoice = () => {
       <div className={cn('container', { 'upload-modal': isUploadModal })}>
         <div className={cn('contentWrapper')}>
           <Image
-            src={process.env.NEXT_PUBLIC_URL + '/icon/blueicon.png'}
+            src={process.env.NEXT_PUBLIC_URL + '/icon/btransparent.png'}
             alt="logo"
             width="70"
             height="70"

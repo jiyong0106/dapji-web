@@ -6,14 +6,14 @@ import ImageInput from '@/src/components/common/imageInput';
 import CommonInput from '@/src/components/common/commonInput';
 import CommonButton from '@/src/components/common/commonButton';
 import { useForm } from 'react-hook-form';
-import { useClimbListDatasUpload } from '@/src/app/(main)/gym/api';
+import { useGymListDatasUpload } from '@/src/app/(main)/gym/api';
 import { useFormListUploadProps } from '@/src/utils/type';
 
 const cn = classNames.bind(styles);
 
 const AdminClimbListUploadForm = () => {
   const [fileUrl, setFileUrl] = useState<string | ArrayBuffer | null>('');
-  const { mutate: climbListDatasUpload } = useClimbListDatasUpload();
+  const { mutate: climbListDatasUpload } = useGymListDatasUpload();
   //리스트 업로드
 
   const {

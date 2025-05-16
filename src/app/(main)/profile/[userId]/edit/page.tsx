@@ -2,7 +2,6 @@
 import classNames from 'classnames/bind';
 import styles from './profileEditPage.module.scss';
 import ProfileEditForm from '@/src/components/profilePage/profileEditForm';
-import Header from '@/src/components/common/header';
 import { useRouter } from 'next/navigation';
 
 const cn = classNames.bind(styles);

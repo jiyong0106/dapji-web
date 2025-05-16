@@ -36,7 +36,7 @@ export type GymsType = {
   is_favorite: boolean;
 };
 
-export type ClimbLIstResponseType = {
+export type GymListResponseType = {
   gyms: GymsType[];
   meta: metaType;
 };
@@ -67,24 +67,7 @@ export type NoticeDetailType = {
   title: string;
 };
 
-// export type DetailType = {
-//   post_idx: string;
-//   user_idx: number;
-//   gym_idx: number;
-//   clearday: any;
-//   media: string[];
-//   thumbnailUrl: string[];
-//   content: string | null;
-//   color: string;
-//   createdAt: any;
-//   like_count: number;
-//   post_comment_count: number;
-//   User: UserType;
-//   post_comment: postCommentType[];
-//   is_like: boolean;
-// };
-
-export type DetailType = {
+export type PostDetailType = {
   post_idx: string;
   user_idx: number;
   gym_idx: number;
@@ -100,24 +83,13 @@ export type DetailType = {
   is_like: boolean;
 };
 
-export type ClimbDetailResponseType = {
+export type GymDetailResponseType = {
   gym_name: string; // 체육관 이름
-  posts: DetailType[]; // 게시물 목록
-  meta: metaType;
-  notice: NoticeDetailType;
-  length?: number;
-};
-
-export type ClimbPostResponseType = {
-  ///////////////////
-  gym_name: string; // 체육관 이름
-  posts: DetailType[]; // 게시물 목록
+  posts: PostDetailType[]; // 게시물 목록
   notice: NoticeDetailType;
   meta: metaType;
   length?: number;
 };
-
-/// 단일 비디오 렌더링 타입
 
 //클라이밍장별 영상 좋아요 타입
 export type VideoLikeType = {
@@ -136,7 +108,7 @@ export type useFormPostUploadProps = {
 
 //////////////////////////프로필 페이지 타입들//////////////////////////
 
-export type ProfilePostDetailType = {
+export type ProfilePostType = {
   post_idx: string;
   thumbnailUrl: any;
   gym_idx: string;
@@ -153,10 +125,10 @@ export type ProfileUserType = {
   reach: string;
 };
 
-export type ProfilePostType = {
-  data: ProfilePostType;
+export type ProfilePostResponseType = {
+  data: ProfilePostResponseType;
   user: ProfileUserType;
-  posts: ProfilePostDetailType[];
+  posts: ProfilePostType[];
   meta: metaType;
   isOwnProfile: boolean;
   isFollowing: boolean;
