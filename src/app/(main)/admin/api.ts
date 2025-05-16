@@ -87,8 +87,7 @@ export const useCreateSyncPost = () => {
       return res.data;
     },
     onSuccess: (_, shortcode) => {
-      // 특정 사용자의 숏코드 목록 갱신
-      queryClient.invalidateQueries({ queryKey: ['userShortcodes'] });
+      // 자동 새로고침 제거
       showModalHandler('alert', '인스타그램 동영상 동기화에 성공했습니다.');
     },
     onError: (error) => {
@@ -111,8 +110,7 @@ export const useSendInstaSyncNotification = () => {
     },
     onSuccess: () => {
       showModalHandler('alert', '알림이 성공적으로 발송되었습니다.');
-      // 알림 발송 성공 시 숏코드 목록 갱신
-      queryClient.invalidateQueries({ queryKey: ['userShortcodes'] });
+      // 자동 새로고침 제거
     },
     onError: (error) => {
       showModalHandler('alert', '알림 발송 실패: 다시 시도해 주세요');
