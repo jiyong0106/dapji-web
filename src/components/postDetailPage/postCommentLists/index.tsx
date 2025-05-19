@@ -93,7 +93,7 @@ const PostCommentList = memo(
     //댓글 삭제
     const showRecommentClick = () => {
       if (showRecomments) {
-        // 답글을 닫을 때 댓글로 스크롤 이동
+        //댓글로 스크롤 이동
         if (commentRef.current) {
           commentRef.current.scrollIntoView({
             behavior: 'smooth',
