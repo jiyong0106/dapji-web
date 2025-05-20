@@ -42,7 +42,15 @@ const InstaSyncPage = () => {
   // 숏코드 동기화 처리
   const handleSync = (shortcode: string) => {
     setSelectedShortcode(shortcode);
-    createSyncPost(shortcode);
+    
+    // user_idx가 있으면 함께 전달
+    if (shortcodesData && shortcodesData.user_idx) {
+      console.log(`숏코드 ${shortcode} 동기화 시작 (사용자 ID: ${shortcodesData.user_idx})`);
+      createSyncPost({ shortcode, user_idx: shortcodesData.user_idx });
+    } else {
+      console.log(`숏코드 ${shortcode} 동기화 시작 (사용자 ID 없음)`);
+      createSyncPost({ shortcode });
+    }
   };
 
   // 알림 발송 처리
