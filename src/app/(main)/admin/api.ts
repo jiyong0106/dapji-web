@@ -82,11 +82,11 @@ export const useCreateSyncPost = () => {
 
   return useMutation({
     mutationKey: ['createSyncPost'],
-    mutationFn: async (shortcode: string) => {
-      const res = await instance.post('/videos/instagram/sync-post', { shortcode });
+    mutationFn: async (params: { shortcode: string; user_idx?: number }) => {
+      const res = await instance.post('/videos/instagram/sync-post', params);
       return res.data;
     },
-    onSuccess: (_, shortcode) => {
+    onSuccess: () => {
       // 자동 새로고침 제거
       showModalHandler('alert', '인스타그램 동영상 동기화에 성공했습니다.');
     },
