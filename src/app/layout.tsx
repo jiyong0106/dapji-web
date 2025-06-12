@@ -10,7 +10,7 @@ const APP_NAME = 'DAPJI';
 const APP_DEFAULT_TITLE = '답지(DAPJI) | 클라이밍이 쉬워지는 순간,';
 const APP_TITLE_TEMPLATE = '%s | DAPJI';
 const APP_DESCRIPTION =
-  'DAPJI - 루트 파인딩 너무 고민하지 마세요, 답지에서 클라이밍 루트를 쉽고 빠르게 찾아보세요요 ';
+  'DAPJI - 루트 파인딩 너무 고민하지 마세요, 답지에서 클라이밍 루트를 쉽고 빠르게 찾아보세요 ';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://climbdapji.kr'),
