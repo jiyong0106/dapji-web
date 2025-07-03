@@ -5,6 +5,9 @@
   overflow-y: scroll;
   .searchBar {
     margin-top: 60px;
+    @include flex-arrange(center, center);
+    gap: 50px;
+    padding: 0 10px;
   }
   .secondContainer {
     margin-bottom: 100px;

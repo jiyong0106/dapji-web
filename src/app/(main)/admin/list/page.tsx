@@ -25,7 +25,8 @@ const AdminClimbListPage = () => {
     isFetchingNextPage,
   } = useInfiniteScroll<GymListResponseType>({
     queryKey: ['gymListKey', searchName],
-    fetchFunction: (page = 1) => fetchGymListDatas({ page, search: searchName }),
+    fetchFunction: (page = 1) =>
+      fetchGymListDatas({ page, search: searchName }),
     getNextPageParam: (lastPage) =>
       lastPage.meta.hasNextPage ? lastPage.meta.page + 1 : undefined,
   });
@@ -50,18 +51,15 @@ const AdminClimbListPage = () => {
 
   return (
     <div className={cn('container')}>
-      <Header title={'클라이밍짐 리스트 관리'}>
-        <Link href="/admin/list/upload">
-          <AddIcon />
-        </Link>
-      </Header>
-
       <div className={cn('searchBar')}>
         <SearchBar
           placeholder="클라이밍장을 검색해 보세요"
           searchName={searchName}
           onSearchChange={handleSearchChange}
         />
+        <Link href="/admin/list/upload">
+          <AddIcon />
+        </Link>
       </div>
 
       <div className={cn('secondContainer')}>
