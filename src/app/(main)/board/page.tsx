@@ -20,7 +20,17 @@ export const metadata: Metadata = {
 };
 
 const BoardPage = () => {
-  return <ClientBoardList />;
+  return (
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      <ClientBoardList />
+    </div>
+  );
 };
 
 export default BoardPage;
