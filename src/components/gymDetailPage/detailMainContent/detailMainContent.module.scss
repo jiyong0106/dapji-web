@@ -129,6 +129,30 @@
       object-fit: cover;
       display: block;
     }
+
+    // 썸네일 개수 인디케이터
+    .indicatorWrapper {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(0, 0, 0, 0.45);
+      padding: 4px 6px;
+      border-radius: 999px;
+    }
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: white;
+      opacity: 0.9;
+    }
+    .more {
+      @include font-style(1.1rem, white, 600);
+      margin-left: 2px;
+    }
   }
 
   pre {

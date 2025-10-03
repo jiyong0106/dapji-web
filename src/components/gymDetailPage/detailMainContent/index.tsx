@@ -93,6 +93,16 @@ const DetailMainContent = ({ list, gymName }: DetailMainContentProps) => {
           className={cn('thumbnail')}
           priority
         />
+        {Array.isArray(thumbnailUrl) && thumbnailUrl.length > 1 && (
+          <div className={cn('indicatorWrapper')}>
+            {thumbnailUrl.slice(0, 5).map((_, index) => (
+              <span key={index} className={cn('dot')} />
+            ))}
+            {thumbnailUrl.length > 5 && (
+              <span className={cn('more')}>+{thumbnailUrl.length - 5}</span>
+            )}
+          </div>
+        )}
       </div>
       {/* 썸네일 이미지 아래 내용 */}
       <div className={cn('contentWrapper')} onClick={postDetailPage}>
