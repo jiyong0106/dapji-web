@@ -57,14 +57,19 @@ const useInfiniteScroll = <T>({
   });
 
   const [ref, inView] = useInView({
-    threshold: 1,
+    // 약간의 여백을 두고 미리 다음 페이지를 요청
+    rootMargin: '200px 0px',
+    threshold: 0,
   });
 
+  // 페이지가 추가되어도 여전히 sentinel이 보이는 경우를 대비해
+  // 페이지 수 변화에도 재요청 트리거
   useEffect(() => {
     if (inView && hasNextPage) {
       fetchNextPage();
     }
-  }, [inView, hasNextPage, fetchNextPage]);
+    // pages 길이를 의존성으로 추가 (타입 회피를 위해 any 사용)
+  }, [inView, hasNextPage, fetchNextPage, (data as any)?.pages?.length]);
 
   return { data, fetchNextPage, hasNextPage, ref, ...rest };
 };

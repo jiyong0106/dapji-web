@@ -121,17 +121,13 @@
     width: 100%;
     max-width: 900px;
     margin: 0 auto;
-    .videoBox {
-      position: relative;
+    position: relative;
+    overflow: hidden;
+    .thumbnail {
       width: 100%;
-      max-width: 900px;
-      overflow: hidden;
-
-      video {
-        width: 100%;
-        height: auto;
-        object-fit: cover;
-      }
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      display: block;
     }
   }
 
@@ -169,4 +165,22 @@
       }
     }
   }
+}
+
+.outercontainer {
+  width: 100%;
+  display: grid;
+  // 고정 폭 컬럼으로 좌측부터 촘촘히 배치
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  justify-content: flex-start;
+  justify-items: start;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+// 아이템 수가 적을 때 카드가 가로로 늘어나지 않도록 고정 폭 컬럼 적용
+.outercontainer.compact {
+  grid-template-columns: repeat(auto-fill, minmax(340px, 500px));
+  justify-content: flex-start;
+  justify-items: start;
 }
