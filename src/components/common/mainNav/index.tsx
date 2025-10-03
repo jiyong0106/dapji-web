@@ -2,7 +2,7 @@
 import classNames from 'classnames/bind';
 import styles from './mainNav.module.scss';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useMyInfoStore } from '@/src/utils/store/useMyImfoStore';
 import { fetchUserLogout } from '@/src/app/(main)/profile/api';
 import { useModal } from '@/src/hooks/useModal';
@@ -18,6 +18,12 @@ const MainNav = () => {
   const { showModalHandler } = useModal();
   const router = useRouter();
   const { toggleMenu } = useMenuToggleStore();
+  const path = usePathname();
+
+  const nomenu =
+    path === '/signin' ||
+    path === '/auth/apple/callback' ||
+    path === '/auth/kakao/callback';
 
   const handleLogoutClick = () => {
     const confirmAction = async () => {
@@ -51,12 +57,14 @@ const MainNav = () => {
   return (
     <nav className={cn('container')}>
       <div className={cn('left')}>
-        <MenuIcon
-          width="35"
-          height="35"
-          className={cn('menu')}
-          onClick={toggleMenu}
-        />
+        {!nomenu && (
+          <MenuIcon
+            width="35"
+            height="35"
+            className={cn('menu')}
+            onClick={toggleMenu}
+          />
+        )}
         <a
           className={cn('left')}
           href={process.env.NEXT_PUBLIC_URL}
