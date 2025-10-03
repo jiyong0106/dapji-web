@@ -28,7 +28,6 @@ const GymListSection = ({ searchName, selectSort }: GymListSectionProps) => {
       fetchGymListDatas({ page, search: searchName, sort: selectSort }),
     getNextPageParam: (lastPage) =>
       lastPage.meta.hasNextPage ? lastPage.meta.page + 1 : undefined,
-    staleTime: 60 * 1000,
   });
 
   const lists = climbListData?.pages.flatMap((page) => page.gyms) ?? [];
