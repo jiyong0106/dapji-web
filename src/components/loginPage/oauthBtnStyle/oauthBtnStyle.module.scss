@@ -1,14 +1,11 @@
 .container {
-  @include flex-arrange(space-around, center);
+  @include flex-arrange(center, center);
   @include font-style(1.4rem, white, 700);
-  width: 100%;
+  width: 50px;
   height: 50px;
-  border-radius: 5px;
+  border-radius: 50%;
   gap: 10px;
   .icon {
-    width: 20%;
-  }
-  .text {
-    margin-right: 15px;
+    @include flex-arrange(center, center);
   }
 }

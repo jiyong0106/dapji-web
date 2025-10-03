@@ -1,6 +1,6 @@
 .container {
   @include flex-arrange(center, center);
-  flex-direction: column;
-  gap: 10px;
+
+  gap: 20px;
   width: 80%;
 }
