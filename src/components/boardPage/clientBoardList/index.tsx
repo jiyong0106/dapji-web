@@ -11,12 +11,14 @@ import SearchBar from '@/src/components/common/searchBar';
 import { useMyInfoStore } from '@/src/utils/store/useMyImfoStore';
 import BoardListSection from '../boardListSection';
 import { useRouter } from 'next/navigation';
+import { useRouteProgress } from '@/src/utils/store/useRouteProgress';
 
 const cn = classNames.bind(styles);
 
 const ClientBoardList = () => {
   const { myId } = useMyInfoStore();
   const router = useRouter();
+  const { start } = useRouteProgress();
   const [searchName, setSearchName] = useState('');
   const [selectSortOption, setSelectSortOption] = useState('recent');
   const [selectCategory, setSelectCategory] = useState('전체');
@@ -26,6 +28,7 @@ const ClientBoardList = () => {
   );
 
   const uploadClick = () => {
+    start();
     if (!myId) {
       router.replace('/signin');
       return;

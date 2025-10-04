@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import classNames from 'classnames/bind';
 import styles from './sidebarItems.module.scss';
 import { useMenuToggleStore } from '@/src/utils/store/useMenuTogglelStore';
+import SmartLink from '../smartLink';
 
 const cn = classNames.bind(styles);
 
@@ -20,8 +21,9 @@ const SidebarItem = ({ label, icon, path }: SidebarItemsProps) => {
   const { toggle } = useMenuToggleStore();
 
   return (
-    <Link
+    <SmartLink
       href={path}
+      prefetch
       className={cn('item', {
         active: isActive,
         collapsed: toggle === true,
@@ -31,7 +33,7 @@ const SidebarItem = ({ label, icon, path }: SidebarItemsProps) => {
       <span className={cn('label', { togglelabel: toggle === true })}>
         {label}
       </span>
-    </Link>
+    </SmartLink>
   );
 };
 

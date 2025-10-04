@@ -2,15 +2,13 @@
 import classNames from 'classnames/bind';
 import styles from './detailMainContent.module.scss';
 import { RightArrowIcon } from '@/public/icon';
-import { useRouter } from 'next/navigation';
 import { PostDetailType } from '@/src/utils/type';
 import Image from 'next/image';
 import LikeAction from '@/src/components/common/likeAction';
-
 import useTimeAgo from '@/src/hooks/useTimeAgo';
 import { useLikeAction } from '@/src/hooks/useLikeAction';
 import CommentCount from '@/src/components/common/commentCount';
-import Link from 'next/link';
+import SmartLink from '../../common/smartLink';
 
 const cn = classNames.bind(styles);
 
@@ -24,19 +22,15 @@ const DetailMainContent = ({ list, gymName }: DetailMainContentProps) => {
     color,
     User,
     clearday,
-    content,
     post_idx,
     gym_idx,
     user_idx,
     createdAt,
     like_count,
     is_like,
-    post_comment,
     post_comment_count,
     thumbnailUrl,
   } = list;
-
-  //리스트 데이터들
 
   const timeAgo = useTimeAgo(createdAt);
   const cleartimeAgo = useTimeAgo(clearday);
@@ -49,42 +43,42 @@ const DetailMainContent = ({ list, gymName }: DetailMainContentProps) => {
     firQueryKeyName: 'climbPost',
   });
 
-  const router = useRouter();
-
-  const postDetailPage = () => {
-    router.push(`/gym/${gym_idx}/${post_idx}`);
-  };
-  // 영상 상세 페이지 이동
-
   const deleteT = (date: string | null) => date?.split('T')[0];
-  // 시간 가공
-
-  const profileClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    router.push(`/profile/${user_idx}`);
-  };
-  // 프로필 클릭
 
   return (
     <div className={cn('container')}>
       {/* 유저프로필 */}
       <div className={cn('userWrapper')}>
-        <div className={cn('userInfo')} onClick={profileClick}>
+        {/* 프로필 SmartLink */}
+        <SmartLink
+          href={`/profile/${user_idx}`}
+          className={cn('userInfo')}
+          prefetch
+        >
           <Image
             src={User.img || '/icon/blueicon.png'}
-            width="30"
-            height="30"
+            width={30}
+            height={30}
             alt="userImg"
           />
           <div className={cn('dateWrapper')}>
             <span>{User?.nickname}</span>
             <span>{timeAgo}</span>
           </div>
-        </div>
-        <RightArrowIcon width="15" height="15" onClick={postDetailPage} />
+        </SmartLink>
+
+        {/* 상세페이지 SmartLink */}
+        <SmartLink href={`/gym/${gym_idx}/${post_idx}`} prefetch>
+          <RightArrowIcon width="15" height="15" />
+        </SmartLink>
       </div>
-      {/* 썸네일 이미지 */}
-      <div className={cn('videoWrapper')}>
+
+      {/* 썸네일 (여기는 그대로 클릭 시 postDetailPage 역할) */}
+      <SmartLink
+        href={`/gym/${gym_idx}/${post_idx}`}
+        className={cn('videoWrapper')}
+        prefetch
+      >
         <Image
           src={thumbnailUrl?.[0] || '/images/default-thumbnail.png'}
           alt={`thumbnail`}
@@ -103,14 +97,19 @@ const DetailMainContent = ({ list, gymName }: DetailMainContentProps) => {
             )}
           </div>
         )}
-      </div>
-      {/* 썸네일 이미지 아래 내용 */}
-      <div className={cn('contentWrapper')} onClick={postDetailPage}>
+      </SmartLink>
+
+      {/* 본문 내용 영역 */}
+      <SmartLink
+        href={`/gym/${gym_idx}/${post_idx}`}
+        className={cn('contentWrapper')}
+        prefetch
+      >
         <div className={cn('iconWrapper')}>
           <LikeAction
             likeToggle={likeToggle}
             likeCount={likeCount}
-            onClick={handleLikeClick}
+            onClick={handleLikeClick} // ✅ 좋아요는 그대로 유지
           />
           <CommentCount count={post_comment_count} />
         </div>
@@ -129,7 +128,7 @@ const DetailMainContent = ({ list, gymName }: DetailMainContentProps) => {
             )
           </span>
         </div>
-      </div>
+      </SmartLink>
     </div>
   );
 };

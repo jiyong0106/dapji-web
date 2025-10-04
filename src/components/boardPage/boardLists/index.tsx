@@ -1,3 +1,4 @@
+'use client';
 import styles from './boardLists.module.scss';
 import classNames from 'classnames/bind';
 import { BoardListDataType } from '@/src/utils/type';
@@ -6,9 +7,9 @@ import useTruncateString from '@/src/hooks/useTruncateString';
 import LinkPreview from '@/src/components/common/linkPreview';
 import useTimeAgo from '@/src/hooks/useTimeAgo';
 import LikeAction from '../../common/likeAction';
-import { useRouter } from 'next/navigation';
 import { useLikeAction } from '@/src/hooks/useLikeAction';
 import CommentCount from '../../common/commentCount';
+import SmartLink from '../../common/smartLink';
 
 const cn = classNames.bind(styles);
 
@@ -31,6 +32,7 @@ const BoardList = ({ list }: BoardListProps) => {
     user_idx,
     board_idx,
   } = list;
+
   const { likeCount, likeToggle, handleLikeClick } = useLikeAction({
     category: 'boards',
     content_id: board_idx,
@@ -39,42 +41,53 @@ const BoardList = ({ list }: BoardListProps) => {
     firQueryKeyName: 'boardListData',
   });
 
-  const router = useRouter();
-
   const timeAgo = useTimeAgo(createdAt);
-  //시간대 표시
-
   const truncateString = useTruncateString();
-  //글자수 제한한
   const imageLeghth = img.length;
-  //이미지 갯수 표시
-
-  const profileClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    if (typeof user_idx === 'undefined') return;
-    router.push(`/profile/${user_idx}`);
-  };
-
-  const navigateToBoard = () => {
-    router.push(`/board/${board_idx}`);
-  };
 
   return (
-    <article className={cn('container')} onClick={navigateToBoard}>
-      <div className={cn('containerWrapper')}>
+    <article className={cn('container')}>
+      {/* ✅ 게시글 전체를 SmartLink로 감싸서 navigateToBoard 대체 */}
+      <SmartLink
+        href={`/board/${board_idx}`}
+        className={cn('containerWrapper')}
+        prefetch
+      >
         <section className={cn('contentWrapper')}>
           <header className={cn('userInfo')}>
-            <Image
-              src={
-                User?.img || process.env.NEXT_PUBLIC_URL + '/icon/blueicon.png'
-              }
-              width={30}
-              height={30}
-              alt="유저 이미지"
-              className={cn('profileImage')}
-              onClick={user_idx ? profileClick : undefined}
-              style={{ cursor: user_idx ? 'pointer' : 'default' }}
-            />
+            {/* ✅ 프로필 SmartLink로 교체 */}
+            {user_idx ? (
+              <SmartLink
+                href={`/profile/${user_idx}`}
+                className={cn('profileLink')}
+                prefetch
+                onClick={(e) => e.stopPropagation()} // 부모 SmartLink 클릭 막기
+              >
+                <Image
+                  src={
+                    User?.img ||
+                    process.env.NEXT_PUBLIC_URL + '/icon/blueicon.png'
+                  }
+                  width={30}
+                  height={30}
+                  alt="유저 이미지"
+                  className={cn('profileImage')}
+                />
+              </SmartLink>
+            ) : (
+              <Image
+                src={
+                  User?.img ||
+                  process.env.NEXT_PUBLIC_URL + '/icon/blueicon.png'
+                }
+                width={30}
+                height={30}
+                alt="탈퇴 사용자"
+                className={cn('profileImage')}
+                style={{ cursor: 'default' }}
+              />
+            )}
+
             <div className={cn('dateWrapper')}>
               <span className={cn('category')}>{category}</span>
               <div className={cn('dataInfo')}>
@@ -112,7 +125,7 @@ const BoardList = ({ list }: BoardListProps) => {
             <CommentCount count={comment_count} />
           </div>
         </section>
-      </div>
+      </SmartLink>
 
       {preview && <LinkPreview previews={preview} singlePreview={true} />}
     </article>

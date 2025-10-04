@@ -7,6 +7,7 @@ import useInfiniteScroll from '@/src/hooks/useInfiniteScroll';
 import { GymDetailResponseType } from '@/src/utils/type';
 import DetailMainContentList from '../detailMainContent';
 import SkeletonGymDetail from '../skeletonGymDetail';
+import { keepPreviousData } from '@tanstack/react-query';
 
 type DetailPageProps = {
   params: { gymId: string };

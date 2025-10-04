@@ -49,16 +49,6 @@ const BoardListSection = ({
   const boardData =
     boardListGetData?.pages.flatMap((page) => page.boards) ?? [];
 
-  const uploadClick = () => {
-    if (myId === null) {
-      showModalHandler('alert', '로그인 후 이용해 주세요', () =>
-        router.push('/signin'),
-      );
-      return;
-    }
-    router.push('/board/upload');
-  };
-
   if (isLoading) {
     return <SkeletonBoardList />;
   }
