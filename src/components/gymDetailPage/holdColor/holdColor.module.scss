@@ -1,20 +1,43 @@
-.circle {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  color: #fff;
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid #e5e5e5;
+  background: #fff;
   cursor: pointer;
-
   transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
   position: relative;
+}
+
+.chip:hover {
+  background: #fafafa;
+}
+
+.chip.active {
+  background: #eef6ff;
+  border-color: #cde3ff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+}
+
+.label {
+  @include font-style(1.2rem, #333, 500);
 }
 
 .checkIcon {
   position: absolute;
-  top: -13px;
-  right: 0px;
+  top: -6px;
+  right: -6px;
 }
 
 .color-red {

@@ -3,6 +3,7 @@
 import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import '@/src/styles/globals.css';
+import TopProgressBar from '../components/common/TopProgressBar';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -82,7 +83,10 @@ export default function RootLayout({
         {/* favicon */}
         <link rel="icon" href="/icon/blueicon.png" sizes="any" />
       </head>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <TopProgressBar />
+        {children}
+      </body>
     </html>
   );
 }

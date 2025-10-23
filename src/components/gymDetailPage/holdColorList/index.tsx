@@ -52,12 +52,7 @@ const HoldColorList = ({
     </div>
   );
 
-  return (
-    <div className={cn('outerContainer')}>
-      <p className={cn('holdText')}>선택</p>
-      {renderColors()}
-    </div>
-  );
+  return <div className={cn('outerContainer')}>{renderColors()}</div>;
 };
 
 export default HoldColorList;

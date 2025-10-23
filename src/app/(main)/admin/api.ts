@@ -46,7 +46,7 @@ export const useFetchInstaUsers = () => {
     queryFn: async () => {
       const res = await instance.get('/videos/instagram/users');
       return res.data;
-    }
+    },
   });
 };
 
@@ -56,7 +56,9 @@ export const useFetchUserShortcodes = (instaName: string) => {
     queryKey: ['userShortcodes', instaName],
     queryFn: async () => {
       if (!instaName) return null;
-      const res = await instance.get(`/videos/instagram/users/${instaName}/shortcodes`);
+      const res = await instance.get(
+        `/videos/instagram/users/${instaName}/shortcodes`,
+      );
       return res.data;
     },
     enabled: !!instaName, // instaName이 있을 때만 쿼리 실행
@@ -76,7 +78,10 @@ export const useFetchInstaSyncStatus = () => {
 };
 
 // 인스타그램 게시물 동기화 (숏코드로 인스타그램 동영상 다운로드)
-export const useCreateSyncPost = () => {
+export const useCreateSyncPost = (
+  onSyncSuccess?: (shortcode: string) => void,
+) => {
+  // onSuccess 콜백 추가
   const queryClient = useQueryClient();
   const { showModalHandler } = useModal();
 
@@ -84,19 +89,21 @@ export const useCreateSyncPost = () => {
     mutationKey: ['createSyncPost'],
     mutationFn: async (params: { shortcode: string; user_idx?: number }) => {
       const res = await instance.post('/videos/instagram/sync-post', params);
-      return res.data;
+      return { ...res.data, shortcode: params.shortcode }; // shortcode를 결과에 포함시켜 반환
     },
-    onSuccess: () => {
-      // 자동 새로고침 제거
+    onSuccess: (data) => {
+      // data에 shortcode가 포함됨
       showModalHandler('alert', '인스타그램 동영상 동기화에 성공했습니다.');
+      if (onSyncSuccess && data.shortcode) {
+        onSyncSuccess(data.shortcode); // 성공 시 콜백 실행
+      }
     },
     onError: (error) => {
       showModalHandler('alert', '동기화 실패: 다시 시도해 주세요');
       console.error('동기화 실패:', error);
-    }
+    },
   });
 };
-
 // 인스타그램 동기화 게시물에 대한 알림 발송
 export const useSendInstaSyncNotification = () => {
   const { showModalHandler } = useModal();
@@ -105,7 +112,9 @@ export const useSendInstaSyncNotification = () => {
   return useMutation({
     mutationKey: ['sendInstaSyncNotification'],
     mutationFn: async (insta_sync_post_idx: number) => {
-      const res = await instance.post(`/videos/instagram/sync-post/${insta_sync_post_idx}/notify`);
+      const res = await instance.post(
+        `/videos/instagram/sync-post/${insta_sync_post_idx}/notify`,
+      );
       return res.data;
     },
     onSuccess: () => {
@@ -115,6 +124,6 @@ export const useSendInstaSyncNotification = () => {
     onError: (error) => {
       showModalHandler('alert', '알림 발송 실패: 다시 시도해 주세요');
       console.error('알림 발송 실패:', error);
-    }
+    },
   });
 };

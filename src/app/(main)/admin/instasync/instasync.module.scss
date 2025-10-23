@@ -27,7 +27,7 @@
   margin: 20px 0 10px;
   padding-bottom: 5px;
   border-bottom: 1px solid #eee;
-  
+
   &.synced-title {
     color: #666;
     font-size: 16px;
@@ -62,18 +62,18 @@
   cursor: pointer;
   transition: all 0.2s ease;
   border: 1px solid #eee;
-  
+
   &:hover {
     transform: translateX(3px);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
   }
-  
+
   &.active {
     border-color: #4caf50;
     background-color: #f1f8e9;
     border-left: 3px solid #4caf50;
   }
-  
+
   .user-name {
     font-size: 14px;
     margin: 0;
@@ -88,7 +88,7 @@
   background-color: #f9f9f9;
   border-radius: 10px;
   border: 1px solid #eaeaea;
-  
+
   &.empty {
     display: flex;
     justify-content: center;
@@ -109,7 +109,7 @@
   justify-content: center;
   align-items: center;
   height: 150px;
-  
+
   p {
     color: #888;
     font-size: 14px;
@@ -122,7 +122,7 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
-  
+
   .section-title {
     margin: 0;
     border: none;
@@ -143,11 +143,11 @@
   font-size: 13px;
   cursor: pointer;
   transition: background-color 0.2s;
-  
+
   &:hover {
     background-color: #1976d2;
   }
-  
+
   &:disabled {
     background-color: #bbdefb;
     cursor: not-allowed;
@@ -164,11 +164,11 @@
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.2s;
-  
+
   &:hover {
     background-color: #e64a19;
   }
-  
+
   &:disabled {
     background-color: #ffccbc;
     cursor: not-allowed;
@@ -199,9 +199,23 @@
   background-color: #f5f5f5;
   border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease;
 
   &.synced {
     background-color: #f0f7ff;
+  }
+  &.just-synced {
+    background-color: #f0fdf4; // 연한 녹색 배경
+    border-color: #22c55e; // 녹색 테두리
+
+    .sync-btn {
+      background-color: #22c55e;
+      color: white;
+      cursor: not-allowed;
+      border: none;
+    }
   }
 }
 
@@ -235,13 +249,13 @@
   padding: 2px 4px;
   border-radius: 3px;
   display: inline-block;
-  
+
   &.status-yes {
     background-color: rgba(76, 175, 80, 0.15);
     color: #2e7d32;
     border: 1px solid rgba(76, 175, 80, 0.3);
   }
-  
+
   &.status-no {
     background-color: rgba(244, 67, 54, 0.15);
     color: #c62828;
@@ -287,10 +301,10 @@
     background-color: #90caf9;
     cursor: not-allowed;
   }
-  
+
   &.sent {
     background-color: #5c6bc0;
-    
+
     &:hover {
       background-color: #3949ab;
     }
@@ -319,4 +333,47 @@
   border-radius: 4px;
   font-weight: normal;
   margin-left: 8px;
-} 
+}
+
+.container.loading {
+  pointer-events: none; // 컨테이너의 모든 클릭 이벤트를 막습니다.
+}
+
+.loading-overlay {
+  position: fixed; // 전체 화면을 덮도록 fixed 속성 사용
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); // 반투명 검은 배경
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; // 다른 요소들 위에 표시
+  color: white;
+  font-size: 1.2rem;
+
+  .spinner {
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top: 4px solid #fff;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

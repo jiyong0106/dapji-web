@@ -14,7 +14,7 @@ const SignInPage = () => {
     <div className={cn('container')}>
       <div className={cn('loginContaienr')}>
         <div className={cn('loginheader')}>
-          <p className={cn('headerText')}>힘이들 땐, 답지를 봐!</p>
+          <p className={cn('headerText')}>클라이밍이 쉬워지는 순간, </p>
           <Image
             src={process.env.NEXT_PUBLIC_URL + `/icon/dapjilogo.svg`}
             width={300}

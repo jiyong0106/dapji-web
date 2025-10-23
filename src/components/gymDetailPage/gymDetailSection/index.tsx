@@ -7,6 +7,7 @@ import useInfiniteScroll from '@/src/hooks/useInfiniteScroll';
 import { GymDetailResponseType } from '@/src/utils/type';
 import DetailMainContentList from '../detailMainContent';
 import SkeletonGymDetail from '../skeletonGymDetail';
+import { keepPreviousData } from '@tanstack/react-query';
 
 type DetailPageProps = {
   params: { gymId: string };
@@ -22,7 +23,7 @@ const GymDetailSection = ({ params, activeColor }: DetailPageProps) => {
     isLoading,
     isFetchingNextPage,
   } = useInfiniteScroll<GymDetailResponseType>({
-    queryKey: ['climbDetail', activeColor],
+    queryKey: ['climbDetail', gymId, activeColor],
     fetchFunction: (pageParam = 1) =>
       fetchGymDetailDatas({ pageParam, gymId, color: activeColor }),
     getNextPageParam: (lastPage) =>
@@ -42,9 +43,11 @@ const GymDetailSection = ({ params, activeColor }: DetailPageProps) => {
       {lists.length === 0 ? (
         <NodetailData />
       ) : (
-        <DetailMainContentList lists={lists} gymName={gymName} />
+        <>
+          <DetailMainContentList lists={lists} gymName={gymName} />
+          <div ref={ref} />
+        </>
       )}
-      <div ref={ref} />
       {isFetchingNextPage && <LoadingSpinner />}
     </>
   );

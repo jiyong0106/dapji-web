@@ -25,9 +25,6 @@ const OauthBtnStyle = ({
       onClick={onClick}
     >
       <div className={cn('icon')}>{icon}</div>
-      <p className={cn('text')} style={{ color: textColor }}>
-        {text}
-      </p>
     </button>
   );
 };

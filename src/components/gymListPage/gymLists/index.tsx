@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import FavoriteAction from '../favoriteAction';
 import useFavoriteAction from '@/src/hooks/useFavoriteAction';
 import { PostIcon } from '@/public/icon';
+import { useRouteProgress } from '@/src/utils/store/useRouteProgress';
 
 const cn = classNames.bind(styles);
 
@@ -16,6 +17,7 @@ type GymListProps = {
 
 const GymList = ({ list }: GymListProps) => {
   const { logo, name, gym_idx, address, is_favorite, post_count } = list;
+  const { start } = useRouteProgress();
 
   const router = useRouter();
 
@@ -25,6 +27,7 @@ const GymList = ({ list }: GymListProps) => {
   });
 
   const detailClick = () => {
+    start();
     router.push(`/gym/${gym_idx}`);
   };
 
@@ -63,11 +66,13 @@ const GymList = ({ list }: GymListProps) => {
 //
 type GymListsProps = {
   lists: GymsType[];
+  compact?: boolean;
 };
 
-const GymLists = ({ lists }: GymListsProps) => {
+const GymLists = ({ lists, compact = false }: GymListsProps) => {
+  const isCompactLayout = compact || lists.length <= 3;
   return (
-    <div className={cn('outercontainer')}>
+    <div className={cn('outercontainer', { compact: isCompactLayout })}>
       {lists.map((list: GymsType) => (
         <GymList key={list.gym_idx} list={list} />
       ))}
