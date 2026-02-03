@@ -1,6 +1,6 @@
 # Dapji - 클라이밍 커뮤니티 플랫폼
 
-클라이밍 영상 기록/공유 웹 & 앱 서비스
+클라이밍 영상공유 앱
 
 - **배포 사이트:** [https://climbdapji.kr/](https://climbdapji.kr/)
 
